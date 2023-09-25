@@ -1,4 +1,4 @@
-﻿{
+{
 "conditionalTemplates":[
 		{
 			"placeholder": "{{Import_Create_Or_Edit_Component_Here}}",

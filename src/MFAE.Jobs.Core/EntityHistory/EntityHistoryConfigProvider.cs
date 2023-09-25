@@ -23,7 +23,7 @@ namespace MFAE.Jobs.EntityHistory
                     {
                         EntityHistoryHelper.EntityHistoryConfigurationName,
                         new EntityHistoryUiSetting{
-                            IsEnabled = false
+                            IsEnabled = true
                         }
                     }
                 };

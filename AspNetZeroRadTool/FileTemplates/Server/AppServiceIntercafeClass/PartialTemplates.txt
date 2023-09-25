@@ -1,4 +1,4 @@
-﻿{
+{
 "propertyTemplates":[
 		{
 			"placeholder" : "{{Remove_File_Prop_Here}}",

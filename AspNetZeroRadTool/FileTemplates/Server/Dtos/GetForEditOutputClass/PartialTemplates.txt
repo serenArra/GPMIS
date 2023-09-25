@@ -1,4 +1,4 @@
-﻿{
+{
 "propertyTemplates":[
 		{
 			"placeholder" : "{{File_Typed_Prop_File_Name_Property_Here}}",

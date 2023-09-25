@@ -1,4 +1,4 @@
-﻿{
+{
     "conditionalTemplates":[
 		{
 			"placeholder": "{{Use_Import_Admin_Shared_Module_Here}}",
