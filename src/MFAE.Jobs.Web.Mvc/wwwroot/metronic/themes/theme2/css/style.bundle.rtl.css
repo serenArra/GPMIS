@@ -77,16 +77,16 @@
 }
 
 body {
-  margin: 0;
-  font-family: var(--bs-body-font-family);
-  font-size: var(--bs-body-font-size);
-  font-weight: var(--bs-body-font-weight);
-  line-height: var(--bs-body-line-height);
-  color: var(--bs-body-color);
-  text-align: var(--bs-body-text-align);
-  background-color: var(--bs-body-bg);
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    margin: 0;
+    font-family: "Noto Kufi Arabic", var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
+    line-height: var(--bs-body-line-height);
+    color: var(--bs-body-color);
+    text-align: var(--bs-body-text-align);
+    background-color: var(--bs-body-bg);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 hr {
@@ -5791,39 +5791,39 @@ textarea.form-control-lg {
   }
 }
 .tooltip {
-  --bs-tooltip-zindex: 1080;
-  --bs-tooltip-max-width: 200px;
-  --bs-tooltip-padding-x: 1rem;
-  --bs-tooltip-padding-y: 0.75rem;
-  --bs-tooltip-margin: 0;
-  --bs-tooltip-font-size: 0.925rem;
-  --bs-tooltip-color: #3F4254;
-  --bs-tooltip-bg: #ffffff;
-  --bs-tooltip-border-radius: 0.475rem;
-  --bs-tooltip-opacity: 1;
-  --bs-tooltip-arrow-width: 0.8rem;
-  --bs-tooltip-arrow-height: 0.4rem;
-  z-index: var(--bs-tooltip-zindex);
-  display: block;
-  padding: var(--bs-tooltip-arrow-height);
-  margin: var(--bs-tooltip-margin);
-  font-family: var(--bs-font-sans-serif);
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5;
-  text-align: right;
-  text-align: start;
-  text-decoration: none;
-  text-shadow: none;
-  text-transform: none;
-  letter-spacing: normal;
-  word-break: normal;
-  white-space: normal;
-  word-spacing: normal;
-  line-break: auto;
-  font-size: var(--bs-tooltip-font-size);
-  word-wrap: break-word;
-  opacity: 0;
+    --bs-tooltip-zindex: 1080;
+    --bs-tooltip-max-width: 200px;
+    --bs-tooltip-padding-x: 1rem;
+    --bs-tooltip-padding-y: 0.75rem;
+    --bs-tooltip-margin: 0;
+    --bs-tooltip-font-size: 0.925rem;
+    --bs-tooltip-color: #3F4254;
+    --bs-tooltip-bg: #ffffff;
+    --bs-tooltip-border-radius: 0.475rem;
+    --bs-tooltip-opacity: 1;
+    --bs-tooltip-arrow-width: 0.8rem;
+    --bs-tooltip-arrow-height: 0.4rem;
+    z-index: var(--bs-tooltip-zindex);
+    display: block;
+    padding: var(--bs-tooltip-arrow-height);
+    margin: var(--bs-tooltip-margin);
+    font-family: "Noto Kufi Arabic", var(--bs-font-sans-serif);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: right;
+    text-align: start;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    word-break: normal;
+    white-space: normal;
+    word-spacing: normal;
+    line-break: auto;
+    font-size: var(--bs-tooltip-font-size);
+    word-wrap: break-word;
+    opacity: 0;
 }
 .tooltip.show {
   opacity: var(--bs-tooltip-opacity);
@@ -5886,50 +5886,50 @@ textarea.form-control-lg {
 }
 
 .popover {
-  --bs-popover-zindex: 1070;
-  --bs-popover-max-width: 276px;
-  --bs-popover-font-size: 1rem;
-  --bs-popover-bg: #ffffff;
-  --bs-popover-border-width: 1px;
-  --bs-popover-border-color: #ffffff;
-  --bs-popover-border-radius: 0.475rem;
-  --bs-popover-inner-border-radius: calc(0.475rem - 1px);
-  --bs-popover-box-shadow: 0px 0px 50px 0px rgba(82, 63, 105, 0.15);
-  --bs-popover-header-padding-x: 1.25rem;
-  --bs-popover-header-padding-y: 1rem;
-  --bs-popover-header-font-size: 1rem;
-  --bs-popover-header-color: #3F4254;
-  --bs-popover-header-bg: #ffffff;
-  --bs-popover-body-padding-x: 1.25rem;
-  --bs-popover-body-padding-y: 1.25rem;
-  --bs-popover-body-color: #3F4254;
-  --bs-popover-arrow-width: 1rem;
-  --bs-popover-arrow-height: 0.5rem;
-  --bs-popover-arrow-border: var(--bs-popover-border-color);
-  z-index: var(--bs-popover-zindex);
-  display: block;
-  max-width: var(--bs-popover-max-width);
-  font-family: var(--bs-font-sans-serif);
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5;
-  text-align: right;
-  text-align: start;
-  text-decoration: none;
-  text-shadow: none;
-  text-transform: none;
-  letter-spacing: normal;
-  word-break: normal;
-  white-space: normal;
-  word-spacing: normal;
-  line-break: auto;
-  font-size: var(--bs-popover-font-size);
-  word-wrap: break-word;
-  background-color: var(--bs-popover-bg);
-  background-clip: padding-box;
-  border: var(--bs-popover-border-width) solid var(--bs-popover-border-color);
-  border-radius: var(--bs-popover-border-radius);
-  box-shadow: var(--bs-popover-box-shadow);
+    --bs-popover-zindex: 1070;
+    --bs-popover-max-width: 276px;
+    --bs-popover-font-size: 1rem;
+    --bs-popover-bg: #ffffff;
+    --bs-popover-border-width: 1px;
+    --bs-popover-border-color: #ffffff;
+    --bs-popover-border-radius: 0.475rem;
+    --bs-popover-inner-border-radius: calc(0.475rem - 1px);
+    --bs-popover-box-shadow: 0px 0px 50px 0px rgba(82, 63, 105, 0.15);
+    --bs-popover-header-padding-x: 1.25rem;
+    --bs-popover-header-padding-y: 1rem;
+    --bs-popover-header-font-size: 1rem;
+    --bs-popover-header-color: #3F4254;
+    --bs-popover-header-bg: #ffffff;
+    --bs-popover-body-padding-x: 1.25rem;
+    --bs-popover-body-padding-y: 1.25rem;
+    --bs-popover-body-color: #3F4254;
+    --bs-popover-arrow-width: 1rem;
+    --bs-popover-arrow-height: 0.5rem;
+    --bs-popover-arrow-border: var(--bs-popover-border-color);
+    z-index: var(--bs-popover-zindex);
+    display: block;
+    max-width: var(--bs-popover-max-width);
+    font-family: "Noto Kufi Arabic", var(--bs-font-sans-serif);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: right;
+    text-align: start;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    word-break: normal;
+    white-space: normal;
+    word-spacing: normal;
+    line-break: auto;
+    font-size: var(--bs-popover-font-size);
+    word-wrap: break-word;
+    background-color: var(--bs-popover-bg);
+    background-clip: padding-box;
+    border: var(--bs-popover-border-width) solid var(--bs-popover-border-color);
+    border-radius: var(--bs-popover-border-radius);
+    box-shadow: var(--bs-popover-box-shadow);
 }
 .popover .popover-arrow {
   display: block;
@@ -5943,6 +5943,19 @@ textarea.form-control-lg {
   border-color: transparent;
   border-style: solid;
   border-width: 0;
+}
+
+
+.daterangepicker {
+    padding: 0;
+    margin: 0;
+    width: auto;
+    -webkit-box-shadow: 0px 0px 50px 0px rgba(82, 63, 105, 0.15);
+    box-shadow: 0px 0px 50px 0px rgba(82, 63, 105, 0.15);
+    border-radius: 0.42rem;
+    border: 0;
+    font-family: "Noto Kufi Arabic", Poppins, Helvetica, "sans-serif";
+    z-index: 98;
 }
 
 .bs-popover-top > .popover-arrow, .bs-popover-auto[data-popper-placement^=top] > .popover-arrow {

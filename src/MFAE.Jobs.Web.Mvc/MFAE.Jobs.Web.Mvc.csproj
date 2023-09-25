@@ -37,6 +37,8 @@
 
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="wwwroot\fonts\notokufiarabic\NotoKufiArabic-Bold.woff2" />
+    <None Include="wwwroot\fonts\notokufiarabic\NotoKufiArabic-Regular.woff2" />
     <None Include="wwwroot\Plugins\.gitkeep" />
     <None Update="Dockerfile">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -1,0 +1,18 @@
+﻿/* 
+ * Noto Kufi Arabic (Arabic) http://www.google.com/fonts/earlyaccess
+ */
+@font-face {
+    font-family: 'Noto Kufi Arabic';
+    font-style: normal;
+    font-weight: 400;
+    src: url(./notokufiarabic/notokufiarabic-regular.eot);
+    src: url(./notokufiarabic/notokufiarabic-regular.eot?#iefix) format('embedded-opentype'), url(./notokufiarabic/notokufiarabic-regular.woff2) format('woff2'), url(./notokufiarabic/notokufiarabic-regular.woff) format('woff'), url(./notokufiarabic/notokufiarabic-regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Noto Kufi Arabic';
+    font-style: normal;
+    font-weight: 700;
+    src: url(./notokufiarabic/notokufiarabic-bold.eot);
+    src: url(./notokufiarabic/notokufiarabic-bold.eot?#iefix) format('embedded-opentype'), url(./notokufiarabic/notokufiarabic-bold.woff2) format('woff2'), url(./notokufiarabic/notokufiarabic-bold.woff) format('woff'), url(./notokufiarabic/notokufiarabic-bold.ttf) format('truetype');
+}
