@@ -1,0 +1,7 @@
+﻿namespace MFAE.Jobs.MultiTenancy.Payments
+{
+    public interface IPaymentUrlGenerator
+    {
+        string CreatePaymentRequestUrl(SubscriptionPayment subscriptionPayment);
+    }
+}
