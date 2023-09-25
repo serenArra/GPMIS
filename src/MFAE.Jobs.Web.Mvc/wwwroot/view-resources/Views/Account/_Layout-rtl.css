@@ -331,7 +331,7 @@ Login page
 }
 
 html, body, .btn {
-    font-family: Poppins !important;
+    font-family: "Noto Kufi Arabic", Poppins !important;
 }
 
 .btn + .btn {
