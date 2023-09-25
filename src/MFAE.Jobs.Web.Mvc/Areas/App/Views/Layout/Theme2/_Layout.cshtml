@@ -21,10 +21,11 @@
 }
 
 @section Styles{
-<link rel="stylesheet" href="@(ApplicationPath)metronic/themes/theme2/css/style.bundle@(CultureHelper.IsRtl ? ".rtl" : "").css" asp-append-version="true" />
-<link rel="stylesheet" href="@(ApplicationPath)metronic/themes/theme2/plugins/global/plugins.bundle@(CultureHelper.IsRtl ? ".rtl" : "").css" asp-append-version="true" />
-<link rel="stylesheet" abp-href="/Common/Styles/Themes/theme2/metronic-customize.css" asp-append-version="true" />
-<link rel="stylesheet" abp-href="/fonts/fonts-poppins.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="@(ApplicationPath)metronic/themes/theme2/css/style.bundle@(CultureHelper.IsRtl ? ".rtl" : "").css" asp-append-version="true" />
+    <link rel="stylesheet" href="@(ApplicationPath)metronic/themes/theme2/plugins/global/plugins.bundle@(CultureHelper.IsRtl ? ".rtl" : "").css" asp-append-version="true" />
+    <link rel="stylesheet" abp-href="/Common/Styles/Themes/theme2/metronic-customize.css" asp-append-version="true" />
+    <link rel="stylesheet" abp-href="/fonts/fonts-poppins.css" asp-append-version="true" />
+    <link rel="stylesheet" abp-href="/fonts/fonts-noto.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", false)
 }
 
@@ -57,8 +58,8 @@
                             <div class="header-menu align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
                                 @await Component.InvokeAsync(typeof(AppMenuViewComponent), new
                                 {
-                                    currentPageName = ViewBag.CurrentPageName, 
-                                    isLeftMenuUsed = false
+                                currentPageName = ViewBag.CurrentPageName,
+                                isLeftMenuUsed = false
                                 })
                             </div>
                         </div>
@@ -67,33 +68,33 @@
                                 @await Component.InvokeAsync(typeof(AppActiveUserDelegationsComboboxViewComponent))
                                 @await Component.InvokeAsync(typeof(AppSubscriptionBarViewComponent), new
                                 {
-                                    cssClass = "btn btn-icon btn-active-light-primary position-relative btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px"
+                                cssClass = "btn btn-icon btn-active-light-primary position-relative btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px"
                                 })
                                 @await Component.InvokeAsync(typeof(AppQuickThemeSelectViewComponent), new
                                 {
-                                    cssClass = "btn btn-icon btn-active-light-primary position-relative btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px"
+                                cssClass = "btn btn-icon btn-active-light-primary position-relative btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px"
                                 })
                                 @await Component.InvokeAsync(typeof(AppLanguageSwitchViewComponent), new
                                 {
-                                    cssClass = "btn btn-icon btn-active-light-primary position-relative btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px"
+                                cssClass = "btn btn-icon btn-active-light-primary position-relative btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px"
                                 })
                                 @await Component.InvokeAsync(typeof(AppRecentNotificationsViewComponent), new
                                 {
-                                    cssClass = "btn btn-icon btn-active-light-primary position-relative btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px"
+                                cssClass = "btn btn-icon btn-active-light-primary position-relative btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px"
                                 })
                                 @await Component.InvokeAsync(typeof(AppChatTogglerViewComponent), new
                                 {
-                                    cssClass = "btn btn-icon btn-active-light-primary position-relative btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px"
+                                cssClass = "btn btn-icon btn-active-light-primary position-relative btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px"
                                 })
                                 @await Component.InvokeAsync(typeof(AppToggleDarkModeViewComponent), new
                                 {
-                                    cssClass = "btn btn-icon btn-active-light-primary position-relative btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px",
-                                    isDarkModeActive = theme.BaseSettings.Layout.DarkMode
+                                cssClass = "btn btn-icon btn-active-light-primary position-relative btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px",
+                                isDarkModeActive = theme.BaseSettings.Layout.DarkMode
                                 })
                                 @await Component.InvokeAsync(typeof(AppUserMenuViewComponent), new
                                 {
-                                    togglerCssClass = "btn btn-icon btn-active-light-primary btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px", 
-                                    profileImageCssClass = "h-30px w-30px rounded"
+                                togglerCssClass = "btn btn-icon btn-active-light-primary btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px",
+                                profileImageCssClass = "h-30px w-30px rounded"
                                 })
                             </div>
                         </div>

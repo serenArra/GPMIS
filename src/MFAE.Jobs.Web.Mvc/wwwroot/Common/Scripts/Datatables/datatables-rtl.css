@@ -34,7 +34,7 @@
 
         .dataTables_wrapper table thead {
             font-size: 14px;
-            font-family: Poppins;
+            font-family: "Noto Kufi Arabic", Poppins;
             font-weight: 300;
             line-height: 21px;
             vertical-align: middle;
