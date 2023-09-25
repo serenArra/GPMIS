@@ -2,18 +2,28 @@
 @model LanguageSelectionViewModel
 @if (Model.Languages.Count > 1)
 {
-    <div class="language-switch-area ml-1 mx-auto">
-        @foreach (var languageInfo in Model.Languages)
-        {
-            <a href="@Url.Action("ChangeCulture", "AbpLocalization", new {
-                        area = "",      
+    <div class="language-switch-area ml-1 mx-auto mb-5">
+
+        <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @(Model.CurrentLanguage.DisplayName)
+
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                @foreach (var languageInfo in Model.Languages)
+                {
+                    <a class="dropdown-item" href="@Url.Action("ChangeCulture", "AbpLocalization", new {
+                        area = "",
                         cultureName = languageInfo.Name,
                         returnUrl = Context.Request.Path + Context.Request.QueryString
                     })">
-                <span class="language-icon @(languageInfo.Name == Model.CurrentLanguage.Name ? "language-icon-current" : "")" title="@languageInfo.DisplayName">
-                    <i class="@languageInfo.Icon" aria-label="@languageInfo.Icon"></i>
-                </span>
-            </a>
-        }
+
+                        @(languageInfo.DisplayName)
+                    </a>
+                }
+
+            </div>
+        </div>
+
     </div>
 }

@@ -39,7 +39,7 @@ namespace MFAE.Jobs.EntityFrameworkCore
             }
 
             // Set this setting to true for enabling entity history.
-            Configuration.EntityHistory.IsEnabled = false;
+            Configuration.EntityHistory.IsEnabled = true;
 
             // Uncomment below line to write change logs for the entities below:
             // Configuration.EntityHistory.Selectors.Add("JobsEntities", EntityHistoryHelper.TrackedTypes);
