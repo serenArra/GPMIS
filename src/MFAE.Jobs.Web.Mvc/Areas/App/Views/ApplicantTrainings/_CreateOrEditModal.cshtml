@@ -1,0 +1,58 @@
+﻿@using MFAE.Jobs.ApplicationForm.Enums;
+
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.ApplicantTrainings
+@model CreateOrEditApplicantTrainingModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditApplicantTraining")) : L("CreateNewApplicantTraining")))
+
+<div class="modal-body">
+    <div id="ApplicantTrainingInformationsTab">
+        <form name="ApplicantTrainingInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.ApplicantTraining.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="applicantId">@L("Applicant")</label>
+                @Html.DropDownList("applicantId", new SelectList(Model.ApplicantTrainingApplicantList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantTraining.ApplicantId.ToString() : "")),@L("SelectAApplicant"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="ApplicantTraining_Subject">@L("Subject")</label>
+                <input class="form-control" id="ApplicantTraining_Subject" value="@Model.ApplicantTraining.Subject" type="text" name="subject" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantTrainingConsts.MaxSubjectLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantTrainingConsts.MinSubjectLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="ApplicantTraining_Location">@L("Location")</label>
+                <input class="form-control" id="ApplicantTraining_Location" value="@Model.ApplicantTraining.Location" type="text" name="location" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantTrainingConsts.MaxLocationLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantTrainingConsts.MinLocationLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="ApplicantTraining_TrainingDate">@L("TrainingDate")</label>
+                <input class="form-control m-input date-picker" id="ApplicantTraining_TrainingDate" type="text" name="trainingDate" value="@Model.ApplicantTraining.TrainingDate" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="ApplicantTraining_Duration">@L("Duration")</label>
+                <input class="form-control m-input" id="ApplicantTraining_Duration" value="@Model.ApplicantTraining.Duration.ToString(CultureInfo.InvariantCulture)" type="number" name="duration" />
+            </div>
+
+            @{
+            var selectListDurationType = Html.GetEnumSelectList(typeof(DurationType));
+            foreach (var selectOption in selectListDurationType) { selectOption.Text = L("Enum_DurationType_" + selectOption.Value); }
+            }
+            <div class="my-3">
+                <label class="form-label" for="ApplicantTraining_DurationType">@L("DurationType")</label>
+                <select class="form-select m-input m-input--square" name="durationType" id="ApplicantTraining_DurationType" asp-for="@Model.ApplicantTraining.DurationType" asp-items="@selectListDurationType">
+                </select>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

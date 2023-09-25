@@ -1,0 +1,59 @@
+﻿
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.AttachmentTypes
+@model AttachmentTypeViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="AttachmentTypeInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("ArName") :</h6>
+                @Model.AttachmentType.ArName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("EnName") :</h6>
+                @Model.AttachmentType.EnName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("MaxSizeMB") :</h6>
+                @Model.AttachmentType.MaxSizeMB
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("AllowedExtensions") :</h6>
+                @Model.AttachmentType.AllowedExtensions
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("MaxAttachments") :</h6>
+                @Model.AttachmentType.MaxAttachments
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("MinRequiredAttachments") :</h6>
+                @Model.AttachmentType.MinRequiredAttachments
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Category") :</h6>
+                @L("Enum_AttachmentTypeCategories_" + (int)Model.AttachmentType.Category)
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("PrivacyFlag") :</h6>
+                @L("Enum_PrivacyFlag_" + (int)Model.AttachmentType.PrivacyFlag)
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>(@L("AttachmentEntityType")) @L("Name") :</h6>
+                @Model.AttachmentEntityTypeName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("AttachmentTypeGroup")) @L("Name") :</h6>
+                @Model.AttachmentTypeGroupName
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

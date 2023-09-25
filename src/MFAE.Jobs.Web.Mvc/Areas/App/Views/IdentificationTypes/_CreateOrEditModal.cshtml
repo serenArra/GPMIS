@@ -1,0 +1,46 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.IdentificationTypes
+@model CreateOrEditIdentificationTypeModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditIdentificationType")) : L("CreateNewIdentificationType")))
+
+<div class="modal-body">
+    <div id="IdentificationTypeInformationsTab">
+        <form name="IdentificationTypeInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.IdentificationType.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="IdentificationType_NameAr">@L("NameAr")</label>
+                <input class="form-control" id="IdentificationType_NameAr" value="@Model.IdentificationType.NameAr" type="text" name="nameAr" required maxlength="@MFAE.Jobs.ApplicationForm.IdentificationTypeConsts.MaxNameArLength" minlength="@MFAE.Jobs.ApplicationForm.IdentificationTypeConsts.MinNameArLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="IdentificationType_NameEn">@L("NameEn")</label>
+                <input class="form-control" id="IdentificationType_NameEn" value="@Model.IdentificationType.NameEn" type="text" name="nameEn" required maxlength="@MFAE.Jobs.ApplicationForm.IdentificationTypeConsts.MaxNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.IdentificationTypeConsts.MinNameEnLength" />
+            </div>
+
+            <label class="form-check form-check-custom">
+                <input id="IdentificationType_IsActive" name="isActive" type="checkbox" class="form-check-input" value="true" @Html.Raw(Model.IdentificationType.IsActive ?"checked=\"checked\"":"") />
+                <span class="form-check-label">
+                    @L("IsActive")
+                </span>
+            </label>
+
+            <label class="form-check form-check-custom">
+                <input id="IdentificationType_IsDefault" name="isDefault" type="checkbox" class="form-check-input" value="true" @Html.Raw(Model.IdentificationType.IsDefault ?"checked=\"checked\"":"") />
+                <span class="form-check-label">
+                    @L("IsDefault")
+                </span>
+            </label>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

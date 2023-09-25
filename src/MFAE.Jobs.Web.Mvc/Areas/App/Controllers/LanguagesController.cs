@@ -1,149 +1,76 @@
 ﻿using System;
-using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
-using Abp.Application.Services.Dto;
 using Abp.AspNetCore.Mvc.Authorization;
-using Abp.Extensions;
-using Abp.Localization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using MFAE.Jobs.Authorization;
-using MFAE.Jobs.Localization;
 using MFAE.Jobs.Web.Areas.App.Models.Languages;
 using MFAE.Jobs.Web.Controllers;
+using MFAE.Jobs.Authorization;
+using MFAE.Jobs.ApplicationForm;
+using MFAE.Jobs.ApplicationForm.Dtos;
+using Abp.Application.Services.Dto;
+using Abp.Extensions;
 
 namespace MFAE.Jobs.Web.Areas.App.Controllers
 {
     [Area("App")]
-    [AbpMvcAuthorize(AppPermissions.Pages_Administration_Languages)]
+    [AbpMvcAuthorize(AppPermissions.Pages_Languages)]
     public class LanguagesController : JobsControllerBase
     {
-        private readonly ILanguageAppService _languageAppService;
-        private readonly ILanguageManager _languageManager;
-        private readonly IApplicationLanguageTextManager _applicationLanguageTextManager;
+        private readonly IAppLanguagesAppService _languagesAppService;
 
-        public LanguagesController(
-            ILanguageAppService languageAppService,
-            ILanguageManager languageManager,
-            IApplicationLanguageTextManager applicationLanguageTextManager)
+        public LanguagesController(IAppLanguagesAppService languagesAppService)
         {
-            _languageAppService = languageAppService;
-            _languageManager = languageManager;
-            _applicationLanguageTextManager = applicationLanguageTextManager;
+            _languagesAppService = languagesAppService;
+
         }
 
         public ActionResult Index()
         {
-            var viewModel = new LanguagesIndexViewModel
+            var model = new LanguagesViewModel
             {
-                IsTenantView = AbpSession.TenantId.HasValue
+                FilterText = ""
             };
 
-            return View(viewModel);
+            return View(model);
         }
 
-        [AbpMvcAuthorize(AppPermissions.Pages_Administration_Languages_Create, AppPermissions.Pages_Administration_Languages_Edit)]
+        [AbpMvcAuthorize(AppPermissions.Pages_Languages_Create, AppPermissions.Pages_Languages_Edit)]
         public async Task<PartialViewResult> CreateOrEditModal(int? id)
         {
-            var output = await _languageAppService.GetLanguageForEdit(new NullableIdDto { Id = id });
-            var viewModel = ObjectMapper.Map<CreateOrEditLanguageModalViewModel>(output);
+            GetAppLanguageForEditOutput getLanguageForEditOutput;
+
+            if (id.HasValue)
+            {
+                getLanguageForEditOutput = await _languagesAppService.GetLanguageForEdit(new EntityDto { Id = (int)id });
+            }
+            else
+            {
+                getLanguageForEditOutput = new GetAppLanguageForEditOutput
+                {
+                    Language = new CreateOrEditAppLanguageDto()
+                };
+            }
+
+            var viewModel = new CreateOrEditLanguageModalViewModel()
+            {
+                Language = getLanguageForEditOutput.Language,
+
+            };
 
             return PartialView("_CreateOrEditModal", viewModel);
         }
 
-        [AbpMvcAuthorize(AppPermissions.Pages_Administration_Languages_ChangeTexts)]
-        public ActionResult Texts(
-            string languageName, 
-            string sourceName = "", 
-            string baseLanguageName = "", 
-            string targetValueFilter = "ALL", 
-            string filterText = "")
+        public async Task<PartialViewResult> ViewLanguageModal(int id)
         {
-            //Normalize arguments
-            if (sourceName.IsNullOrEmpty())
+            var getLanguageForViewDto = await _languagesAppService.GetLanguageForView(id);
+
+            var model = new LanguageViewModel()
             {
-                sourceName = JobsConsts.LocalizationSourceName;
-            }
-
-            if (baseLanguageName.IsNullOrEmpty())
-            {
-                baseLanguageName = _languageManager.CurrentLanguage.Name;
-            }
-
-            //Create view model
-            var viewModel = new LanguageTextsViewModel();
-            
-            viewModel.LanguageName = languageName;
-
-            viewModel.Languages = _languageManager.GetLanguages().ToList();
-
-            viewModel.Sources = LocalizationManager
-                .GetAllSources()
-                .Where(s => s.GetType() == typeof (MultiTenantLocalizationSource))
-                .Select(s => new SelectListItem()
-                {
-                    Value = s.Name, 
-                    Text = s.Name, 
-                    Selected = s.Name == sourceName
-                })
-                .ToList();
-
-            viewModel.BaseLanguageName = baseLanguageName;
-
-            viewModel.TargetValueFilter = targetValueFilter;
-            viewModel.FilterText = filterText;
-
-            return View(viewModel);            
-        }
-
-        [AbpMvcAuthorize(AppPermissions.Pages_Administration_Languages_ChangeTexts)]
-        public PartialViewResult EditTextModal(
-            string sourceName, 
-            string baseLanguageName, 
-            string languageName,
-            string key)
-        {
-            var languages = _languageManager.GetLanguages();
-
-            var baselanguage = languages.FirstOrDefault(l => l.Name == baseLanguageName);
-            if (baselanguage == null)
-            {
-                throw new Exception("Could not find language: " + baseLanguageName);
-            }
-
-            var targetLanguage = languages.FirstOrDefault(l => l.Name == languageName);
-            if (targetLanguage == null)
-            {
-                throw new Exception("Could not find language: " + languageName);
-            }
-
-            var baseText = _applicationLanguageTextManager.GetStringOrNull(
-                AbpSession.TenantId,
-                sourceName,
-                CultureInfo.GetCultureInfo(baseLanguageName),
-                key
-                );
-
-            var targetText = _applicationLanguageTextManager.GetStringOrNull(
-                AbpSession.TenantId,
-                sourceName,
-                CultureInfo.GetCultureInfo(languageName),
-                key,
-                false
-                );
-
-            var viewModel = new EditTextModalViewModel
-            {
-                SourceName = sourceName,
-                BaseLanguage = baselanguage,
-                TargetLanguage = targetLanguage,
-                BaseText = baseText,
-                TargetText = targetText,
-                Key = key
+                Language = getLanguageForViewDto.Language
             };
 
-            return PartialView("_EditTextModal", viewModel);
+            return PartialView("_ViewLanguageModal", model);
         }
+
     }
 }

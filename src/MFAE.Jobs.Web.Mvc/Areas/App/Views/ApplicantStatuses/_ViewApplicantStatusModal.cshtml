@@ -1,0 +1,31 @@
+﻿
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.ApplicantStatuses
+@model ApplicantStatusViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="ApplicantStatusInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("Status") :</h6>
+                @L("Enum_ApplicantStatusEnum_" + (int)Model.ApplicantStatus.Status)
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Description") :</h6>
+                @Model.ApplicantStatus.Description
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>(@L("Applicant")) @L("FullName") :</h6>
+                @Model.ApplicantFullName
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

@@ -1,0 +1,55 @@
+﻿
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.ApplicantStudies
+@model ApplicantStudyViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="ApplicantStudyInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("OtherSpecialty") :</h6>
+                @Model.ApplicantStudy.OtherSpecialty
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("SecondSpecialty") :</h6>
+                @Model.ApplicantStudy.SecondSpecialty
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("University") :</h6>
+                @Model.ApplicantStudy.University
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("GraduationYear") :</h6>
+                @Model.ApplicantStudy.GraduationYear
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("GraduationCountry") :</h6>
+                @Model.ApplicantStudy.GraduationCountry
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>(@L("GraduationRate")) @L("Name") :</h6>
+                @Model.GraduationRateName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("AcademicDegree")) @L("Name") :</h6>
+                @Model.AcademicDegreeName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("Specialties")) @L("Name") :</h6>
+                @Model.SpecialtiesName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("Applicant")) @L("FirstName") :</h6>
+                @Model.ApplicantFirstName
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

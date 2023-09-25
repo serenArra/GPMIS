@@ -1,0 +1,125 @@
+﻿@using MFAE.Jobs.Authorization
+@using MFAE.Jobs.Web.Areas.App.Models.ApplicantTrainings
+@using MFAE.Jobs.Web.Areas.App.Startup
+@model ApplicantTrainingsViewModel
+@{
+ViewBag.CurrentPageName = AppPageNames.Common.ApplicantTrainings;
+}
+@section Scripts
+{
+<script abp-src="/view-resources/Areas/App/Views/ApplicantTrainings/Index.js" asp-append-version="true"></script>
+}
+
+<abp-page-subheader title='@L("ApplicantTrainings")' description='@L("ApplicantTrainingsHeaderInfo")'>
+    <button id="ExportToExcelButton" class="btn btn-outline btn-outline-success btn-active-light-success me-1"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>
+
+    @if (IsGranted(AppPermissions.Pages_ApplicantTrainings_Create))
+    {
+    <button id="CreateNewApplicantTrainingButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewApplicantTraining")</button>
+    }
+</abp-page-subheader>
+
+<div class="@(await GetContainerClass())">
+    <div class="card card-custom gutter-b">
+        <div class="card-body">
+            <div class="form">
+                <div class="row align-items-center mb-4">
+                    <div class="col-xl-12">
+
+                        <div class="my-3">
+                            <div class="input-group">
+                                <input type="text" id="ApplicantTrainingsTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <button id="GetApplicantTrainingsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
+                <div class="col-md-12">
+
+                </div>
+
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="SubjectFilterId">@L("Subject")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="subjectFilter" id="SubjectFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="LocationFilterId">@L("Location")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="locationFilter" id="LocationFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="MinTrainingDateFilterId">@L("TrainingDateRange")</label>
+                        <div class="input-group">
+                            <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MinTrainingDateFilterId">
+                            <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                            <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxTrainingDateFilterId">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="MinDurationFilterId">@L("MinMax") @L("Duration")</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MinValue")" name="minDurationFilter" id="MinDurationFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MaxValue")" name="maxDurationFilter" id="MaxDurationFilterId" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="DurationTypeFilterId">@L("DurationType")</label>
+                        <select class="form-select reload-on-change" name="DurationTypeFilter" id="DurationTypeFilterId">
+                            <option value="-1">@L("All")</option>
+                            <option value="1">@L("Enum_DurationType_1")</option>
+
+                            <option value="2">@L("Enum_DurationType_2")</option>
+
+                            <option value="3">@L("Enum_DurationType_3")</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="ApplicantFirstNameFilterId">(@L("Applicant")) @L("FirstName")</label>
+                        <input type="text" class="form-control" name="applicantFirstNameFilter" id="ApplicantFirstNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-12 mt-5">
+                    <button class="btn btn-secondary btn-sm" id="btn-reset-filters">Reset</button>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-xl-12">
+                    <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                    <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="ApplicantTrainingsTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            <th>@L("Actions")</th>
+                            <th>@L("Subject")</th>
+                            <th>@L("Location")</th>
+                            <th>@L("TrainingDate")</th>
+                            <th>@L("Duration")</th>
+                            <th>@L("DurationType")</th>
+                            <th>@L("ApplicantFirstName")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

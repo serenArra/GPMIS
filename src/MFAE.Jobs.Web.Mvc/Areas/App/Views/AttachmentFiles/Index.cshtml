@@ -1,0 +1,151 @@
+﻿@using MFAE.Jobs.Authorization
+@using MFAE.Jobs.Web.Areas.App.Models.AttachmentFiles
+@using MFAE.Jobs.Web.Areas.App.Startup
+@model AttachmentFilesViewModel
+@{
+ViewBag.CurrentPageName = AppPageNames.Common.AttachmentFiles;
+}
+@section Scripts
+{
+<script abp-src="/view-resources/Areas/App/Views/AttachmentFiles/Index.js" asp-append-version="true"></script>
+}
+
+<abp-page-subheader title='@L("AttachmentFiles")' description='@L("AttachmentFilesHeaderInfo")'>
+    <button id="ExportToExcelButton" class="btn btn-outline btn-outline-success btn-active-light-success me-1"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>
+
+    @if (IsGranted(AppPermissions.Pages_AttachmentFiles_Create))
+    {
+    <button id="CreateNewAttachmentFileButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewAttachmentFile")</button>
+    }
+</abp-page-subheader>
+
+<div class="@(await GetContainerClass())">
+    <div class="card card-custom gutter-b">
+        <div class="card-body">
+            <div class="form">
+                <div class="row align-items-center mb-4">
+                    <div class="col-xl-12">
+
+                        <div class="my-3">
+                            <div class="input-group">
+                                <input type="text" id="AttachmentFilesTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <button id="GetAttachmentFilesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
+                <div class="col-md-12">
+
+                </div>
+
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="PhysicalNameFilterId">@L("PhysicalName")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="physicalNameFilter" id="PhysicalNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="DescriptionFilterId">@L("Description")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="descriptionFilter" id="DescriptionFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="OriginalNameFilterId">@L("OriginalName")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="originalNameFilter" id="OriginalNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="MinSizeFilterId">@L("MinMax") @L("Size")</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MinValue")" name="minSizeFilter" id="MinSizeFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MaxValue")" name="maxSizeFilter" id="MaxSizeFilterId" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="ObjectIdFilterId">@L("ObjectId")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="objectIdFilter" id="ObjectIdFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="PathFilterId">@L("Path")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="pathFilter" id="PathFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="MinVersionFilterId">@L("MinMax") @L("Version")</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MinValue")" name="minVersionFilter" id="MinVersionFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MaxValue")" name="maxVersionFilter" id="MaxVersionFilterId" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="FileTokenFilterId">@L("FileToken")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="fileTokenFilter" id="FileTokenFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="TagFilterId">@L("Tag")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="tagFilter" id="TagFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="FilterKeyFilterId">@L("FilterKey")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="filterKeyFilter" id="FilterKeyFilterId">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="AttachmentTypeArNameFilterId">(@L("AttachmentType")) @L("ArName")</label>
+                        <input type="text" class="form-control" name="attachmentTypeArNameFilter" id="AttachmentTypeArNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-12 mt-5">
+                    <button class="btn btn-secondary btn-sm" id="btn-reset-filters">Reset</button>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-xl-12">
+                    <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                    <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="AttachmentFilesTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            <th>@L("Actions")</th>
+                            <th>@L("PhysicalName")</th>
+                            <th>@L("Description")</th>
+                            <th>@L("OriginalName")</th>
+                            <th>@L("Size")</th>
+                            <th>@L("ObjectId")</th>
+                            <th>@L("Path")</th>
+                            <th>@L("Version")</th>
+                            <th>@L("FileToken")</th>
+                            <th>@L("Tag")</th>
+                            <th>@L("FilterKey")</th>
+                            <th>@L("AttachmentTypeArName")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

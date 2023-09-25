@@ -1,0 +1,135 @@
+﻿@using MFAE.Jobs.ApplicationForm.Enums;
+
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.Applicants
+@model CreateOrEditApplicantModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditApplicant")) : L("CreateNewApplicant")))
+
+<div class="modal-body">
+    <div id="ApplicantInformationsTab">
+        <form name="ApplicantInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.Applicant.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="identificationTypeId">@L("IdentificationType")</label>
+                @Html.DropDownList("identificationTypeId", new SelectList(Model.ApplicantIdentificationTypeList,"Id","DisplayName", (Model.IsEditMode ? Model.Applicant.IdentificationTypeId.ToString() : "")),@L("SelectAIdentificationType"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="maritalStatusId">@L("MaritalStatus")</label>
+                @Html.DropDownList("maritalStatusId", new SelectList(Model.ApplicantMaritalStatusList,"Id","DisplayName", (Model.IsEditMode ? Model.Applicant.MaritalStatusId.ToString() : "")),@L("SelectAMaritalStatus"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="lockedBy">@L("User")</label>
+                @Html.DropDownList("lockedBy", new SelectList(Model.ApplicantUserList,"Id","DisplayName", (Model.IsEditMode ? Model.Applicant.LockedBy.ToString() : "")),@L("SelectAUser"), new { @class = "form-control" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="currentStatusId">@L("ApplicantStatus")</label>
+                @Html.DropDownList("currentStatusId", new SelectList(Model.ApplicantApplicantStatusList,"Id","DisplayName", (Model.IsEditMode ? Model.Applicant.CurrentStatusId.ToString() : "")),@L("SelectAApplicantStatus"), new { @class = "form-control" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_DocumentNo">@L("DocumentNo")</label>
+                <input class="form-control" id="Applicant_DocumentNo" value="@Model.Applicant.DocumentNo" type="text" name="documentNo" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxDocumentNoLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinDocumentNoLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_FirstName">@L("FirstName")</label>
+                <input class="form-control" id="Applicant_FirstName" value="@Model.Applicant.FirstName" type="text" name="firstName" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFirstNameLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFirstNameLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_FatherName">@L("FatherName")</label>
+                <input class="form-control" id="Applicant_FatherName" value="@Model.Applicant.FatherName" type="text" name="fatherName" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFatherNameLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFatherNameLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_GrandFatherName">@L("GrandFatherName")</label>
+                <input class="form-control" id="Applicant_GrandFatherName" value="@Model.Applicant.GrandFatherName" type="text" name="grandFatherName" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxGrandFatherNameLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinGrandFatherNameLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_FamilyName">@L("FamilyName")</label>
+                <input class="form-control" id="Applicant_FamilyName" value="@Model.Applicant.FamilyName" type="text" name="familyName" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFamilyNameLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFamilyNameLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_FirstNameEn">@L("FirstNameEn")</label>
+                <input class="form-control" id="Applicant_FirstNameEn" value="@Model.Applicant.FirstNameEn" type="text" name="firstNameEn" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFirstNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFirstNameEnLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_FatherNameEn">@L("FatherNameEn")</label>
+                <input class="form-control" id="Applicant_FatherNameEn" value="@Model.Applicant.FatherNameEn" type="text" name="fatherNameEn" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFatherNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFatherNameEnLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_GrandFatherNameEn">@L("GrandFatherNameEn")</label>
+                <input class="form-control" id="Applicant_GrandFatherNameEn" value="@Model.Applicant.GrandFatherNameEn" type="text" name="grandFatherNameEn" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxGrandFatherNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinGrandFatherNameEnLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_FamilyNameEn">@L("FamilyNameEn")</label>
+                <input class="form-control" id="Applicant_FamilyNameEn" value="@Model.Applicant.FamilyNameEn" type="text" name="familyNameEn" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFamilyNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFamilyNameEnLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_BirthDate">@L("BirthDate")</label>
+                <input class="form-control m-input date-picker" id="Applicant_BirthDate" type="text" name="birthDate" value="@Model.Applicant.BirthDate" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_BirthPlace">@L("BirthPlace")</label>
+                <input class="form-control" id="Applicant_BirthPlace" value="@Model.Applicant.BirthPlace" type="text" name="birthPlace" maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxBirthPlaceLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinBirthPlaceLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_NumberOfChildren">@L("NumberOfChildren")</label>
+                <input class="form-control m-input" id="Applicant_NumberOfChildren" value="@Model.Applicant.NumberOfChildren?.ToString(CultureInfo.InvariantCulture)" type="number" name="numberOfChildren" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_Address">@L("Address")</label>
+                <input class="form-control" id="Applicant_Address" value="@Model.Applicant.Address" type="text" name="address" maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxAddressLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinAddressLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_Mobile">@L("Mobile")</label>
+                <input class="form-control" id="Applicant_Mobile" value="@Model.Applicant.Mobile" type="text" name="mobile" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxMobileLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinMobileLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Applicant_Email">@L("Email")</label>
+                <input class="form-control" id="Applicant_Email" value="@Model.Applicant.Email" type="text" name="email" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxEmailLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinEmailLength" />
+            </div>
+
+            <label class="form-check form-check-custom">
+                <input id="Applicant_IsLocked" name="isLocked" type="checkbox" class="form-check-input" value="true" @Html.Raw(Model.Applicant.IsLocked ?"checked=\"checked\"":"") />
+                <span class="form-check-label">
+                    @L("IsLocked")
+                </span>
+            </label>
+
+            @{
+            var selectListGender = Html.GetEnumSelectList(typeof(Gender));
+            foreach (var selectOption in selectListGender) { selectOption.Text = L("Enum_Gender_" + selectOption.Value); }
+            }
+            <div class="my-3">
+                <label class="form-label" for="Applicant_Gender">@L("Gender")</label>
+                <select class="form-select m-input m-input--square" name="gender" id="Applicant_Gender" asp-for="@Model.Applicant.Gender" asp-items="@selectListGender">
+                </select>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

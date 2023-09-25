@@ -4,6 +4,23 @@
     {
         public static class Common
         {
+            public const string ApplicantStatuses = "ApplicationForm.ApplicantStatuses";
+            public const string ConversationRates = "ApplicationForm.ConversationRates";
+            public const string ApplicantLanguages = "ApplicationForm.ApplicantLanguages";
+            public const string ApplicantTrainings = "ApplicationForm.ApplicantTrainings";
+            public const string ApplicantStudies = "ApplicationForm.ApplicantStudies";
+            public const string MaritalStatuses = "ApplicationForm.MaritalStatuses";
+            public const string IdentificationTypes = "ApplicationForm.IdentificationTypes";
+            public const string Applicants = "ApplicationForm.Applicants";
+            public const string Conversations = "ApplicationForm.Conversations";
+            public const string GraduationRates = "ApplicationForm.GraduationRates";
+            public const string Specialtieses = "ApplicationForm.Specialtieses";
+            public const string AcademicDegrees = "ApplicationForm.AcademicDegrees";
+            public const string AppLanguages = "ApplicationForm.Languages";
+            public const string AttachmentFiles = "Attachments.AttachmentFiles";
+            public const string AttachmentTypes = "Attachments.AttachmentTypes";
+            public const string AttachmentTypeGroups = "Attachments.AttachmentTypeGroups";
+            public const string AttachmentEntityTypes = "Attachments.AttachmentEntityTypes";
             public const string Administration = "Administration";
             public const string Roles = "Administration.Roles";
             public const string Users = "Administration.Users";

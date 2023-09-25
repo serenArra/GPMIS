@@ -1,4 +1,6 @@
-﻿using Abp.Zero.EntityFrameworkCore;
+﻿using MFAE.Jobs.ApplicationForm;
+using MFAE.Jobs.Attachments;
+using Abp.Zero.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MFAE.Jobs.Authorization.Delegation;
 using MFAE.Jobs.Authorization.Roles;
@@ -15,6 +17,40 @@ namespace MFAE.Jobs.EntityFrameworkCore
 {
     public class JobsDbContext : AbpZeroDbContext<Tenant, Role, User, JobsDbContext>
     {
+        public virtual DbSet<ApplicantStatus> ApplicantStatuses { get; set; }
+
+        public virtual DbSet<ConversationRate> ConversationRates { get; set; }
+
+        public virtual DbSet<ApplicantLanguage> ApplicantLanguages { get; set; }
+
+        public virtual DbSet<ApplicantTraining> ApplicantTrainings { get; set; }
+
+        public virtual DbSet<ApplicantStudy> ApplicantStudies { get; set; }
+
+        public virtual DbSet<MaritalStatus> MaritalStatuses { get; set; }
+
+        public virtual DbSet<IdentificationType> IdentificationTypes { get; set; }
+
+        public virtual DbSet<Applicant> Applicants { get; set; }
+
+        public virtual DbSet<Conversation> Conversations { get; set; }
+
+        public virtual DbSet<GraduationRate> GraduationRates { get; set; }
+
+        public virtual DbSet<Specialties> Specialtieses { get; set; }
+
+        public virtual DbSet<AcademicDegree> AcademicDegrees { get; set; }
+
+        public virtual DbSet<AppLanguage> AppLanguages { get; set; }
+
+        public virtual DbSet<AttachmentFile> AttachmentFiles { get; set; }
+
+        public virtual DbSet<AttachmentType> AttachmentTypes { get; set; }
+
+        public virtual DbSet<AttachmentTypeGroup> AttachmentTypeGroups { get; set; }
+
+        public virtual DbSet<AttachmentEntityType> AttachmentEntityTypes { get; set; }
+
         /* Define an IDbSet for each entity of the application */
 
         public virtual DbSet<BinaryObject> BinaryObjects { get; set; }
@@ -29,11 +65,10 @@ namespace MFAE.Jobs.EntityFrameworkCore
 
         public virtual DbSet<Invoice> Invoices { get; set; }
 
-
         public virtual DbSet<SubscriptionPaymentExtensionData> SubscriptionPaymentExtensionDatas { get; set; }
 
         public virtual DbSet<UserDelegation> UserDelegations { get; set; }
-        
+
         public virtual DbSet<RecentPassword> RecentPasswords { get; set; }
 
         public JobsDbContext(DbContextOptions<JobsDbContext> options)

@@ -1,0 +1,39 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.Specialtieses
+@model CreateOrEditSpecialtiesModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditSpecialties")) : L("CreateNewSpecialties")))
+
+<div class="modal-body">
+    <div id="SpecialtiesInformationsTab">
+        <form name="SpecialtiesInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.Specialties.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="Specialties_NameAr">@L("NameAr")</label>
+                <input class="form-control" id="Specialties_NameAr" value="@Model.Specialties.NameAr" type="text" name="nameAr" required maxlength="@MFAE.Jobs.ApplicationForm.SpecialtiesConsts.MaxNameArLength" minlength="@MFAE.Jobs.ApplicationForm.SpecialtiesConsts.MinNameArLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Specialties_NameEn">@L("NameEn")</label>
+                <input class="form-control" id="Specialties_NameEn" value="@Model.Specialties.NameEn" type="text" name="nameEn" required maxlength="@MFAE.Jobs.ApplicationForm.SpecialtiesConsts.MaxNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.SpecialtiesConsts.MinNameEnLength" />
+            </div>
+
+            <label class="form-check form-check-custom">
+                <input id="Specialties_IsActive" name="isActive" type="checkbox" class="form-check-input" value="true" @Html.Raw(Model.Specialties.IsActive ?"checked=\"checked\"":"") />
+                <span class="form-check-label">
+                    @L("IsActive")
+                </span>
+            </label>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

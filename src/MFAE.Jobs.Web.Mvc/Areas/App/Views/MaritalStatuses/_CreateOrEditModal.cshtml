@@ -1,0 +1,37 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.MaritalStatuses
+@model CreateOrEditMaritalStatusModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditMaritalStatus")) : L("CreateNewMaritalStatus")))
+
+<div class="modal-body">
+    <div id="MaritalStatusInformationsTab">
+        <form name="MaritalStatusInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.MaritalStatus.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="MaritalStatus_NameAr">@L("NameAr")</label>
+                <input class="form-control" id="MaritalStatus_NameAr" value="@Model.MaritalStatus.NameAr" type="text" name="nameAr" required maxlength="@MFAE.Jobs.ApplicationForm.MaritalStatusConsts.MaxNameArLength" minlength="@MFAE.Jobs.ApplicationForm.MaritalStatusConsts.MinNameArLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="MaritalStatus_NameEn">@L("NameEn")</label>
+                <input class="form-control" id="MaritalStatus_NameEn" value="@Model.MaritalStatus.NameEn" type="text" name="nameEn" required maxlength="@MFAE.Jobs.ApplicationForm.MaritalStatusConsts.MaxNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.MaritalStatusConsts.MinNameEnLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="MaritalStatus_IsActive">@L("IsActive")</label>
+                <input class="form-control" id="MaritalStatus_IsActive" value="@Model.MaritalStatus.IsActive" type="text" name="isActive" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

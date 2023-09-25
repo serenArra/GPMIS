@@ -7,7 +7,7 @@
   "TableName": "AttachmentEntityTypes",
   "PrimaryKeyType": "int",
   "BaseClass": "FullAuditedEntity",
-  "EntityHistory": false,
+  "EntityHistory": true,
   "AutoMigration": false,
   "UpdateDatabase": false,
   "CreateUserInterface": true,
@@ -65,7 +65,7 @@
     {
       "Name": "Folder",
       "Type": "string",
-      "MaxLength": 700,
+      "MaxLength": 500,
       "MinLength": 1,
       "Range": {
         "IsRangeSet": false,

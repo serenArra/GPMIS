@@ -1,0 +1,53 @@
+﻿using MFAE.Jobs.ApplicationForm.Enums;
+
+using System;
+using Abp.Application.Services.Dto;
+
+namespace MFAE.Jobs.ApplicationForm.Dtos
+{
+    public class ApplicantDto : EntityDto<long>
+    {
+        public string DocumentNo { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string FatherName { get; set; }
+
+        public string GrandFatherName { get; set; }
+
+        public string FamilyName { get; set; }
+
+        public string FirstNameEn { get; set; }
+
+        public string FatherNameEn { get; set; }
+
+        public string GrandFatherNameEn { get; set; }
+
+        public string FamilyNameEn { get; set; }
+
+        public DateTime BirthDate { get; set; }
+
+        public string BirthPlace { get; set; }
+
+        public int? NumberOfChildren { get; set; }
+
+        public string Address { get; set; }
+
+        public string Mobile { get; set; }
+
+        public string Email { get; set; }
+
+        public bool IsLocked { get; set; }
+
+        public Gender Gender { get; set; }
+
+        public int IdentificationTypeId { get; set; }
+
+        public int MaritalStatusId { get; set; }
+
+        public long? LockedBy { get; set; }
+
+        public long? CurrentStatusId { get; set; }
+
+    }
+}

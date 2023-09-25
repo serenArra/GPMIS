@@ -1,0 +1,39 @@
+﻿
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.ApplicantLanguages
+@model ApplicantLanguageViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="ApplicantLanguageInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("Narrative") :</h6>
+                @Model.ApplicantLanguage.Narrative
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>(@L("Applicant")) @L("FirstName") :</h6>
+                @Model.ApplicantFirstName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("Language")) @L("Name") :</h6>
+                @Model.LanguageName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("Conversation")) @L("Name") :</h6>
+                @Model.ConversationName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("ConversationRate")) @L("Name") :</h6>
+                @Model.ConversationRateName
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")
