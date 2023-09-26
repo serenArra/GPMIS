@@ -117,7 +117,10 @@
 					identificationTypeNameFilter: $('#IdentificationTypeNameFilterId').val(),
 					maritalStatusNameFilter: $('#MaritalStatusNameFilterId').val(),
 					userNameFilter: $('#UserNameFilterId').val(),
-					applicantStatusDescriptionFilter: $('#ApplicantStatusDescriptionFilterId').val()
+					applicantStatusDescriptionFilter: $('#ApplicantStatusDescriptionFilterId').val(),
+					countryNameFilter: $('#CountryNameFilterId').val(),
+					governorateNameFilter: $('#GovernorateNameFilterId').val(),
+					localityNameFilter: $('#LocalityNameFilterId').val()
                     };
                 }
             },
@@ -302,6 +305,21 @@
 						targets: 22,
 						 data: "applicantStatusDescription" ,
 						 name: "currentStatusFk.description" 
+					},
+					{
+						targets: 23,
+						 data: "countryName" ,
+						 name: "countryFk.name" 
+					},
+					{
+						targets: 24,
+						 data: "governorateName" ,
+						 name: "governorateFk.name" 
+					},
+					{
+						targets: 25,
+						 data: "localityName" ,
+						 name: "localityFk.name" 
 					}
             ]
         });
@@ -369,7 +387,10 @@
 					identificationTypeNameFilter: $('#IdentificationTypeNameFilterId').val(),
 					maritalStatusNameFilter: $('#MaritalStatusNameFilterId').val(),
 					userNameFilter: $('#UserNameFilterId').val(),
-					applicantStatusDescriptionFilter: $('#ApplicantStatusDescriptionFilterId').val()
+					applicantStatusDescriptionFilter: $('#ApplicantStatusDescriptionFilterId').val(),
+					countryNameFilter: $('#CountryNameFilterId').val(),
+					governorateNameFilter: $('#GovernorateNameFilterId').val(),
+					localityNameFilter: $('#LocalityNameFilterId').val()
 				})
                 .done(function (result) {
                     app.downloadTempFile(result);

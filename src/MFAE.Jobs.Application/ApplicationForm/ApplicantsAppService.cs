@@ -1,5 +1,6 @@
 ﻿using MFAE.Jobs.ApplicationForm;
 using MFAE.Jobs.Authorization.Users;
+using MFAE.Jobs.Location;
 
 using MFAE.Jobs.ApplicationForm.Enums;
 
@@ -32,8 +33,11 @@ namespace MFAE.Jobs.ApplicationForm
         private readonly IRepository<MaritalStatus, int> _lookup_maritalStatusRepository;
         private readonly IRepository<User, long> _lookup_userRepository;
         private readonly IRepository<ApplicantStatus, long> _lookup_applicantStatusRepository;
+        private readonly IRepository<Country, int> _lookup_countryRepository;
+        private readonly IRepository<Governorate, int> _lookup_governorateRepository;
+        private readonly IRepository<Locality, int> _lookup_localityRepository;
 
-        public ApplicantsAppService(IRepository<Applicant, long> applicantRepository, IApplicantsExcelExporter applicantsExcelExporter, IRepository<IdentificationType, int> lookup_identificationTypeRepository, IRepository<MaritalStatus, int> lookup_maritalStatusRepository, IRepository<User, long> lookup_userRepository, IRepository<ApplicantStatus, long> lookup_applicantStatusRepository)
+        public ApplicantsAppService(IRepository<Applicant, long> applicantRepository, IApplicantsExcelExporter applicantsExcelExporter, IRepository<IdentificationType, int> lookup_identificationTypeRepository, IRepository<MaritalStatus, int> lookup_maritalStatusRepository, IRepository<User, long> lookup_userRepository, IRepository<ApplicantStatus, long> lookup_applicantStatusRepository, IRepository<Country, int> lookup_countryRepository, IRepository<Governorate, int> lookup_governorateRepository, IRepository<Locality, int> lookup_localityRepository)
         {
             _applicantRepository = applicantRepository;
             _applicantsExcelExporter = applicantsExcelExporter;
@@ -41,6 +45,9 @@ namespace MFAE.Jobs.ApplicationForm
             _lookup_maritalStatusRepository = lookup_maritalStatusRepository;
             _lookup_userRepository = lookup_userRepository;
             _lookup_applicantStatusRepository = lookup_applicantStatusRepository;
+            _lookup_countryRepository = lookup_countryRepository;
+            _lookup_governorateRepository = lookup_governorateRepository;
+            _lookup_localityRepository = lookup_localityRepository;
 
         }
 
@@ -55,6 +62,9 @@ namespace MFAE.Jobs.ApplicationForm
                         .Include(e => e.MaritalStatusFk)
                         .Include(e => e.LockedByFk)
                         .Include(e => e.CurrentStatusFk)
+                        .Include(e => e.CountryFk)
+                        .Include(e => e.GovernorateFk)
+                        .Include(e => e.LocalityFk)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.DocumentNo.Contains(input.Filter) || e.FirstName.Contains(input.Filter) || e.FatherName.Contains(input.Filter) || e.GrandFatherName.Contains(input.Filter) || e.FamilyName.Contains(input.Filter) || e.FirstNameEn.Contains(input.Filter) || e.FatherNameEn.Contains(input.Filter) || e.GrandFatherNameEn.Contains(input.Filter) || e.FamilyNameEn.Contains(input.Filter) || e.BirthPlace.Contains(input.Filter) || e.Address.Contains(input.Filter) || e.Mobile.Contains(input.Filter) || e.Email.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.DocumentNoFilter), e => e.DocumentNo.Contains(input.DocumentNoFilter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.FirstNameFilter), e => e.FirstName.Contains(input.FirstNameFilter))
@@ -78,7 +88,10 @@ namespace MFAE.Jobs.ApplicationForm
                         .WhereIf(!string.IsNullOrWhiteSpace(input.IdentificationTypeNameFilter), e => e.IdentificationTypeFk != null && e.IdentificationTypeFk.Name == input.IdentificationTypeNameFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.MaritalStatusNameFilter), e => e.MaritalStatusFk != null && e.MaritalStatusFk.Name == input.MaritalStatusNameFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.UserNameFilter), e => e.LockedByFk != null && e.LockedByFk.Name == input.UserNameFilter)
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.ApplicantStatusDescriptionFilter), e => e.CurrentStatusFk != null && e.CurrentStatusFk.Description == input.ApplicantStatusDescriptionFilter);
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.ApplicantStatusDescriptionFilter), e => e.CurrentStatusFk != null && e.CurrentStatusFk.Description == input.ApplicantStatusDescriptionFilter)
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.CountryNameFilter), e => e.CountryFk != null && e.CountryFk.Name == input.CountryNameFilter)
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.GovernorateNameFilter), e => e.GovernorateFk != null && e.GovernorateFk.Name == input.GovernorateNameFilter)
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.LocalityNameFilter), e => e.LocalityFk != null && e.LocalityFk.Name == input.LocalityNameFilter);
 
             var pagedAndFilteredApplicants = filteredApplicants
                 .OrderBy(input.Sorting ?? "id asc")
@@ -96,6 +109,15 @@ namespace MFAE.Jobs.ApplicationForm
 
                              join o4 in _lookup_applicantStatusRepository.GetAll() on o.CurrentStatusId equals o4.Id into j4
                              from s4 in j4.DefaultIfEmpty()
+
+                             join o5 in _lookup_countryRepository.GetAll() on o.CountryId equals o5.Id into j5
+                             from s5 in j5.DefaultIfEmpty()
+
+                             join o6 in _lookup_governorateRepository.GetAll() on o.GovernorateId equals o6.Id into j6
+                             from s6 in j6.DefaultIfEmpty()
+
+                             join o7 in _lookup_localityRepository.GetAll() on o.LocalityId equals o7.Id into j7
+                             from s7 in j7.DefaultIfEmpty()
 
                              select new
                              {
@@ -121,7 +143,10 @@ namespace MFAE.Jobs.ApplicationForm
                                  IdentificationTypeName = s1 == null || s1.Name == null ? "" : s1.Name.ToString(),
                                  MaritalStatusName = s2 == null || s2.Name == null ? "" : s2.Name.ToString(),
                                  UserName = s3 == null || s3.Name == null ? "" : s3.Name.ToString(),
-                                 ApplicantStatusDescription = s4 == null || s4.Description == null ? "" : s4.Description.ToString()
+                                 ApplicantStatusDescription = s4 == null || s4.Description == null ? "" : s4.Description.ToString(),
+                                 CountryName = s5 == null || s5.Name == null ? "" : s5.Name.ToString(),
+                                 GovernorateName = s6 == null || s6.Name == null ? "" : s6.Name.ToString(),
+                                 LocalityName = s7 == null || s7.Name == null ? "" : s7.Name.ToString()
                              };
 
             var totalCount = await filteredApplicants.CountAsync();
@@ -158,7 +183,10 @@ namespace MFAE.Jobs.ApplicationForm
                     IdentificationTypeName = o.IdentificationTypeName,
                     MaritalStatusName = o.MaritalStatusName,
                     UserName = o.UserName,
-                    ApplicantStatusDescription = o.ApplicantStatusDescription
+                    ApplicantStatusDescription = o.ApplicantStatusDescription,
+                    CountryName = o.CountryName,
+                    GovernorateName = o.GovernorateName,
+                    LocalityName = o.LocalityName
                 };
 
                 results.Add(res);
@@ -201,6 +229,24 @@ namespace MFAE.Jobs.ApplicationForm
                 output.ApplicantStatusDescription = _lookupApplicantStatus?.Description?.ToString();
             }
 
+            if (output.Applicant.CountryId != null)
+            {
+                var _lookupCountry = await _lookup_countryRepository.FirstOrDefaultAsync((int)output.Applicant.CountryId);
+                output.CountryName = _lookupCountry?.Name?.ToString();
+            }
+
+            if (output.Applicant.GovernorateId != null)
+            {
+                var _lookupGovernorate = await _lookup_governorateRepository.FirstOrDefaultAsync((int)output.Applicant.GovernorateId);
+                output.GovernorateName = _lookupGovernorate?.Name?.ToString();
+            }
+
+            if (output.Applicant.LocalityId != null)
+            {
+                var _lookupLocality = await _lookup_localityRepository.FirstOrDefaultAsync((int)output.Applicant.LocalityId);
+                output.LocalityName = _lookupLocality?.Name?.ToString();
+            }
+
             return output;
         }
 
@@ -233,6 +279,24 @@ namespace MFAE.Jobs.ApplicationForm
             {
                 var _lookupApplicantStatus = await _lookup_applicantStatusRepository.FirstOrDefaultAsync((long)output.Applicant.CurrentStatusId);
                 output.ApplicantStatusDescription = _lookupApplicantStatus?.Description?.ToString();
+            }
+
+            if (output.Applicant.CountryId != null)
+            {
+                var _lookupCountry = await _lookup_countryRepository.FirstOrDefaultAsync((int)output.Applicant.CountryId);
+                output.CountryName = _lookupCountry?.Name?.ToString();
+            }
+
+            if (output.Applicant.GovernorateId != null)
+            {
+                var _lookupGovernorate = await _lookup_governorateRepository.FirstOrDefaultAsync((int)output.Applicant.GovernorateId);
+                output.GovernorateName = _lookupGovernorate?.Name?.ToString();
+            }
+
+            if (output.Applicant.LocalityId != null)
+            {
+                var _lookupLocality = await _lookup_localityRepository.FirstOrDefaultAsync((int)output.Applicant.LocalityId);
+                output.LocalityName = _lookupLocality?.Name?.ToString();
             }
 
             return output;
@@ -284,6 +348,9 @@ namespace MFAE.Jobs.ApplicationForm
                         .Include(e => e.MaritalStatusFk)
                         .Include(e => e.LockedByFk)
                         .Include(e => e.CurrentStatusFk)
+                        .Include(e => e.CountryFk)
+                        .Include(e => e.GovernorateFk)
+                        .Include(e => e.LocalityFk)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.DocumentNo.Contains(input.Filter) || e.FirstName.Contains(input.Filter) || e.FatherName.Contains(input.Filter) || e.GrandFatherName.Contains(input.Filter) || e.FamilyName.Contains(input.Filter) || e.FirstNameEn.Contains(input.Filter) || e.FatherNameEn.Contains(input.Filter) || e.GrandFatherNameEn.Contains(input.Filter) || e.FamilyNameEn.Contains(input.Filter) || e.BirthPlace.Contains(input.Filter) || e.Address.Contains(input.Filter) || e.Mobile.Contains(input.Filter) || e.Email.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.DocumentNoFilter), e => e.DocumentNo.Contains(input.DocumentNoFilter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.FirstNameFilter), e => e.FirstName.Contains(input.FirstNameFilter))
@@ -307,7 +374,10 @@ namespace MFAE.Jobs.ApplicationForm
                         .WhereIf(!string.IsNullOrWhiteSpace(input.IdentificationTypeNameFilter), e => e.IdentificationTypeFk != null && e.IdentificationTypeFk.Name == input.IdentificationTypeNameFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.MaritalStatusNameFilter), e => e.MaritalStatusFk != null && e.MaritalStatusFk.Name == input.MaritalStatusNameFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.UserNameFilter), e => e.LockedByFk != null && e.LockedByFk.Name == input.UserNameFilter)
-                        .WhereIf(!string.IsNullOrWhiteSpace(input.ApplicantStatusDescriptionFilter), e => e.CurrentStatusFk != null && e.CurrentStatusFk.Description == input.ApplicantStatusDescriptionFilter);
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.ApplicantStatusDescriptionFilter), e => e.CurrentStatusFk != null && e.CurrentStatusFk.Description == input.ApplicantStatusDescriptionFilter)
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.CountryNameFilter), e => e.CountryFk != null && e.CountryFk.Name == input.CountryNameFilter)
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.GovernorateNameFilter), e => e.GovernorateFk != null && e.GovernorateFk.Name == input.GovernorateNameFilter)
+                        .WhereIf(!string.IsNullOrWhiteSpace(input.LocalityNameFilter), e => e.LocalityFk != null && e.LocalityFk.Name == input.LocalityNameFilter);
 
             var query = (from o in filteredApplicants
                          join o1 in _lookup_identificationTypeRepository.GetAll() on o.IdentificationTypeId equals o1.Id into j1
@@ -321,6 +391,15 @@ namespace MFAE.Jobs.ApplicationForm
 
                          join o4 in _lookup_applicantStatusRepository.GetAll() on o.CurrentStatusId equals o4.Id into j4
                          from s4 in j4.DefaultIfEmpty()
+
+                         join o5 in _lookup_countryRepository.GetAll() on o.CountryId equals o5.Id into j5
+                         from s5 in j5.DefaultIfEmpty()
+
+                         join o6 in _lookup_governorateRepository.GetAll() on o.GovernorateId equals o6.Id into j6
+                         from s6 in j6.DefaultIfEmpty()
+
+                         join o7 in _lookup_localityRepository.GetAll() on o.LocalityId equals o7.Id into j7
+                         from s7 in j7.DefaultIfEmpty()
 
                          select new GetApplicantForViewDto()
                          {
@@ -348,7 +427,10 @@ namespace MFAE.Jobs.ApplicationForm
                              IdentificationTypeName = s1 == null || s1.Name == null ? "" : s1.Name.ToString(),
                              MaritalStatusName = s2 == null || s2.Name == null ? "" : s2.Name.ToString(),
                              UserName = s3 == null || s3.Name == null ? "" : s3.Name.ToString(),
-                             ApplicantStatusDescription = s4 == null || s4.Description == null ? "" : s4.Description.ToString()
+                             ApplicantStatusDescription = s4 == null || s4.Description == null ? "" : s4.Description.ToString(),
+                             CountryName = s5 == null || s5.Name == null ? "" : s5.Name.ToString(),
+                             GovernorateName = s6 == null || s6.Name == null ? "" : s6.Name.ToString(),
+                             LocalityName = s7 == null || s7.Name == null ? "" : s7.Name.ToString()
                          });
 
             var applicantListDtos = await query.ToListAsync();
@@ -397,6 +479,39 @@ namespace MFAE.Jobs.ApplicationForm
                 {
                     Id = applicantStatus.Id,
                     DisplayName = applicantStatus == null || applicantStatus.Description == null ? "" : applicantStatus.Description.ToString()
+                }).ToListAsync();
+        }
+
+        [AbpAuthorize(AppPermissions.Pages_Applicants)]
+        public async Task<List<ApplicantCountryLookupTableDto>> GetAllCountryForTableDropdown()
+        {
+            return await _lookup_countryRepository.GetAll()
+                .Select(country => new ApplicantCountryLookupTableDto
+                {
+                    Id = country.Id,
+                    DisplayName = country == null || country.Name == null ? "" : country.Name.ToString()
+                }).ToListAsync();
+        }
+
+        [AbpAuthorize(AppPermissions.Pages_Applicants)]
+        public async Task<List<ApplicantGovernorateLookupTableDto>> GetAllGovernorateForTableDropdown()
+        {
+            return await _lookup_governorateRepository.GetAll()
+                .Select(governorate => new ApplicantGovernorateLookupTableDto
+                {
+                    Id = governorate.Id,
+                    DisplayName = governorate == null || governorate.Name == null ? "" : governorate.Name.ToString()
+                }).ToListAsync();
+        }
+
+        [AbpAuthorize(AppPermissions.Pages_Applicants)]
+        public async Task<List<ApplicantLocalityLookupTableDto>> GetAllLocalityForTableDropdown()
+        {
+            return await _lookup_localityRepository.GetAll()
+                .Select(locality => new ApplicantLocalityLookupTableDto
+                {
+                    Id = locality.Id,
+                    DisplayName = locality == null || locality.Name == null ? "" : locality.Name.ToString()
                 }).ToListAsync();
         }
 

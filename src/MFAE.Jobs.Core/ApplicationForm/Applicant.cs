@@ -1,5 +1,6 @@
 ﻿using MFAE.Jobs.ApplicationForm.Enums;
 using MFAE.Jobs.Authorization.Users;
+using MFAE.Jobs.Location;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -91,6 +92,21 @@ namespace MFAE.Jobs.ApplicationForm
 
         [ForeignKey("CurrentStatusId")]
         public ApplicantStatus CurrentStatusFk { get; set; }
+
+        public virtual int CountryId { get; set; }
+
+        [ForeignKey("CountryId")]
+        public Country CountryFk { get; set; }
+
+        public virtual int? GovernorateId { get; set; }
+
+        [ForeignKey("GovernorateId")]
+        public Governorate GovernorateFk { get; set; }
+
+        public virtual int? LocalityId { get; set; }
+
+        [ForeignKey("LocalityId")]
+        public Locality LocalityFk { get; set; }
 
         public string FullName
         {

@@ -23,6 +23,30 @@ namespace MFAE.Jobs.Web.Areas.App.Startup
                     )
                 )
                 .AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.Localities,
+                        L("Localities"),
+                        url: "App/Localities",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Localities)
+                    )
+                )
+                .AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.Governorates,
+                        L("Governorates"),
+                        url: "App/Governorates",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Governorates)
+                    )
+                )
+                .AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.Countries,
+                        L("Countries"),
+                        url: "App/Countries",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Countries)
+                    )
+                )
+                .AddItem(new MenuItemDefinition(
                         AppPageNames.Common.ApplicantStatuses,
                         L("ApplicantStatuses"),
                         url: "App/ApplicantStatuses",

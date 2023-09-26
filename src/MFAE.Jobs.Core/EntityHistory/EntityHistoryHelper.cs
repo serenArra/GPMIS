@@ -1,4 +1,5 @@
-﻿using MFAE.Jobs.ApplicationForm;
+﻿using MFAE.Jobs.Location;
+using MFAE.Jobs.ApplicationForm;
 using MFAE.Jobs.Attachments;
 using System;
 using System.Linq;

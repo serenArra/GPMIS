@@ -6,6 +6,21 @@
     /// </summary>
     public static class AppPermissions
     {
+        public const string Pages_Localities = "Pages.Localities";
+        public const string Pages_Localities_Create = "Pages.Localities.Create";
+        public const string Pages_Localities_Edit = "Pages.Localities.Edit";
+        public const string Pages_Localities_Delete = "Pages.Localities.Delete";
+
+        public const string Pages_Governorates = "Pages.Governorates";
+        public const string Pages_Governorates_Create = "Pages.Governorates.Create";
+        public const string Pages_Governorates_Edit = "Pages.Governorates.Edit";
+        public const string Pages_Governorates_Delete = "Pages.Governorates.Delete";
+
+        public const string Pages_Countries = "Pages.Countries";
+        public const string Pages_Countries_Create = "Pages.Countries.Create";
+        public const string Pages_Countries_Edit = "Pages.Countries.Edit";
+        public const string Pages_Countries_Delete = "Pages.Countries.Delete";
+
         public const string Pages_ApplicantStatuses = "Pages.ApplicantStatuses";
         public const string Pages_ApplicantStatuses_Create = "Pages.ApplicantStatuses.Create";
         public const string Pages_ApplicantStatuses_Edit = "Pages.ApplicantStatuses.Edit";

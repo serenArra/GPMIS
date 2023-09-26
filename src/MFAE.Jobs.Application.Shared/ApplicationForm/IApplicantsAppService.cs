@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Collections.Generic;
 using System.Collections.Generic;
 using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace MFAE.Jobs.ApplicationForm
 {
@@ -32,6 +35,12 @@ namespace MFAE.Jobs.ApplicationForm
         Task<List<ApplicantUserLookupTableDto>> GetAllUserForTableDropdown();
 
         Task<List<ApplicantApplicantStatusLookupTableDto>> GetAllApplicantStatusForTableDropdown();
+
+        Task<List<ApplicantCountryLookupTableDto>> GetAllCountryForTableDropdown();
+
+        Task<List<ApplicantGovernorateLookupTableDto>> GetAllGovernorateForTableDropdown();
+
+        Task<List<ApplicantLocalityLookupTableDto>> GetAllLocalityForTableDropdown();
 
     }
 }

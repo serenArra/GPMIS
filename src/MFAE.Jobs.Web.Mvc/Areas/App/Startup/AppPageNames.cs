@@ -4,6 +4,9 @@
     {
         public static class Common
         {
+            public const string Localities = "Location.Localities";
+            public const string Governorates = "Location.Governorates";
+            public const string Countries = "Location.Countries";
             public const string ApplicantStatuses = "ApplicationForm.ApplicantStatuses";
             public const string ConversationRates = "ApplicationForm.ConversationRates";
             public const string ApplicantLanguages = "ApplicationForm.ApplicantLanguages";

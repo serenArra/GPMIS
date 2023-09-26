@@ -30,6 +30,21 @@ namespace MFAE.Jobs.Authorization
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
 
+            var localities = pages.CreateChildPermission(AppPermissions.Pages_Localities, L("Localities"));
+            localities.CreateChildPermission(AppPermissions.Pages_Localities_Create, L("CreateNewLocality"));
+            localities.CreateChildPermission(AppPermissions.Pages_Localities_Edit, L("EditLocality"));
+            localities.CreateChildPermission(AppPermissions.Pages_Localities_Delete, L("DeleteLocality"));
+
+            var governorates = pages.CreateChildPermission(AppPermissions.Pages_Governorates, L("Governorates"));
+            governorates.CreateChildPermission(AppPermissions.Pages_Governorates_Create, L("CreateNewGovernorate"));
+            governorates.CreateChildPermission(AppPermissions.Pages_Governorates_Edit, L("EditGovernorate"));
+            governorates.CreateChildPermission(AppPermissions.Pages_Governorates_Delete, L("DeleteGovernorate"));
+
+            var countries = pages.CreateChildPermission(AppPermissions.Pages_Countries, L("Countries"));
+            countries.CreateChildPermission(AppPermissions.Pages_Countries_Create, L("CreateNewCountry"));
+            countries.CreateChildPermission(AppPermissions.Pages_Countries_Edit, L("EditCountry"));
+            countries.CreateChildPermission(AppPermissions.Pages_Countries_Delete, L("DeleteCountry"));
+
             var applicantStatuses = pages.CreateChildPermission(AppPermissions.Pages_ApplicantStatuses, L("ApplicantStatuses"));
             applicantStatuses.CreateChildPermission(AppPermissions.Pages_ApplicantStatuses_Create, L("CreateNewApplicantStatus"));
             applicantStatuses.CreateChildPermission(AppPermissions.Pages_ApplicantStatuses_Edit, L("EditApplicantStatus"));

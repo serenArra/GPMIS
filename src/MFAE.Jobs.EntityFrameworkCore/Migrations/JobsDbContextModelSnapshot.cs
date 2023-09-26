@@ -1493,6 +1493,9 @@ namespace MFAE.Jobs.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
@@ -1551,6 +1554,9 @@ namespace MFAE.Jobs.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
+                    b.Property<int?>("GovernorateId")
+                        .HasColumnType("int");
+
                     b.Property<string>("GrandFatherName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -1576,6 +1582,9 @@ namespace MFAE.Jobs.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
+                    b.Property<int?>("LocalityId")
+                        .HasColumnType("int");
+
                     b.Property<long?>("LockedBy")
                         .HasColumnType("bigint");
 
@@ -1592,11 +1601,17 @@ namespace MFAE.Jobs.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CountryId");
+
                     b.HasIndex("CurrentStatusId")
                         .IsUnique()
                         .HasFilter("[CurrentStatusId] IS NOT NULL");
 
+                    b.HasIndex("GovernorateId");
+
                     b.HasIndex("IdentificationTypeId");
+
+                    b.HasIndex("LocalityId");
 
                     b.HasIndex("LockedBy");
 
@@ -2772,6 +2787,169 @@ namespace MFAE.Jobs.Migrations
                     b.ToTable("AppFriendships");
                 });
 
+            modelBuilder.Entity("MFAE.Jobs.Location.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("IsoAlpha")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("IsoNumeric")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("NameAr")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("UniversalCode")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("MFAE.Jobs.Location.Governorate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("NameAr")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("NameEn")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("UniversalCode")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Governorates");
+                });
+
+            modelBuilder.Entity("MFAE.Jobs.Location.Locality", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GovernorateId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("NameAr")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("UniversalCode")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GovernorateId");
+
+                    b.ToTable("Localities");
+                });
+
             modelBuilder.Entity("MFAE.Jobs.MultiTenancy.Accounting.Invoice", b =>
                 {
                     b.Property<int>("Id")
@@ -3246,15 +3424,29 @@ namespace MFAE.Jobs.Migrations
 
             modelBuilder.Entity("MFAE.Jobs.ApplicationForm.Applicant", b =>
                 {
+                    b.HasOne("MFAE.Jobs.Location.Country", "CountryFk")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MFAE.Jobs.ApplicationForm.ApplicantStatus", "CurrentStatusFk")
                         .WithOne()
                         .HasForeignKey("MFAE.Jobs.ApplicationForm.Applicant", "CurrentStatusId");
+
+                    b.HasOne("MFAE.Jobs.Location.Governorate", "GovernorateFk")
+                        .WithMany()
+                        .HasForeignKey("GovernorateId");
 
                     b.HasOne("MFAE.Jobs.ApplicationForm.IdentificationType", "IdentificationTypeFk")
                         .WithMany()
                         .HasForeignKey("IdentificationTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("MFAE.Jobs.Location.Locality", "LocalityFk")
+                        .WithMany()
+                        .HasForeignKey("LocalityId");
 
                     b.HasOne("MFAE.Jobs.Authorization.Users.User", "LockedByFk")
                         .WithMany()
@@ -3266,9 +3458,15 @@ namespace MFAE.Jobs.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("CountryFk");
+
                     b.Navigation("CurrentStatusFk");
 
+                    b.Navigation("GovernorateFk");
+
                     b.Navigation("IdentificationTypeFk");
+
+                    b.Navigation("LocalityFk");
 
                     b.Navigation("LockedByFk");
 
@@ -3433,6 +3631,28 @@ namespace MFAE.Jobs.Migrations
                     b.Navigation("DeleterUser");
 
                     b.Navigation("LastModifierUser");
+                });
+
+            modelBuilder.Entity("MFAE.Jobs.Location.Governorate", b =>
+                {
+                    b.HasOne("MFAE.Jobs.Location.Country", "CountryFk")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CountryFk");
+                });
+
+            modelBuilder.Entity("MFAE.Jobs.Location.Locality", b =>
+                {
+                    b.HasOne("MFAE.Jobs.Location.Governorate", "GovernorateFk")
+                        .WithMany()
+                        .HasForeignKey("GovernorateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GovernorateFk");
                 });
 
             modelBuilder.Entity("MFAE.Jobs.MultiTenancy.Payments.SubscriptionPayment", b =>

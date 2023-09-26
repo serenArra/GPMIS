@@ -51,5 +51,11 @@ namespace MFAE.Jobs.ApplicationForm.Dtos
 
         public string ApplicantStatusDescriptionFilter { get; set; }
 
+        public string CountryNameFilter { get; set; }
+
+        public string GovernorateNameFilter { get; set; }
+
+        public string LocalityNameFilter { get; set; }
+
     }
 }

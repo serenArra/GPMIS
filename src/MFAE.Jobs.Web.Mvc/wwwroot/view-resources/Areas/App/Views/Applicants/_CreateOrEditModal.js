@@ -22,6 +22,18 @@
             viewUrl: abp.appPath + 'App/Applicants/ApplicantStatusLookupTableModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/Applicants/_ApplicantApplicantStatusLookupTableModal.js',
             modalClass: 'ApplicantStatusLookupTableModal'
+        });        var _ApplicantcountryLookupTableModal = new app.ModalManager({
+            viewUrl: abp.appPath + 'App/Applicants/CountryLookupTableModal',
+            scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/Applicants/_ApplicantCountryLookupTableModal.js',
+            modalClass: 'CountryLookupTableModal'
+        });        var _ApplicantgovernorateLookupTableModal = new app.ModalManager({
+            viewUrl: abp.appPath + 'App/Applicants/GovernorateLookupTableModal',
+            scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/Applicants/_ApplicantGovernorateLookupTableModal.js',
+            modalClass: 'GovernorateLookupTableModal'
+        });        var _ApplicantlocalityLookupTableModal = new app.ModalManager({
+            viewUrl: abp.appPath + 'App/Applicants/LocalityLookupTableModal',
+            scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/Applicants/_ApplicantLocalityLookupTableModal.js',
+            modalClass: 'LocalityLookupTableModal'
         });
 		
 		
@@ -100,6 +112,51 @@
                 _$applicantInformationForm.find('input[name=currentStatusId]').val(''); 
         });
 		
+        $('#OpenCountryLookupTableButton').click(function () {
+
+            var applicant = _$applicantInformationForm.serializeFormToObject();
+
+            _ApplicantcountryLookupTableModal.open({ id: applicant.countryId, displayName: applicant.countryName }, function (data) {
+                _$applicantInformationForm.find('input[name=countryName]').val(data.displayName); 
+                _$applicantInformationForm.find('input[name=countryId]').val(data.id); 
+            });
+        });
+		
+		$('#ClearCountryNameButton').click(function () {
+                _$applicantInformationForm.find('input[name=countryName]').val(''); 
+                _$applicantInformationForm.find('input[name=countryId]').val(''); 
+        });
+		
+        $('#OpenGovernorateLookupTableButton').click(function () {
+
+            var applicant = _$applicantInformationForm.serializeFormToObject();
+
+            _ApplicantgovernorateLookupTableModal.open({ id: applicant.governorateId, displayName: applicant.governorateName }, function (data) {
+                _$applicantInformationForm.find('input[name=governorateName]').val(data.displayName); 
+                _$applicantInformationForm.find('input[name=governorateId]').val(data.id); 
+            });
+        });
+		
+		$('#ClearGovernorateNameButton').click(function () {
+                _$applicantInformationForm.find('input[name=governorateName]').val(''); 
+                _$applicantInformationForm.find('input[name=governorateId]').val(''); 
+        });
+		
+        $('#OpenLocalityLookupTableButton').click(function () {
+
+            var applicant = _$applicantInformationForm.serializeFormToObject();
+
+            _ApplicantlocalityLookupTableModal.open({ id: applicant.localityId, displayName: applicant.localityName }, function (data) {
+                _$applicantInformationForm.find('input[name=localityName]').val(data.displayName); 
+                _$applicantInformationForm.find('input[name=localityId]').val(data.id); 
+            });
+        });
+		
+		$('#ClearLocalityNameButton').click(function () {
+                _$applicantInformationForm.find('input[name=localityName]').val(''); 
+                _$applicantInformationForm.find('input[name=localityId]').val(''); 
+        });
+		
 
 
         this.save = function () {
@@ -120,6 +177,18 @@
             }
             if ($('#Applicant_CurrentStatusId').prop('required') && $('#Applicant_CurrentStatusId').val() == '') {
                 abp.message.error(app.localize('{0}IsRequired', app.localize('ApplicantStatus')));
+                return;
+            }
+            if ($('#Applicant_CountryId').prop('required') && $('#Applicant_CountryId').val() == '') {
+                abp.message.error(app.localize('{0}IsRequired', app.localize('Country')));
+                return;
+            }
+            if ($('#Applicant_GovernorateId').prop('required') && $('#Applicant_GovernorateId').val() == '') {
+                abp.message.error(app.localize('{0}IsRequired', app.localize('Governorate')));
+                return;
+            }
+            if ($('#Applicant_LocalityId').prop('required') && $('#Applicant_LocalityId').val() == '') {
+                abp.message.error(app.localize('{0}IsRequired', app.localize('Locality')));
                 return;
             }
 

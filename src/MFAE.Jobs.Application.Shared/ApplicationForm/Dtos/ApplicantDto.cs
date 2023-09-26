@@ -49,5 +49,11 @@ namespace MFAE.Jobs.ApplicationForm.Dtos
 
         public long? CurrentStatusId { get; set; }
 
+        public int CountryId { get; set; }
+
+        public int? GovernorateId { get; set; }
+
+        public int? LocalityId { get; set; }
+
     }
 }

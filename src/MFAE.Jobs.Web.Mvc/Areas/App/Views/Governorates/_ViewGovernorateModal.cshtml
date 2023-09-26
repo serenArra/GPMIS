@@ -1,0 +1,35 @@
+﻿
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.Governorates
+@model GovernorateViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="GovernorateInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("NameAr") :</h6>
+                @Model.Governorate.NameAr
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("NameEn") :</h6>
+                @Model.Governorate.NameEn
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("UniversalCode") :</h6>
+                @Model.Governorate.UniversalCode
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>(@L("Country")) @L("Name") :</h6>
+                @Model.CountryName
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MFAE.Jobs.EntityFrameworkCore;
 using MFAE.Jobs.Migrations.Seed.Host;
 using MFAE.Jobs.Migrations.Seed.Tenants;
+using MFAE.Jobs.Migrations.Seed.CsvSeed;
 
 namespace MFAE.Jobs.Migrations.Seed
 {
@@ -28,6 +29,12 @@ namespace MFAE.Jobs.Migrations.Seed
             //Default tenant seed (in host database).
             new DefaultTenantBuilder(context).Create();
             new TenantRoleAndUserBuilder(context, 1).Create();
+
+            //Lookups seed from DMSFiles
+
+            new CountriesBuilder(context).Create();
+            new GovernoratesBuilder(context).Create();
+            new LocalitiesBuilder(context).Create();
         }
 
         private static void WithDbContext<TDbContext>(IIocResolver iocResolver, Action<TDbContext> contextAction)

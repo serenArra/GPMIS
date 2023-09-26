@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Collections.Generic;
 using System.Collections.Generic;
 using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Collections.Generic;
 
 using Abp.Extensions;
 
@@ -20,6 +23,12 @@ namespace MFAE.Jobs.Web.Areas.App.Models.Applicants
 
         public string ApplicantStatusDescription { get; set; }
 
+        public string CountryName { get; set; }
+
+        public string GovernorateName { get; set; }
+
+        public string LocalityName { get; set; }
+
         public List<ApplicantIdentificationTypeLookupTableDto> ApplicantIdentificationTypeList { get; set; }
 
         public List<ApplicantMaritalStatusLookupTableDto> ApplicantMaritalStatusList { get; set; }
@@ -27,6 +36,12 @@ namespace MFAE.Jobs.Web.Areas.App.Models.Applicants
         public List<ApplicantUserLookupTableDto> ApplicantUserList { get; set; }
 
         public List<ApplicantApplicantStatusLookupTableDto> ApplicantApplicantStatusList { get; set; }
+
+        public List<ApplicantCountryLookupTableDto> ApplicantCountryList { get; set; }
+
+        public List<ApplicantGovernorateLookupTableDto> ApplicantGovernorateList { get; set; }
+
+        public List<ApplicantLocalityLookupTableDto> ApplicantLocalityList { get; set; }
 
         public bool IsEditMode => Applicant.Id.HasValue;
     }

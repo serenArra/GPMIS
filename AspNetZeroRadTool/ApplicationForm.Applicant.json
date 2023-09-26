@@ -442,6 +442,54 @@
           "Description"
         ]
       }
+    },
+    {
+      "Namespace": "MFAE.Jobs.Location",
+      "ForeignEntityName": "Country",
+      "IdType": "int",
+      "IsNullable": false,
+      "PropertyName": "CountryId",
+      "DuplicationNumber": 0,
+      "RelationType": "single",
+      "ViewType": "Dropdown",
+      "DisplayPropertyNameInfos": {
+        "MergeFormat": "{0}",
+        "DisplayPropertyNames": [
+          "Name"
+        ]
+      }
+    },
+    {
+      "Namespace": "MFAE.Jobs.Location",
+      "ForeignEntityName": "Governorate",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "GovernorateId",
+      "DuplicationNumber": 0,
+      "RelationType": "single",
+      "ViewType": "Dropdown",
+      "DisplayPropertyNameInfos": {
+        "MergeFormat": "{0}",
+        "DisplayPropertyNames": [
+          "Name"
+        ]
+      }
+    },
+    {
+      "Namespace": "MFAE.Jobs.Location",
+      "ForeignEntityName": "Locality",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "LocalityId",
+      "DuplicationNumber": 0,
+      "RelationType": "single",
+      "ViewType": "Dropdown",
+      "DisplayPropertyNameInfos": {
+        "MergeFormat": "{0}",
+        "DisplayPropertyNames": [
+          "Name"
+        ]
+      }
     }
   ],
   "NavigationPropertyOneToManyTables": [],

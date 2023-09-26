@@ -59,10 +59,16 @@ namespace MFAE.Jobs.Web.Areas.App.Controllers
                 MaritalStatusName = getApplicantForEditOutput.MaritalStatusName,
                 UserName = getApplicantForEditOutput.UserName,
                 ApplicantStatusDescription = getApplicantForEditOutput.ApplicantStatusDescription,
+                CountryName = getApplicantForEditOutput.CountryName,
+                GovernorateName = getApplicantForEditOutput.GovernorateName,
+                LocalityName = getApplicantForEditOutput.LocalityName,
                 ApplicantIdentificationTypeList = await _applicantsAppService.GetAllIdentificationTypeForTableDropdown(),
                 ApplicantMaritalStatusList = await _applicantsAppService.GetAllMaritalStatusForTableDropdown(),
                 ApplicantUserList = await _applicantsAppService.GetAllUserForTableDropdown(),
                 ApplicantApplicantStatusList = await _applicantsAppService.GetAllApplicantStatusForTableDropdown(),
+                ApplicantCountryList = await _applicantsAppService.GetAllCountryForTableDropdown(),
+                ApplicantGovernorateList = await _applicantsAppService.GetAllGovernorateForTableDropdown(),
+                ApplicantLocalityList = await _applicantsAppService.GetAllLocalityForTableDropdown(),
 
             };
 
@@ -87,6 +93,15 @@ namespace MFAE.Jobs.Web.Areas.App.Controllers
 
                 ,
                 ApplicantStatusDescription = getApplicantForViewDto.ApplicantStatusDescription
+
+                ,
+                CountryName = getApplicantForViewDto.CountryName
+
+                ,
+                GovernorateName = getApplicantForViewDto.GovernorateName
+
+                ,
+                LocalityName = getApplicantForViewDto.LocalityName
 
             };
 

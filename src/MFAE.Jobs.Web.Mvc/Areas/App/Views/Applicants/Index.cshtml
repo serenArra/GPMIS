@@ -185,6 +185,24 @@ ViewBag.CurrentPageName = AppPageNames.Common.Applicants;
                         <input type="text" class="form-control" name="applicantStatusDescriptionFilter" id="ApplicantStatusDescriptionFilterId">
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="CountryNameFilterId">(@L("Country")) @L("Name")</label>
+                        <input type="text" class="form-control" name="countryNameFilter" id="CountryNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="GovernorateNameFilterId">(@L("Governorate")) @L("Name")</label>
+                        <input type="text" class="form-control" name="governorateNameFilter" id="GovernorateNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="LocalityNameFilterId">(@L("Locality")) @L("Name")</label>
+                        <input type="text" class="form-control" name="localityNameFilter" id="LocalityNameFilterId">
+                    </div>
+                </div>
                 <div class="col-md-12 mt-5">
                     <button class="btn btn-secondary btn-sm" id="btn-reset-filters">Reset</button>
                 </div>
@@ -223,6 +241,9 @@ ViewBag.CurrentPageName = AppPageNames.Common.Applicants;
                             <th>@L("MaritalStatusName")</th>
                             <th>@L("UserName")</th>
                             <th>@L("ApplicantStatusDescription")</th>
+                            <th>@L("CountryName")</th>
+                            <th>@L("GovernorateName")</th>
+                            <th>@L("LocalityName")</th>
                         </tr>
                     </thead>
                 </table>

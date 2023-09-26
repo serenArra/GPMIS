@@ -37,6 +37,21 @@
             </div>
 
             <div class="my-3">
+                <label class="form-label" for="countryId">@L("Country")</label>
+                @Html.DropDownList("countryId", new SelectList(Model.ApplicantCountryList,"Id","DisplayName", (Model.IsEditMode ? Model.Applicant.CountryId.ToString() : "")),@L("SelectACountry"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="governorateId">@L("Governorate")</label>
+                @Html.DropDownList("governorateId", new SelectList(Model.ApplicantGovernorateList,"Id","DisplayName", (Model.IsEditMode ? Model.Applicant.GovernorateId.ToString() : "")),@L("SelectAGovernorate"), new { @class = "form-control" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="localityId">@L("Locality")</label>
+                @Html.DropDownList("localityId", new SelectList(Model.ApplicantLocalityList,"Id","DisplayName", (Model.IsEditMode ? Model.Applicant.LocalityId.ToString() : "")),@L("SelectALocality"), new { @class = "form-control" })
+            </div>
+
+            <div class="my-3">
                 <label class="form-label" for="Applicant_DocumentNo">@L("DocumentNo")</label>
                 <input class="form-control" id="Applicant_DocumentNo" value="@Model.Applicant.DocumentNo" type="text" name="documentNo" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxDocumentNoLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinDocumentNoLength" />
             </div>

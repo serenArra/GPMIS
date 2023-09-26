@@ -1,4 +1,5 @@
-﻿using MFAE.Jobs.ApplicationForm;
+﻿using MFAE.Jobs.Location;
+using MFAE.Jobs.ApplicationForm;
 using MFAE.Jobs.Attachments;
 using Abp.Zero.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,12 @@ namespace MFAE.Jobs.EntityFrameworkCore
 {
     public class JobsDbContext : AbpZeroDbContext<Tenant, Role, User, JobsDbContext>
     {
+        public virtual DbSet<Locality> Localities { get; set; }
+
+        public virtual DbSet<Governorate> Governorates { get; set; }
+
+        public virtual DbSet<Country> Countries { get; set; }
+
         public virtual DbSet<ApplicantStatus> ApplicantStatuses { get; set; }
 
         public virtual DbSet<ConversationRate> ConversationRates { get; set; }

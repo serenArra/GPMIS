@@ -1,0 +1,42 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.Governorates
+@model CreateOrEditGovernorateModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditGovernorate")) : L("CreateNewGovernorate")))
+
+<div class="modal-body">
+    <div id="GovernorateInformationsTab">
+        <form name="GovernorateInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.Governorate.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="countryId">@L("Country")</label>
+                @Html.DropDownList("countryId", new SelectList(Model.GovernorateCountryList,"Id","DisplayName", (Model.IsEditMode ? Model.Governorate.CountryId.ToString() : "")),@L("SelectACountry"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Governorate_NameAr">@L("NameAr")</label>
+                <input class="form-control" id="Governorate_NameAr" value="@Model.Governorate.NameAr" type="text" name="nameAr" required maxlength="@MFAE.Jobs.Location.GovernorateConsts.MaxNameArLength" minlength="@MFAE.Jobs.Location.GovernorateConsts.MinNameArLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Governorate_NameEn">@L("NameEn")</label>
+                <input class="form-control" id="Governorate_NameEn" value="@Model.Governorate.NameEn" type="text" name="nameEn" maxlength="@MFAE.Jobs.Location.GovernorateConsts.MaxNameEnLength" minlength="@MFAE.Jobs.Location.GovernorateConsts.MinNameEnLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Governorate_UniversalCode">@L("UniversalCode")</label>
+                <input class="form-control" id="Governorate_UniversalCode" value="@Model.Governorate.UniversalCode" type="text" name="universalCode" maxlength="@MFAE.Jobs.Location.GovernorateConsts.MaxUniversalCodeLength" minlength="@MFAE.Jobs.Location.GovernorateConsts.MinUniversalCodeLength" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

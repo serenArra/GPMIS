@@ -1,4 +1,6 @@
-﻿using MFAE.Jobs.ApplicationForm.Dtos;
+﻿using MFAE.Jobs.Location.Dtos;
+using MFAE.Jobs.Location;
+using MFAE.Jobs.ApplicationForm.Dtos;
 using MFAE.Jobs.ApplicationForm;
 using MFAE.Jobs.Attachments.Dtos;
 using MFAE.Jobs.Attachments;
@@ -52,6 +54,12 @@ namespace MFAE.Jobs
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<CreateOrEditLocalityDto, Locality>().ReverseMap();
+            configuration.CreateMap<LocalityDto, Locality>().ReverseMap();
+            configuration.CreateMap<CreateOrEditGovernorateDto, Governorate>().ReverseMap();
+            configuration.CreateMap<GovernorateDto, Governorate>().ReverseMap();
+            configuration.CreateMap<CreateOrEditCountryDto, Country>().ReverseMap();
+            configuration.CreateMap<CountryDto, Country>().ReverseMap();
             configuration.CreateMap<CreateOrEditApplicantStatusDto, ApplicantStatus>().ReverseMap();
             configuration.CreateMap<ApplicantStatusDto, ApplicantStatus>().ReverseMap();
             configuration.CreateMap<CreateOrEditConversationRateDto, ConversationRate>().ReverseMap();

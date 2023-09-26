@@ -12,7 +12,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Migrations\Seed\CsvSeed\CSVFiles\Countries.csv" />
+    <None Remove="Migrations\Seed\CsvSeed\CSVFiles\Governorates.csv" />
+    <None Remove="Migrations\Seed\CsvSeed\CSVFiles\Localities.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\Seed\CsvSeed\CSVFiles\Countries.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\Seed\CsvSeed\CSVFiles\Governorates.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\Seed\CsvSeed\CSVFiles\Localities.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Abp.EntityFrameworkCore.EFPlus" Version="8.2.0" />
+    <PackageReference Include="CsvHelper" Version="30.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
       <PrivateAssets>all</PrivateAssets>
