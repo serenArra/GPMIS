@@ -26,7 +26,45 @@
 	<text name="SelectAGovernorate">اختر محافظة</text>
 	<text name="Governorate">المحافظة</text>
 
+	<text name="Applicants">الطلبات</text>
+	<text name="ApplicantsHeaderInfo">قائمة الطلبات</text>
+	<text name="CreateNewApplicant">انشاء طلب جديد</text>
+	<text name="DocumentNo">رقم الطلب</text>
+	<text name="FatherName">اسم الاب</text>
+	<text name="GrandFatherName">اسم الجد</text>
+	<text name="FamilyName">اسم العائلة</text>
+	<text name="FirstNameEn">الاسم الاول (بالعربية)</text>
+	<text name="FatherNameEn">اسم الاب (بالعربية)</text>
+	<text name="GrandFatherNameEn">اسم الجد (بالعربية)</text>
+	<text name="FamilyNameEn">اسم العائلة (بالعربية)</text>
+	<text name="BirthDateRange">تاريخ الميلاد</text>
+	<text name="Mobile">رقم الهاتف المحمول</text>
 
+	<text name="NumberOfChildren">عدد الابناء</text>
+	<text name="IdentificationType">نوع الوثيقة</text>
+	<text name="MaritalStatus">الحالة الاجتماعية</text>
+	<text name="User">المستخدم</text>
+	<text name="ApplicantStatus">حالة الطلب</text>
+	<text name="Description">الملخص</text>
+	<text name="Locality">المنطقة</text>
+	<text name="MaritalStatusName">الحالة الاجتماعية</text>
+	<text name="ApplicantStatusDescription">وصف حالة الطلب</text>
+	  
+	<text name="LocalityName">المنطقة (بالعربية)</text>
+	<text name="IdentificationTypeName">نوع الوثيقة</text>
+	<text name="BirthDate">تاريخ الميلاد</text>
+	<text name="BirthPlace">مكان الولادة</text>
+	<text name="IsLocked">مقفل</text>
+	<text name="Gender">الجنس</text>
+
+
+	<text name="SelectAIdentificationType">اختر نوع الوثيقة</text>
+	<text name="SelectAMaritalStatus">اختر الحالة الاجتماعية</text>
+	<text name="SelectAApplicantStatus">اختر حالة الطلب</text>
+	<text name="SelectALocality">اختر المنطقة</text>
+	<text name="Enum_Gender_1">ذكر</text>
+	<text name="Enum_Gender_2">أنثى</text>
+	  
 	<text name="HomePage">الرئيسية</text>
     <text name="AboutUs">من نحن</text>
     <text name="Administration">الإدارة</text>
