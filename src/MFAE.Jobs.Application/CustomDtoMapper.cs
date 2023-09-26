@@ -1,4 +1,6 @@
-﻿using MFAE.Jobs.Location.Dtos;
+﻿using MFAE.Jobs.XRoad.Dtos;
+using MFAE.Jobs.XRoad;
+using MFAE.Jobs.Location.Dtos;
 using MFAE.Jobs.Location;
 using MFAE.Jobs.ApplicationForm.Dtos;
 using MFAE.Jobs.ApplicationForm;
@@ -54,6 +56,16 @@ namespace MFAE.Jobs
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<CreateOrEditXRoadServiceErrorDto, XRoadServiceError>().ReverseMap();
+            configuration.CreateMap<XRoadServiceErrorDto, XRoadServiceError>().ReverseMap();
+            configuration.CreateMap<CreateOrEditXRoadServiceAttributeMappingDto, XRoadServiceAttributeMapping>().ReverseMap();
+            configuration.CreateMap<XRoadServiceAttributeMappingDto, XRoadServiceAttributeMapping>().ReverseMap();
+            configuration.CreateMap<CreateOrEditXRoadServiceAttributeDto, XRoadServiceAttribute>().ReverseMap();
+            configuration.CreateMap<XRoadServiceAttributeDto, XRoadServiceAttribute>().ReverseMap();
+            configuration.CreateMap<CreateOrEditXRoadServiceDto, XRoadService>().ReverseMap();
+            configuration.CreateMap<XRoadServiceDto, XRoadService>().ReverseMap();
+            configuration.CreateMap<CreateOrEditXRoadMappingDto, XRoadMapping>().ReverseMap();
+            configuration.CreateMap<XRoadMappingDto, XRoadMapping>().ReverseMap();
             configuration.CreateMap<CreateOrEditLocalityDto, Locality>().ReverseMap();
             configuration.CreateMap<LocalityDto, Locality>().ReverseMap();
             configuration.CreateMap<CreateOrEditGovernorateDto, Governorate>().ReverseMap();

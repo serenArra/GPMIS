@@ -1,0 +1,35 @@
+﻿
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.XRoadServiceErrors
+@model XRoadServiceErrorViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="XRoadServiceErrorInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("ErrorCode") :</h6>
+                @Model.XRoadServiceError.ErrorCode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("ErrorMessageAr") :</h6>
+                @Model.XRoadServiceError.ErrorMessageAr
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("ErrorMessageEn") :</h6>
+                @Model.XRoadServiceError.ErrorMessageEn
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>(@L("XRoadService")) @L("Name") :</h6>
+                @Model.XRoadServiceName
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

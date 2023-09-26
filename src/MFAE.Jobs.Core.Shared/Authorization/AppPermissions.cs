@@ -6,6 +6,31 @@
     /// </summary>
     public static class AppPermissions
     {
+        public const string Pages_XRoadServiceErrors = "Pages.XRoadServiceErrors";
+        public const string Pages_XRoadServiceErrors_Create = "Pages.XRoadServiceErrors.Create";
+        public const string Pages_XRoadServiceErrors_Edit = "Pages.XRoadServiceErrors.Edit";
+        public const string Pages_XRoadServiceErrors_Delete = "Pages.XRoadServiceErrors.Delete";
+
+        public const string Pages_XRoadServiceAttributeMappings = "Pages.XRoadServiceAttributeMappings";
+        public const string Pages_XRoadServiceAttributeMappings_Create = "Pages.XRoadServiceAttributeMappings.Create";
+        public const string Pages_XRoadServiceAttributeMappings_Edit = "Pages.XRoadServiceAttributeMappings.Edit";
+        public const string Pages_XRoadServiceAttributeMappings_Delete = "Pages.XRoadServiceAttributeMappings.Delete";
+
+        public const string Pages_XRoadServiceAttributes = "Pages.XRoadServiceAttributes";
+        public const string Pages_XRoadServiceAttributes_Create = "Pages.XRoadServiceAttributes.Create";
+        public const string Pages_XRoadServiceAttributes_Edit = "Pages.XRoadServiceAttributes.Edit";
+        public const string Pages_XRoadServiceAttributes_Delete = "Pages.XRoadServiceAttributes.Delete";
+
+        public const string Pages_XRoadServices = "Pages.XRoadServices";
+        public const string Pages_XRoadServices_Create = "Pages.XRoadServices.Create";
+        public const string Pages_XRoadServices_Edit = "Pages.XRoadServices.Edit";
+        public const string Pages_XRoadServices_Delete = "Pages.XRoadServices.Delete";
+
+        public const string Pages_XRoadMappings = "Pages.XRoadMappings";
+        public const string Pages_XRoadMappings_Create = "Pages.XRoadMappings.Create";
+        public const string Pages_XRoadMappings_Edit = "Pages.XRoadMappings.Edit";
+        public const string Pages_XRoadMappings_Delete = "Pages.XRoadMappings.Delete";
+
         public const string Pages_Localities = "Pages.Localities";
         public const string Pages_Localities_Create = "Pages.Localities.Create";
         public const string Pages_Localities_Edit = "Pages.Localities.Edit";

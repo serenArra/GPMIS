@@ -1,0 +1,78 @@
+﻿@using MFAE.Jobs.XRoad;
+
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.XRoadServices
+@model CreateOrEditXRoadServiceModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditXRoadService")) : L("CreateNewXRoadService")))
+
+<div class="modal-body">
+    <div id="XRoadServiceInformationsTab">
+        <form name="XRoadServiceInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.XRoadService.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="XRoadService_Name">@L("Name")</label>
+                <input class="form-control" id="XRoadService_Name" value="@Model.XRoadService.Name" type="text" name="name" required maxlength="@MFAE.Jobs.XRoad.XRoadServiceConsts.MaxNameLength" minlength="@MFAE.Jobs.XRoad.XRoadServiceConsts.MinNameLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="XRoadService_ProviderCode">@L("ProviderCode")</label>
+                <input class="form-control" id="XRoadService_ProviderCode" value="@Model.XRoadService.ProviderCode" type="text" name="providerCode" required maxlength="@MFAE.Jobs.XRoad.XRoadServiceConsts.MaxProviderCodeLength" minlength="@MFAE.Jobs.XRoad.XRoadServiceConsts.MinProviderCodeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="XRoadService_ResultCodePath">@L("ResultCodePath")</label>
+                <input class="form-control" id="XRoadService_ResultCodePath" value="@Model.XRoadService.ResultCodePath" type="text" name="resultCodePath" required maxlength="@MFAE.Jobs.XRoad.XRoadServiceConsts.MaxResultCodePathLength" minlength="@MFAE.Jobs.XRoad.XRoadServiceConsts.MinResultCodePathLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="XRoadService_ActionName">@L("ActionName")</label>
+                <input class="form-control" id="XRoadService_ActionName" value="@Model.XRoadService.ActionName" type="text" name="actionName" required />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="XRoadService_SoapActionName">@L("SoapActionName")</label>
+                <input class="form-control" id="XRoadService_SoapActionName" value="@Model.XRoadService.SoapActionName" type="text" name="soapActionName" required />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="XRoadService_VersionNo">@L("VersionNo")</label>
+                <input class="form-control" id="XRoadService_VersionNo" value="@Model.XRoadService.VersionNo" type="text" name="versionNo" required />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="XRoadService_ProducerCode">@L("ProducerCode")</label>
+                <input class="form-control" id="XRoadService_ProducerCode" value="@Model.XRoadService.ProducerCode" type="text" name="producerCode" required />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="XRoadService_Description">@L("Description")</label>
+                <input class="form-control" id="XRoadService_Description" value="@Model.XRoadService.Description" type="text" name="description" maxlength="@MFAE.Jobs.XRoad.XRoadServiceConsts.MaxDescriptionLength" minlength="@MFAE.Jobs.XRoad.XRoadServiceConsts.MinDescriptionLength" />
+            </div>
+
+            @{
+            var selectListStatus = Html.GetEnumSelectList(typeof(XRoadServiceStatusEnum));
+            foreach (var selectOption in selectListStatus) { selectOption.Text = L("Enum_XRoadServiceStatusEnum_" + selectOption.Value); }
+            }
+            <div class="my-3">
+                <label class="form-label" for="XRoadService_Status">@L("Status")</label>
+                <select class="form-select m-input m-input--square" name="status" id="XRoadService_Status" asp-for="@Model.XRoadService.Status" asp-items="@selectListStatus">
+                </select>
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="XRoadService_Code">@L("Code")</label>
+                <input class="form-control" id="XRoadService_Code" value="@Model.XRoadService.Code" type="text" name="code" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")
