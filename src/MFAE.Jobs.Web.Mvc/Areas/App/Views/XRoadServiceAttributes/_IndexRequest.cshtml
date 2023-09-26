@@ -1,0 +1,118 @@
+﻿@using MFAE.Jobs.Authorization
+@using MFAE.Jobs.Web.Areas.App.Models.XRoadServiceAttributes
+@using MFAE.Jobs.Web.Areas.App.Startup
+@model XRoadServiceAttributesViewModel
+
+<div class="card card-custom gutter-b">
+    <div class="card-header">
+        <div class="card-title">
+            <h3 class="card-label"><i class="flaticon2-arrow-up icon-lg mr-3 text-primary"></i>@L("RequestAttributes")</h3>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row mb-4">
+            <div class="col-xl-12">
+
+                @if (IsGranted(AppPermissions.Pages_XRoadServiceAttributes_Create))
+                {
+                    <button id="CreateNewXRoadServiceAttributeButtonRequest" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewXRoadServiceAttribute")</button>
+                }
+            </div>
+        </div>
+        <input type="hidden" id="XRoadServiceAttributes_XRoadServiceIdRequest" value="@Model.XRoadServiceId" />
+        @*<div class="form">
+                <div class="row align-items-center mb-4">
+                    <div class="col-xl-12">
+                        <div class="form-group align-items-center">
+                            <div class="input-group">
+                                <input type="text" id="XRoadServiceAttributesTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                                <span class="input-group-btn">
+                                    <button id="GetXRoadServiceAttributesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
+                <div class="col-md-12">
+                    <div class="kt-separator kt-separator--border-dashed"></div>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="ServiceAttributeTypeFilterId">@L("ServiceAttributeType")</label>
+                    <select class="form-control" name="ServiceAttributeTypeFilter" id="ServiceAttributeTypeFilterId">
+                        <option value="-1">@L("All")</option>
+                        <option value="1">@L("Enum_XRoadServiceAttributeTypeEnum_1")</option>
+
+                        <option value="2">@L("Enum_XRoadServiceAttributeTypeEnum_2")</option>
+
+
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="AttributeCodeFilterId">@L("AttributeCode")</label>
+                        <input type="text" class="form-control" name="attributeCodeFilter" id="AttributeCodeFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="XMLPathFilterId">@L("XMLPath")</label>
+                        <input type="text" class="form-control" name="xmlPathFilter" id="XMLPathFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="NameFilterId">@L("Name")</label>
+                        <input type="text" class="form-control" name="nameFilter" id="NameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="DescriptionFilterId">@L("Description")</label>
+                        <input type="text" class="form-control" name="descriptionFilter" id="DescriptionFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="FormatTransitionFilterId">@L("FormatTransition")</label>
+                        <input type="text" class="form-control" name="formatTransitionFilter" id="FormatTransitionFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="XRoadServiceNameFilterId">(@L("XRoadService")) @L("Name")</label>
+                        <input type="text" class="form-control" name="xRoadServiceNameFilter" id="XRoadServiceNameFilterId">
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-xl-12">
+                    <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                    <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                </div>
+            </div>*@
+        <div class="row align-items-center">
+            <table id="XRoadServiceAttributesTableRequest" name="XRoadServiceAttributesTableRequest" class="table table-separate table-head-custom no-footer dtr-inline dt-responsive nowrap table-hover table-clickable">
+                <thead>
+                    <tr>
+                        <th></th>
+
+                        <th>@L("Actions")</th>
+                        <th>@L("Name")</th>
+                        <th>@L("AttributeCode")</th>
+                        <th>@L("XMLPath")</th>
+
+                        @*<th>@L("ServiceAttributeType")</th>
+        <th>@L("Description")</th>
+        <th>@L("FormatTransition")</th>
+        <th>@L("XRoadServiceName")</th>
+                        *@
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>

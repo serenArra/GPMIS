@@ -67,6 +67,14 @@ namespace MFAE.Jobs.Web.Areas.App.Startup
                         L("ApplicationModel"),
                         icon: "flaticon-pin"
                     )
+               .AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.InformationBankPage,
+                        L("InformationBank"),
+                        url: "App/XRoadServices/ViewInformationBankPage",
+                        icon: "flaticon-notes",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_XRoadServices_InformationBank)
+                    )
+                )
                    .AddItem(new MenuItemDefinition(
                            AppPageNames.Common.AcademicDegrees,
                            L("AcademicDegrees"),
@@ -228,6 +236,13 @@ namespace MFAE.Jobs.Web.Areas.App.Startup
                             icon: "flaticon-map",
                             permissionDependency: new SimplePermissionDependency(AppPermissions
                                 .Pages_Administration_OrganizationUnits)
+                        )
+                    ).AddItem(new MenuItemDefinition(
+                       AppPageNames.Common.XRoadServices,
+                       L("XRoadServices"),
+                       url: "App/XRoadServices",
+                       icon: "flaticon-exclamation-2",
+                       permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_XRoadServices)
                         )
                     ).AddItem(new MenuItemDefinition(
                             AppPageNames.Common.Roles,

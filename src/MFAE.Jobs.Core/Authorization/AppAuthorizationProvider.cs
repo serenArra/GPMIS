@@ -44,6 +44,7 @@ namespace MFAE.Jobs.Authorization
             xRoadServiceAttributes.CreateChildPermission(AppPermissions.Pages_XRoadServiceAttributes_Create, L("CreateNewXRoadServiceAttribute"));
             xRoadServiceAttributes.CreateChildPermission(AppPermissions.Pages_XRoadServiceAttributes_Edit, L("EditXRoadServiceAttribute"));
             xRoadServiceAttributes.CreateChildPermission(AppPermissions.Pages_XRoadServiceAttributes_Delete, L("DeleteXRoadServiceAttribute"));
+            xRoadServiceAttributes.CreateChildPermission(AppPermissions.Pages_XRoadServices_InformationBank, L("InformationBank"));
 
             var xRoadServices = pages.CreateChildPermission(AppPermissions.Pages_XRoadServices, L("XRoadServices"));
             xRoadServices.CreateChildPermission(AppPermissions.Pages_XRoadServices_Create, L("CreateNewXRoadService"));

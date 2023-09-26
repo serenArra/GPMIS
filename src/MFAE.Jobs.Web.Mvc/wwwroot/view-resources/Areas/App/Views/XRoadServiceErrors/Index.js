@@ -5,46 +5,7 @@
         var _xRoadServiceErrorsService = abp.services.app.xRoadServiceErrors;
 		var _entityTypeFullName = 'MFAE.Jobs.XRoad.XRoadServiceError';
         
-       var $selectedDate = {
-            startDate: null,
-            endDate: null,
-        }
-
-        $('.date-picker').on('apply.daterangepicker', function (ev, picker) {
-            $(this).val(picker.startDate.format('MM/DD/YYYY'));
-        });
-
-        $('.startDate').daterangepicker({
-            autoUpdateInput: false,
-            singleDatePicker: true,
-            locale: abp.localization.currentLanguage.name,
-            format: 'L',
-        })
-        .on("apply.daterangepicker", (ev, picker) => {
-            $selectedDate.startDate = picker.startDate;
-            getXRoadServiceErrors();
-        })
-        .on('cancel.daterangepicker', function (ev, picker) {
-            $(this).val("");
-            $selectedDate.startDate = null;
-            getXRoadServiceErrors();
-        });
-
-        $('.endDate').daterangepicker({
-            autoUpdateInput: false,
-            singleDatePicker: true,
-            locale: abp.localization.currentLanguage.name,
-            format: 'L',
-        })
-        .on("apply.daterangepicker", (ev, picker) => {
-            $selectedDate.endDate = picker.startDate;
-            getXRoadServiceErrors();
-        })
-        .on('cancel.daterangepicker', function (ev, picker) {
-            $(this).val("");
-            $selectedDate.endDate = null;
-            getXRoadServiceErrors();
-        });
+       
 
         var _permissions = {
             create: abp.auth.hasPermission('Pages.XRoadServiceErrors.Create'),
@@ -53,14 +14,14 @@
         };
 
          var _createOrEditModal = new app.ModalManager({
-                    viewUrl: abp.appPath + 'App/XRoadServiceErrors/CreateOrEditModal',
-                    scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/XRoadServiceErrors/_CreateOrEditModal.js',
+             viewUrl: abp.appPath + 'App/XRoadServiceErrors/CreateOrEditModal',
+             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/XRoadServiceErrors/_CreateOrEditModal.js',
                     modalClass: 'CreateOrEditXRoadServiceErrorModal'
                 });
                    
 
 		 var _viewXRoadServiceErrorModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'App/XRoadServiceErrors/ViewxRoadServiceErrorModal',
+             viewUrl: abp.appPath + 'App/XRoadServiceErrors/ViewxRoadServiceErrorModal',
             modalClass: 'ViewXRoadServiceErrorModal'
         });
 
@@ -73,17 +34,17 @@
         }
 
         var getDateFilter = function (element) {
-            if ($selectedDate.startDate == null) {
+            if (element.data("DateTimePicker").date() == null) {
                 return null;
             }
-            return $selectedDate.startDate.format("YYYY-MM-DDT00:00:00Z"); 
+            return element.data("DateTimePicker").date().format("YYYY-MM-DDT00:00:00Z"); 
         }
         
         var getMaxDateFilter = function (element) {
-            if ($selectedDate.endDate == null) {
+            if (element.data("DateTimePicker").date() == null) {
                 return null;
             }
-            return $selectedDate.endDate.format("YYYY-MM-DDT23:59:59Z"); 
+            return element.data("DateTimePicker").date().format("YYYY-MM-DDT23:59:59Z"); 
         }
 
         var dataTable = _$xRoadServiceErrorsTable.DataTable({
@@ -119,17 +80,19 @@
                     autoWidth: false,
                     defaultContent: '',
                     rowAction: {
-                        cssClass: 'btn btn-brand dropdown-toggle',
-                        text: '<i class="fa fa-cog"></i> ' + app.localize('Actions') + ' <span class="caret"></span>',
+                        cssClass: '',
+                        text: '<i class="fa fa-cog"></i> <span class="d-none d-md-inline-block d-lg-inline-block d-xl-inline-block">' + app.localize('Actions') + '</span> <span class="caret"></span>',
                         items: [
 						{
                                 text: app.localize('View'),
+                                iconStyle: 'far fa-eye mr-2',
                                 action: function (data) {
                                     _viewXRoadServiceErrorModal.open({ id: data.record.xRoadServiceError.id });
                                 }
                         },
 						{
                             text: app.localize('Edit'),
+                            iconStyle: 'far fa-edit mr-2',
                             visible: function () {
                                 return _permissions.edit;
                             },
@@ -152,6 +115,7 @@
 						}, 
 						{
                             text: app.localize('Delete'),
+                            iconStyle: 'far fa-trash-alt mr-2',
                             visible: function () {
                                 return _permissions.delete;
                             },
@@ -249,22 +213,8 @@
 			getXRoadServiceErrors();
 		  }
 		});
-
-        $('.reload-on-change').change(function(e) {
-			getXRoadServiceErrors();
-		});
-
-        $('.reload-on-keyup').keyup(function(e) {
-			getXRoadServiceErrors();
-		});
-
-        $('#btn-reset-filters').click(function (e) {
-            $('.reload-on-change,.reload-on-keyup,#MyEntsTableFilter').val('');
-            getXRoadServiceErrors();
-        });
 		
 		
 		
-
     });
 })();

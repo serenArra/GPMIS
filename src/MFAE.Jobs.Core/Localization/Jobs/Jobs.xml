@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
-	<text name="JOBS">Job Management System</text>
-	<text name="JobsPhone">For support or assistance services, call this number 00000000</text>
-	<text name="JobsMail">E-mail : jobs@mfae.gov.ps</text>
-	<text name="FooterRights">All rights reserved - Ministry of Foreign Affairs and Expatriates © 2023</text>
+    <text name="JOBS">Job Management System</text>
+    <text name="JobsPhone">For support or assistance services, call this number 00000000</text>
+    <text name="JobsMail">E-mail : jobs@mfae.gov.ps</text>
+    <text name="FooterRights">All rights reserved - Ministry of Foreign Affairs and Expatriates © 2023</text>
     <text name="XRoadServiceError">X road service error</text>
     <text name="MFAE.Jobs.XRoad.XRoadServiceError">XRoadServiceError</text>
     <text name="ErrorCode">Error code</text>
@@ -23,7 +23,6 @@
     <text name="CreateNewXRoadServiceAttributeMapping">Create new x road service attribute mapping</text>
     <text name="EditXRoadServiceAttributeMapping">Edit x road service attribute mapping</text>
     <text name="DeleteXRoadServiceAttributeMapping">Delete x road service attribute mapping</text>
-    <text name="XRoadServiceAttributeMappings">X road service attribute mappings</text>
     <text name="Enum_XRoadAttributeTypeEnum_1">Value</text>
     <text name="XRoadServiceAttributeName">X road service attribute name</text>
     <text name="PickXRoadServiceAttribute">Pick x road service attribute</text>
@@ -487,7 +486,7 @@
     <text name="StaticRole_Tooltip">Static roles can not be deleted.</text>
     <text name="EmailConfirmationRequiredForLogin">Email confirmation required for login.</text>
     <text name="{0}UserCannotBeDeleted">{0} user can not be deleted.</text>
-    <text name="TenantNameCanNotBeEmpty">Tenant name can not be empty</text>    
+    <text name="TenantNameCanNotBeEmpty">Tenant name can not be empty</text>
     <text name="ChangeProfilePicture">Change profile picture</text>
     <text name="TenantName_Regex_Description">Tenant name must be at least 2 chars, starts with a letter and continue with letter, number, dash or underscore.</text>
     <text name="ProfilePicture_Change_Info">You can select a JPG/JPEG/PNG file with a maximum {0}MB size.</text>

@@ -17,10 +17,8 @@
 
         public const string MOICitizensListWithCodes = "1";
         public const string MOIPassportInfo = "2";
-        public const string MOIPassportsInsert = "3";
-        public const string MOICitizenRelativesDetails = "4";
-        public const string MOICitizenPhoto = "5";
-        public const string MOIPassportAttachments = "6";
+        public const string MOICitizenPhoto = "3";
+        
 
     }
 }

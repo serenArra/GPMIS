@@ -1,51 +1,51 @@
 ﻿@using MFAE.Jobs.XRoad;
-@using MFAE.Jobs.XRoad;
 
 @using System.Globalization
 @using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
 @using MFAE.Jobs.Web.Areas.App.Models.XRoadMappings
 @model CreateOrEditXRoadMappingModalViewModel
-@using Abp.Extensions
-@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditXRoadMapping")) : L("CreateNewXRoadMapping")))
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditXrodeMapping")) : L("CreateNewXrodeMapping")))
 
 <div class="modal-body">
-    <div id="XRoadMappingInformationsTab">
-        <form name="XRoadMappingInformationsForm" role="form" novalidate class="form-validation">
+    <div id="XrodeMappingInformationsTab">
+        <form name="XrodeMappingInformationsForm" role="form" novalidate class="form-validation">
 
             @if (Model.IsEditMode)
             {
-            <input type="hidden" name="id" value="@Model.XRoadMapping.Id" />
+                <input type="hidden" name="id" value="@Model.XRoadMapping.Id" />
             }
 
             @{
-            var selectListLookup = Html.GetEnumSelectList(typeof(XRoadLookupEnum));
-            foreach (var selectOption in selectListLookup) { selectOption.Text = L("Enum_XRoadLookupEnum_" + selectOption.Value); }
+                var selectListLookup = Html.GetEnumSelectList(typeof(XRoadLookupEnum));
+                foreach (var selectOption in selectListLookup) { selectOption.Text = L("Enum_XRoadLookupEnum_" + selectOption.Value); }
             }
-            <div class="my-3">
-                <label class="form-label" for="XRoadMapping_Lookup">@L("Lookup")</label>
-                <select class="form-select m-input m-input--square" name="lookup" id="XRoadMapping_Lookup" asp-for="@Model.XRoadMapping.Lookup" asp-items="@selectListLookup">
+            <div class="form-group m-form__group">
+                <label for="XRoadMapping_Lookup">@L("Lookup")</label>
+                <select class="form-control m-input m-input--square select2" name="lookup" id="XRoadMapping_Lookup" asp-for="@Model.XRoadMapping.Lookup" asp-items="@selectListLookup">
                 </select>
             </div>
 
             @{
-            var selectListServiceName = Html.GetEnumSelectList(typeof(XRoadServicesEnum));
-            foreach (var selectOption in selectListServiceName) { selectOption.Text = L("Enum_XRoadServicesEnum_" + selectOption.Value); }
+                var selectListServiceName = Html.GetEnumSelectList(typeof(XRoadServicesEnum));
+                foreach (var selectOption in selectListServiceName) { selectOption.Text = L("Enum_XRoadServicesEnum_" + selectOption.Value); }
             }
-            <div class="my-3">
-                <label class="form-label" for="XRoadMapping_ServiceName">@L("ServiceName")</label>
-                <select class="form-select m-input m-input--square" name="serviceName" id="XRoadMapping_ServiceName" asp-for="@Model.XRoadMapping.ServiceName" asp-items="@selectListServiceName">
+            <div class="form-group m-form__group">
+                <label for="XrodeMapping_ServiceName">@L("ServiceName")</label>
+                <select class="form-control m-input m-input--square select2" name="serviceName" id="XrodeMapping_ServiceName" asp-for="@Model.XRoadMapping.ServiceName" asp-items="@selectListServiceName">
                 </select>
             </div>
 
-            <div class="my-3">
-                <label class="form-label" for="XRoadMapping_Code">@L("Code")</label>
-                <input class="form-control" id="XRoadMapping_Code" value="@Model.XRoadMapping.Code" type="text" name="code" required maxlength="@MFAE.Jobs.XRoad.XRoadMappingConsts.MaxCodeLength" minlength="@MFAE.Jobs.XRoad.XRoadMappingConsts.MinCodeLength" />
+            <div class="form-group">
+                <label for="XrodeMapping_Code">@L("Code")</label>
+                <input class="form-control" id="XrodeMapping_Code" value="@Model.XRoadMapping.Code" type="text" name="code" required />
             </div>
 
-            <div class="my-3">
-                <label class="form-label" for="XRoadMapping_SystemId">@L("SystemId")</label>
-                <input class="form-control m-input" id="XRoadMapping_SystemId" value="@Model.XRoadMapping.SystemId.ToString(CultureInfo.InvariantCulture)" type="number" name="systemId" />
+            <div class="form-group">
+                <label for="XrodeMapping_SystemId">@L("SystemId")</label>
+                <input class="form-control m-input" id="XrodeMapping_SystemId" value="@Model.XRoadMapping.SystemId.ToString(CultureInfo.InvariantCulture)" type="number" name="systemId" />
             </div>
+
 
         </form>
     </div>

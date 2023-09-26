@@ -3,48 +3,11 @@
 
         var _$xRoadServicesTable = $('#XRoadServicesTable');
         var _xRoadServicesService = abp.services.app.xRoadServices;
-		var _entityTypeFullName = 'MFAE.Jobs.XRoad.XRoadService';
-        
-       var $selectedDate = {
-            startDate: null,
-            endDate: null,
-        }
-
-        $('.date-picker').on('apply.daterangepicker', function (ev, picker) {
-            $(this).val(picker.startDate.format('MM/DD/YYYY'));
-        });
-
-        $('.startDate').daterangepicker({
-            autoUpdateInput: false,
-            singleDatePicker: true,
-            locale: abp.localization.currentLanguage.name,
-            format: 'L',
-        })
-        .on("apply.daterangepicker", (ev, picker) => {
-            $selectedDate.startDate = picker.startDate;
-            getXRoadServices();
-        })
-        .on('cancel.daterangepicker', function (ev, picker) {
-            $(this).val("");
-            $selectedDate.startDate = null;
-            getXRoadServices();
-        });
-
-        $('.endDate').daterangepicker({
-            autoUpdateInput: false,
-            singleDatePicker: true,
-            locale: abp.localization.currentLanguage.name,
-            format: 'L',
-        })
-        .on("apply.daterangepicker", (ev, picker) => {
-            $selectedDate.endDate = picker.startDate;
-            getXRoadServices();
-        })
-        .on('cancel.daterangepicker', function (ev, picker) {
-            $(this).val("");
-            $selectedDate.endDate = null;
-            getXRoadServices();
-        });
+		
+        //$('.date-picker').datetimepicker({
+        //    locale: abp.localization.currentLanguage.name,
+        //    format: 'L'
+        //});
 
         var _permissions = {
             create: abp.auth.hasPermission('Pages.XRoadServices.Create'),
@@ -53,37 +16,32 @@
         };
 
          var _createOrEditModal = new app.ModalManager({
-                    viewUrl: abp.appPath + 'App/XRoadServices/CreateOrEditModal',
-                    scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/XRoadServices/_CreateOrEditModal.js',
+             viewUrl: abp.appPath + 'App/XRoadServices/CreateOrEditModal',
+             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/XRoadServices/_CreateOrEditModal.js',
                     modalClass: 'CreateOrEditXRoadServiceModal'
                 });
                    
 
 		 var _viewXRoadServiceModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'App/XRoadServices/ViewxRoadServiceModal',
+             viewUrl: abp.appPath + 'App/XRoadServices/ViewxRoadServiceModal',
             modalClass: 'ViewXRoadServiceModal'
         });
 
-		        var _entityTypeHistoryModal = app.modals.EntityTypeHistoryModal.create();
-		        function entityHistoryIsEnabled() {
-            return abp.auth.hasPermission('Pages.Administration.AuditLogs') &&
-                abp.custom.EntityHistory &&
-                abp.custom.EntityHistory.IsEnabled &&
-                _.filter(abp.custom.EntityHistory.EnabledEntities, entityType => entityType === _entityTypeFullName).length === 1;
-        }
+		
+		
 
         var getDateFilter = function (element) {
-            if ($selectedDate.startDate == null) {
+            if (element.data("DateTimePicker").date() == null) {
                 return null;
             }
-            return $selectedDate.startDate.format("YYYY-MM-DDT00:00:00Z"); 
+            return element.data("DateTimePicker").date().format("YYYY-MM-DDT00:00:00Z"); 
         }
         
         var getMaxDateFilter = function (element) {
-            if ($selectedDate.endDate == null) {
+            if (element.data("DateTimePicker").date() == null) {
                 return null;
             }
-            return $selectedDate.endDate.format("YYYY-MM-DDT23:59:59Z"); 
+            return element.data("DateTimePicker").date().format("YYYY-MM-DDT23:59:59Z"); 
         }
 
         var dataTable = _$xRoadServicesTable.DataTable({
@@ -97,14 +55,11 @@
 					filter: $('#XRoadServicesTableFilter').val(),
 					nameFilter: $('#NameFilterId').val(),
 					providerCodeFilter: $('#ProviderCodeFilterId').val(),
-					resultCodePathFilter: $('#ResultCodePathFilterId').val(),
 					actionNameFilter: $('#ActionNameFilterId').val(),
 					soapActionNameFilter: $('#SoapActionNameFilterId').val(),
 					versionNoFilter: $('#VersionNoFilterId').val(),
 					producerCodeFilter: $('#ProducerCodeFilterId').val(),
-					descriptionFilter: $('#DescriptionFilterId').val(),
-					statusFilter: $('#StatusFilterId').val(),
-					codeFilter: $('#CodeFilterId').val()
+					descriptionFilter: $('#DescriptionFilterId').val()
                     };
                 }
             },
@@ -125,39 +80,30 @@
                     autoWidth: false,
                     defaultContent: '',
                     rowAction: {
-                        cssClass: 'btn btn-brand dropdown-toggle',
-                        text: '<i class="fa fa-cog"></i> ' + app.localize('Actions') + ' <span class="caret"></span>',
+                        cssClass: '',
+                        text: '<i class="fa fa-cog"></i> <span class="d-none d-md-inline-block d-lg-inline-block d-xl-inline-block">' + app.localize('Actions') + '</span> <span class="caret"></span>',
                         items: [
 						{
                                 text: app.localize('View'),
+                                iconStyle: 'far fa-eye mr-2',
                                 action: function (data) {
                                     _viewXRoadServiceModal.open({ id: data.record.xRoadService.id });
                                 }
                         },
 						{
                             text: app.localize('Edit'),
+                            iconStyle: 'far fa-edit mr-2',
                             visible: function () {
                                 return _permissions.edit;
                             },
                             action: function (data) {
-                            _createOrEditModal.open({ id: data.record.xRoadService.id });                                
+                                location.href = abp.appPath + 'App/XRoadServices/createoredit/' + data.record.xRoadService.id;
+                            //_createOrEditModal.open({ id: data.record.xRoadService.id });                                
                             }
-                        },
-                        {
-                            text: app.localize('History'),
-                            iconStyle: 'fas fa-history mr-2',
-                            visible: function () {
-                                return entityHistoryIsEnabled();
-                            },
-                            action: function (data) {
-                                _entityTypeHistoryModal.open({
-                                    entityTypeFullName: _entityTypeFullName,
-                                    entityId: data.record.xRoadService.id
-                                });
-                            }
-						}, 
+                        }, 
 						{
                             text: app.localize('Delete'),
+                            iconStyle: 'far fa-trash-alt mr-2',
                             visible: function () {
                                 return _permissions.delete;
                             },
@@ -179,48 +125,47 @@
 					},
 					{
 						targets: 4,
-						 data: "xRoadService.resultCodePath",
-						 name: "resultCodePath"   
-					},
-					{
-						targets: 5,
 						 data: "xRoadService.actionName",
 						 name: "actionName"   
 					},
 					{
-						targets: 6,
+						targets: 5,
 						 data: "xRoadService.soapActionName",
 						 name: "soapActionName"   
 					},
 					{
-						targets: 7,
+						targets: 6,
 						 data: "xRoadService.versionNo",
 						 name: "versionNo"   
 					},
 					{
-						targets: 8,
+						targets: 7,
 						 data: "xRoadService.producerCode",
 						 name: "producerCode"   
-					},
-					{
-						targets: 9,
-						 data: "xRoadService.description",
-						 name: "description"   
-					},
-					{
-						targets: 10,
-						 data: "xRoadService.status",
-						 name: "status"   ,
-						render: function (status) {
-							return app.localize('Enum_XRoadServiceStatusEnum_' + status);
-						}
-			
-					},
-					{
-						targets: 11,
-						 data: "xRoadService.code",
-						 name: "code"   
-					}
+                },
+                {
+                    targets: 8,
+                    data: "xRoadService.status",
+                    name: "status",
+                    render: function (status) {
+                        /*New = 1,Active = 2,InActive = 3*/
+                        var displayName = app.localize('Enum_XRoadServiceStatusEnum_' + status);
+                        switch (status) {
+                            case 1:
+                                return '<span class="badge badge-success">' + displayName + '</span>';
+                            case 2:
+                                return '<span class="badge badge-warning">' + displayName + '</span>';
+                            default:
+                                return '<span class="badge badge-secondary">' + displayName + '</span>';;
+                        }
+                    }
+
+                }
+					//{
+					//	targets: 8,
+					//	 data: "xRoadService.description",
+					//	 name: "description"   
+					//}
             ]
         });
 
@@ -258,7 +203,8 @@
         });
 
         $('#CreateNewXRoadServiceButton').click(function () {
-            _createOrEditModal.open();
+            //_createOrEditModal.open();
+            location.href = abp.appPath + 'App/XRoadServices/CreateOrEdit';
         });        
 
 		$('#ExportToExcelButton').click(function () {
@@ -267,14 +213,11 @@
 				filter : $('#XRoadServicesTableFilter').val(),
 					nameFilter: $('#NameFilterId').val(),
 					providerCodeFilter: $('#ProviderCodeFilterId').val(),
-					resultCodePathFilter: $('#ResultCodePathFilterId').val(),
 					actionNameFilter: $('#ActionNameFilterId').val(),
 					soapActionNameFilter: $('#SoapActionNameFilterId').val(),
 					versionNoFilter: $('#VersionNoFilterId').val(),
 					producerCodeFilter: $('#ProducerCodeFilterId').val(),
-					descriptionFilter: $('#DescriptionFilterId').val(),
-					statusFilter: $('#StatusFilterId').val(),
-					codeFilter: $('#CodeFilterId').val()
+					descriptionFilter: $('#DescriptionFilterId').val()
 				})
                 .done(function (result) {
                     app.downloadTempFile(result);
@@ -295,22 +238,8 @@
 			getXRoadServices();
 		  }
 		});
-
-        $('.reload-on-change').change(function(e) {
-			getXRoadServices();
-		});
-
-        $('.reload-on-keyup').keyup(function(e) {
-			getXRoadServices();
-		});
-
-        $('#btn-reset-filters').click(function (e) {
-            $('.reload-on-change,.reload-on-keyup,#MyEntsTableFilter').val('');
-            getXRoadServices();
-        });
 		
 		
 		
-
     });
 })();

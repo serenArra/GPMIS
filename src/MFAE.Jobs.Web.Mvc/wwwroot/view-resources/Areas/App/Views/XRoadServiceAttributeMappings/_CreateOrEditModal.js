@@ -1,28 +1,31 @@
 ﻿(function ($) {
     app.modals.CreateOrEditXRoadServiceAttributeMappingModal = function () {
 
+        $(".select2").select2({
+            width: "100%"
+        });
+
+        $('.select2').on('select2:select', function (e) {
+
+            $(this).valid();
+
+        });
         var _xRoadServiceAttributeMappingsService = abp.services.app.xRoadServiceAttributeMappings;
 
         var _modalManager;
         var _$xRoadServiceAttributeMappingInformationForm = null;
 
 		        var _XRoadServiceAttributeMappingxRoadServiceAttributeLookupTableModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'App/XRoadServiceAttributeMappings/XRoadServiceAttributeLookupTableModal',
-            scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/XRoadServiceAttributeMappings/_XRoadServiceAttributeMappingXRoadServiceAttributeLookupTableModal.js',
+                    viewUrl: abp.appPath + 'App/XRoadServiceAttributeMappings/XRoadServiceAttributeLookupTableModal',
+                    scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/XRoadServiceAttributeMappings/_XRoadServiceAttributeMappingXRoadServiceAttributeLookupTableModal.js',
             modalClass: 'XRoadServiceAttributeLookupTableModal'
         });
-		
-		
 
         this.init = function (modalManager) {
             _modalManager = modalManager;
 
 			var modal = _modalManager.getModal();
-            modal.find('.date-picker').daterangepicker({
-                singleDatePicker: true,
-                locale: abp.localization.currentLanguage.name,
-                format: 'L'
-            });
+           
 
             _$xRoadServiceAttributeMappingInformationForm = _modalManager.getModal().find('form[name=XRoadServiceAttributeMappingInformationsForm]');
             _$xRoadServiceAttributeMappingInformationForm.validate();
@@ -54,12 +57,7 @@
                 return;
             }
 
-            
-
             var xRoadServiceAttributeMapping = _$xRoadServiceAttributeMappingInformationForm.serializeFormToObject();
-            
-            
-            
 			
 			 _modalManager.setBusy(true);
 			 _xRoadServiceAttributeMappingsService.createOrEdit(
@@ -72,7 +70,5 @@
                _modalManager.setBusy(false);
 			});
         };
-        
-        
     };
 })(jQuery);

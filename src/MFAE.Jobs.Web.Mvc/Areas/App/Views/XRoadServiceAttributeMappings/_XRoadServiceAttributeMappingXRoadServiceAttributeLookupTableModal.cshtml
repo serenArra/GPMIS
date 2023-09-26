@@ -1,0 +1,48 @@
+﻿@using MFAE.Jobs.Authorization
+@using MFAE.Jobs.Web.Areas.App.Models.XRoadServiceAttributeMappings
+@using MFAE.Jobs.Web.Areas.App.Startup
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@model XRoadServiceAttributeMappingXRoadServiceAttributeLookupTableViewModel
+
+@section Scripts
+    {
+    <script abp-src="/view-resources/Areas/App/Views/XRoadServiceAttributeMappings/_XRoadServiceAttributeMappingXRoadServiceAttributeLookupTableModal.js" asp-append-version="true"></script>
+}
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("PickXRoadServiceAttribute")))
+
+
+
+<div class="@(await GetContainerClass())">
+    <div class="card card-custom gutter-b">
+        <div class="card-body">
+            <div class="form">
+                <div class="row align-items-center mb-4">
+                    <div class="col-xl-12">
+                        <div class="kt-group align-items-center">
+                            <div class="input-group">
+                                <input type="text" id="XRoadServiceAttributeTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                                <span class="input-group-btn">
+                                    <button id="GetXRoadServiceAttributeButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="XRoadServiceAttributeTable" class="table table-separate table-head-custom no-footer dtr-inline dt-responsive nowrap table-hover">
+                    <thead>
+                        <tr>
+                            <th>@L("Actions")</th>
+                            <th>@L("Name")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

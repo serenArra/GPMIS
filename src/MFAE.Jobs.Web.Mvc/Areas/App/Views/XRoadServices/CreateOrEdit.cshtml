@@ -1,0 +1,128 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.XRoadServices
+@using MFAE.Jobs.Web.Areas.App.Startup
+@using MFAE.Jobs.XRoad
+
+@model CreateOrEditXRoadServiceModalViewModel
+
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.XRoadServices;
+}
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/App/Views/XRoadServices/CreateOrEdit.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid">
+    <abp-page-subheader title="@(Model.IsEditMode ? (L("EditXRoadService")) : L("CreateNewXRoadService"))">
+        
+        <a class="btn btn-primary blue" href="/App/XRoadServices"><i class="fa fa-undo"></i> @L("GoBack")</a>
+    </abp-page-subheader>
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-header">
+                <div class="card-title">
+                    <h3 class="card-label"><i class="flaticon2-settings icon-lg mr-3 text-primary"></i>@L("BasicInfo")</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="XRoadServiceInformationsTab">
+                    <form name="XRoadServiceInformationsForm" role="form" novalidate class="form-validation">
+
+                        @*@if (Model.IsEditMode)
+                            {*@
+                        <input type="hidden" name="id" value="@Model.XRoadService.Id" />
+                        @*  }*@
+
+
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="XRoadService_Name">@L("Name")</label>
+                                <span class="text-danger">*</span>
+                                <input class="form-control form-control-solid" id="XRoadService_Name" value="@Model.XRoadService.Name" type="text" name="name" required />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="XRoadService_Code">@L("Code")</label>
+                                <span class="text-danger">*</span>
+                                <input class="form-control form-control-solid" id="XRoadService_Code" value="@Model.XRoadService.Code" type="text" name="Code" required />
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label for="XRoadService_ProviderCode">@L("ProviderCode")</label>
+                                <span class="text-danger">*</span>
+                                <input class="form-control form-control-solid" id="XRoadService_ProviderCode" value="@Model.XRoadService.ProviderCode" type="text" name="providerCode" required />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="XRoadService_ResultCodePath">@L("ResultCodePath")</label>
+                                <span class="text-danger">*</span>
+                                <input class="form-control form-control-solid" id="XRoadService_ResultCodePath" value="@Model.XRoadService.ResultCodePath" type="text" name="resultCodePath" required />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="XRoadService_ActionName">@L("ActionName")</label>
+                                <span class="text-danger">*</span>
+                                <input class="form-control form-control-solid" id="XRoadService_ActionName" value="@Model.XRoadService.ActionName" type="text" name="actionName" required />
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label for="XRoadService_SoapActionName">@L("SoapActionName")</label>
+                                <span class="text-danger">*</span>
+                                <input class="form-control form-control-solid" id="XRoadService_SoapActionName" value="@Model.XRoadService.SoapActionName" type="text" name="soapActionName" required />
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label for="XRoadService_VersionNo">@L("VersionNo")</label>
+                                <span class="text-danger">*</span>
+                                <input class="form-control form-control-solid" id="XRoadService_VersionNo" value="@Model.XRoadService.VersionNo" type="text" name="versionNo" required />
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label for="XRoadService_ProducerCode">@L("ProducerCode")</label>
+                                <span class="text-danger">*</span>
+                                <input class="form-control form-control-solid" id="XRoadService_ProducerCode" value="@Model.XRoadService.ProducerCode" type="text" name="producerCode" required />
+                            </div>
+                            @{
+                                var selectListStatus = Html.GetEnumSelectList(typeof(XRoadServiceStatusEnum)).ToList();
+                                foreach (var selectOption in selectListStatus) { selectOption.Text = L("Enum_XRoadServiceStatusEnum_" + selectOption.Value); }
+
+                                var defaultSelectActivityType = new SelectListItem(L("Select"), "");
+                                selectListStatus.Insert(0, defaultSelectActivityType);
+                            }
+                            <div class="col-md-6">
+                                <label for="XRoadService_Status">@L("Status")</label>
+                                <select class="form-select form-select-solid " name="status" id="XRoadService_Status"
+                                        asp-for="@Model.XRoadService.Status" asp-items="@selectListStatus" required>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="XRoadService_Description">@L("Description")</label>
+                                @*<span class="text-danger">*</span>*@
+                                @*<input class="form-control form-control-solid" id="XRoadService_Description" value="@Model.XRoadService.Description" type="text" name="description" />*@
+                                <textarea class="form-control form-control-solid" id="XRoadService_Description"
+                                          name="description" rows="3">@Model.XRoadService.Description</textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button id="SiteVisitTaskSaveButton" class="btn-save btn btn-primary save-button"><i class="fa fa-save"></i> @L("Save")</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="XRoadServiceAttributesIndexRequest">
+        </div>
+        <div class="XRoadServiceAttributesIndexResponse">
+        </div>
+        <div class="XRoadServiceErrorSection">
+        </div>
+        <div class="XRoadServiceAttributeMappingsIndexRequest">
+        </div>
+        <div class="XRoadServiceAttributeMappingsIndexResponse">
+        </div>
+        
+    </div>
+</div>

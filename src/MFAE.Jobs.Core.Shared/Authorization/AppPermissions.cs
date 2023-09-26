@@ -20,6 +20,7 @@
         public const string Pages_XRoadServiceAttributes_Create = "Pages.XRoadServiceAttributes.Create";
         public const string Pages_XRoadServiceAttributes_Edit = "Pages.XRoadServiceAttributes.Edit";
         public const string Pages_XRoadServiceAttributes_Delete = "Pages.XRoadServiceAttributes.Delete";
+        public const string Pages_XRoadServices_InformationBank = "Pages.XRoadServices.InformationBank";
 
         public const string Pages_XRoadServices = "Pages.XRoadServices";
         public const string Pages_XRoadServices_Create = "Pages.XRoadServices.Create";

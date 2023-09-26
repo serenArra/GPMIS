@@ -14,11 +14,7 @@
             _modalManager = modalManager;
 
 			var modal = _modalManager.getModal();
-            modal.find('.date-picker').daterangepicker({
-                singleDatePicker: true,
-                locale: abp.localization.currentLanguage.name,
-                format: 'L'
-            });
+            
 
             _$xRoadMappingInformationForm = _modalManager.getModal().find('form[name=XRoadMappingInformationsForm]');
             _$xRoadMappingInformationForm.validate();

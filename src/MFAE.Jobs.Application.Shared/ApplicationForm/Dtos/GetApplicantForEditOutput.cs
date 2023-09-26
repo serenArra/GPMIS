@@ -22,5 +22,7 @@ namespace MFAE.Jobs.ApplicationForm.Dtos
 
         public string LocalityName { get; set; }
 
+        public string CitizenPicture { get; set; }
+
     }
 }

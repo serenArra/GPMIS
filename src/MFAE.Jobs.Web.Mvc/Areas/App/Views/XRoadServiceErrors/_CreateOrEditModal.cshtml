@@ -3,7 +3,7 @@
 @using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
 @using MFAE.Jobs.Web.Areas.App.Models.XRoadServiceErrors
 @model CreateOrEditXRoadServiceErrorModalViewModel
-@using Abp.Extensions
+
 @await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditXRoadServiceError")) : L("CreateNewXRoadServiceError")))
 
 <div class="modal-body">
@@ -12,42 +12,45 @@
 
             @if (Model.IsEditMode)
             {
-            <input type="hidden" name="id" value="@Model.XRoadServiceError.Id" />
+                <input type="hidden" name="id" value="@Model.XRoadServiceError.Id" />
             }
 
-            <div class="my-3">
-                <label class="form-label" for="XRoadServiceName">@L("XRoadService")</label>
-                <div class="input-group">
-                    <input class="form-control" id="XRoadServiceName" name="xRoadServiceName" value="@Model.XRoadServiceName" type="text" disabled>
-                    <button class="btn btn-primary blue" id="OpenXRoadServiceLookupTableButton" type="button"><i class="fa fa-search"></i> @L("Pick")</button>
-                    <button class="btn btn-danger btn-icon" type="button" id="ClearXRoadServiceNameButton"><i class="fa fa-times"></i></button>
+            <div class="row">
+                <div class="form-group m-form__group col-md-6">
+                    <label for="XRoadServiceName">@L("XRoadService")</label>
+                    <span class="text-danger">*</span>
+                    <div class="input-group">
+                        <input class="form-control" id="XRoadServiceName" name="xRoadServiceName" value="@Model.XRoadServiceName" type="text" disabled>
+                        @*<div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenXRoadServiceLookupTableButton" type="button"><i class="fa fa-search"></i> @L("Pick")</button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger btn-icon" type="button" id="ClearXRoadServiceNameButton"><i class="fa fa-times"></i></button>
+                        </div>*@
+                    </div>
                 </div>
+
+                <input class="form-control" id="XRoadServiceError_XRoadServiceId" value="@Model.XRoadServiceError.XRoadServiceId" type="text" name="xRoadServiceId" required hidden />
+
+                <div class="form-group col-md-6">
+                    <label for="XRoadServiceError_ErrorCode">@L("ErrorCode")</label>
+                    <span class="text-danger">*</span>
+                    <input class="form-control" id="XRoadServiceError_ErrorCode" value="@Model.XRoadServiceError.ErrorCode" type="text" name="errorCode" required />
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="XRoadServiceError_ErrorMessageAr">@L("ErrorMessageAr")</label>
+                    <span class="text-danger">*</span>
+                    <input class="form-control" id="XRoadServiceError_ErrorMessageAr" value="@Model.XRoadServiceError.ErrorMessageAr" type="text" name="errorMessageAr" required />
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="XRoadServiceError_ErrorMessageEn">@L("ErrorMessageEn")</label>
+                    <span class="text-danger">*</span>
+                    <input class="form-control" id="XRoadServiceError_ErrorMessageEn" value="@Model.XRoadServiceError.ErrorMessageEn" type="text" name="errorMessageEn" required />
+                </div>
+
             </div>
-
-            @if (Model.IsEditMode)
-            {
-            <input class="form-control" id="XRoadServiceError_XRoadServiceId" value="@Model.XRoadServiceError.XRoadServiceId" type="text" name="xRoadServiceId" required hidden />
-            }
-            else
-            {
-            <input class="form-control" id="XRoadServiceError_XRoadServiceId" value="" type="text" name="xRoadServiceId" required hidden />
-            }
-
-            <div class="my-3">
-                <label class="form-label" for="XRoadServiceError_ErrorCode">@L("ErrorCode")</label>
-                <input class="form-control" id="XRoadServiceError_ErrorCode" value="@Model.XRoadServiceError.ErrorCode" type="text" name="errorCode" required />
-            </div>
-
-            <div class="my-3">
-                <label class="form-label" for="XRoadServiceError_ErrorMessageAr">@L("ErrorMessageAr")</label>
-                <input class="form-control" id="XRoadServiceError_ErrorMessageAr" value="@Model.XRoadServiceError.ErrorMessageAr" type="text" name="errorMessageAr" required />
-            </div>
-
-            <div class="my-3">
-                <label class="form-label" for="XRoadServiceError_ErrorMessageEn">@L("ErrorMessageEn")</label>
-                <input class="form-control" id="XRoadServiceError_ErrorMessageEn" value="@Model.XRoadServiceError.ErrorMessageEn" type="text" name="errorMessageEn" required />
-            </div>
-
         </form>
     </div>
 </div>

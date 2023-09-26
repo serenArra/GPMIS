@@ -1,0 +1,65 @@
+﻿@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.XRoadServices
+@using MFAE.Jobs.Web.Areas.App.Startup
+@using MFAE.Jobs.XRoad
+
+@model ViewInformationBankPageViewModel
+
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.InformationBankPage;
+}
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/App/Views/XRoadServices/ViewInformationBankPage.js" asp-append-version="true"></script>
+}
+
+@{
+    var defaultIdType = Model.IdentificationTypeList.FirstOrDefault(u => u.IsDefault.HasValue ? u.IsDefault.Value : false);
+
+}
+<div class="content d-flex flex-column flex-column-fluid">
+    <abp-page-subheader title="@L("InformationBank")">
+        
+    </abp-page-subheader>
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+           
+            <div class="card-body">
+                <form name="InformationBankForm" role="form" novalidate class="form-validation">
+
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="form-group fv-plugins-icon-container">
+                                <label for="identificationTypeId">@L("IdentificationType") <span class="text-danger">*</span></label>
+                                @Html.DropDownList("identificationTypeId", new SelectList(Model.IdentificationTypeList, "Id", "DisplayName", (defaultIdType?.Id.ToString())), "",
+                               new { @class = "form-select form-select-solid", @required = "required", @data_placeholder = @L("SelectOption") })
+                                <div class="fv-plugins-message-container"></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="form-group fv-plugins-icon-container">
+                                <label for="Person_IdentificationDocumentNo">@L("IdentificationDocumentNo") <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input class="form-control form-control-solid" required id="Person_IdentificationDocumentNo" value="@Model.IdentificationDocumentNo" type="text"
+                                           name="identificationDocumentNo" />
+
+                                    <div class="input-group-addon" id="fetchButton">
+                                        <button class="btn btn-success" id="btnFetchPersonInformationBank">@L("Fetch")</button>
+                                    </div>
+                                </div>
+                                <div class="fv-plugins-message-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="informationBankView"></div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+

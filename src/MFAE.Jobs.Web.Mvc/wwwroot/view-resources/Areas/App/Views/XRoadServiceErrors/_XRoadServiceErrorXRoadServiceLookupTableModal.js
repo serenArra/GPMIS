@@ -10,6 +10,7 @@
             _modalManager = modalManager;
         };
 
+
         var dataTable = _$xRoadServiceTable.DataTable({
             paging: true,
             serverSide: true,
@@ -58,11 +59,12 @@
             e.preventDefault();
         });
 
-        $('#XRoadServiceTableFilter').keypress(function (e) {
-            if (e.which === 13 && e.target.tagName.toLocaleLowerCase() != 'textarea') {
+        $(document).keypress(function (e) {
+            if (e.which === 13) {
                 getXRoadService();
             }
         });
 
     };
 })(jQuery);
+

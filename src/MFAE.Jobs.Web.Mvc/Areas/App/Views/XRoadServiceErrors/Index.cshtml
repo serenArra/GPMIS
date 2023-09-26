@@ -3,94 +3,94 @@
 @using MFAE.Jobs.Web.Areas.App.Startup
 @model XRoadServiceErrorsViewModel
 @{
-ViewBag.CurrentPageName = AppPageNames.Common.XRoadServiceErrors;
+    ViewBag.CurrentPageName = AppPageNames.Common.XRoadServiceErrors;
 }
 @section Scripts
 {
-<script abp-src="/view-resources/Areas/App/Views/XRoadServiceErrors/Index.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Areas/App/Views/XRoadServiceErrors/Index.js" asp-append-version="true"></script>
 }
 
-<abp-page-subheader title='@L("XRoadServiceErrors")' description='@L("XRoadServiceErrorsHeaderInfo")'>
-    <button id="ExportToExcelButton" class="btn btn-outline btn-outline-success btn-active-light-success me-1"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>
+<div class="content d-flex flex-column flex-column-fluid">
 
-    @if (IsGranted(AppPermissions.Pages_XRoadServiceErrors_Create))
-    {
-    <button id="CreateNewXRoadServiceErrorButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewXRoadServiceError")</button>
-    }
-</abp-page-subheader>
-
-<div class="@(await GetContainerClass())">
+                <abp-page-subheader title="@L("XRoadServiceErrors")" description="@L("XRoadServiceErrorsHeaderInfo")">
+                     <button id="ExportToExcelButton" class="btn btn-outline-success"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>
+            
+                     @if (IsGranted(AppPermissions.Pages_XRoadServiceErrors_Create))
+                     {
+                         <button id="CreateNewXRoadServiceErrorButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewXRoadServiceError")</button>                
+                     }
+                </abp-page-subheader>
+            
+<div class="@(await GetContainerClass())">   
     <div class="card card-custom gutter-b">
         <div class="card-body">
             <div class="form">
                 <div class="row align-items-center mb-4">
                     <div class="col-xl-12">
-
-                        <div class="my-3">
+                        <div class="form-group align-items-center">
                             <div class="input-group">
-                                <input type="text" id="XRoadServiceErrorsTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
-                                <button id="GetXRoadServiceErrorsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                <input type="text" id="XRoadServiceErrorsTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                                <span class="input-group-btn">
+                                    <button id="GetXRoadServiceErrorsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                </span>
                             </div>
                         </div>
+                    </div>
+                </div>
+			</div>
+                <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
+                    <div class="col-md-12">
+						<div class="kt-separator kt-separator--border-dashed"></div>
+					</div>
 
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="ErrorCodeFilterId">@L("ErrorCode")</label>
+									<input type="text" class="form-control" name="errorCodeFilter" id="ErrorCodeFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="ErrorMessageArFilterId">@L("ErrorMessageAr")</label>
+									<input type="text" class="form-control" name="errorMessageArFilter" id="ErrorMessageArFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="ErrorMessageEnFilterId">@L("ErrorMessageEn")</label>
+									<input type="text" class="form-control" name="errorMessageEnFilter" id="ErrorMessageEnFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="XRoadServiceNameFilterId">(@L("XRoadService")) @L("Name")</label>
+									<input type="text" class="form-control" name="xRoadServiceNameFilter" id="XRoadServiceNameFilterId">
+								</div>
+                            </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-xl-12">
+                        <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                        <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
                     </div>
                 </div>
-            </div>
-            <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
-                <div class="col-md-12">
-
-                </div>
-
-                <div class="col-md-3">
-                    <div class="my-3">
-                        <label class="form-label" for="ErrorCodeFilterId">@L("ErrorCode")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="errorCodeFilter" id="ErrorCodeFilterId">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="my-3">
-                        <label class="form-label" for="ErrorMessageArFilterId">@L("ErrorMessageAr")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="errorMessageArFilter" id="ErrorMessageArFilterId">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="my-3">
-                        <label class="form-label" for="ErrorMessageEnFilterId">@L("ErrorMessageEn")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="errorMessageEnFilter" id="ErrorMessageEnFilterId">
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="my-3">
-                        <label class="form-label" for="XRoadServiceNameFilterId">(@L("XRoadService")) @L("Name")</label>
-                        <input type="text" class="form-control" name="xRoadServiceNameFilter" id="XRoadServiceNameFilterId">
-                    </div>
-                </div>
-                <div class="col-md-12 mt-5">
-                    <button class="btn btn-secondary btn-sm" id="btn-reset-filters">Reset</button>
-                </div>
-            </div>
-            <div class="row my-4">
-                <div class="col-xl-12">
-                    <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
-                    <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
-                </div>
-            </div>
             <div class="row align-items-center">
-                <table id="XRoadServiceErrorsTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                <table id="XRoadServiceErrorsTable" class="table table-separate table-head-custom no-footer dtr-inline dt-responsive nowrap table-hover">
                     <thead>
                         <tr>
                             <th></th>
-
+                            
                             <th>@L("Actions")</th>
-                            <th>@L("ErrorCode")</th>
-                            <th>@L("ErrorMessageAr")</th>
-                            <th>@L("ErrorMessageEn")</th>
-                            <th>@L("XRoadServiceName")</th>
+								<th>@L("ErrorCode")</th>
+								<th>@L("ErrorMessageAr")</th>
+								<th>@L("ErrorMessageEn")</th>
+								<th>@L("XRoadServiceName")</th>
+                            
                         </tr>
                     </thead>
                 </table>
             </div>
         </div>
     </div>
+  </div>
 </div>

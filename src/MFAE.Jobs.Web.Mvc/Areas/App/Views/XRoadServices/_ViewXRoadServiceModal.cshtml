@@ -1,5 +1,4 @@
-﻿
-@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+﻿@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
 @using MFAE.Jobs.Web.Areas.App.Models.XRoadServices
 @model XRoadServiceViewModel
 
@@ -7,7 +6,7 @@
 
 <div class="modal-body">
     <div id="XRoadServiceInformationsTab">
-
+        
         <div class="row">
             <div class="col-6 mb-3">
                 <h6>@L("Name") :</h6>
@@ -16,10 +15,6 @@
             <div class="col-6 mb-3">
                 <h6>@L("ProviderCode") :</h6>
                 @Model.XRoadService.ProviderCode
-            </div>
-            <div class="col-6 mb-3">
-                <h6>@L("ResultCodePath") :</h6>
-                @Model.XRoadService.ResultCodePath
             </div>
             <div class="col-6 mb-3">
                 <h6>@L("ActionName") :</h6>
@@ -41,14 +36,7 @@
                 <h6>@L("Description") :</h6>
                 @Model.XRoadService.Description
             </div>
-            <div class="col-6 mb-3">
-                <h6>@L("Status") :</h6>
-                @L("Enum_XRoadServiceStatusEnum_" + (int)Model.XRoadService.Status)
-            </div>
-            <div class="col-6 mb-3">
-                <h6>@L("Code") :</h6>
-                @Model.XRoadService.Code
-            </div>
+
 
         </div>
 
@@ -56,3 +44,4 @@
 </div>
 
 @await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+

@@ -1,50 +1,19 @@
 ﻿(function () {
     $(function () {
 
+        $(".select2").select2({
+            width: "100%"
+        });
+
+        $('.select2').on('select2:select', function (e) {
+
+            $(this).valid();
+
+        });
         var _$xRoadServiceAttributeMappingsTable = $('#XRoadServiceAttributeMappingsTable');
         var _xRoadServiceAttributeMappingsService = abp.services.app.xRoadServiceAttributeMappings;
-		var _entityTypeFullName = 'MFAE.Jobs.XRoad.XRoadServiceAttributeMapping';
-        
-       var $selectedDate = {
-            startDate: null,
-            endDate: null,
-        }
-
-        $('.date-picker').on('apply.daterangepicker', function (ev, picker) {
-            $(this).val(picker.startDate.format('MM/DD/YYYY'));
-        });
-
-        $('.startDate').daterangepicker({
-            autoUpdateInput: false,
-            singleDatePicker: true,
-            locale: abp.localization.currentLanguage.name,
-            format: 'L',
-        })
-        .on("apply.daterangepicker", (ev, picker) => {
-            $selectedDate.startDate = picker.startDate;
-            getXRoadServiceAttributeMappings();
-        })
-        .on('cancel.daterangepicker', function (ev, picker) {
-            $(this).val("");
-            $selectedDate.startDate = null;
-            getXRoadServiceAttributeMappings();
-        });
-
-        $('.endDate').daterangepicker({
-            autoUpdateInput: false,
-            singleDatePicker: true,
-            locale: abp.localization.currentLanguage.name,
-            format: 'L',
-        })
-        .on("apply.daterangepicker", (ev, picker) => {
-            $selectedDate.endDate = picker.startDate;
-            getXRoadServiceAttributeMappings();
-        })
-        .on('cancel.daterangepicker', function (ev, picker) {
-            $(this).val("");
-            $selectedDate.endDate = null;
-            getXRoadServiceAttributeMappings();
-        });
+		
+       
 
         var _permissions = {
             create: abp.auth.hasPermission('Pages.XRoadServiceAttributeMappings.Create'),
@@ -53,37 +22,32 @@
         };
 
          var _createOrEditModal = new app.ModalManager({
-                    viewUrl: abp.appPath + 'App/XRoadServiceAttributeMappings/CreateOrEditModal',
-                    scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/XRoadServiceAttributeMappings/_CreateOrEditModal.js',
+             viewUrl: abp.appPath + 'App/XRoadServiceAttributeMappings/CreateOrEditModal',
+             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/XRoadServiceAttributeMappings/_CreateOrEditModal.js',
                     modalClass: 'CreateOrEditXRoadServiceAttributeMappingModal'
                 });
                    
 
 		 var _viewXRoadServiceAttributeMappingModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'App/XRoadServiceAttributeMappings/ViewxRoadServiceAttributeMappingModal',
+             viewUrl: abp.appPath + 'App/XRoadServiceAttributeMappings/ViewxRoadServiceAttributeMappingModal',
             modalClass: 'ViewXRoadServiceAttributeMappingModal'
         });
 
-		        var _entityTypeHistoryModal = app.modals.EntityTypeHistoryModal.create();
-		        function entityHistoryIsEnabled() {
-            return abp.auth.hasPermission('Pages.Administration.AuditLogs') &&
-                abp.custom.EntityHistory &&
-                abp.custom.EntityHistory.IsEnabled &&
-                _.filter(abp.custom.EntityHistory.EnabledEntities, entityType => entityType === _entityTypeFullName).length === 1;
-        }
+		
+		
 
         var getDateFilter = function (element) {
-            if ($selectedDate.startDate == null) {
+            if (element.data("DateTimePicker").date() == null) {
                 return null;
             }
-            return $selectedDate.startDate.format("YYYY-MM-DDT00:00:00Z"); 
+            return element.data("DateTimePicker").date().format("YYYY-MM-DDT00:00:00Z"); 
         }
         
         var getMaxDateFilter = function (element) {
-            if ($selectedDate.endDate == null) {
+            if (element.data("DateTimePicker").date() == null) {
                 return null;
             }
-            return $selectedDate.endDate.format("YYYY-MM-DDT23:59:59Z"); 
+            return element.data("DateTimePicker").date().format("YYYY-MM-DDT23:59:59Z"); 
         }
 
         var dataTable = _$xRoadServiceAttributeMappingsTable.DataTable({
@@ -119,39 +83,29 @@
                     autoWidth: false,
                     defaultContent: '',
                     rowAction: {
-                        cssClass: 'btn btn-brand dropdown-toggle',
-                        text: '<i class="fa fa-cog"></i> ' + app.localize('Actions') + ' <span class="caret"></span>',
+                        cssClass: '',
+                        text: '<i class="fa fa-cog"></i> <span class="d-none d-md-inline-block d-lg-inline-block d-xl-inline-block">' + app.localize('Actions') + '</span> <span class="caret"></span>',
                         items: [
 						{
                                 text: app.localize('View'),
+                                iconStyle: 'far fa-eye mr-2',
                                 action: function (data) {
                                     _viewXRoadServiceAttributeMappingModal.open({ id: data.record.xRoadServiceAttributeMapping.id });
                                 }
                         },
 						{
                             text: app.localize('Edit'),
+                            iconStyle: 'far fa-edit mr-2',
                             visible: function () {
                                 return _permissions.edit;
                             },
                             action: function (data) {
                             _createOrEditModal.open({ id: data.record.xRoadServiceAttributeMapping.id });                                
                             }
-                        },
-                        {
-                            text: app.localize('History'),
-                            iconStyle: 'fas fa-history mr-2',
-                            visible: function () {
-                                return entityHistoryIsEnabled();
-                            },
-                            action: function (data) {
-                                _entityTypeHistoryModal.open({
-                                    entityTypeFullName: _entityTypeFullName,
-                                    entityId: data.record.xRoadServiceAttributeMapping.id
-                                });
-                            }
-						}, 
+                        }, 
 						{
                             text: app.localize('Delete'),
+                            iconStyle: 'far fa-trash-alt mr-2',
                             visible: function () {
                                 return _permissions.delete;
                             },
@@ -253,22 +207,8 @@
 			getXRoadServiceAttributeMappings();
 		  }
 		});
-
-        $('.reload-on-change').change(function(e) {
-			getXRoadServiceAttributeMappings();
-		});
-
-        $('.reload-on-keyup').keyup(function(e) {
-			getXRoadServiceAttributeMappings();
-		});
-
-        $('#btn-reset-filters').click(function (e) {
-            $('.reload-on-change,.reload-on-keyup,#MyEntsTableFilter').val('');
-            getXRoadServiceAttributeMappings();
-        });
 		
 		
 		
-
     });
 })();

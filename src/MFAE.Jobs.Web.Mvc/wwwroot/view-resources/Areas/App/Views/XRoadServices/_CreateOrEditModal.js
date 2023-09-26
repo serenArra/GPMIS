@@ -7,18 +7,12 @@
         var _$xRoadServiceInformationForm = null;
 
 		
-		
-		
 
         this.init = function (modalManager) {
             _modalManager = modalManager;
 
 			var modal = _modalManager.getModal();
-            modal.find('.date-picker').daterangepicker({
-                singleDatePicker: true,
-                locale: abp.localization.currentLanguage.name,
-                format: 'L'
-            });
+            
 
             _$xRoadServiceInformationForm = _modalManager.getModal().find('form[name=XRoadServiceInformationsForm]');
             _$xRoadServiceInformationForm.validate();
@@ -31,12 +25,7 @@
                 return;
             }
 
-            
-
             var xRoadService = _$xRoadServiceInformationForm.serializeFormToObject();
-            
-            
-            
 			
 			 _modalManager.setBusy(true);
 			 _xRoadServicesService.createOrEdit(
@@ -49,7 +38,5 @@
                _modalManager.setBusy(false);
 			});
         };
-        
-        
     };
 })(jQuery);

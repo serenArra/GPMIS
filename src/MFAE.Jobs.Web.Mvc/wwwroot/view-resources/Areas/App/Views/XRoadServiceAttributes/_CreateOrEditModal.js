@@ -1,28 +1,31 @@
 ﻿(function ($) {
     app.modals.CreateOrEditXRoadServiceAttributeModal = function () {
 
+        $(".select2").select2({
+            width: "100%"
+        });
+
+        $('.select2').on('select2:select', function (e) {
+
+            $(this).valid();
+
+        });
         var _xRoadServiceAttributesService = abp.services.app.xRoadServiceAttributes;
 
         var _modalManager;
         var _$xRoadServiceAttributeInformationForm = null;
 
 		        var _XRoadServiceAttributexRoadServiceLookupTableModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'App/XRoadServiceAttributes/XRoadServiceLookupTableModal',
-            scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/XRoadServiceAttributes/_XRoadServiceAttributeXRoadServiceLookupTableModal.js',
+                    viewUrl: abp.appPath + 'App/XRoadServiceAttributes/XRoadServiceLookupTableModal',
+                    scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/XRoadServiceAttributes/_XRoadServiceAttributeXRoadServiceLookupTableModal.js',
             modalClass: 'XRoadServiceLookupTableModal'
         });
-		
-		
 
         this.init = function (modalManager) {
             _modalManager = modalManager;
 
 			var modal = _modalManager.getModal();
-            modal.find('.date-picker').daterangepicker({
-                singleDatePicker: true,
-                locale: abp.localization.currentLanguage.name,
-                format: 'L'
-            });
+            
 
             _$xRoadServiceAttributeInformationForm = _modalManager.getModal().find('form[name=XRoadServiceAttributeInformationsForm]');
             _$xRoadServiceAttributeInformationForm.validate();
@@ -54,12 +57,7 @@
                 return;
             }
 
-            
-
             var xRoadServiceAttribute = _$xRoadServiceAttributeInformationForm.serializeFormToObject();
-            
-            
-            
 			
 			 _modalManager.setBusy(true);
 			 _xRoadServiceAttributesService.createOrEdit(
@@ -72,7 +70,5 @@
                _modalManager.setBusy(false);
 			});
         };
-        
-        
     };
 })(jQuery);

@@ -43,6 +43,8 @@
             public const string Notifications = "Administration.Notifications";
             public const string Notifications_Inbox = "Administration.Notifications.Inbox";
             public const string Notifications_MassNotifications = "Administration.Notifications.MassNotifications";
+            public const string Citizenship_Verification = "XRoad.Citizenship_Verification";
+            public const string InformationBankPage = "XRoad.InformationBankPage";
         }
 
         public static class Host

@@ -7,22 +7,16 @@
         var _$xRoadServiceErrorInformationForm = null;
 
 		        var _XRoadServiceErrorxRoadServiceLookupTableModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'App/XRoadServiceErrors/XRoadServiceLookupTableModal',
-            scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/XRoadServiceErrors/_XRoadServiceErrorXRoadServiceLookupTableModal.js',
+                    viewUrl: abp.appPath + 'App/XRoadServiceErrors/XRoadServiceLookupTableModal',
+                    scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/XRoadServiceErrors/_XRoadServiceErrorXRoadServiceLookupTableModal.js',
             modalClass: 'XRoadServiceLookupTableModal'
         });
-		
-		
 
         this.init = function (modalManager) {
             _modalManager = modalManager;
 
 			var modal = _modalManager.getModal();
-            modal.find('.date-picker').daterangepicker({
-                singleDatePicker: true,
-                locale: abp.localization.currentLanguage.name,
-                format: 'L'
-            });
+            
 
             _$xRoadServiceErrorInformationForm = _modalManager.getModal().find('form[name=XRoadServiceErrorInformationsForm]');
             _$xRoadServiceErrorInformationForm.validate();
@@ -54,12 +48,7 @@
                 return;
             }
 
-            
-
             var xRoadServiceError = _$xRoadServiceErrorInformationForm.serializeFormToObject();
-            
-            
-            
 			
 			 _modalManager.setBusy(true);
 			 _xRoadServiceErrorsService.createOrEdit(
@@ -72,7 +61,5 @@
                _modalManager.setBusy(false);
 			});
         };
-        
-        
     };
 })(jQuery);

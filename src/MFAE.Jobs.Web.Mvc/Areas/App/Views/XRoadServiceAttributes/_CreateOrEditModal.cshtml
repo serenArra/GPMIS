@@ -4,57 +4,77 @@
 @using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
 @using MFAE.Jobs.Web.Areas.App.Models.XRoadServiceAttributes
 @model CreateOrEditXRoadServiceAttributeModalViewModel
-@using Abp.Extensions
-@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditXRoadServiceAttribute")) : L("CreateNewXRoadServiceAttribute")))
 
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditXRoadServiceAttribute")) : L("CreateNewXRoadServiceAttribute")))
 <div class="modal-body">
     <div id="XRoadServiceAttributeInformationsTab">
         <form name="XRoadServiceAttributeInformationsForm" role="form" novalidate class="form-validation">
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.XRoadServiceAttribute.Id" />
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="XRoadServiceName">@L("XRoadService")</label>
+                <div class="input-group">
+                    <input class="form-control" id="XRoadServiceName" name="xRoadServiceName" value="@Model.XRoadServiceName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenXRoadServiceLookupTableButton" type="button"><i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger btn-icon" type="button" id="ClearXRoadServiceNameButton"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
 
             @if (Model.IsEditMode)
             {
-            <input type="hidden" name="id" value="@Model.XRoadServiceAttribute.Id" />
+                <input class="form-control" id="XRoadServiceAttribute_XRoadServiceID" value="@Model.XRoadServiceAttribute.XRoadServiceID" type="text" name="xRoadServiceID" required hidden />
+            }
+            else
+            {
+                <input class="form-control" id="XRoadServiceAttribute_XRoadServiceID" value="" type="text" name="xRoadServiceID" required hidden />
             }
 
-            <div class="my-3">
-                <label class="form-label" for="xRoadServiceID">@L("XRoadService")</label>
-                @Html.DropDownList("xRoadServiceID", new SelectList(Model.XRoadServiceAttributeXRoadServiceList,"Id","DisplayName", (Model.IsEditMode ? Model.XRoadServiceAttribute.XRoadServiceID.ToString() : "")),@L("SelectAXRoadService"), new { @class = "form-control" })
-            </div>
+
+
 
             @{
-            var selectListServiceAttributeType = Html.GetEnumSelectList(typeof(XRoadServiceAttributeTypeEnum));
-            foreach (var selectOption in selectListServiceAttributeType) { selectOption.Text = L("Enum_XRoadServiceAttributeTypeEnum_" + selectOption.Value); }
+                var selectListServiceAttributeType = Html.GetEnumSelectList(typeof(XRoadServiceAttributeTypeEnum));
+                foreach (var selectOption in selectListServiceAttributeType) { selectOption.Text = L("Enum_XRoadServiceAttributeTypeEnum_" + selectOption.Value); }
             }
-            <div class="my-3">
-                <label class="form-label" for="XRoadServiceAttribute_ServiceAttributeType">@L("ServiceAttributeType")</label>
-                <select class="form-select m-input m-input--square" name="serviceAttributeType" id="XRoadServiceAttribute_ServiceAttributeType" asp-for="@Model.XRoadServiceAttribute.ServiceAttributeType" asp-items="@selectListServiceAttributeType">
+            <div class="form-group m-form__group">
+                <label for="XRoadServiceAttribute_ServiceAttributeType">@L("ServiceAttributeType")</label>
+                <select class="form-select form-select-solid m-input m-input--square" name="serviceAttributeType" id="XRoadServiceAttribute_ServiceAttributeType" asp-for="@Model.XRoadServiceAttribute.ServiceAttributeType" asp-items="@selectListServiceAttributeType">
                 </select>
             </div>
 
-            <div class="my-3">
-                <label class="form-label" for="XRoadServiceAttribute_AttributeCode">@L("AttributeCode")</label>
-                <input class="form-control" id="XRoadServiceAttribute_AttributeCode" value="@Model.XRoadServiceAttribute.AttributeCode" type="text" name="attributeCode" maxlength="@MFAE.Jobs.XRoad.XRoadServiceAttributeConsts.MaxAttributeCodeLength" minlength="@MFAE.Jobs.XRoad.XRoadServiceAttributeConsts.MinAttributeCodeLength" />
+            <div class="form-group">
+                <label for="XRoadServiceAttribute_AttributeCode">@L("AttributeCode")</label>
+                <input class="form-control" id="XRoadServiceAttribute_AttributeCode" value="@Model.XRoadServiceAttribute.AttributeCode" type="text" name="attributeCode" required maxlength="@MFAE.Jobs.XRoad.XRoadServiceAttributeConsts.MaxAttributeCodeLength" minlength="@MFAE.Jobs.XRoad.XRoadServiceAttributeConsts.MinAttributeCodeLength" />
             </div>
 
-            <div class="my-3">
-                <label class="form-label" for="XRoadServiceAttribute_XMLPath">@L("XMLPath")</label>
+            <div class="form-group">
+                <label for="XRoadServiceAttribute_XMLPath">@L("XMLPath")</label>
                 <input class="form-control" id="XRoadServiceAttribute_XMLPath" value="@Model.XRoadServiceAttribute.XMLPath" type="text" name="xmlPath" required maxlength="@MFAE.Jobs.XRoad.XRoadServiceAttributeConsts.MaxXMLPathLength" minlength="@MFAE.Jobs.XRoad.XRoadServiceAttributeConsts.MinXMLPathLength" />
             </div>
 
-            <div class="my-3">
-                <label class="form-label" for="XRoadServiceAttribute_Name">@L("Name")</label>
+            <div class="form-group">
+                <label for="XRoadServiceAttribute_Name">@L("Name")</label>
                 <input class="form-control" id="XRoadServiceAttribute_Name" value="@Model.XRoadServiceAttribute.Name" type="text" name="name" required maxlength="@MFAE.Jobs.XRoad.XRoadServiceAttributeConsts.MaxNameLength" minlength="@MFAE.Jobs.XRoad.XRoadServiceAttributeConsts.MinNameLength" />
             </div>
 
-            <div class="my-3">
-                <label class="form-label" for="XRoadServiceAttribute_Description">@L("Description")</label>
+            <div class="form-group">
+                <label for="XRoadServiceAttribute_Description">@L("Description")</label>
                 <input class="form-control" id="XRoadServiceAttribute_Description" value="@Model.XRoadServiceAttribute.Description" type="text" name="description" maxlength="@MFAE.Jobs.XRoad.XRoadServiceAttributeConsts.MaxDescriptionLength" minlength="@MFAE.Jobs.XRoad.XRoadServiceAttributeConsts.MinDescriptionLength" />
             </div>
 
-            <div class="my-3">
-                <label class="form-label" for="XRoadServiceAttribute_FormatTransition">@L("FormatTransition")</label>
-                <input class="form-control" id="XRoadServiceAttribute_FormatTransition" value="@Model.XRoadServiceAttribute.FormatTransition" type="text" name="formatTransition" maxlength="@MFAE.Jobs.XRoad.XRoadServiceAttributeConsts.MaxFormatTransitionLength" minlength="@MFAE.Jobs.XRoad.XRoadServiceAttributeConsts.MinFormatTransitionLength" />
+            <div class="form-group">
+                <label for="XRoadServiceAttribute_FormatTransition">@L("FormatTransition")</label>
+                <input class="form-control" id="XRoadServiceAttribute_FormatTransition" value="@Model.XRoadServiceAttribute.FormatTransition" type="text" name="formatTransition" />
             </div>
+
 
         </form>
     </div>

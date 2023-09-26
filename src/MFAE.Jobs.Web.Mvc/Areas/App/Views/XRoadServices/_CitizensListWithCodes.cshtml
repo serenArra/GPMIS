@@ -1,0 +1,85 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.XRoadServices
+@using MFAE.Jobs.XRoad.Dtos
+@model CitizensListWithCodesDto
+
+
+
+<div class="card">
+    <div class="card-header py-1" id="headingOne2">
+        <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne1">
+            <i class="flaticon2-file-1"></i>
+            <h3 class="my-1 font-weight-bold text-dark"> @L("MOIInformation")</h3>
+        </div>
+    </div>
+    @*<div class="card-header" id="headingOne2">
+            <div class="card-title" data-toggle="collapse" data-target="#collapseOne2">
+                <i class="flaticon2-architecture-and-city"></i>   <h3 class="my-10 font-weight-bold text-dark">   @L("ResidenceType")</h3>
+            </div>
+        </div>*@
+    <div id="collapseOne1" class="collapse" data-parent="#mainAccordion">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("IdentificationDocumentNo") :</h6>
+                    @Model.CardID
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("Name") :</h6>
+                    @Model.FullName
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("PreviousFamilyName") :</h6>
+                    @Model.PreviousFamilyName
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("MotherName") :</h6>
+                    @Model.MotherName
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("Gender") :</h6>
+                    @Model.GenderNameEN
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("DateOfBirth") :</h6>
+                    @{var birthDateVal = Model.BirthDate == null ? "" : Model.BirthDate.Value.ToShortDateString();}
+                    @birthDateVal
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("DeathDate") :</h6>
+                    @{var deathDateVal = Model.DeathDate == null ? "" : Model.DeathDate.Value.ToShortDateString();}
+                    @deathDateVal
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("Governorate") :</h6>
+                    @Model.Governorate
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("BirthPlace") :</h6>
+                    @Model.BirthPlace
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("Religion") :</h6>
+                    @Model.ReligionName
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("MaritalStatus") :</h6>
+                    @Model.MaritalStatusName
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("CurrentResidence") :</h6>
+                    @Model.CityNameAR
+                </div>
+
+                @*<div class="col-3 mb-3 mb-10">
+                        <h6 class="text-muted">ءءءءءءء :</h6>
+                        ءءءءءءءء
+                    </div>*@
+
+
+            </div>
+        </div>
+    </div>
+</div>

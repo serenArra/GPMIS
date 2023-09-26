@@ -21,6 +21,11 @@ using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Abp.UI;
 using MFAE.Jobs.Storage;
+using MFAE.Jobs.XRoad.Dtos;
+using MFAE.Jobs.XRoad;
+using Stripe;
+using System.Dynamic;
+using System.Globalization;
 
 namespace MFAE.Jobs.ApplicationForm
 {
@@ -36,9 +41,10 @@ namespace MFAE.Jobs.ApplicationForm
         private readonly IRepository<Country, int> _lookup_countryRepository;
         private readonly IRepository<Governorate, int> _lookup_governorateRepository;
         private readonly IRepository<Locality, int> _lookup_localityRepository;
-     
+        private readonly IXRoadServicesAppService _xRoadServicesAppService;
 
-        public ApplicantsAppService(IRepository<Applicant, long> applicantRepository, IApplicantsExcelExporter applicantsExcelExporter, IRepository<IdentificationType, int> lookup_identificationTypeRepository, IRepository<MaritalStatus, int> lookup_maritalStatusRepository, IRepository<User, long> lookup_userRepository, IRepository<ApplicantStatus, long> lookup_applicantStatusRepository, IRepository<Country, int> lookup_countryRepository, IRepository<Governorate, int> lookup_governorateRepository, IRepository<Locality, int> lookup_localityRepository)
+
+        public ApplicantsAppService(IXRoadServicesAppService xRoadServicesAppService, IRepository<Applicant, long> applicantRepository, IApplicantsExcelExporter applicantsExcelExporter, IRepository<IdentificationType, int> lookup_identificationTypeRepository, IRepository<MaritalStatus, int> lookup_maritalStatusRepository, IRepository<User, long> lookup_userRepository, IRepository<ApplicantStatus, long> lookup_applicantStatusRepository, IRepository<Country, int> lookup_countryRepository, IRepository<Governorate, int> lookup_governorateRepository, IRepository<Locality, int> lookup_localityRepository)
         {
             _applicantRepository = applicantRepository;
             _applicantsExcelExporter = applicantsExcelExporter;
@@ -49,6 +55,7 @@ namespace MFAE.Jobs.ApplicationForm
             _lookup_countryRepository = lookup_countryRepository;
             _lookup_governorateRepository = lookup_governorateRepository;
             _lookup_localityRepository = lookup_localityRepository;
+            _xRoadServicesAppService = xRoadServicesAppService;
 
         }
 
@@ -514,6 +521,206 @@ namespace MFAE.Jobs.ApplicationForm
                     Id = locality.Id,
                     DisplayName = locality == null || locality.Name == null ? "" : locality.Name.ToString()
                 }).ToListAsync();
+        }
+
+        public async Task<GetApplicantForEditOutput> FetchPerson(FetchPersonDto input)
+        {
+            var person = new Applicant();
+            var birthCountry = new Country();
+            var birthGovernorate = new Governorate();
+            var birthLocality = new Locality();
+
+
+            if (input.IdentificationDocumentNoTypeId == PersonNationalityConsts.palestinianIdentityTypeID)
+            {
+                var obj = await _xRoadServicesAppService.GetDynamic(XRoadServiceConsts.MOICitizensListWithCodes, "<CardID>" + input.IdentificationDocumentNoId + "</CardID>");
+                ExpandoObject propertyNames = (ExpandoObject)obj.Where(v => v.Key == "response").Select(x => x.Value).FirstOrDefault();
+                ExpandoObject view = (ExpandoObject)propertyNames.Where(v => v.Key == "citizenWithCode").Select(x => x.Value).FirstOrDefault();
+                var propertyList = (IDictionary<String, Object>)view;
+                person = new Applicant();
+                person.DocumentNo = input.IdentificationDocumentNoId;
+                person.FirstName = propertyList["FirstName"].ToString();
+                person.FatherName = propertyList["FatherName"].ToString();
+                person.GrandFatherName = propertyList["GrandFatherName"].ToString();
+                person.FamilyName = propertyList["FamilyName"].ToString();
+                person.FirstNameEn = propertyList["FirstName_EN"]?.ToString();
+                person.FatherNameEn = propertyList["FatherName_EN"]?.ToString();
+                person.GrandFatherNameEn = propertyList["GrandFatherName_EN"]?.ToString();
+                person.FamilyNameEn = propertyList["FamilyName_EN"]?.ToString();
+                person.Gender = (Gender)int.Parse(propertyList["SexId"].ToString());
+                person.MaritalStatusId = await _lookup_maritalStatusRepository.GetAll().Where(e => e.NameAr == propertyList["MaritalStatusName"].ToString()).Select(e => e.Id).FirstOrDefaultAsync();
+                
+                person.BirthDate = DateTime.Parse(propertyList["BirthDate"].ToString(), null, System.Globalization.DateTimeStyles.AdjustToUniversal);
+                birthCountry = await _lookup_countryRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["BirthCountryName"].ToString())).FirstOrDefaultAsync();
+
+
+                if (birthCountry != null)
+                {
+                    birthGovernorate = await _lookup_governorateRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["BirthCityName"].ToString())).FirstOrDefaultAsync();
+
+                    if (birthGovernorate != null)
+                    {
+                        birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["BirthCityName"].ToString())).FirstOrDefaultAsync();
+
+                        if (birthLocality == null)
+                        {
+                            birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameEn.Contains(propertyList["CityName_EN"].ToString())).FirstOrDefaultAsync();
+                        }
+                    }
+                    //else
+                    //{
+                    //    birthGovernorate = await _lookup_governorateRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["Governorate"].ToString())).FirstOrDefaultAsync();
+                    //    if (birthGovernorate != null)
+                    //    {
+                    //        birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["BirthCityName"].ToString())).FirstOrDefaultAsync();
+
+                    //        if (birthLocality == null)
+                    //        {
+                    //            birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["CityName_AR"].ToString())).FirstOrDefaultAsync();
+                    //        }
+                    //    }
+                    //}
+                }
+                else
+                {
+                    birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameEn.Contains(propertyList["CityName_EN"].ToString())).FirstOrDefaultAsync();
+
+                    if (birthLocality != null)
+                    {
+                        birthGovernorate = await _lookup_governorateRepository.GetAll().Where(e => e.Id == birthLocality.GovernorateId).FirstOrDefaultAsync();
+
+                        if (birthGovernorate != null)
+                            birthCountry = await _lookup_countryRepository.GetAsync(birthGovernorate.CountryId);
+                    }
+                }
+
+                //birthGovernorate = await _lookup_governorateRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["BirthCityName"].ToString())).FirstOrDefaultAsync();
+                //if(birthGovernorate == null)
+                //{
+                //    birthGovernorate = await _lookup_governorateRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["Governorate"].ToString())).FirstOrDefaultAsync();
+                //}
+                //birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["CityName_AR"].ToString())).FirstOrDefaultAsync();
+                //if (birthLocality == null)
+                //{
+                //    birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["BirthCityName"].ToString())).FirstOrDefaultAsync();                    
+                //}
+                //if (birthGovernorate != null)
+                //    birthCountry = await _lookup_countryRepository.GetAsync(birthGovernorate.CountryId);
+                //else
+                //    birthGovernorate = null;
+
+                var passport = await GetPassportInfo(input);
+
+                person.IdentificationTypeId = input.IdentificationDocumentNoTypeId;
+                if (obj == null)
+                {
+                    person = new Applicant();
+                    person.DocumentNo = passport.PassportNo;
+                    person.FirstName = propertyList["FirstName"].ToString();
+                    person.FatherName = propertyList["FatherName"].ToString();
+                    person.GrandFatherName = propertyList["GrandFatherName"].ToString();
+                    person.FamilyName = propertyList["FamilyName"].ToString();
+                    person.FirstNameEn = propertyList["FirstName_EN"]?.ToString();
+                    person.FatherNameEn = propertyList["FatherName_EN"]?.ToString();
+                    person.GrandFatherNameEn = propertyList["GrandFatherName_EN"]?.ToString();
+                    person.FamilyNameEn = propertyList["FamilyName_EN"]?.ToString();
+                    person.Gender = (Gender)passport.SexId;
+                    person.BirthDate = passport.BirthDate.Value;
+                }
+
+                if (person == null)
+                {
+                    return null;
+
+                }
+            }
+            else
+            {
+                person = await _applicantRepository.FirstOrDefaultAsync(p => (p.DocumentNo == input.IdentificationDocumentNoId && p.IdentificationTypeId == input.IdentificationDocumentNoTypeId));
+                if (person == null)
+                {
+                    return null;
+
+                }
+            }
+
+            var output = new GetApplicantForEditOutput { Applicant = ObjectMapper.Map<CreateOrEditApplicantDto>(person) };
+
+            
+            if (birthCountry != null)
+            {
+                output.Applicant.CountryId = birthCountry.Id;
+                output.CountryName = CultureInfo.CurrentUICulture.Name == "ar" ? birthCountry.NameAr : birthCountry.NameEn;
+            }
+
+            if (birthGovernorate != null)
+            {
+                output.Applicant.GovernorateId = birthGovernorate.Id;
+                output.GovernorateName = CultureInfo.CurrentUICulture.Name == "ar" ? birthGovernorate.NameAr : birthGovernorate.NameEn;
+            }
+
+            if (birthLocality != null)
+            {
+                output.Applicant.LocalityId = birthLocality.Id;
+                output.LocalityName = CultureInfo.CurrentUICulture.Name == "ar" ? birthLocality.NameAr : birthLocality.NameEn;
+            }
+
+            var citizenPhoto = await GetCitizenPhoto(input);
+
+            output.CitizenPicture = citizenPhoto.CitizenPicture;
+
+            return output;
+
+        }
+        
+        public async Task<PassportInfoDto> GetPassportInfo(FetchPersonDto input)
+        {
+            var passport = new PassportInfoDto();
+
+
+            var obj = await _xRoadServicesAppService.GetDynamic(XRoadServiceConsts.MOIPassportInfo, "<IDNo>" + input.IdentificationDocumentNoId + "</IDNo>");
+
+            ExpandoObject propertyNames = (ExpandoObject)obj.Where(v => v.Key == "response").Select(x => x.Value).FirstOrDefault();
+            ExpandoObject view = (ExpandoObject)propertyNames.Where(v => v.Key == "passport").Select(x => x.Value).FirstOrDefault();
+            var propertyList = (IDictionary<String, Object>)view;
+
+            if (propertyList["PassportNo"] != null)
+            {
+                passport.PassportNo = propertyList["PassportNo"].ToString();
+                passport.IssueDate = DateTime.Parse(propertyList["IssueDate"].ToString(), null, System.Globalization.DateTimeStyles.AdjustToUniversal);
+                passport.ExpireDate = DateTime.Parse(propertyList["ExpireDate"].ToString(), null, System.Globalization.DateTimeStyles.AdjustToUniversal);
+
+
+                passport.FirstName = propertyList["FirstName"].ToString();
+                passport.FatherName = propertyList["FatherName"].ToString();
+                passport.GrandFatherName = propertyList["GrandFatherName"].ToString();
+                passport.FamilyName = propertyList["FamilyName"].ToString();
+                passport.MotherName = propertyList["MotherName"].ToString();
+                passport.FirstNameEN = propertyList["FirstNameEN"].ToString();
+                passport.GrandFatherNameEN = propertyList["GrandFatherNameEN"].ToString();
+                passport.FamilyNameEN = propertyList["FamilyNameEN"].ToString();
+                passport.MotherNameEN = propertyList["MotherNameEN"].ToString();
+
+                passport.BirthDate = DateTime.Parse(propertyList["BirthDate"].ToString(), null, System.Globalization.DateTimeStyles.AdjustToUniversal);
+
+                passport.SexId = int.Parse(propertyList["Sex"].ToString());
+            }
+
+            return passport;
+        }        
+        private async Task<CitizenPhotoDto> GetCitizenPhoto(FetchPersonDto input)
+        {
+            var pictureInfo = new CitizenPhotoDto();
+            var obj = await _xRoadServicesAppService.GetDynamic(XRoadServiceConsts.MOICitizenPhoto, "<IDNo>" + input.IdentificationDocumentNoId + "</IDNo>");
+            ExpandoObject propertyNames = (ExpandoObject)obj.Where(v => v.Key == "response").Select(x => x.Value).FirstOrDefault();
+            ExpandoObject view = (ExpandoObject)propertyNames.Where(v => v.Key == "service1Object").Select(x => x.Value).FirstOrDefault();
+            var propertyList = (IDictionary<String, Object>)view;
+            if (propertyList != null)
+            {
+                pictureInfo.CitizenPicture = propertyList.ContainsKey("ObjectContent") ? propertyList["ObjectContent"]?.ToString() : "";
+
+            }
+            return pictureInfo;
         }
 
     }
