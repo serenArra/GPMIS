@@ -505,9 +505,9 @@ namespace MFAE.Jobs.Web.Controllers
         private ActionResult RegisterView(RegisterViewModel model)
         {
             CheckSelfRegistrationIsEnabled();
-
+           
             ViewBag.UseCaptcha = !model.IsExternalLogin && UseCaptchaOnRegistration();
-
+            ViewBag.IdentificationTypeList = _userRegistrationManager.GetAllIdentificationTypeForTableDropdown();
             return View("Register", model);
         }
 
@@ -552,6 +552,8 @@ namespace MFAE.Jobs.Web.Controllers
                 }
 
                 var user = await _userRegistrationManager.RegisterAsync(
+                    model.IdentificationTypeId,
+                    model.DocumentNo,
                     model.Name,
                     model.Surname,
                     model.EmailAddress,

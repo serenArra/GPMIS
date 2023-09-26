@@ -36,6 +36,7 @@ namespace MFAE.Jobs.ApplicationForm
         private readonly IRepository<Country, int> _lookup_countryRepository;
         private readonly IRepository<Governorate, int> _lookup_governorateRepository;
         private readonly IRepository<Locality, int> _lookup_localityRepository;
+     
 
         public ApplicantsAppService(IRepository<Applicant, long> applicantRepository, IApplicantsExcelExporter applicantsExcelExporter, IRepository<IdentificationType, int> lookup_identificationTypeRepository, IRepository<MaritalStatus, int> lookup_maritalStatusRepository, IRepository<User, long> lookup_userRepository, IRepository<ApplicantStatus, long> lookup_applicantStatusRepository, IRepository<Country, int> lookup_countryRepository, IRepository<Governorate, int> lookup_governorateRepository, IRepository<Locality, int> lookup_localityRepository)
         {

@@ -11,6 +11,11 @@ namespace MFAE.Jobs.Authorization.Accounts.Dto
     public class RegisterInput : IValidatableObject
     {
         [Required]
+        public string DocumentNo { get; set; }
+
+        public int IdentificationTypeId { get; set; }
+
+        [Required]
         [StringLength(AbpUserBase.MaxNameLength)]
         public string Name { get; set; }
 

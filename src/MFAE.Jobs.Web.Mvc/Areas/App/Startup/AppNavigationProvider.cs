@@ -22,108 +22,129 @@ namespace MFAE.Jobs.Web.Areas.App.Startup
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Host_Dashboard)
                     )
                 )
-                .AddItem(new MenuItemDefinition(
-                        AppPageNames.Common.Localities,
-                        L("Localities"),
-                        url: "App/Localities",
-                        icon: "flaticon-more",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Localities)
+               .AddItem(new MenuItemDefinition(
+                           AppPageNames.Common.Applicants,
+                           L("Applicants"),
+                           url: "App/Applicants",
+                           icon: "flaticon-more",
+                           permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Applicants)
+                       )
+                   )
+
+               .AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.Administration,
+                        L("LocationModel"),
+                        icon: "flaticon-pin"
+                    )
+                   .AddItem(new MenuItemDefinition(
+                            AppPageNames.Common.Localities,
+                            L("Localities"),
+                            url: "App/Localities",
+                            icon: "flaticon-more",
+                            permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Localities)
+                        )
+                    )
+                    .AddItem(new MenuItemDefinition(
+                            AppPageNames.Common.Governorates,
+                            L("Governorates"),
+                            url: "App/Governorates",
+                            icon: "flaticon-more",
+                            permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Governorates)
+                        )
+                    )
+                    .AddItem(new MenuItemDefinition(
+                            AppPageNames.Common.Countries,
+                            L("Countries"),
+                            url: "App/Countries",
+                            icon: "flaticon-more",
+                            permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Countries)
+                        )
                     )
                 )
-                .AddItem(new MenuItemDefinition(
-                        AppPageNames.Common.Governorates,
-                        L("Governorates"),
-                        url: "App/Governorates",
-                        icon: "flaticon-more",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Governorates)
+
+               .AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.Administration,
+                        L("ApplicationModel"),
+                        icon: "flaticon-pin"
                     )
-                )
-                .AddItem(new MenuItemDefinition(
-                        AppPageNames.Common.Countries,
-                        L("Countries"),
-                        url: "App/Countries",
-                        icon: "flaticon-more",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Countries)
+                   .AddItem(new MenuItemDefinition(
+                           AppPageNames.Common.AcademicDegrees,
+                           L("AcademicDegrees"),
+                           url: "App/AcademicDegrees",
+                           icon: "flaticon-more",
+                           permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_AcademicDegrees)
+                       )
                     )
-                )
-                .AddItem(new MenuItemDefinition(
-                        AppPageNames.Common.ApplicantStatuses,
-                        L("ApplicantStatuses"),
-                        url: "App/ApplicantStatuses",
-                        icon: "flaticon-more",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_ApplicantStatuses)
+                   .AddItem(new MenuItemDefinition(
+                          AppPageNames.Common.ApplicantStatuses,
+                          L("ApplicantStatuses"),
+                          url: "App/ApplicantStatuses",
+                          icon: "flaticon-more",
+                          permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_ApplicantStatuses)
+                      )
                     )
-                )
-                .AddItem(new MenuItemDefinition(
+                   .AddItem(new MenuItemDefinition(
+                            AppPageNames.Common.ApplicantLanguages,
+                            L("ApplicantLanguages"),
+                            url: "App/ApplicantLanguages",
+                            icon: "flaticon-more",
+                            permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_ApplicantLanguages)
+                        )
+                    )
+                    .AddItem(new MenuItemDefinition(
+                            AppPageNames.Common.ApplicantTrainings,
+                            L("ApplicantTrainings"),
+                            url: "App/ApplicantTrainings",
+                            icon: "flaticon-more",
+                            permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_ApplicantTrainings)
+                        )
+                    )
+                    .AddItem(new MenuItemDefinition(
+                            AppPageNames.Common.ApplicantStudies,
+                            L("ApplicantStudies"),
+                            url: "App/ApplicantStudies",
+                            icon: "flaticon-more",
+                            permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_ApplicantStudies)
+                        )
+                    )
+                   .AddItem(new MenuItemDefinition(
                         AppPageNames.Common.ConversationRates,
                         L("ConversationRates"),
                         url: "App/ConversationRates",
                         icon: "flaticon-more",
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_ConversationRates)
-                    )
-                )
-                .AddItem(new MenuItemDefinition(
-                        AppPageNames.Common.ApplicantLanguages,
-                        L("ApplicantLanguages"),
-                        url: "App/ApplicantLanguages",
-                        icon: "flaticon-more",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_ApplicantLanguages)
-                    )
-                )
-                .AddItem(new MenuItemDefinition(
-                        AppPageNames.Common.ApplicantTrainings,
-                        L("ApplicantTrainings"),
-                        url: "App/ApplicantTrainings",
-                        icon: "flaticon-more",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_ApplicantTrainings)
-                    )
-                )
-                .AddItem(new MenuItemDefinition(
-                        AppPageNames.Common.ApplicantStudies,
-                        L("ApplicantStudies"),
-                        url: "App/ApplicantStudies",
-                        icon: "flaticon-more",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_ApplicantStudies)
-                    )
-                )
-                .AddItem(new MenuItemDefinition(
-                        AppPageNames.Common.MaritalStatuses,
-                        L("MaritalStatuses"),
-                        url: "App/MaritalStatuses",
-                        icon: "flaticon-more",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_MaritalStatuses)
-                    )
-                )
-                .AddItem(new MenuItemDefinition(
-                        AppPageNames.Common.IdentificationTypes,
-                        L("IdentificationTypes"),
-                        url: "App/IdentificationTypes",
-                        icon: "flaticon-more",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_IdentificationTypes)
-                    )
-                )
-                .AddItem(new MenuItemDefinition(
-                        AppPageNames.Common.Applicants,
-                        L("Applicants"),
-                        url: "App/Applicants",
-                        icon: "flaticon-more",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Applicants)
-                    )
-                )
-                .AddItem(new MenuItemDefinition(
+                      )
+                   )
+                   .AddItem(new MenuItemDefinition(
                         AppPageNames.Common.Conversations,
                         L("Conversations"),
                         url: "App/Conversations",
                         icon: "flaticon-more",
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Conversations)
                     )
-                )
-                .AddItem(new MenuItemDefinition(
+                   )
+                  .AddItem(new MenuItemDefinition(
                         AppPageNames.Common.GraduationRates,
                         L("GraduationRates"),
                         url: "App/GraduationRates",
                         icon: "flaticon-more",
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_GraduationRates)
+                    )
+                   )
+                  .AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.IdentificationTypes,
+                        L("IdentificationTypes"),
+                        url: "App/IdentificationTypes",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_IdentificationTypes)
+                    )
+                   )
+                  .AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.MaritalStatuses,
+                        L("MaritalStatuses"),
+                        url: "App/MaritalStatuses",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_MaritalStatuses)
                     )
                 )
                 .AddItem(new MenuItemDefinition(
@@ -133,15 +154,9 @@ namespace MFAE.Jobs.Web.Areas.App.Startup
                         icon: "flaticon-more",
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Specialtieses)
                     )
+                  )
                 )
-                .AddItem(new MenuItemDefinition(
-                        AppPageNames.Common.AcademicDegrees,
-                        L("AcademicDegrees"),
-                        url: "App/AcademicDegrees",
-                        icon: "flaticon-more",
-                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_AcademicDegrees)
-                    )
-                )
+                              
                 .AddItem(new MenuItemDefinition(
                         AppPageNames.Host.Tenants,
                         L("Tenants"),

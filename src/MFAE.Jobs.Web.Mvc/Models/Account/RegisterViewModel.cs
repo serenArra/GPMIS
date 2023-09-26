@@ -5,6 +5,7 @@ using Abp.AspNetZeroCore.Validation;
 using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.Extensions;
+using MFAE.Jobs.Authorization.Accounts.Dto;
 using MFAE.Jobs.Authorization.Users;
 using MFAE.Jobs.Security;
 
@@ -12,6 +13,11 @@ namespace MFAE.Jobs.Web.Models.Account
 {
     public class RegisterViewModel : IValidatableObject
     {
+        [Required]
+        public string DocumentNo { get; set; }
+
+        public int IdentificationTypeId { get; set; }
+
         [Required]
         [StringLength(User.MaxNameLength)]
         public string Name { get; set; }
@@ -41,6 +47,8 @@ namespace MFAE.Jobs.Web.Models.Account
         public string SingleSignIn { get; set; }
 
         public PasswordComplexitySetting PasswordComplexitySetting { get; set; }
+
+        public List<UserIdentificationTypeLookupTableDto> IdentificationTypeList { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

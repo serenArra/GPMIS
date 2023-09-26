@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.Extensions;
 using Abp.Timing;
+using MFAE.Jobs.ApplicationForm;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata;
 
 namespace MFAE.Jobs.Authorization.Users
 {
@@ -21,9 +23,17 @@ namespace MFAE.Jobs.Authorization.Users
         public string SignInToken { get; set; }
 
         public string GoogleAuthenticatorKey { get; set; }
+
         public string RecoveryCode { get; set; }
-        
+
         public List<UserOrganizationUnit> OrganizationUnits { get; set; }
+
+        public virtual int? IdentificationTypeId { get; set; }
+
+        [ForeignKey("IdentificationTypeId")]
+        public IdentificationType IdentificationTypeFk { get; set; }
+
+        public string DocumentNo { get; set; }
 
         //Can add application specific user properties here
 
@@ -41,7 +51,7 @@ namespace MFAE.Jobs.Authorization.Users
         /// <param name="name">Name of admin user</param>
         /// <param name="surname">Surname of admin user</param>
         /// <returns>Created <see cref="User"/> object</returns>
-        public static User CreateTenantAdminUser(int tenantId, string emailAddress, string name = null, string surname = null)
+        public static User CreateTenantAdminUser(int tenantId, string emailAddress, string name = null, string surname = null , int? identificationTypeId = null, string documentNo = null)
         {
             var user = new User
             {
@@ -51,7 +61,9 @@ namespace MFAE.Jobs.Authorization.Users
                 Surname = string.IsNullOrWhiteSpace(surname) ? AdminUserName : surname,
                 EmailAddress = emailAddress,
                 Roles = new List<UserRole>(),
-                OrganizationUnits = new List<UserOrganizationUnit>()
+                OrganizationUnits = new List<UserOrganizationUnit>(),
+                IdentificationTypeId = identificationTypeId,
+                DocumentNo = documentNo,
             };
 
             user.SetNormalizedNames();

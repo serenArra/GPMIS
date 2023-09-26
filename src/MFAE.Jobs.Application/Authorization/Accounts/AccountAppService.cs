@@ -102,6 +102,8 @@ namespace MFAE.Jobs.Authorization.Accounts
             }
 
             var user = await _userRegistrationManager.RegisterAsync(
+                input.IdentificationTypeId,
+                input.DocumentNo,
                 input.Name,
                 input.Surname,
                 input.EmailAddress,

@@ -73,6 +73,11 @@ namespace MFAE.Jobs.ApplicationForm
 
         public virtual Gender Gender { get; set; }
 
+        public virtual long? UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public User UserFk { get; set; }
+
         public virtual int IdentificationTypeId { get; set; }
 
         [ForeignKey("IdentificationTypeId")]
