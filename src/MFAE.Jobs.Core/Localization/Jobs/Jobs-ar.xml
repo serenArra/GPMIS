@@ -1,7 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="ar">
   <texts>
-    <text name="HomePage">الرئيسية</text>
+
+	<text name="IsoNumeric">رقم ISO</text>
+	<text name="IsoAlpha">كود ISO</text>
+	<text name="NameAr">الاسم (بالعربية)</text>
+	<text name="NameEn">الاسم (بالإنجليزية)</text>
+	<text name="UniversalCode">الكود العالمي</text>
+	<text name="CountryName">الدولة</text>
+	<text name="View">العرض</text>
+	<text name="Country">الدولة</text>
+	<text name="Details">تفاصيل</text>
+    <text name="GovernorateName">المحافظة (بالعربية)</text>
+	<text name="Localities">المناطق</text>
+	<text name="Governorates">المحافظات</text>
+	<text name="Countries">الدول</text>
+	  
+	<text name="CountriesHeaderInfo">قائمة الدول</text>
+	<text name="CreateNewCountry">إنشاء دولة جديدة</text>
+	<text name="GovernoratesHeaderInfo">قائمة المحافظات</text>
+	<text name="CreateNewGovernorate">إنشاء محافظة جديدة</text>
+	<text name="LocalitiesHeaderInfo">قائمة المناطق</text>
+	<text name="CreateNewLocality">إنشاء منطقة جديدة</text>
+	<text name="SelectACountry">اختر دولة</text>
+	<text name="SelectAGovernorate">اختر محافظة</text>
+	<text name="Governorate">المحافظة</text>
+
+
+	<text name="HomePage">الرئيسية</text>
     <text name="AboutUs">من نحن</text>
     <text name="Administration">الإدارة</text>
     <text name="Roles">الأدوار</text>
