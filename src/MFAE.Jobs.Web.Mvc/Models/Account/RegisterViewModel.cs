@@ -7,6 +7,7 @@ using Abp.Authorization.Users;
 using Abp.Extensions;
 using MFAE.Jobs.Authorization.Accounts.Dto;
 using MFAE.Jobs.Authorization.Users;
+using MFAE.Jobs.Authorization.Users.Dto;
 using MFAE.Jobs.Security;
 
 namespace MFAE.Jobs.Web.Models.Account

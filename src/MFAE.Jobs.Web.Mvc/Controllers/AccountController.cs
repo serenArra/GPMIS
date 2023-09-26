@@ -497,6 +497,7 @@ namespace MFAE.Jobs.Web.Controllers
             return RegisterView(new RegisterViewModel
             {
                 PasswordComplexitySetting = await _passwordComplexitySettingStore.GetSettingsAsync(),
+                IdentificationTypeList = await _userRegistrationManager.GetAllIdentificationTypeForTableDropdown(),
                 ReturnUrl = returnUrl,
                 SingleSignIn = ss
             });
@@ -506,8 +507,7 @@ namespace MFAE.Jobs.Web.Controllers
         {
             CheckSelfRegistrationIsEnabled();
            
-            ViewBag.UseCaptcha = !model.IsExternalLogin && UseCaptchaOnRegistration();
-            ViewBag.IdentificationTypeList = _userRegistrationManager.GetAllIdentificationTypeForTableDropdown();
+            ViewBag.UseCaptcha = !model.IsExternalLogin && UseCaptchaOnRegistration();            
             return View("Register", model);
         }
 

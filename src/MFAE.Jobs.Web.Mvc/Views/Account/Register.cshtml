@@ -60,7 +60,7 @@
 
         <div class="mb-5 ">
              @Html.DropDownList("identificationTypeId", new SelectList(Model.IdentificationTypeList,"Id","DisplayName",
-            (Model.IsExternalLogin ? Model.IdentificationTypeId.ToString() : (defaultIdType?.Id.ToString()))),
+            (Model.IdentificationTypeList.Count > 0 ? (defaultIdType?.Id.ToString()) : "")),
                     @L("SelectOption"), new { @class = "form-control form-control-solid" })
         </div>
         <div class="mb-5 ">
