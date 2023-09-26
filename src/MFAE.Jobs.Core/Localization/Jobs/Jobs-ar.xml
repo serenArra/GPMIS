@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="ar">
   <texts>
-    <text name="HomePage">الرئيسية</text>
+	<text name="JOBS">نظام إدارة الوظائف</text>
+	<text name="JobsPhone">للحصول على خدمات الدعم أو المساعدة اتصل على هذا الرقم 00000000</text>
+	<text name="JobsMail">البريد الإلكتروني : jobs@mfae.gov.ps</text>
+	<text name="FooterRights">جميع الحقوق محفوظة- وزارة الخارجية والمغتربين © 2023</text>
+	<text name="HomePage">الرئيسية</text>
     <text name="AboutUs">من نحن</text>
     <text name="Administration">الإدارة</text>
     <text name="Roles">الأدوار</text>

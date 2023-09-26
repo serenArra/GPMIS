@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+	<text name="JOBS">Job Management System</text>
+	<text name="JobsPhone">For support or assistance services, call this number 00000000</text>
+	<text name="JobsMail">E-mail : jobs@mfae.gov.ps</text>
+	<text name="FooterRights">All rights reserved - Ministry of Foreign Affairs and Expatriates © 2023</text>
     <text name="HomePage">Home page</text>
     <text name="AboutUs">About us</text>
     <text name="Administration">Administration</text>
