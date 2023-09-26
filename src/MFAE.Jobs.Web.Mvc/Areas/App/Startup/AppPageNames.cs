@@ -4,6 +4,11 @@
     {
         public static class Common
         {
+            public const string XRoadServiceErrors = "XRoad.XRoadServiceErrors";
+            public const string XRoadServiceAttributeMappings = "XRoad.XRoadServiceAttributeMappings";
+            public const string XRoadServiceAttributes = "XRoad.XRoadServiceAttributes";
+            public const string XRoadServices = "XRoad.XRoadServices";
+            public const string XRoadMappings = "XRoad.XRoadMappings";
             public const string Localities = "Location.Localities";
             public const string Governorates = "Location.Governorates";
             public const string Countries = "Location.Countries";

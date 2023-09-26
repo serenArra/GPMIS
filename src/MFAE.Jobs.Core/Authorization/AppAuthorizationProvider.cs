@@ -30,6 +30,31 @@ namespace MFAE.Jobs.Authorization
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
 
+            var xRoadServiceErrors = pages.CreateChildPermission(AppPermissions.Pages_XRoadServiceErrors, L("XRoadServiceErrors"));
+            xRoadServiceErrors.CreateChildPermission(AppPermissions.Pages_XRoadServiceErrors_Create, L("CreateNewXRoadServiceError"));
+            xRoadServiceErrors.CreateChildPermission(AppPermissions.Pages_XRoadServiceErrors_Edit, L("EditXRoadServiceError"));
+            xRoadServiceErrors.CreateChildPermission(AppPermissions.Pages_XRoadServiceErrors_Delete, L("DeleteXRoadServiceError"));
+
+            var xRoadServiceAttributeMappings = pages.CreateChildPermission(AppPermissions.Pages_XRoadServiceAttributeMappings, L("XRoadServiceAttributeMappings"));
+            xRoadServiceAttributeMappings.CreateChildPermission(AppPermissions.Pages_XRoadServiceAttributeMappings_Create, L("CreateNewXRoadServiceAttributeMapping"));
+            xRoadServiceAttributeMappings.CreateChildPermission(AppPermissions.Pages_XRoadServiceAttributeMappings_Edit, L("EditXRoadServiceAttributeMapping"));
+            xRoadServiceAttributeMappings.CreateChildPermission(AppPermissions.Pages_XRoadServiceAttributeMappings_Delete, L("DeleteXRoadServiceAttributeMapping"));
+
+            var xRoadServiceAttributes = pages.CreateChildPermission(AppPermissions.Pages_XRoadServiceAttributes, L("XRoadServiceAttributes"));
+            xRoadServiceAttributes.CreateChildPermission(AppPermissions.Pages_XRoadServiceAttributes_Create, L("CreateNewXRoadServiceAttribute"));
+            xRoadServiceAttributes.CreateChildPermission(AppPermissions.Pages_XRoadServiceAttributes_Edit, L("EditXRoadServiceAttribute"));
+            xRoadServiceAttributes.CreateChildPermission(AppPermissions.Pages_XRoadServiceAttributes_Delete, L("DeleteXRoadServiceAttribute"));
+
+            var xRoadServices = pages.CreateChildPermission(AppPermissions.Pages_XRoadServices, L("XRoadServices"));
+            xRoadServices.CreateChildPermission(AppPermissions.Pages_XRoadServices_Create, L("CreateNewXRoadService"));
+            xRoadServices.CreateChildPermission(AppPermissions.Pages_XRoadServices_Edit, L("EditXRoadService"));
+            xRoadServices.CreateChildPermission(AppPermissions.Pages_XRoadServices_Delete, L("DeleteXRoadService"));
+
+            var xRoadMappings = pages.CreateChildPermission(AppPermissions.Pages_XRoadMappings, L("XRoadMappings"));
+            xRoadMappings.CreateChildPermission(AppPermissions.Pages_XRoadMappings_Create, L("CreateNewXRoadMapping"));
+            xRoadMappings.CreateChildPermission(AppPermissions.Pages_XRoadMappings_Edit, L("EditXRoadMapping"));
+            xRoadMappings.CreateChildPermission(AppPermissions.Pages_XRoadMappings_Delete, L("DeleteXRoadMapping"));
+
             var localities = pages.CreateChildPermission(AppPermissions.Pages_Localities, L("Localities"));
             localities.CreateChildPermission(AppPermissions.Pages_Localities_Create, L("CreateNewLocality"));
             localities.CreateChildPermission(AppPermissions.Pages_Localities_Edit, L("EditLocality"));

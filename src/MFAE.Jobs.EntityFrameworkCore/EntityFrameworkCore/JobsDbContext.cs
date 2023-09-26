@@ -1,4 +1,5 @@
-﻿using MFAE.Jobs.Location;
+﻿using MFAE.Jobs.XRoad;
+using MFAE.Jobs.Location;
 using MFAE.Jobs.ApplicationForm;
 using MFAE.Jobs.Attachments;
 using Abp.Zero.EntityFrameworkCore;
@@ -18,6 +19,16 @@ namespace MFAE.Jobs.EntityFrameworkCore
 {
     public class JobsDbContext : AbpZeroDbContext<Tenant, Role, User, JobsDbContext>
     {
+        public virtual DbSet<XRoadServiceError> XRoadServiceErrors { get; set; }
+
+        public virtual DbSet<XRoadServiceAttributeMapping> XRoadServiceAttributeMappings { get; set; }
+
+        public virtual DbSet<XRoadServiceAttribute> XRoadServiceAttributes { get; set; }
+
+        public virtual DbSet<XRoadService> XRoadServices { get; set; }
+
+        public virtual DbSet<XRoadMapping> XRoadMappings { get; set; }
+
         public virtual DbSet<Locality> Localities { get; set; }
 
         public virtual DbSet<Governorate> Governorates { get; set; }

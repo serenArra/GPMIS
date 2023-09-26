@@ -1,0 +1,47 @@
+﻿
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.XRoadServiceAttributes
+@model XRoadServiceAttributeViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="XRoadServiceAttributeInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("ServiceAttributeType") :</h6>
+                @L("Enum_XRoadServiceAttributeTypeEnum_" + (int)Model.XRoadServiceAttribute.ServiceAttributeType)
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("AttributeCode") :</h6>
+                @Model.XRoadServiceAttribute.AttributeCode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("XMLPath") :</h6>
+                @Model.XRoadServiceAttribute.XMLPath
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Name") :</h6>
+                @Model.XRoadServiceAttribute.Name
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Description") :</h6>
+                @Model.XRoadServiceAttribute.Description
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("FormatTransition") :</h6>
+                @Model.XRoadServiceAttribute.FormatTransition
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>(@L("XRoadService")) @L("Name") :</h6>
+                @Model.XRoadServiceName
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

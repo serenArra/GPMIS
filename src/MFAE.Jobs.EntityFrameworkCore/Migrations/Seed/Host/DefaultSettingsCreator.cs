@@ -5,6 +5,7 @@ using Abp.MultiTenancy;
 using Abp.Net.Mail;
 using Microsoft.EntityFrameworkCore;
 using MFAE.Jobs.EntityFrameworkCore;
+using MFAE.Jobs.XRoad;
 
 namespace MFAE.Jobs.Migrations.Seed.Host
 {
@@ -30,11 +31,16 @@ namespace MFAE.Jobs.Migrations.Seed.Host
 #pragma warning restore 162
 
             //Emailing
-            AddSettingIfNotExists(EmailSettingNames.DefaultFromAddress, "admin@mydomain.com", tenantId);
-            AddSettingIfNotExists(EmailSettingNames.DefaultFromDisplayName, "mydomain.com mailer", tenantId);
+            AddSettingIfNotExists(EmailSettingNames.DefaultFromAddress, "jobs@mfae.gov.ps", tenantId);
+            AddSettingIfNotExists(EmailSettingNames.DefaultFromDisplayName, "Ministry of Foreign Affairs and Expatriates", tenantId);
 
             //Languages
-            AddSettingIfNotExists(LocalizationSettingNames.DefaultLanguage, "en", tenantId);
+            AddSettingIfNotExists(LocalizationSettingNames.DefaultLanguage, "ar", tenantId);
+
+            //XRoad settings
+            AddSettingIfNotExists(XRoadSettingsConsts.XRoadURL, "http://10.1.6.6/cgi-bin/consumer_proxy", tenantId);
+            AddSettingIfNotExists(XRoadSettingsConsts.XRoadConsumer, "ps888005360", tenantId);
+            AddSettingIfNotExists(XRoadSettingsConsts.XRoadID, "MOFAE-App", tenantId);
         }
 
         private void AddSettingIfNotExists(string name, string value, int? tenantId = null)

@@ -1,0 +1,48 @@
+﻿@using MFAE.Jobs.XRoad;
+
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.XRoadServiceAttributeMappings
+@model CreateOrEditXRoadServiceAttributeMappingModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditXRoadServiceAttributeMapping")) : L("CreateNewXRoadServiceAttributeMapping")))
+
+<div class="modal-body">
+    <div id="XRoadServiceAttributeMappingInformationsTab">
+        <form name="XRoadServiceAttributeMappingInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.XRoadServiceAttributeMapping.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="attributeID">@L("XRoadServiceAttribute")</label>
+                @Html.DropDownList("attributeID", new SelectList(Model.XRoadServiceAttributeMappingXRoadServiceAttributeList,"Id","DisplayName", (Model.IsEditMode ? Model.XRoadServiceAttributeMapping.AttributeID.ToString() : "")),@L("SelectAXRoadServiceAttribute"), new { @class = "form-control" })
+            </div>
+
+            @{
+            var selectListServiceAttributeType = Html.GetEnumSelectList(typeof(XRoadAttributeTypeEnum));
+            foreach (var selectOption in selectListServiceAttributeType) { selectOption.Text = L("Enum_XRoadAttributeTypeEnum_" + selectOption.Value); }
+            }
+            <div class="my-3">
+                <label class="form-label" for="XRoadServiceAttributeMapping_ServiceAttributeType">@L("ServiceAttributeType")</label>
+                <select class="form-select m-input m-input--square" name="serviceAttributeType" id="XRoadServiceAttributeMapping_ServiceAttributeType" asp-for="@Model.XRoadServiceAttributeMapping.ServiceAttributeType" asp-items="@selectListServiceAttributeType">
+                </select>
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="XRoadServiceAttributeMapping_SourceValue">@L("SourceValue")</label>
+                <input class="form-control" id="XRoadServiceAttributeMapping_SourceValue" value="@Model.XRoadServiceAttributeMapping.SourceValue" type="text" name="sourceValue" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="XRoadServiceAttributeMapping_DestinationValue">@L("DestinationValue")</label>
+                <input class="form-control" id="XRoadServiceAttributeMapping_DestinationValue" value="@Model.XRoadServiceAttributeMapping.DestinationValue" type="text" name="destinationValue" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

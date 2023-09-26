@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using MFAE.Jobs.Authentication;
 using MFAE.Jobs.DashboardCustomization;
 using Newtonsoft.Json;
+using MFAE.Jobs.XRoad;
 
 namespace MFAE.Jobs.Configuration
 {
@@ -41,6 +42,7 @@ namespace MFAE.Jobs.Configuration
             return GetHostSettings().Union(GetTenantSettings()).Union(GetSharedSettings())
                 // theme settings
                 .Union(GetDefaultThemeSettings())
+                .Union(GetXRoadSettings())
                 .Union(GetTheme2Settings())
                 .Union(GetTheme3Settings())
                 .Union(GetTheme4Settings())
@@ -164,6 +166,23 @@ namespace MFAE.Jobs.Configuration
                 new SettingDefinition(AppSettings.Email.UseHostDefaultEmailSettings,
                     GetFromAppSettings(AppSettings.Email.UseHostDefaultEmailSettings,
                         JobsConsts.MultiTenancyEnabled ? "true" : "false"), scopes: SettingScopes.Tenant)
+            };
+        }
+
+        private IEnumerable<SettingDefinition> GetXRoadSettings()
+        {
+            return new[]
+            {
+                new SettingDefinition(XRoadSettingsConsts.XRoadConsumer,
+                    GetFromAppSettings(XRoadSettingsConsts.XRoadConsumer, ""),
+                    scopes: SettingScopes.Tenant | SettingScopes.Tenant),
+
+                new SettingDefinition(XRoadSettingsConsts.XRoadURL,
+                    GetFromAppSettings(XRoadSettingsConsts.XRoadURL, ""),
+                    scopes: SettingScopes.Tenant | SettingScopes.Tenant),
+                new SettingDefinition(XRoadSettingsConsts.XRoadID,
+                    GetFromAppSettings(XRoadSettingsConsts.XRoadID, ""),
+                    scopes: SettingScopes.Tenant | SettingScopes.Tenant),
             };
         }
 

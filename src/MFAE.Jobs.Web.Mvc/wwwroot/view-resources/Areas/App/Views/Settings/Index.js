@@ -373,7 +373,8 @@
           userManagement: userManagement,
           email: $('#EmailSmtpSettingsForm').serializeFormToObject(),
           ldap: $('#LdapSettingsForm').serializeFormToObject(),
-          billing: $('#BillingSettingsForm').serializeFormToObject(),
+            billing: $('#BillingSettingsForm').serializeFormToObject(),
+            xRoad: $('#XRoadSettingsForm').serializeFormToObject(),
           otherSettings: $('#OtherSettingsForm').serializeFormToObject(),
           security: {
             useDefaultPasswordComplexitySettings: $('#Setting_PasswordComplexity_UseDefaultSettings').is(':checked'),

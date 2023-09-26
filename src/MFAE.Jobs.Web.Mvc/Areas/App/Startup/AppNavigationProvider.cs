@@ -23,6 +23,46 @@ namespace MFAE.Jobs.Web.Areas.App.Startup
                     )
                 )
                 .AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.XRoadServiceErrors,
+                        L("XRoadServiceErrors"),
+                        url: "App/XRoadServiceErrors",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_XRoadServiceErrors)
+                    )
+                )
+                .AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.XRoadServiceAttributeMappings,
+                        L("XRoadServiceAttributeMappings"),
+                        url: "App/XRoadServiceAttributeMappings",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_XRoadServiceAttributeMappings)
+                    )
+                )
+                .AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.XRoadServiceAttributes,
+                        L("XRoadServiceAttributes"),
+                        url: "App/XRoadServiceAttributes",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_XRoadServiceAttributes)
+                    )
+                )
+                .AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.XRoadServices,
+                        L("XRoadServices"),
+                        url: "App/XRoadServices",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_XRoadServices)
+                    )
+                )
+                .AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.XRoadMappings,
+                        L("XRoadMappings"),
+                        url: "App/XRoadMappings",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_XRoadMappings)
+                    )
+                )
+                .AddItem(new MenuItemDefinition(
                         AppPageNames.Common.Localities,
                         L("Localities"),
                         url: "App/Localities",
