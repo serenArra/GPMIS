@@ -1,11 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="ar">
   <texts>
-	<text name="JOBS">نظام إدارة الوظائف</text>
-	<text name="JobsPhone">للحصول على خدمات الدعم أو المساعدة اتصل على هذا الرقم 00000000</text>
-	<text name="JobsMail">البريد الإلكتروني : jobs@mfae.gov.ps</text>
-	<text name="FooterRights">جميع الحقوق محفوظة- وزارة الخارجية والمغتربين © 2023</text>
-	<text name="HomePage">الرئيسية</text>
+
+    <text name="IsoNumeric">رقم ISO</text>
+    <text name="IsoAlpha">كود ISO</text>
+    <text name="NameAr">الاسم (بالعربية)</text>
+    <text name="NameEn">الاسم (بالإنجليزية)</text>
+    <text name="UniversalCode">الكود العالمي</text>
+    <text name="CountryName">الدولة</text>
+    <text name="View">العرض</text>
+    <text name="Country">الدولة</text>
+    <text name="Details">تفاصيل</text>
+    <text name="GovernorateName">المحافظة (بالعربية)</text>
+    <text name="Localities">المناطق</text>
+    <text name="Governorates">المحافظات</text>
+    <text name="Countries">الدول</text>
+
+    <text name="CountriesHeaderInfo">قائمة الدول</text>
+    <text name="CreateNewCountry">إنشاء دولة جديدة</text>
+    <text name="GovernoratesHeaderInfo">قائمة المحافظات</text>
+    <text name="CreateNewGovernorate">إنشاء محافظة جديدة</text>
+    <text name="LocalitiesHeaderInfo">قائمة المناطق</text>
+    <text name="CreateNewLocality">إنشاء منطقة جديدة</text>
+    <text name="SelectACountry">اختر دولة</text>
+    <text name="SelectAGovernorate">اختر محافظة</text>
+    <text name="Governorate">المحافظة</text>
+
+    <text name="Applicants">الطلبات</text>
+    <text name="ApplicantsHeaderInfo">قائمة الطلبات</text>
+    <text name="CreateNewApplicant">انشاء طلب جديد</text>
+    <text name="DocumentNo">رقم الطلب</text>
+    <text name="FatherName">اسم الاب</text>
+    <text name="GrandFatherName">اسم الجد</text>
+    <text name="FamilyName">اسم العائلة</text>
+    <text name="FirstNameEn">الاسم الاول (بالعربية)</text>
+    <text name="FatherNameEn">اسم الاب (بالعربية)</text>
+    <text name="GrandFatherNameEn">اسم الجد (بالعربية)</text>
+    <text name="FamilyNameEn">اسم العائلة (بالعربية)</text>
+    <text name="BirthDateRange">تاريخ الميلاد</text>
+    <text name="Mobile">رقم الهاتف المحمول</text>
+
+    <text name="NumberOfChildren">عدد الابناء</text>
+    <text name="IdentificationType">نوع الوثيقة</text>
+    <text name="MaritalStatus">الحالة الاجتماعية</text>
+    <text name="User">المستخدم</text>
+    <text name="ApplicantStatus">حالة الطلب</text>
+    <text name="Description">الملخص</text>
+    <text name="Locality">المنطقة</text>
+    <text name="MaritalStatusName">الحالة الاجتماعية</text>
+    <text name="ApplicantStatusDescription">وصف حالة الطلب</text>
+
+    <text name="LocalityName">المنطقة (بالعربية)</text>
+    <text name="IdentificationTypeName">نوع الوثيقة</text>
+    <text name="BirthDate">تاريخ الميلاد</text>
+    <text name="BirthPlace">مكان الولادة</text>
+    <text name="IsLocked">مقفل</text>
+    <text name="Gender">الجنس</text>
+
+
+    <text name="SelectAIdentificationType">اختر نوع الوثيقة</text>
+    <text name="SelectAMaritalStatus">اختر الحالة الاجتماعية</text>
+    <text name="SelectAApplicantStatus">اختر حالة الطلب</text>
+    <text name="SelectALocality">اختر المنطقة</text>
+    <text name="Enum_Gender_1">ذكر</text>
+    <text name="Enum_Gender_2">أنثى</text>
+    <text name="JOBS">نظام إدارة الوظائف</text>
+    <text name="JobsPhone">للحصول على خدمات الدعم أو المساعدة اتصل على هذا الرقم 00000000</text>
+    <text name="JobsMail">البريد الإلكتروني : jobs@mfae.gov.ps</text>
+    <text name="FooterRights">جميع الحقوق محفوظة- وزارة الخارجية والمغتربين © 2023</text>
+    <text name="HomePage">الرئيسية</text>
     <text name="AboutUs">من نحن</text>
     <text name="Administration">الإدارة</text>
     <text name="Roles">الأدوار</text>
@@ -818,7 +881,7 @@
     <text name="ThisNotificationDoesntBelongToYou">هذا الإشعار ليس لك.</text>
     <text name="CookieConsent_Message">يستخدم هذا الموقع ملفات تعريف الارتباط لضمان حصولك على أفضل تجربة.</text>
     <text name="CookieConsent_Dismiss">موافق!</text>
-     <text name="UiCustomization_Wide">واسع</text>
+    <text name="UiCustomization_Wide">واسع</text>
     <text name="MFAE.Jobs.Authorization.Roles.Role">دور</text>
     <text name="History">تاريخ</text>
     <text name="IsCookieConsentEnabled">تمكين: الموافقة على ملفات تعريف الارتباط</text>
@@ -1022,7 +1085,7 @@
     <text name="InputType">نوع الإدخال</text>
     <text name="Values">قيم</text>
     <text name="Value">قيمة</text>
-    <text name="SelectAPermission">حدد إذن</text> 
+    <text name="SelectAPermission">حدد إذن</text>
     <text name="EntityFullName">الاسم الكامل للكيان</text>
     <text name="SelectAnEntity">حدد كيان</text>
     <text name="EntityRowId">معرف صف الكيان - Row Id</text>
