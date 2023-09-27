@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+    <text name="SelectOption">Select Option ...</text>
     <text name="JOBS">Job Management System</text>
     <text name="JobsPhone">For support or assistance services, call this number 00000000</text>
     <text name="JobsMail">E-mail : jobs@mfae.gov.ps</text>
