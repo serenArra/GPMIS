@@ -1,0 +1,134 @@
+﻿@using MFAE.Jobs.Authorization
+@using MFAE.Jobs.Web.Areas.App.Models.ApplicantStudies
+@using MFAE.Jobs.Web.Areas.App.Startup
+@model ApplicantStudiesViewModel
+@{
+ViewBag.CurrentPageName = AppPageNames.Common.ApplicantStudies;
+}
+@section Scripts
+{
+<script abp-src="/view-resources/Areas/App/Views/ApplicantStudies/Index.js" asp-append-version="true"></script>
+}
+
+<abp-page-subheader title='@L("ApplicantStudies")' description='@L("ApplicantStudiesHeaderInfo")'>
+    <button id="ExportToExcelButton" class="btn btn-outline btn-outline-success btn-active-light-success me-1"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>
+
+    @if (IsGranted(AppPermissions.Pages_ApplicantStudies_Create))
+    {
+    <button id="CreateNewApplicantStudyButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewApplicantStudy")</button>
+    }
+</abp-page-subheader>
+
+<div class="@(await GetContainerClass())">
+    <div class="card card-custom gutter-b">
+        <div class="card-body">
+            <div class="form">
+                <div class="row align-items-center mb-4">
+                    <div class="col-xl-12">
+
+                        <div class="my-3">
+                            <div class="input-group">
+                                <input type="text" id="ApplicantStudiesTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <button id="GetApplicantStudiesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
+                <div class="col-md-12">
+
+                </div>
+
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="OtherSpecialtyFilterId">@L("OtherSpecialty")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="otherSpecialtyFilter" id="OtherSpecialtyFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="SecondSpecialtyFilterId">@L("SecondSpecialty")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="secondSpecialtyFilter" id="SecondSpecialtyFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="UniversityFilterId">@L("University")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="universityFilter" id="UniversityFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="MinGraduationYearFilterId">@L("MinMax") @L("GraduationYear")</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MinValue")" name="minGraduationYearFilter" id="MinGraduationYearFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MaxValue")" name="maxGraduationYearFilter" id="MaxGraduationYearFilterId" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="GraduationCountryFilterId">@L("GraduationCountry")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="graduationCountryFilter" id="GraduationCountryFilterId">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="GraduationRateNameFilterId">(@L("GraduationRate")) @L("Name")</label>
+                        <input type="text" class="form-control" name="graduationRateNameFilter" id="GraduationRateNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="AcademicDegreeNameFilterId">(@L("AcademicDegree")) @L("Name")</label>
+                        <input type="text" class="form-control" name="academicDegreeNameFilter" id="AcademicDegreeNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="SpecialtiesNameFilterId">(@L("Specialties")) @L("Name")</label>
+                        <input type="text" class="form-control" name="specialtiesNameFilter" id="SpecialtiesNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="ApplicantFirstNameFilterId">(@L("Applicant")) @L("FirstName")</label>
+                        <input type="text" class="form-control" name="applicantFirstNameFilter" id="ApplicantFirstNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-12 mt-5">
+                    <button class="btn btn-secondary btn-sm" id="btn-reset-filters">Reset</button>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-xl-12">
+                    <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                    <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="ApplicantStudiesTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            <th>@L("Actions")</th>
+                            <th>@L("OtherSpecialty")</th>
+                            <th>@L("SecondSpecialty")</th>
+                            <th>@L("University")</th>
+                            <th>@L("GraduationYear")</th>
+                            <th>@L("GraduationCountry")</th>
+                            <th>@L("GraduationRateName")</th>
+                            <th>@L("AcademicDegreeName")</th>
+                            <th>@L("SpecialtiesName")</th>
+                            <th>@L("ApplicantFirstName")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+﻿@using MFAE.Jobs.Attachments;
+@using MFAE.Jobs.Attachments;
+
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.AttachmentTypes
+@model CreateOrEditAttachmentTypeModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditAttachmentType")) : L("CreateNewAttachmentType")))
+
+<div class="modal-body">
+    <div id="AttachmentTypeInformationsTab">
+        <form name="AttachmentTypeInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.AttachmentType.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="entityTypeId">@L("AttachmentEntityType")</label>
+                @Html.DropDownList("entityTypeId", new SelectList(Model.AttachmentTypeAttachmentEntityTypeList,"Id","DisplayName", (Model.IsEditMode ? Model.AttachmentType.EntityTypeId.ToString() : "")),@L("SelectAAttachmentEntityType"), new { @class = "form-control" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="groupId">@L("AttachmentTypeGroup")</label>
+                @Html.DropDownList("groupId", new SelectList(Model.AttachmentTypeAttachmentTypeGroupList,"Id","DisplayName", (Model.IsEditMode ? Model.AttachmentType.GroupId.ToString() : "")),@L("SelectAAttachmentTypeGroup"), new { @class = "form-control" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentType_ArName">@L("ArName")</label>
+                <input class="form-control" id="AttachmentType_ArName" value="@Model.AttachmentType.ArName" type="text" name="arName" required maxlength="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxArNameLength" minlength="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinArNameLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentType_EnName">@L("EnName")</label>
+                <input class="form-control" id="AttachmentType_EnName" value="@Model.AttachmentType.EnName" type="text" name="enName" required maxlength="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxEnNameLength" minlength="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinEnNameLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentType_MaxSizeMB">@L("MaxSizeMB")</label>
+                <input class="form-control m-input" id="AttachmentType_MaxSizeMB" value="@Model.AttachmentType.MaxSizeMB.ToString(CultureInfo.InvariantCulture)" type="number" name="maxSizeMB" min="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinMaxSizeMBValue" max="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxMaxSizeMBValue" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentType_AllowedExtensions">@L("AllowedExtensions")</label>
+                <input class="form-control" id="AttachmentType_AllowedExtensions" value="@Model.AttachmentType.AllowedExtensions" type="text" name="allowedExtensions" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentType_MaxAttachments">@L("MaxAttachments")</label>
+                <input class="form-control m-input" id="AttachmentType_MaxAttachments" value="@Model.AttachmentType.MaxAttachments.ToString(CultureInfo.InvariantCulture)" type="number" name="maxAttachments" min="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinMaxAttachmentsValue" max="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxMaxAttachmentsValue" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentType_MinRequiredAttachments">@L("MinRequiredAttachments")</label>
+                <input class="form-control m-input" id="AttachmentType_MinRequiredAttachments" value="@Model.AttachmentType.MinRequiredAttachments.ToString(CultureInfo.InvariantCulture)" type="number" name="minRequiredAttachments" min="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinMinRequiredAttachmentsValue" max="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxMinRequiredAttachmentsValue" />
+            </div>
+
+            @{
+            var selectListCategory = Html.GetEnumSelectList(typeof(AttachmentTypeCategories));
+            foreach (var selectOption in selectListCategory) { selectOption.Text = L("Enum_AttachmentTypeCategories_" + selectOption.Value); }
+            }
+            <div class="my-3">
+                <label class="form-label" for="AttachmentType_Category">@L("Category")</label>
+                <select class="form-select m-input m-input--square" name="category" id="AttachmentType_Category" asp-for="@Model.AttachmentType.Category" asp-items="@selectListCategory">
+                </select>
+            </div>
+
+            @{
+            var selectListPrivacyFlag = Html.GetEnumSelectList(typeof(PrivacyFlag));
+            foreach (var selectOption in selectListPrivacyFlag) { selectOption.Text = L("Enum_PrivacyFlag_" + selectOption.Value); }
+            }
+            <div class="my-3">
+                <label class="form-label" for="AttachmentType_PrivacyFlag">@L("PrivacyFlag")</label>
+                <select class="form-select m-input m-input--square" name="privacyFlag" id="AttachmentType_PrivacyFlag" asp-for="@Model.AttachmentType.PrivacyFlag" asp-items="@selectListPrivacyFlag">
+                </select>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

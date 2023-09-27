@@ -23,6 +23,7 @@ using Abp.Localization;
 using Abp.Runtime.Session;
 using Abp.UI;
 using MFAE.Jobs.MultiTenancy.Payments;
+using MFAE.Jobs.ApplicationForm;
 
 namespace MFAE.Jobs.MultiTenancy
 {
@@ -93,7 +94,9 @@ namespace MFAE.Jobs.MultiTenancy
             bool isInTrialPeriod,
             string emailActivationLink,
             string adminName = null,
-            string adminSurname = null
+            string adminSurname = null,
+            int? identificationTypeId = null,
+            string documentNo = null
         )
         {
             int newTenantId;
@@ -144,7 +147,7 @@ namespace MFAE.Jobs.MultiTenancy
                     CheckErrors(await _roleManager.UpdateAsync(userRole));
 
                     //Create admin user for the tenant
-                    var adminUser = User.CreateTenantAdminUser(tenant.Id, adminEmailAddress, adminName, adminSurname);
+                    var adminUser = User.CreateTenantAdminUser(tenant.Id, adminEmailAddress, adminName, adminSurname , identificationTypeId , documentNo);
                     adminUser.ShouldChangePasswordOnNextLogin = shouldChangePasswordOnNextLogin;
                     adminUser.IsActive = true;
 

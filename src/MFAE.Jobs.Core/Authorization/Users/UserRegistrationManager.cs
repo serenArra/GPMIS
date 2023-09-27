@@ -15,6 +15,12 @@ using MFAE.Jobs.Configuration;
 using MFAE.Jobs.Debugging;
 using MFAE.Jobs.MultiTenancy;
 using MFAE.Jobs.Notifications;
+using Abp.Authorization;
+using System.Globalization;
+using Abp.Domain.Repositories;
+using MFAE.Jobs.ApplicationForm;
+using MFAE.Jobs.Authorization.Users.Dto;
+using Microsoft.EntityFrameworkCore;
 
 namespace MFAE.Jobs.Authorization.Users
 {
@@ -30,9 +36,11 @@ namespace MFAE.Jobs.Authorization.Users
         private readonly INotificationSubscriptionManager _notificationSubscriptionManager;
         private readonly IAppNotifier _appNotifier;
         private readonly IUserPolicy _userPolicy;
-        
+        private readonly IRepository<IdentificationType> _lookup_identificationTypeRepository;
+
 
         public UserRegistrationManager(
+            IRepository<IdentificationType> lookup_identificationTypeRepository,
             TenantManager tenantManager,
             UserManager userManager,
             RoleManager roleManager,
@@ -41,6 +49,7 @@ namespace MFAE.Jobs.Authorization.Users
             IAppNotifier appNotifier,
             IUserPolicy userPolicy)
         {
+            _lookup_identificationTypeRepository = lookup_identificationTypeRepository;
             _tenantManager = tenantManager;
             _userManager = userManager;
             _roleManager = roleManager;
@@ -53,7 +62,7 @@ namespace MFAE.Jobs.Authorization.Users
             AsyncQueryableExecuter = NullAsyncQueryableExecuter.Instance;
         }
 
-        public async Task<User> RegisterAsync(string name, string surname, string emailAddress, string userName, string plainPassword, bool isEmailConfirmed, string emailActivationLink)
+        public async Task<User> RegisterAsync(int? identificationTypeId, string documentNo , string name, string surname, string emailAddress, string userName, string plainPassword, bool isEmailConfirmed, string emailActivationLink)
         {
             CheckForTenant();
             CheckSelfRegistrationIsEnabled();
@@ -65,6 +74,8 @@ namespace MFAE.Jobs.Authorization.Users
 
             var user = new User
             {
+                IdentificationTypeId = identificationTypeId,
+                DocumentNo = documentNo,
                 TenantId = tenant.Id,
                 Name = name,
                 Surname = surname,
@@ -101,6 +112,18 @@ namespace MFAE.Jobs.Authorization.Users
             return user;
         }
 
+     
+        public async Task<List<UserIdentificationTypeLookupTableDto>> GetAllIdentificationTypeForTableDropdown()
+        {
+            return await _lookup_identificationTypeRepository.GetAll().OrderBy(e => CultureInfo.CurrentUICulture.Name == "ar" ? e.NameAr : e.NameEn)
+               .Select(identificationType => new UserIdentificationTypeLookupTableDto
+               {
+                   Id = identificationType.Id,
+                   NameAr = identificationType == null || identificationType.NameAr == null ? "" : identificationType.NameAr.ToString(),
+                   NameEn = identificationType == null || identificationType.NameEn == null ? "" : identificationType.NameEn.ToString(),
+                   IsDefault = identificationType.IsDefault
+               }).ToListAsync();
+        }
         private void CheckForTenant()
         {
             if (!AbpSession.TenantId.HasValue)

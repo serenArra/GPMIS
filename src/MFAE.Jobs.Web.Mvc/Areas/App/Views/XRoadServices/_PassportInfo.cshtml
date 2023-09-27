@@ -1,0 +1,67 @@
+﻿@using MFAE.Jobs.ApplicationForm.Enums
+@using MFAE.Jobs.XRoad.Dtos
+@model PassportInfoDto
+
+
+
+<div class="card">
+    <div class="card-header py-1" id="headingOne2">
+        <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne2">
+            <i class="flaticon2-file-1"></i>
+            <h3 class="my-1 font-weight-bold text-dark"> @L("PassportInformation")</h3>
+        </div>
+    </div>
+   
+    <div id="collapseOne2" class="collapse" data-parent="#mainAccordion">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("IdentificationDocumentNo") :</h6>
+                    @Model.IDNo
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("PassportNo") :</h6>
+                    @Model.PassportNo
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("IssueDate") :</h6>
+                    @{var issueDateVal = Model.IssueDate == null ? "" : Model.IssueDate.Value.ToShortDateString();}
+                    @issueDateVal
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("ExpireDate") :</h6>
+                    @{var expireDateVal = Model.ExpireDate == null ? "" : Model.ExpireDate.Value.ToShortDateString();}
+                    @expireDateVal
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("NameAr") :</h6>
+                    @Model.FullName
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("NameEn") :</h6>
+                    @Model.FullNameEn
+                </div>
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("MotherName") :</h6>
+                    @Model.MotherName
+                </div>
+
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("DateOfBirth") :</h6>
+                    @{var birthDateVal = Model.BirthDate == null ? "" : Model.BirthDate.Value.ToShortDateString();}
+                    @birthDateVal
+                </div>
+
+                <div class="col-3 mb-3 mb-10">
+                    <h6 class="text-muted">@L("Gender") :</h6>                   
+
+
+                    @{ var gender = L("Enum_Gender_" + Model.SexId); }
+                    @gender
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

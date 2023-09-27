@@ -57,7 +57,7 @@ namespace MFAE.Jobs.Timing
 
         public List<NameValueDto> GetWindowsTimezones()
         {
-            return TZConvert.KnownWindowsTimeZoneIds.OrderBy(tz => tz)
+            return TZConvert.KnownWindowsTimeZoneIds.Where(e=> e != "South Sudan Standard Time").OrderBy(tz => tz)
                 .Select(tz => new NameValueDto
                 {
                     Value = tz,

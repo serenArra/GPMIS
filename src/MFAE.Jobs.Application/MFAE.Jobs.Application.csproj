@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="Abp.EntityFrameworkCore.EFPlus" Version="8.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.NodeServices" Version="3.1.32" />
     <PackageReference Include="MiniExcel" Version="1.30.2" />
   </ItemGroup>
 

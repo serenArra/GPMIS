@@ -1,0 +1,31 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.XRoadServices
+@model InformationBankViewModel
+
+
+<div class="accordion accordion-light   accordion-toggle-arrow" id="mainAccordion">
+    <input type="hidden" id="InformationBank_identificationTypeId" value="@Model.IdentificationTypeId" />
+    <input type="hidden" id="InformationBank_IdentificationDocumentNo" value="@Model.IdentificationDocumentNo" />
+
+
+    @if (Model.IsCitizensListWithCodesEnabled)
+    {
+
+        <div class="CitizensListWithCodesSection"></div>
+
+    }
+
+    @if (Model.IsPassportInfoEnabled)
+    {
+
+        <div class="PassportInfoSection"></div>
+
+    }
+
+    @if (Model.IsCitizenPictureEnabled)
+    {
+        <div class="CitizenPictureSection"></div>
+    }
+</div>

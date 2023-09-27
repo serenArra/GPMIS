@@ -4,6 +4,31 @@
     {
         public static class Common
         {
+            public const string XRoadServiceErrors = "XRoad.XRoadServiceErrors";
+            public const string XRoadServiceAttributeMappings = "XRoad.XRoadServiceAttributeMappings";
+            public const string XRoadServiceAttributes = "XRoad.XRoadServiceAttributes";
+            public const string XRoadServices = "XRoad.XRoadServices";
+            public const string XRoadMappings = "XRoad.XRoadMappings";
+            public const string Localities = "Location.Localities";
+            public const string Governorates = "Location.Governorates";
+            public const string Countries = "Location.Countries";
+            public const string ApplicantStatuses = "ApplicationForm.ApplicantStatuses";
+            public const string ConversationRates = "ApplicationForm.ConversationRates";
+            public const string ApplicantLanguages = "ApplicationForm.ApplicantLanguages";
+            public const string ApplicantTrainings = "ApplicationForm.ApplicantTrainings";
+            public const string ApplicantStudies = "ApplicationForm.ApplicantStudies";
+            public const string MaritalStatuses = "ApplicationForm.MaritalStatuses";
+            public const string IdentificationTypes = "ApplicationForm.IdentificationTypes";
+            public const string Applicants = "ApplicationForm.Applicants";
+            public const string Conversations = "ApplicationForm.Conversations";
+            public const string GraduationRates = "ApplicationForm.GraduationRates";
+            public const string Specialtieses = "ApplicationForm.Specialtieses";
+            public const string AcademicDegrees = "ApplicationForm.AcademicDegrees";
+            public const string AppLanguages = "ApplicationForm.Languages";
+            public const string AttachmentFiles = "Attachments.AttachmentFiles";
+            public const string AttachmentTypes = "Attachments.AttachmentTypes";
+            public const string AttachmentTypeGroups = "Attachments.AttachmentTypeGroups";
+            public const string AttachmentEntityTypes = "Attachments.AttachmentEntityTypes";
             public const string Administration = "Administration";
             public const string Roles = "Administration.Roles";
             public const string Users = "Administration.Users";
@@ -18,6 +43,8 @@
             public const string Notifications = "Administration.Notifications";
             public const string Notifications_Inbox = "Administration.Notifications.Inbox";
             public const string Notifications_MassNotifications = "Administration.Notifications.MassNotifications";
+            public const string Citizenship_Verification = "XRoad.Citizenship_Verification";
+            public const string InformationBankPage = "XRoad.InformationBankPage";
         }
 
         public static class Host

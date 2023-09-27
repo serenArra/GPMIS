@@ -1,0 +1,29 @@
+﻿@using MFAE.Jobs.XRoad.Dtos
+@model CitizenPhotoDto
+
+
+
+<div class="card">
+    <div class="card-header py-1" id="headingOne2">
+        <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne4">
+            <i class="flaticon2-file-1"></i>
+            <h3 class="my-1 font-weight-bold text-dark"> @L("CitizenPicture")</h3>
+        </div>
+    </div>
+    <div id="collapseOne4" class="collapse" data-parent="#mainAccordion">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 mb-3 mb-10">
+                    <h6 class="text-muted">@L("Picture") :</h6>
+
+
+                    <img src="data:image/png;base64,@Model.CitizenPicture">
+
+
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

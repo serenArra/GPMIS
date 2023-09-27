@@ -1,0 +1,37 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.Conversations
+@model CreateOrEditConversationModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditConversation")) : L("CreateNewConversation")))
+
+<div class="modal-body">
+    <div id="ConversationInformationsTab">
+        <form name="ConversationInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.Conversation.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="Conversation_NameAr">@L("NameAr")</label>
+                <input class="form-control" id="Conversation_NameAr" value="@Model.Conversation.NameAr" type="text" name="nameAr" required maxlength="@MFAE.Jobs.ApplicationForm.ConversationConsts.MaxNameArLength" minlength="@MFAE.Jobs.ApplicationForm.ConversationConsts.MinNameArLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Conversation_NameEn">@L("NameEn")</label>
+                <input class="form-control" id="Conversation_NameEn" value="@Model.Conversation.NameEn" type="text" name="nameEn" required maxlength="@MFAE.Jobs.ApplicationForm.ConversationConsts.MaxNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.ConversationConsts.MinNameEnLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Conversation_IsActive">@L("IsActive")</label>
+                <input class="form-control" id="Conversation_IsActive" value="@Model.Conversation.IsActive" type="text" name="isActive" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

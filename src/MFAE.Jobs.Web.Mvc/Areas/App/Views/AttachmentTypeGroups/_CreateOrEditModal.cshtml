@@ -1,0 +1,32 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.AttachmentTypeGroups
+@model CreateOrEditAttachmentTypeGroupModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditAttachmentTypeGroup")) : L("CreateNewAttachmentTypeGroup")))
+
+<div class="modal-body">
+    <div id="AttachmentTypeGroupInformationsTab">
+        <form name="AttachmentTypeGroupInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.AttachmentTypeGroup.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentTypeGroup_ArName">@L("ArName")</label>
+                <input class="form-control" id="AttachmentTypeGroup_ArName" value="@Model.AttachmentTypeGroup.ArName" type="text" name="arName" required maxlength="@MFAE.Jobs.Attachments.AttachmentTypeGroupConsts.MaxArNameLength" minlength="@MFAE.Jobs.Attachments.AttachmentTypeGroupConsts.MinArNameLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentTypeGroup_EnName">@L("EnName")</label>
+                <input class="form-control" id="AttachmentTypeGroup_EnName" value="@Model.AttachmentTypeGroup.EnName" type="text" name="enName" required maxlength="@MFAE.Jobs.Attachments.AttachmentTypeGroupConsts.MaxEnNameLength" minlength="@MFAE.Jobs.Attachments.AttachmentTypeGroupConsts.MinEnNameLength" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

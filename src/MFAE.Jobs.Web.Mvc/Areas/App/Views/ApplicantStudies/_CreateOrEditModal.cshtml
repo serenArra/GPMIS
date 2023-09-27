@@ -1,0 +1,67 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.ApplicantStudies
+@model CreateOrEditApplicantStudyModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditApplicantStudy")) : L("CreateNewApplicantStudy")))
+
+<div class="modal-body">
+    <div id="ApplicantStudyInformationsTab">
+        <form name="ApplicantStudyInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.ApplicantStudy.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="graduationRateId">@L("GraduationRate")</label>
+                @Html.DropDownList("graduationRateId", new SelectList(Model.ApplicantStudyGraduationRateList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantStudy.GraduationRateId.ToString() : "")),@L("SelectAGraduationRate"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="academicDegreeId">@L("AcademicDegree")</label>
+                @Html.DropDownList("academicDegreeId", new SelectList(Model.ApplicantStudyAcademicDegreeList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantStudy.AcademicDegreeId.ToString() : "")),@L("SelectAAcademicDegree"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="specialtiesId">@L("Specialties")</label>
+                @Html.DropDownList("specialtiesId", new SelectList(Model.ApplicantStudySpecialtiesList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantStudy.SpecialtiesId.ToString() : "")),@L("SelectASpecialties"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="applicantId">@L("Applicant")</label>
+                @Html.DropDownList("applicantId", new SelectList(Model.ApplicantStudyApplicantList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantStudy.ApplicantId.ToString() : "")),@L("SelectAApplicant"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="ApplicantStudy_OtherSpecialty">@L("OtherSpecialty")</label>
+                <input class="form-control" id="ApplicantStudy_OtherSpecialty" value="@Model.ApplicantStudy.OtherSpecialty" type="text" name="otherSpecialty" maxlength="@MFAE.Jobs.ApplicationForm.ApplicantStudyConsts.MaxOtherSpecialtyLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantStudyConsts.MinOtherSpecialtyLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="ApplicantStudy_SecondSpecialty">@L("SecondSpecialty")</label>
+                <input class="form-control" id="ApplicantStudy_SecondSpecialty" value="@Model.ApplicantStudy.SecondSpecialty" type="text" name="secondSpecialty" maxlength="@MFAE.Jobs.ApplicationForm.ApplicantStudyConsts.MaxSecondSpecialtyLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantStudyConsts.MinSecondSpecialtyLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="ApplicantStudy_University">@L("University")</label>
+                <input class="form-control" id="ApplicantStudy_University" value="@Model.ApplicantStudy.University" type="text" name="university" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantStudyConsts.MaxUniversityLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantStudyConsts.MinUniversityLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="ApplicantStudy_GraduationYear">@L("GraduationYear")</label>
+                <input class="form-control m-input" id="ApplicantStudy_GraduationYear" value="@Model.ApplicantStudy.GraduationYear.ToString(CultureInfo.InvariantCulture)" type="number" name="graduationYear" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="ApplicantStudy_GraduationCountry">@L("GraduationCountry")</label>
+                <input class="form-control" id="ApplicantStudy_GraduationCountry" value="@Model.ApplicantStudy.GraduationCountry" type="text" name="graduationCountry" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantStudyConsts.MaxGraduationCountryLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantStudyConsts.MinGraduationCountryLength" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

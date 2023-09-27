@@ -1,0 +1,235 @@
+﻿@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.XRoadServices
+@using MFAE.Jobs.Web.Areas.App.Startup
+@using MFAE.Jobs.XRoad
+
+@model ViewInformationBankPageViewModel
+
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.Citizenship_Verification;
+}
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/App/Views/XRoadServices/Citizenship_Verification.js" asp-append-version="true"></script>
+}
+
+@{
+    var defaultIdType = Model.IdentificationTypeList.FirstOrDefault(u => u.IsDefault.HasValue ? u.IsDefault.Value : false);
+
+}
+<div class="content d-flex flex-column flex-column-fluid">
+    <abp-page-subheader title="@L("Citizenship_Verification")">
+        
+    </abp-page-subheader>
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">          
+            <div class="card-body">
+                <form name="InformationBankForm" role="form" novalidate class="form-validation" >
+                    <input type="hidden" id="identificationTypeId" value="2" />
+                        <div class="row">
+                            <div class="col-xl-2">
+                                <label for="identificationTypeId">@L("Enum_DocumentType_1") <span class="text-danger">*</span></label>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group fv-plugins-icon-container">
+                                    <div class="input-group">
+                                        <input class="form-control form-control-solid" required id="Person_IdentificationDocumentNo" value="@Model.IdentificationDocumentNo" type="text"
+                                               name="identificationDocumentNo" />
+
+                                        <div class="input-group-addon" id="fetchButton">
+                                            <button class="btn btn-success" id="btnFetchPersonInformationBank">@L("Fetch")</button>
+                                        </div>
+                                    </div>
+                                    <div class="fv-plugins-message-container"></div>
+                                </div>
+                            </div>
+                        </div>
+                </form>
+                <div class="informationBankView d-none">
+                    <div class="card card-custom gutter-b">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-9"  style="background-color: #F3F6F9">
+                                    <div class="row">
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-sm">
+                                                @L("FullName")<br/>
+                                                FULL NAME
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="FullnameAr">
+                                                
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="FullnameEn">
+                                                
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-sm">
+                                                @L("MotherName")
+                                                <br />
+                                                MOTHER NAME
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="MothernameAr">
+                                                
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light " style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="MothernameEn">
+                                                
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-lg">
+                                                @L("IDNum")
+                                                <br />
+                                                ID NO
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="IDnumAr">
+                                                
+                                            </span>
+                                        </div>
+                                        <div class="col-3  bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="IDnumEn">
+                                                
+                                            </span>
+                                        </div>
+                                    </div>  
+                                    <div class="row">
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-lg">
+                                                @L("DateOfBirth")
+                                                <br />
+                                                DATE OF BIRTH
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="DateofDirthAr">
+                                                
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="DateofDirthEn">
+                                                
+                                            </span>
+                                        </div>
+                                    </div>    
+                                    <div class="row">
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-lg">
+                                                @L("AddressBirthPlaceHeaderInfo")
+                                                <br />
+                                               PLACE OF BIRTH
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="PirthPlaceAR">
+                                                
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="PirthPlaceEn">
+                                                
+                                            </span>
+                                        </div>
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-lg">
+                                                @L("Gender")
+                                                <br/>
+                                                SEX
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="GenderAr">
+                                                <span id="Male" class="d-none" >@L("Enum_Gender_1")</span>
+                                                <span id="FeMale" class="d-none" >@L("Enum_Gender_2")</span>
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="GenderEn">
+                                                <span id="MaleEN" class="d-none">MALE</span>
+                                                <span id="FeMaleEN" class="d-none">FEMALE</span>
+                                            </span>
+                                        </div>
+                                    </div>  
+                                    <div class="row">
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-lg">
+                                                @L("ExpireDate")
+                                                <br/>
+                                                DATE OF EXPIRY
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="ExpiryAr">
+                                                
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="ExpiryEn">
+                                                
+                                            </span>
+                                        </div>
+                                    </div>  
+                                    <div class="row">
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-lg">
+                                                @L("Occupation")
+                                                <br />
+                                                PROFESSIONS
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="ProfessionsAr">
+                                                
+                                            </span>
+                                        </div>
+                                        <div class="col-3 bg-light" style="display: inline-block;">
+                                            <span class="nav-text font-size-h5-lg" id="ProfessionsEn">
+                                                
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-xl-3"  style="background-color: #F3F6F9">
+                                    <div class="row">
+                                        <span class="nav-text font-size-h5-lg" >
+                                            @L("PassportNo");
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <span class="nav-text font-size-h5-lg" id="PassportNum">
+
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="flex-shrink-0 mr-7 mt-lg-0 mt-3">
+                                            <img src="@Url.Content("~/Common/Images/default-profile-picture.png")" id="citizenPicture" width="150" height="400" class="profilepic__image img-thumbnail img-rounded user-edit-dialog-profile-image" />
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

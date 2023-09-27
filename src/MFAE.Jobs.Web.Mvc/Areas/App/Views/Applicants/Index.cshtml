@@ -1,0 +1,253 @@
+﻿@using MFAE.Jobs.Authorization
+@using MFAE.Jobs.Web.Areas.App.Models.Applicants
+@using MFAE.Jobs.Web.Areas.App.Startup
+@model ApplicantsViewModel
+@{
+ViewBag.CurrentPageName = AppPageNames.Common.Applicants;
+}
+@section Scripts
+{
+<script abp-src="/view-resources/Areas/App/Views/Applicants/Index.js" asp-append-version="true"></script>
+}
+
+<abp-page-subheader title='@L("Applicants")' description='@L("ApplicantsHeaderInfo")'>
+    <button id="ExportToExcelButton" class="btn btn-outline btn-outline-success btn-active-light-success me-1"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>
+
+    @if (IsGranted(AppPermissions.Pages_Applicants_Create))
+    {
+    <button id="CreateNewApplicantButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewApplicant")</button>
+    }
+</abp-page-subheader>
+
+<div class="@(await GetContainerClass())">
+    <div class="card card-custom gutter-b">
+        <div class="card-body">
+            <div class="form">
+                <div class="row align-items-center mb-4">
+                    <div class="col-xl-12">
+
+                        <div class="my-3">
+                            <div class="input-group">
+                                <input type="text" id="ApplicantsTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <button id="GetApplicantsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
+                <div class="col-md-12">
+
+                </div>
+
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="DocumentNoFilterId">@L("DocumentNo")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="documentNoFilter" id="DocumentNoFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="FirstNameFilterId">@L("FirstName")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="firstNameFilter" id="FirstNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="FatherNameFilterId">@L("FatherName")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="fatherNameFilter" id="FatherNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="GrandFatherNameFilterId">@L("GrandFatherName")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="grandFatherNameFilter" id="GrandFatherNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="FamilyNameFilterId">@L("FamilyName")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="familyNameFilter" id="FamilyNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="FirstNameEnFilterId">@L("FirstNameEn")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="firstNameEnFilter" id="FirstNameEnFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="FatherNameEnFilterId">@L("FatherNameEn")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="fatherNameEnFilter" id="FatherNameEnFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="GrandFatherNameEnFilterId">@L("GrandFatherNameEn")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="grandFatherNameEnFilter" id="GrandFatherNameEnFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="FamilyNameEnFilterId">@L("FamilyNameEn")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="familyNameEnFilter" id="FamilyNameEnFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="MinBirthDateFilterId">@L("BirthDateRange")</label>
+                        <div class="input-group">
+                            <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MinBirthDateFilterId">
+                            <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                            <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxBirthDateFilterId">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="BirthPlaceFilterId">@L("BirthPlace")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="birthPlaceFilter" id="BirthPlaceFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="MinNumberOfChildrenFilterId">@L("MinMax") @L("NumberOfChildren")</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MinValue")" name="minNumberOfChildrenFilter" id="MinNumberOfChildrenFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MaxValue")" name="maxNumberOfChildrenFilter" id="MaxNumberOfChildrenFilterId" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="AddressFilterId">@L("Address")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="addressFilter" id="AddressFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="MobileFilterId">@L("Mobile")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="mobileFilter" id="MobileFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="EmailFilterId">@L("Email")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="emailFilter" id="EmailFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="IsLockedFilterId">@L("IsLocked")</label>
+                        <select class="form-select reload-on-change" name="IsLockedFilter" id="IsLockedFilterId">
+                            <option value="-1">@L("All")</option>
+                            <option value="0">@L("False")</option>
+                            <option value="1">@L("True")</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="GenderFilterId">@L("Gender")</label>
+                        <select class="form-select reload-on-change" name="GenderFilter" id="GenderFilterId">
+                            <option value="-1">@L("All")</option>
+                            <option value="1">@L("Enum_Gender_1")</option>
+
+                            <option value="2">@L("Enum_Gender_2")</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="IdentificationTypeNameFilterId">(@L("IdentificationType")) @L("Name")</label>
+                        <input type="text" class="form-control" name="identificationTypeNameFilter" id="IdentificationTypeNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="MaritalStatusNameFilterId">(@L("MaritalStatus")) @L("Name")</label>
+                        <input type="text" class="form-control" name="maritalStatusNameFilter" id="MaritalStatusNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="UserNameFilterId">(@L("User")) @L("Name")</label>
+                        <input type="text" class="form-control" name="userNameFilter" id="UserNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="ApplicantStatusDescriptionFilterId">(@L("ApplicantStatus")) @L("Description")</label>
+                        <input type="text" class="form-control" name="applicantStatusDescriptionFilter" id="ApplicantStatusDescriptionFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="CountryNameFilterId">(@L("Country")) @L("Name")</label>
+                        <input type="text" class="form-control" name="countryNameFilter" id="CountryNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="GovernorateNameFilterId">(@L("Governorate")) @L("Name")</label>
+                        <input type="text" class="form-control" name="governorateNameFilter" id="GovernorateNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="LocalityNameFilterId">(@L("Locality")) @L("Name")</label>
+                        <input type="text" class="form-control" name="localityNameFilter" id="LocalityNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-12 mt-5">
+                    <button class="btn btn-secondary btn-sm" id="btn-reset-filters">Reset</button>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-xl-12">
+                    <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                    <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="ApplicantsTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            <th>@L("Actions")</th>
+                            <th>@L("DocumentNo")</th>
+                            <th>@L("FirstName")</th>
+                            <th>@L("FatherName")</th>
+                            <th>@L("GrandFatherName")</th>
+                            <th>@L("FamilyName")</th>
+                            <th>@L("FirstNameEn")</th>
+                            <th>@L("FatherNameEn")</th>
+                            <th>@L("GrandFatherNameEn")</th>
+                            <th>@L("FamilyNameEn")</th>
+                            <th>@L("BirthDate")</th>
+                            <th>@L("BirthPlace")</th>
+                            <th>@L("NumberOfChildren")</th>
+                            <th>@L("Address")</th>
+                            <th>@L("Mobile")</th>
+                            <th>@L("Email")</th>
+                            <th>@L("IsLocked")</th>
+                            <th>@L("Gender")</th>
+                            <th>@L("IdentificationTypeName")</th>
+                            <th>@L("MaritalStatusName")</th>
+                            <th>@L("UserName")</th>
+                            <th>@L("ApplicantStatusDescription")</th>
+                            <th>@L("CountryName")</th>
+                            <th>@L("GovernorateName")</th>
+                            <th>@L("LocalityName")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

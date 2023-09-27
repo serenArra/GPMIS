@@ -1,0 +1,30 @@
+﻿
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.AcademicDegrees
+@model AcademicDegreeViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="AcademicDegreeInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("NameAr") :</h6>
+                @Model.AcademicDegree.NameAr
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("NameEn") :</h6>
+                @Model.AcademicDegree.NameEn
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("IsActive") :</h6>
+                @Model.AcademicDegree.IsActive
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

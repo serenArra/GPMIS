@@ -1,0 +1,115 @@
+﻿
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.Applicants
+@model ApplicantViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="ApplicantInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("DocumentNo") :</h6>
+                @Model.Applicant.DocumentNo
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("FirstName") :</h6>
+                @Model.Applicant.FirstName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("FatherName") :</h6>
+                @Model.Applicant.FatherName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("GrandFatherName") :</h6>
+                @Model.Applicant.GrandFatherName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("FamilyName") :</h6>
+                @Model.Applicant.FamilyName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("FirstNameEn") :</h6>
+                @Model.Applicant.FirstNameEn
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("FatherNameEn") :</h6>
+                @Model.Applicant.FatherNameEn
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("GrandFatherNameEn") :</h6>
+                @Model.Applicant.GrandFatherNameEn
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("FamilyNameEn") :</h6>
+                @Model.Applicant.FamilyNameEn
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("BirthDate") :</h6>
+                @Model.Applicant.BirthDate
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("BirthPlace") :</h6>
+                @Model.Applicant.BirthPlace
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("NumberOfChildren") :</h6>
+                @Model.Applicant.NumberOfChildren
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Address") :</h6>
+                @Model.Applicant.Address
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Mobile") :</h6>
+                @Model.Applicant.Mobile
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Email") :</h6>
+                @Model.Applicant.Email
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("IsLocked") :</h6>
+                @Model.Applicant.IsLocked
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Gender") :</h6>
+                @L("Enum_Gender_" + (int)Model.Applicant.Gender)
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>(@L("IdentificationType")) @L("Name") :</h6>
+                @Model.IdentificationTypeName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("MaritalStatus")) @L("Name") :</h6>
+                @Model.MaritalStatusName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("User")) @L("Name") :</h6>
+                @Model.UserName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("ApplicantStatus")) @L("Description") :</h6>
+                @Model.ApplicantStatusDescription
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("Country")) @L("Name") :</h6>
+                @Model.CountryName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("Governorate")) @L("Name") :</h6>
+                @Model.GovernorateName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("Locality")) @L("Name") :</h6>
+                @Model.LocalityName
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

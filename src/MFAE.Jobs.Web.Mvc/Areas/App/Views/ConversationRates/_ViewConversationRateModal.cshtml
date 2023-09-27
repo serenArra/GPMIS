@@ -1,0 +1,30 @@
+﻿
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.ConversationRates
+@model ConversationRateViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="ConversationRateInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("NameAr") :</h6>
+                @Model.ConversationRate.NameAr
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("NameEn") :</h6>
+                @Model.ConversationRate.NameEn
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("IsActive") :</h6>
+                @Model.ConversationRate.IsActive
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

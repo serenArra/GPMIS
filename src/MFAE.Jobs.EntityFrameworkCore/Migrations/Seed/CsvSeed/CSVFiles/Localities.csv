@@ -1,0 +1,570 @@
+﻿Id,GovernorateId,NameEn,NameAr,GovernorateNameEn,GovernorateNameAr
+1,1,Zububa,زبوبه,Jenin,جنين
+2,1,Rummana,رمانة,Jenin,جنين
+3,1,Ti'innik,تعنك,Jenin,جنين
+4,1,At Tayba,الطيبة,Jenin,جنين
+5,1, 'Arabbuna,عربونة,Jenin,جنين
+6,1,Al Jalama,الجلمة,Jenin,جنين
+7,1,Silat al Harithiya,سيلة الحارثية,Jenin,جنين
+8,1,As Sa'aida,السعايدة,Jenin,جنين
+9,1,'Anin,عانين,Jenin,جنين
+10,1,'Arrana,عرانة,Jenin,جنين
+11,1,Deir Ghazala,دير غزالة,Jenin,جنين
+12,1,Faqqu'a,فقوعة,Jenin,جنين
+13,1,Khirbet Suruj,خربة سروج,Jenin,جنين
+14,1,Al Yamun,اليامون,Jenin,جنين
+15,1,Umm ar Rihan,أم الريحان,Jenin,جنين
+16,1,Kafr Dan,كفر دان,Jenin,جنين
+17,1,Khirbet 'Abdallah al Yunis,خربة عبد الله اليونس,Jenin,جنين
+18,1,Dhaher al Malih,ظهر المالح,Jenin,جنين
+19,1,Barta'a ash Sharqiya ,برطعة الشرقية,Jenin,جنين
+20,1,Al 'Araqa,العرقة,Jenin,جنين
+21,1,Al Jameelat,الجميلات,Jenin,جنين
+22,1,Beit Qad,بيت قاد,Jenin,جنين
+23,1,Tura al Gharbiya,طورة الغربية,Jenin,جنين
+24,1,Tura ash Sharqiya,طورة الشرقية,Jenin,جنين
+25,1,Al Hashimiya,الهاشمية,Jenin,جنين
+26,1,Nazlat ash Sheikh Zeid,نزلة الشيخ زيد,Jenin,جنين
+27,1,At Tarem,الطرم,Jenin,جنين
+28,1,Khirbet al Muntar al Gharbiya,خربة المنطار الغربية,Jenin,جنين
+29,1,Jenin,جنين,Jenin,جنين
+30,1,Jenin Camp,مخيم جنين,Jenin,جنين
+31,1,Jalbun,جلبون,Jenin,جنين
+32,1,'Aba,عابا,Jenin,جنين
+33,1, Khirbet Mas'ud,خربة مسعود (عراق الدوار),Jenin,جنين
+34,1,Khirbet al Muntar ash Sharqiya,خربة المنطار الشرقية,Jenin,جنين
+35,1,Kafr Qud ,كفر قود,Jenin,جنين
+36,1,Deir Abu Da'if,دير ابو ضعيف,Jenin,جنين
+37,1,Birqin,برقين,Jenin,جنين
+38,1,Umm Dar,أم دار,Jenin,جنين
+39,1,Al Khuljan, الخلجان,Jenin,جنين
+40,1,Wad ad Dabi',وادي الضبع,Jenin,جنين
+41,1,Dhaher al 'Abed,ظهر العبد,Jenin,جنين
+42,1,Zabda ,زبدة,Jenin,جنين
+43,1,Ya'bad,يعبد,Jenin,جنين
+44,1,Kufeirit,كفيرت,Jenin,جنين
+45,1,Imreiha,إمريحة,Jenin,جنين
+46,1,Umm at Tut,أم التوت,Jenin,جنين
+47,1,Ash Shuhada, الشهداء,Jenin,جنين
+48,1,Jalqamus,جلقموس,Jenin,جنين
+49,1,Al Mughayyir,المغير,Jenin,جنين
+50,1,Al Mutilla,المطلة,Jenin,جنين
+51,1,Bir al Basha,بير الباشا,Jenin,جنين
+52,1,Al Hafira,الحفيرة (حفيرة عرابه),Jenin,جنين
+53,1,Qabatiya ,قباطية,Jenin,جنين
+54,1,Arraba ,عرابة,Jenin,جنين
+55,1,Telfit,تلفيت,Jenin,جنين
+56,1,Mirka,مركة,Jenin,جنين
+57,1,Wadi Du'oq,وادي دعوق,Jenin,جنين
+58,1,Fahma al Jadida,فحمة الجديدة,Jenin,جنين
+59,1,Raba ,رابا,Jenin,جنين
+60,1,Al Mansura,المنصورة,Jenin,جنين
+61,1,Misliya,مسلية,Jenin,جنين
+62,1,Al Jarba,الجربا,Jenin,جنين
+63,1,Az Zababida,الزبابدة,Jenin,جنين
+64,1,Fahma,فحمة,Jenin,جنين
+65,1,Az Zawiya,الزاوية,Jenin,جنين
+66,1,Kafr Ra'i,كفر راعي,Jenin,جنين
+67,1,Al Kufeir,الكفير,Jenin,جنين
+68,1,Sir,صير,Jenin,جنين
+69,1,'Ajja,عجة,Jenin,جنين
+70,1,'Anza,عنزة,Jenin,جنين
+71,1,Sanur,صانور,Jenin,جنين
+72,1,Ar Rama,الرامة,Jenin,جنين
+73,1,Meithalun,ميثلون,Jenin,جنين
+74,1,Al Judeida,الجديدة,Jenin,جنين
+75,1,al 'Asa'asa,العصاعصة,Jenin,جنين
+76,1,Al 'Attara,العطارة,Jenin,جنين
+77,1,Siris,سيريس,Jenin,جنين
+78,1,Jaba',جبع,Jenin,جنين
+79,1,Al Fandaqumiya,الفندقومية,Jenin,جنين
+80,1,Silat adh Dhahr,سيلة الظهر,Jenin,جنين
+81,2,Bardala,بردلة,Tubas,طوباس
+82,2, 'Ein el Beida,عين البيضا,Tubas,طوباس
+83,2,Kardala ,كردلة,Tubas,طوباس
+84,2,Ibziq,إبزيق,Tubas,طوباس
+85,2,Salhab,سلحب,Tubas,طوباس
+86,2,'Aqqaba,عقابه,Tubas,طوباس
+87,2,Tayasir,تياسير,Tubas,طوباس
+88,2,Al Farisiya,الفارسية,Tubas,طوباس
+89,2,Al 'Aqaba,العقبة,Tubas,طوباس
+90,2,Ath Thaghra,الثغرة,Tubas,طوباس
+91,2,Al Malih, المالح,Tubas,طوباس
+92,2,Tubas,طوباس,Tubas,طوباس
+93,2,Kashda,كشدة,Tubas,طوباس
+94,2,Khirbet Yarza,خربة يرزة,Tubas,طوباس
+95,2,Ras al Far'a,راس الفارعة,Tubas,طوباس
+96,2,El Far'a Camp,مخيم الفارعة,Tubas,طوباس
+97,2,Khirbet ar Ras al Ahmar,خربة الراس الأحمر,Tubas,طوباس
+98,2,Wadi al Far'a,وادي الفارعة,Tubas,طوباس
+99,2,Tammun,طمون,Tubas,طوباس
+100,2,Khirbet 'Atuf,خربة عاطوف,Tubas,طوباس
+101,2,Khirbet Humsa ,خربة حمصة,Tubas,طوباس
+102,3, 'Akkaba,عكابة,Tulkarem,طولكرم
+103,3,Qaffin,قفين,Tulkarem,طولكرم
+104,3,Nazlat 'Isa,نزلة عيسى,Tulkarem,طولكرم
+105,3,An Nazla ash Sharqiya,النزلة الشرقية,Tulkarem,طولكرم
+106,3,Baqa ash Sharqiya ,باقة الشرقية,Tulkarem,طولكرم
+107,3,An Nazla al Wusta,النزلة الوسطى,Tulkarem,طولكرم
+108,3,An Nazla al Gharbiya,النزلة الغربية,Tulkarem,طولكرم
+109,3,Zeita,زيتا,Tulkarem,طولكرم
+110,3,Seida,صيدا,Tulkarem,طولكرم
+111,3,'Illar,علار,Tulkarem,طولكرم
+112,3,'Attil,عتيل,Tulkarem,طولكرم
+113,3,Deir al Ghusun,دير الغصون,Tulkarem,طولكرم
+114,3,Al Jarushiya,الجاروشية,Tulkarem,طولكرم
+115,3,Al Masqufa,المسقوفة,Tulkarem,طولكرم
+116,3,Bal'a,بلعا,Tulkarem,طولكرم
+117,3,Iktaba,إكتابا,Tulkarem,طولكرم
+118,3,Nur Shams Camp,مخيم نور شمس,Tulkarem,طولكرم
+119,3,Tulkarm Camp,مخيم طولكرم,Tulkarem,طولكرم
+120,3,Tulkarm ,طولكرم,Tulkarem,طولكرم
+121,3,Anabta ,عنبتا,Tulkarem,طولكرم
+122,3,Kafr al Labad ,كفر اللبد,Tulkarem,طولكرم
+123,3,Kafa,كفا,Tulkarem,طولكرم
+124,3,Al Haffasi,الحفاصي,Tulkarem,طولكرم
+125,3,Ramin,رامين,Tulkarem,طولكرم
+126,3,Far'un,فرعون,Tulkarem,طولكرم
+127,3,Shufa,شوفة,Tulkarem,طولكرم
+128,3,Khirbet Jubara,خربة جبارة,Tulkarem,طولكرم
+129,3,Saffarin,سفارين,Tulkarem,طولكرم
+130,3,Beit Lid,بيت ليد,Tulkarem,طولكرم
+131,2,Ar Ras,الراس,Tubas,طوباس
+132,3,Kafr Sur,كفر صور,Tulkarem,طولكرم
+133,3,Kur,كور,Tulkarem,طولكرم
+134,3,Kafr Zibad,كفر زيباد,Tulkarem,طولكرم
+135,3,Kafr Jammal,كفر جمال,Tulkarem,طولكرم
+136,3,Kafr 'Abbush,كفر عبوش,Tulkarem,طولكرم
+137,4,Bizzariya,بزاريه,Nablus,نابلس
+138,4,Burqa,برقة,Nablus,نابلس
+139,4,Yasid,ياصيد,Nablus,نابلس
+140,4,Beit Imrin,بيت إمرين,Nablus,نابلس
+141,4,Nisf Jubeil,نصف جبيل,Nablus,نابلس
+142,4,Sabastiya,سبسطية,Nablus,نابلس
+143,4,Ijnisinya,إجنسنيا,Nablus,نابلس
+144,4,Talluza,طلوزة,Nablus,نابلس
+145,4,An Naqura,الناقورة,Nablus,نابلس
+146,4,Al Badhan,الباذان,Nablus,نابلس
+147,4,Deir Sharaf,دير شرف,Nablus,نابلس
+148,4, 'Asira ash Shamaliya,عصيرة الشمالية,Nablus,نابلس
+149,4,An Nassariya,النصارية,Nablus,نابلس
+150,4,Zawata,زواتا,Nablus,نابلس
+151,4,Al 'Aqrabaniya,العقربانية,Nablus,نابلس
+152,4,Qusin,قوصين,Nablus,نابلس
+153,4,Beit Iba,بيت إيبا,Nablus,نابلس
+154,4,Beit Hasan,بيت حسن,Nablus,نابلس
+155,4,Beit Wazan,بيت وزن,Nablus,نابلس
+156,4, 'Ein Beit el Ma Camp,مخيم عين بيت الماء,Nablus,نابلس
+157,4, 'Ein Shibli,عين شبلي,Nablus,نابلس
+158,4, 'Azmut,عزموط,Nablus,نابلس
+159,4,Nablus,نابلس,Nablus,نابلس
+160,4, 'Askar Camp,مخيم عسكر,Nablus,نابلس
+161,4,Deir al Hatab,دير الحطب,Nablus,نابلس
+162,4,Sarra,صرة,Nablus,نابلس
+163,4,Salim,سالم,Nablus,نابلس
+164,4,Balata Camp,مخيم بلاطة,Nablus,نابلس
+165,4,'Iraq Burin,عراق بورين,Nablus,نابلس
+166,4,Tell,تل,Nablus,نابلس
+167,4,Beit Dajan,بيت دجن,Nablus,نابلس
+168,4,Rujeib,روجيب,Nablus,نابلس
+169,4,Kafr Qallil,كفر قليل,Nablus,نابلس
+170,4,Furush Beit Dajan,فروش بيت دجن,Nablus,نابلس
+171,4,Madama,مادما,Nablus,نابلس
+172,4,Burin,بورين,Nablus,نابلس
+173,4,Beit Furik,بيت فوريك,Nablus,نابلس
+174,4, 'Asira al Qibliya,عصيرة القبلية,Nablus,نابلس
+175,4, 'Awarta,عورتا,Nablus,نابلس
+176,4, 'Urif,عوريف,Nablus,نابلس
+177,4,Odala,أودلا,Nablus,نابلس
+178,4,Huwwara,حوارة,Nablus,نابلس
+179,4, 'Einabus,عينبوس,Nablus,نابلس
+180,4,Yanun,يانون,Nablus,نابلس
+181,4,Beita,بيتا,Nablus,نابلس
+182,4,Ar Rajman,الرجمان,Nablus,نابلس
+183,4,Zeita Jamma'in,زيتا جماعين,Nablus,نابلس
+184,4,Jamma'in,جماعين,Nablus,نابلس
+185,4,Osarin,أوصرين,Nablus,نابلس
+186,4,Aqraba,عقربا,Nablus,نابلس
+187,4,Za'tara,زعترة,Nablus,نابلس
+188,4,Tall al Khashaba,تل الخشبة,Nablus,نابلس
+189,4,Yatma,يتما,Nablus,نابلس
+190,4,Qabalan,قبلان,Nablus,نابلس
+191,4,Jurish,جوريش,Nablus,نابلس
+192,4,Qusra,قصرة,Nablus,نابلس
+193,4,Talfit,تلفيت,Nablus,نابلس
+194,4,As Sawiya,الساوية,Nablus,نابلس
+195,4,Majdal Bani Fadil,مجدل بني فاضل,Nablus,نابلس
+196,4,Al Lubban ash Sharqiya,أللبن الشرقية,Nablus,نابلس
+197,4,Qaryut,قريوت,Nablus,نابلس
+198,4,Jalud,جالود,Nablus,نابلس
+199,4, 'Ammuriya,عمورية,Nablus,نابلس
+200,4,Duma,دوما,Nablus,نابلس
+201,5,Falamya,فلامية,Qalqilia,قلقيلية
+202,5,Kafr Qaddum,كفر قدوم,Qalqilia,قلقيلية
+203,5,Jit,جيت,Qalqilia,قلقيلية
+204,5,Baqat al Hatab,باقة الحطب,Qalqilia,قلقيلية
+205,5,Hajja,حجة,Qalqilia,قلقيلية
+206,5,Jayyus,جيوس,Qalqilia,قلقيلية
+207,5,Khirbet Sir,خربة صير,Qalqilia,قلقيلية
+208,5, 'Arab ar Ramadin ash Shamali,عرب الرماضين الشمالي,Qalqilia,قلقيلية
+209,5,Far'ata,فرعتا,Qalqilia,قلقيلية
+210,5,Immatin,إماتين,Qalqilia,قلقيلية
+211,5,Al Funduq,الفندق,Qalqilia,قلقيلية
+212,5,Qalqiliya,قلقيلية,Qalqilia,قلقيلية
+213,5,An Nabi Elyas,النبي إلياس,Qalqilia,قلقيلية
+214,5,Kafr Laqif,كفر لاقف,Qalqilia,قلقيلية
+215,5, 'Arab Abu Farda,عرب أبو فردة,Qalqilia,قلقيلية
+216,5, 'Izbat at Tabib,عزبة الطبيب,Qalqilia,قلقيلية
+217,5,Jinsafut,جنصافوط,Qalqilia,قلقيلية
+218,5,'Azzun,عزون,Qalqilia,قلقيلية
+219,5, 'Arab ar Ramadin al Janubi,عرب الرماضين الجنوبي,Qalqilia,قلقيلية
+220,5, 'Isla,عسلة,Qalqilia,قلقيلية
+221,5,Arab Al-Khouleh,عرب الخوله,Qalqilia,قلقيلية
+222,5,Wadi ar Rasha,وادي الرشا,Qalqilia,قلقيلية
+223,5,Habla,حبلة,Qalqilia,قلقيلية
+224,5,Ras at Tira,راس الطيرة,Qalqilia,قلقيلية
+225,5,Ras 'Atiya,راس عطية,Qalqilia,قلقيلية
+226,5,Ad Dab'a,الضبعة,Qalqilia,قلقيلية
+227,5,Kafr Thulth,كفر ثلث,Qalqilia,قلقيلية
+228,5, 'Izbat Jal'ud,عزبة جلعود,Qalqilia,قلقيلية
+229,5,Al Mudawwar,المدور,Qalqilia,قلقيلية
+230,5,'Izbat Salman,عزبة سلمان,Qalqilia,قلقيلية
+231,5, 'Izbat al Ashqar,عزبة الأشقر,Qalqilia,قلقيلية
+232,5,Beit Amin,بيت أمين,Qalqilia,قلقيلية
+233,5,Sanniriya,سنيريا,Qalqilia,قلقيلية
+234,5,'Azzun 'Atma,عزون عتمة,Qalqilia,قلقيلية
+235,6,Deir Istiya,دير إستيا,Salfeet,سلفيت
+236,6,Qarawat Bani Hassan,قراوة بني حسان,Salfeet,سلفيت
+237,6,Qira,قيرة,Salfeet,سلفيت
+238,6,Kifl Haris,كفل حارس,Salfeet,سلفيت
+239,6,Marda,مردا,Salfeet,سلفيت
+240,6,Biddya,بديا,Salfeet,سلفيت
+241,6,Haris,حارس,Salfeet,سلفيت
+242,6,Yasuf,ياسوف,Salfeet,سلفيت
+243,6,Mas-ha,مسحة,Salfeet,سلفيت
+244,6,Iskaka,إسكاكا,Salfeet,سلفيت
+245,6,Sarta,صرطة,Salfeet,سلفيت
+246,6,'Izbat Abu Adam,'عزبة أبو آدم,Salfeet,سلفيت
+247,6,Az Zawiya,الزاوية,Salfeet,سلفيت
+248,6,Salfit,سلفيت,Salfeet,سلفيت
+249,6,Rafat,رافات,Salfeet,سلفيت
+250,6,Bruqin,بروقين,Salfeet,سلفيت
+251,6,Farkha,فرخة,Salfeet,سلفيت
+252,6,Kafr ad Dik,كفر الديك,Salfeet,سلفيت
+253,6,Deir Ballut,دير بلوط,Salfeet,سلفيت
+254,6,Khirbet Qeis,خربة قيس,Salfeet,سلفيت
+255,7,Qarawat Bani Zeid,قراوة بني زيد,Ramallah & Al-Birah,رام الله والبيرة
+256,7,Bani Zeid ash Sharqiya,بني زيد الشرقية,Ramallah & Al-Birah,رام الله والبيرة
+257,7,Kafr 'Ein,كفر عين,Ramallah & Al-Birah,رام الله والبيرة
+258,7,Bani Zeid,بني زيد,Ramallah & Al-Birah,رام الله والبيرة
+259,7, 'Abwein,عبوين,Ramallah & Al-Birah,رام الله والبيرة
+260,7,Turmus'ayya,ترمسعيا,Ramallah & Al-Birah,رام الله والبيرة
+261,7,Al Lubban al Gharbi,اللبن الغربي,Ramallah & Al-Birah,رام الله والبيرة
+262,7,Sinjil,سنجل,Ramallah & Al-Birah,رام الله والبيرة
+263,7,Deir as Sudan,دير السودان,Ramallah & Al-Birah,رام الله والبيرة
+264,7,Rantis,رنتيس,Ramallah & Al-Birah,رام الله والبيرة
+265,7,Jilijliya,جلجيليا,Ramallah & Al-Birah,رام الله والبيرة
+266,7, 'Ajjul,عجول,Ramallah & Al-Birah,رام الله والبيرة
+267,7,Al Mughayyir,المغير,Ramallah & Al-Birah,رام الله والبيرة
+268,7, 'Abud,عابود,Ramallah & Al-Birah,رام الله والبيرة
+269,7,An Nabi Salih,النبي صالح,Ramallah & Al-Birah,رام الله والبيرة
+270,7,Khirbet Abu Falah,خربة أبو فلاح,Ramallah & Al-Birah,رام الله والبيرة
+271,7,Umm Safa,أم صفا,Ramallah & Al-Birah,رام الله والبيرة
+272,7,Al Mazra'a ash Sharqiya,المزرعة الشرقية,Ramallah & Al-Birah,رام الله والبيرة
+273,7,Deir Nidham,دير نظام,Ramallah & Al-Birah,رام الله والبيرة
+274,7, 'Atara,عطارة,Ramallah & Al-Birah,رام الله والبيرة
+275,7,Deir Abu Mash'al,دير أبو مشعل,Ramallah & Al-Birah,رام الله والبيرة
+276,7,Jibiya,جيبيا,Ramallah & Al-Birah,رام الله والبيرة
+277,7,Burham,برهام,Ramallah & Al-Birah,رام الله والبيرة
+278,7,Kafr Malik,كفر مالك,Ramallah & Al-Birah,رام الله والبيرة
+279,7,Shuqba,شقبا,Ramallah & Al-Birah,رام الله والبيرة
+280,7,Kobar,كوبر,Ramallah & Al-Birah,رام الله والبيرة
+281,7,Qibya,قبيه,Ramallah & Al-Birah,رام الله والبيرة
+282,7,Silwad,سلواد,Ramallah & Al-Birah,رام الله والبيرة
+283,7,Yabrud,يبرود,Ramallah & Al-Birah,رام الله والبيرة
+284,7,AL-Itihad,الاتحاد,Ramallah & Al-Birah,رام الله والبيرة
+285,7,Shabtin,شبتين,Ramallah & Al-Birah,رام الله والبيرة
+286,7,Bir Zeit,بير زيت,Ramallah & Al-Birah,رام الله والبيرة
+287,7,AL-Doha,الدوحة,Ramallah & Al-Birah,رام الله والبيرة
+288,7,'Ein Siniya,عين سينيا,Ramallah & Al-Birah,رام الله والبيرة
+289,7,Silwad Camp,مخيم سلواد,Ramallah & Al-Birah,رام الله والبيرة
+290,7,Deir Jarir,دير جرير,Ramallah & Al-Birah,رام الله والبيرة
+291,7,Deir 'Ammar Camp,مخيم دير عمار,Ramallah & Al-Birah,رام الله والبيرة
+292,7,Budrus,بدرس,Ramallah & Al-Birah,رام الله والبيرة
+293,7,AL-Zaytouneh,الزيتونة,Ramallah & Al-Birah,رام الله والبيرة
+294,7,Jifna,جفنا,Ramallah & Al-Birah,رام الله والبيرة
+295,7,Dura al Qar',دورا القرع,Ramallah & Al-Birah,رام الله والبيرة
+296,7,At Tayba,الطيبة,Ramallah & Al-Birah,رام الله والبيرة
+297,7,Al Jalazun Camp,مخيم الجلزون,Ramallah & Al-Birah,رام الله والبيرة
+298,7,Abu Qash,ابو قش,Ramallah & Al-Birah,رام الله والبيرة
+299,7,Deir Qaddis,دير قديس,Ramallah & Al-Birah,رام الله والبيرة
+300,7,Ni'lin,نعلين,Ramallah & Al-Birah,رام الله والبيرة
+301,7, 'Ein Yabrud,عين يبرود,Ramallah & Al-Birah,رام الله والبيرة
+302,7,Kharbatha Bani Harith,خربثا بني حارث,Ramallah & Al-Birah,رام الله والبيرة
+303,7,Ras Karkar,راس كركر,Ramallah & Al-Birah,رام الله والبيرة
+304,7,Surda,صردا,Ramallah & Al-Birah,رام الله والبيرة
+305,7,Al Janiya,الجانية,Ramallah & Al-Birah,رام الله والبيرة
+306,7,Al Midya,المدية,Ramallah & Al-Birah,رام الله والبيرة
+307,7,Rammun,رمون,Ramallah & Al-Birah,رام الله والبيرة
+308,7,Kafr Ni'ma,كفر نعمة,Ramallah & Al-Birah,رام الله والبيرة
+309,7,Bil'in,بلعين,Ramallah & Al-Birah,رام الله والبيرة
+310,7,Beitin,بيتين,Ramallah & Al-Birah,رام الله والبيرة
+311,7, 'Ein Qiniya,عين قينيا,Ramallah & Al-Birah,رام الله والبيرة
+312,7,Badiw al Mu'arrajat,بدو المعرجات,Ramallah & Al-Birah,رام الله والبيرة
+313,7,Deir Ibzi',دير إبزيع,Ramallah & Al-Birah,رام الله والبيرة
+314,7,Deir Dibwan,دير دبوان,Ramallah & Al-Birah,رام الله والبيرة
+315,7,Al Bireh,البيرة,Ramallah & Al-Birah,رام الله والبيرة
+316,7,'Ein 'Arik,عين عريك,Ramallah & Al-Birah,رام الله والبيرة
+317,7,Saffa,صفا,Ramallah & Al-Birah,رام الله والبيرة
+318,7,Ramallah,رام الله,Ramallah & Al-Birah,رام الله والبيرة
+319,7,Burqa,برقة,Ramallah & Al-Birah,رام الله والبيرة
+320,7,Beit 'Ur at Tahta,بيت عور التحتا,Ramallah & Al-Birah,رام الله والبيرة
+321,7,Beituniya,بيتونيا,Ramallah & Al-Birah,رام الله والبيرة
+322,7,Al Am'ari Camp,مخيم الأمعري,Ramallah & Al-Birah,رام الله والبيرة
+323,7,Qaddura Camp,مخيم قدورة,Ramallah & Al-Birah,رام الله والبيرة
+324,7,Beit Sira,بيت سيرا,Ramallah & Al-Birah,رام الله والبيرة
+325,7,Kharbatha al Misbah,خربثا المصباح,Ramallah & Al-Birah,رام الله والبيرة
+326,7,Beit 'Ur al Fauqa,بيت عور الفوقا,Ramallah & Al-Birah,رام الله والبيرة
+327,7,At Tira,الطيرة,Ramallah & Al-Birah,رام الله والبيرة
+328,7,Beit Liqya,بيت لقيا,Ramallah & Al-Birah,رام الله والبيرة
+329,7,Beit Nuba,بيت نوبا,Ramallah & Al-Birah,رام الله والبيرة
+330,8,Marj Na'ja,مرج نعجة,Jericho,أريحا
+331,8,Az Zubeidat,الزبيدات,Jericho,أريحا
+332,8,Marj al Ghazal,مرج الغزال,Jericho,أريحا
+333,8,Al Jiftlik,الجفتلك,Jericho,أريحا
+334,8,Fasayil,فصايل,Jericho,أريحا
+335,8,Al 'Auja,العوجا,Jericho,أريحا
+336,8,An Nuwei'ma,النويعمة,Jericho,أريحا
+337,8,'Ein ad Duyuk al Fauqa ,عين الديوك الفوقا,Jericho,أريحا
+338,8,'Ein as Sultan Camp,مخيم عين السلطان,Jericho,أريحا
+339,8,Jericho (Ariha),أريحا,Jericho,أريحا
+340,8,Deir al Qilt,دير القلط,Jericho,أريحا
+341,8,Aqbat Jaber Camp,مخيم عقبة جبر,Jericho,أريحا
+342,8,Deir Hajla,دير حجلة,Jericho,أريحا
+343,8,An Nabi Musa,النبي موسى,Jericho,أريحا
+344,9,Rafat,رافات,Jerusalem,القدس
+345,9,Kafr 'Aqab,كفر عقب,Jerusalem,القدس
+346,9,Mikhmas,مخماس,Jerusalem,القدس
+347,9,Qalandiya Camp,مخيم قلنديا,Jerusalem,القدس
+348,9,Jaba' (Tajammu' Badawi),جبع  (تجمع بدوي),Jerusalem,القدس
+349,9,Qalandiya,قلنديا,Jerusalem,القدس
+350,9,Beit Duqqu,بيت دقو,Jerusalem,القدس
+351,9,Jaba',جبع,Jerusalem,القدس
+352,9,Al Judeira,الجديرة,Jerusalem,القدس
+353,9,Ar Ram & Dahiyat al Bareed,الرام وضاحية البريد,Jerusalem,القدس
+354,9,Beit 'Anan,بيت عنان,Jerusalem,القدس
+355,9,Al Jib,الجيب,Jerusalem,القدس
+356,9,Bir Nabala,بير نبالا,Jerusalem,القدس
+357,9,Beit Ijza,بيت إجزا,Jerusalem,القدس
+358,9,Al Qubeiba,القبيبة,Jerusalem,القدس
+359,9,Kharayib Umm al Lahim,خرائب أم اللحم,Jerusalem,القدس
+360,9,Beit Hanina,بيت حنينا,Jerusalem,القدس
+361,9,Biddu,بدو,Jerusalem,القدس
+362,9,An Nabi Samwil,النبي صموئيل,Jerusalem,القدس
+363,9,Hizma,حزما,Jerusalem,القدس
+364,9,Beit Hanina al Balad,بيت حنينا البلد,Jerusalem,القدس
+365,9,Qatanna,قطنه,Jerusalem,القدس
+366,9,Beit Surik,بيت سوريك,Jerusalem,القدس
+367,9,Beit Iksa,بيت إكسا,Jerusalem,القدس
+368,9,Shu'fat Camp,مخيم شعفاط,Jerusalem,القدس
+369,9,Shu'fat,شعفاط,Jerusalem,القدس
+370,9,Al 'Isawiya,العيسوية,Jerusalem,القدس
+371,9,'Anata,عناتا,Jerusalem,القدس
+372,9,Al Ka'abina (Tajammu' Badawi),الكعابنه (تجمع بدوي),Jerusalem,القدس
+373,9,Az Za'ayyem,الزعيم,Jerusalem,القدس
+374,9,Jerusalem (Al Quds),القدس (بيت المقدس),Jerusalem,القدس
+375,9,Al 'Eizariya,العيزرية,Jerusalem,القدس
+376,9,Silwan,سلوان,Jerusalem,القدس
+377,9,Ath Thuri,الثوري,Jerusalem,القدس
+378,9,Abu Dis,ابو ديس,Jerusalem,القدس
+379,9, 'Arab al Jahalin,عرب الجهالين,Jerusalem,القدس
+380,9,Jabal al Mukabbir,جبل المكبر,Jerusalem,القدس
+381,9,As Sawahira al Gharbiya,السواحرة الغربية,Jerusalem,القدس
+382,9,Beit Safafa,بيت صفافا,Jerusalem,القدس
+383,9,As Sawahira ash Sharqiya,السواحرة الشرقية,Jerusalem,القدس
+384,9,Sharafat,شرفات,Jerusalem,القدس
+385,9,Sur Bahir,صور باهر,Jerusalem,القدس
+386,9,Ash Sheikh Sa'd,الشيخ سعد,Jerusalem,القدس
+387,9,Umm Tuba,أم طوبا,Jerusalem,القدس
+388,10,Al Walaja,الولجة,Bethlehem,بيت لحم
+389,10,Battir,بتير,Bethlehem,بيت لحم
+390,10,Al 'Ubeidiya,العبيدية,Bethlehem,بيت لحم
+391,10,'Ayda Camp,مخيم عايدة,Bethlehem,بيت لحم
+392,10,Khallet an Nu'man,خلة النعمان,Bethlehem,بيت لحم
+393,10,Al 'Aza Camp,مخيم العزة,Bethlehem,بيت لحم
+394,10,Al Khas,الخاص,Bethlehem,بيت لحم
+395,10,Al Haddadiya,الحدادية,Bethlehem,بيت لحم
+396,10,Khallet Hamameh,خلة حمامة,Bethlehem,بيت لحم
+397,10,Bir Onah,بئر عونه,Bethlehem,بيت لحم
+398,10,Beit Jala,بيت جالا,Bethlehem,بيت لحم
+399,10,Dar  Salah,دار صلاح,Bethlehem,بيت لحم
+400,10,Husan,حوسان,Bethlehem,بيت لحم
+401,10,Wadi Fukin,وادي فوكين,Bethlehem,بيت لحم
+402,10,Bethlehem (Beit Lahm),بيت لحم,Bethlehem,بيت لحم
+403,10,Beit Sahur,بيت ساحور,Bethlehem,بيت لحم
+404,10,Ad Doha,الدوحة,Bethlehem,بيت لحم
+405,10,Al Khadr,الخضر,Bethlehem,بيت لحم
+406,10,Ad Duheisha Camp,مخيم الدهيشة,Bethlehem,بيت لحم
+407,10,Hindaza,هندازة,Bethlehem,بيت لحم
+408,10,Ash Shawawra,الشواورة,Bethlehem,بيت لحم
+409,10,Artas,إرطاس,Bethlehem,بيت لحم
+410,10,Nahhalin,نحالين,Bethlehem,بيت لحم
+411,10,Beit Ta'mir,بيت تعمر,Bethlehem,بيت لحم
+412,10,Khallet al Louza,خلة اللوزة,Bethlehem,بيت لحم
+413,10,Al Jab'a,الجبعة,Bethlehem,بيت لحم
+414,10,Za'tara,زعترة,Bethlehem,بيت لحم
+415,10,Jannatah, جناتة (بيت فلوح),Bethlehem,بيت لحم
+416,10,Wadi Rahhal,وادي رحال,Bethlehem,بيت لحم
+417,10,Jubbet adh Dhib,جبة الذيب,Bethlehem,بيت لحم
+418,10,Khallet Sakariya,خلة سكاريا,Bethlehem,بيت لحم
+419,10,Khallet al Haddad,خلة الحداد,Bethlehem,بيت لحم
+420,10,Al Ma'sara,المعصرة,Bethlehem,بيت لحم
+421,10,Wadi an Nis,وادي النيص,Bethlehem,بيت لحم
+422,10,Jurat ash Sham'a,جورة الشمعة,Bethlehem,بيت لحم
+423,10,Khallet 'Afana,خلة عفانة,Bethlehem,بيت لحم
+424,10,Marah Ma'alla,مراح معلا,Bethlehem,بيت لحم
+425,10,Umm Salamuna,أم سلمونة,Bethlehem,بيت لحم
+426,10,Al Manshiya,المنشية,Bethlehem,بيت لحم
+427,10,Tuqu',تقوع,Bethlehem,بيت لحم
+428,10,Marah Rabah,مراح رباح,Bethlehem,بيت لحم
+429,10,Beit Fajjar,بيت فجار,Bethlehem,بيت لحم
+430,10,Al Maniya,المنية,Bethlehem,بيت لحم
+431,10,Kisan,كيسان,Bethlehem,بيت لحم
+432,10,'Arab ar Rashayida,عرب الرشايدة,Bethlehem,بيت لحم
+433,11,Khirbet ad Deir,خربة الدير,Hebron,الخليل
+434,11,Surif,صوريف,Hebron,الخليل
+435,11,Al 'Arrub Camp,مخيم العروب,Hebron,الخليل
+436,11,Beit Ummar,بيت أومر,Hebron,الخليل
+437,11,Jala,جالا,Hebron,الخليل
+438,11,Hitta,حتا,Hebron,الخليل
+439,11,Shuyukh al 'Arrub,شيوخ العروب,Hebron,الخليل
+440,11,Kharas,خاراس,Hebron,الخليل
+441,11,Umm al Butm,أم البطم,Hebron,الخليل
+442,11,Hamrush,حمروش,Hebron,الخليل
+443,11,Nuba,نوبا,Hebron,الخليل
+444,11,Beit Ula,بيت أولا,Hebron,الخليل
+445,11,Sa'ir,سعير,Hebron,الخليل
+446,11,Halhul,حلحول,Hebron,الخليل
+447,11,Ash Shuyukh,الشيوخ,Hebron,الخليل
+448,11,Tarqumiya,ترقوميا,Hebron,الخليل
+449,11,Beit Kahil,بيت كاحل,Hebron,الخليل
+450,11,Beit 'Einun,'بيت عينون,Hebron,الخليل
+451,11,Qla’a Zeta,قلاع زيتا,Hebron,الخليل
+452,11,Idhna,إذنا,Hebron,الخليل
+453,11,Taffuh,تفوح,Hebron,الخليل
+454,11,Beit Maqdum,بيت مقدوم,Hebron,الخليل
+455,11,Al Baqa,البقعه,Hebron,الخليل
+456,11,Hebron (Al Khalil),الخليل,Hebron,الخليل
+457,11,Al Bowereh (Aqabat Injeleh),البويره (عقبة انجيله),Hebron,الخليل
+458,11,Khallet Edar,خلة  الدار,Hebron,الخليل
+459,11,Deir Samit,دير سامت,Hebron,الخليل
+460,11,Bani Na'im,بني نعيم,Hebron,الخليل
+461,11,Khallet Al Masafer,خلة المسافر,Hebron,الخليل
+462,11,Beit 'Awwa,بيت عوا,Hebron,الخليل
+463,11,Dura,دورا,Hebron,الخليل
+464,11,Qalqas,قلقس,Hebron,الخليل
+465,11, Sikka,سكة,Hebron,الخليل
+466,11,Khirbet Salama,خربة سلامة,Hebron,الخليل
+467,11,Wadi 'Ubeid,وادي عبيد,Hebron,الخليل
+468,11,Fuqeiqis,فقيقيس,Hebron,الخليل
+469,11,Khursa,خرسا,Hebron,الخليل
+470,11,Tarrama,طرامة,Hebron,الخليل
+471,11,Al Fawwar Camp,مخيم الفوار,Hebron,الخليل
+472,11,Al Majd,المجد,Hebron,الخليل
+473,11,Marah al Baqqar,مراح البقار,Hebron,الخليل
+474,11,Hadab al Fawwar, حدب ألفوار,Hebron,الخليل
+475,11,Deir al 'Asal at Tahta,دير العسل التحتا,Hebron,الخليل
+476,11,Al Heila,الحيلة,Hebron,الخليل
+477,11,Wadi ash Shajina,وادي الشاجنة,Hebron,الخليل
+478,11,As Sura,الصرة,Hebron,الخليل
+479,11,Deir Razih,دير رازح,Hebron,الخليل
+480,11,Ar Rihiya,الريحية,Hebron,الخليل
+481,11,Zif,زيف,Hebron,الخليل
+482,11,Deir al 'Asal al Fauqa,دير العسل الفوقا,Hebron,الخليل
+483,11,Khallet al 'Aqed,خلة العقد,Hebron,الخليل
+484,11,Imreish,إمريش,Hebron,الخليل
+485,11,Al Buweib,البويب,Hebron,الخليل
+486,11,Beit ar Rush at Tahta,بيت الروش التحتا,Hebron,الخليل
+487,11,Hadab al 'Alaqa,حدب العلقة,Hebron,الخليل
+488,11,Beit Mirsim,بيت مرسم,Hebron,الخليل
+489,11,Beit ar Rush al Fauqa,بيت الروش الفوقا,Hebron,الخليل
+490,11,Karma,كرمة,Hebron,الخليل
+491,11,Beit 'Amra,بيت عمرة,Hebron,الخليل
+492,11,Om Adaraj (Arab Al Ka’abneh),أم الدرج (عرب الكعابنه),Hebron,الخليل
+493,11,Wadi al Kilab,وادي الكلاب,Hebron,الخليل
+494,11,Om Ashoqhan,أم الشقحان,Hebron,الخليل
+495,11,Khallet al Maiyya,خلة المية,Hebron,الخليل
+496,11,Kheroshewesh Wal Hadedeyah,خيروشيوش والحديدية,Hebron,الخليل
+497,11,Om Al Amad (Sahel Wadi Elma),أم العمد (سهل واد الماء),Hebron,الخليل
+498,11,Yatta,يطا,Hebron,الخليل
+499,11,Ad Deirat,الديرات,Hebron,الخليل
+500,11,Khashem Adaraj (Al-Hathaleen),خشم الدرج (الهذالين),Hebron,الخليل
+501,11,Kurza,كرزة,Hebron,الخليل
+502,11,Rabud,رابود,Hebron,الخليل
+503,11,Umm Lasafa,أم لصفا,Hebron,الخليل
+504,11,Al Burj,البرج,Hebron,الخليل
+505,11,Um Al-Khair,ام الخير ,Hebron,الخليل
+506,11,Al Karmil,الكرمل,Hebron,الخليل
+507,11,Khallet Salih,خلة صالح,Hebron,الخليل
+508,11,Adh Dhahiriya,الظاهرية,Hebron,الخليل
+509,11,At Tuwani,التواني,Hebron,الخليل
+510,11,Ma'in,معين,Hebron,الخليل
+511,11,An Najada,النجادة,Hebron,الخليل
+512,11, 'Anab al Kabir,عناب الكبير,Hebron,الخليل
+513,11,Khirbet Asafi,خربة اصفي ,Hebron,الخليل
+514,11,Mantiqat Shi'b al Batin,منطقة شعب البطن,Hebron,الخليل
+515,11,As Samu',السموع,Hebron,الخليل
+516,11,Wadi Al Amayer,وادي العماير,Hebron,الخليل
+517,11,Khirbet Tawil ash Shih,خربة طويل الشيح,Hebron,الخليل
+518,11,Ar Ramadin,الرماضين,Hebron,الخليل
+519,11,Maghayir al 'Abeed,مغاير العبيد,Hebron,الخليل
+520,11,Khirbet al Fakheit,خربة الفخيت,Hebron,الخليل
+521,11,Khirbet Bir al 'Idd,خربة بير العد,Hebron,الخليل
+522,11,Khirbet Zanuta,خربة زنوتة,Hebron,الخليل
+523,11,Imneizil,إمنيزل,Hebron,الخليل
+524,11, 'Arab al Fureijat,عرب الفريجات,Hebron,الخليل
+525,12,Um Al-Nnaser (Al Qaraya al Badawiya al Maslakh),أم النصر (القرية البدوية المسلخ),North Gaza,شمال غزة
+526,12,Beit Lahiya,بيت لاهيا,North Gaza,شمال غزة
+527,12,Beit Hanun,بيت حانون,North Gaza,شمال غزة
+528,12,Jabalya Camp,مخيم جباليا,North Gaza,شمال غزة
+529,12,Jabalya,جباليا,North Gaza,شمال غزة
+530,13,Ash Shati' Camp,مخيم الشاطىء,Gaza,غزة
+531,13,Gaza,غزة,Gaza,غزة
+532,13,Madinat Ezahra,مدينة الزهراء,Gaza,غزة
+533,13,Al Mughraqa (Abu Middein),المغراقه (ابو مدين),Gaza,غزة
+534,13,Juhor ad Dik,جحر الديك,Gaza,غزة
+535,14,An Nuseirat Camp,مخيم النصيرات,Deir Balah (Middle),دير البلح (الوسطى)
+536,14,An Nuseirat ,النصيرات,Deir Balah (Middle),دير البلح (الوسطى)
+537,14,Al Bureij Camp,مخيم البريج,Deir Balah (Middle),دير البلح (الوسطى)
+538,14,Al Bureij ,البريج,Deir Balah (Middle),دير البلح (الوسطى)
+539,14,Az Zawayda,الزوايدة,Deir Balah (Middle),دير البلح (الوسطى)
+540,14,Deir al Balah Camp,مخيم دير البلح,Deir Balah (Middle),دير البلح (الوسطى)
+541,14,Al Maghazi Camp,مخيم المغازي,Deir Balah (Middle),دير البلح (الوسطى)
+542,14,Al Maghazi ,المغازي,Deir Balah (Middle),دير البلح (الوسطى)
+543,14,Deir al Balah,دير البلح,Deir Balah (Middle),دير البلح (الوسطى)
+544,14,Al Musaddar,المصدر,Deir Balah (Middle),دير البلح (الوسطى)
+545,14,Wadi as Salqa, وادي السلقا,Deir Balah (Middle),دير البلح (الوسطى)
+546,15,Al Qarara,القرارة,Khanyounos,خانيونس
+547,15,Khan Yunis Camp,مخيم خانيونس,Khanyounos,خانيونس
+548,15,Khan Yunis,خانيونس,Khanyounos,خانيونس
+549,15,Bani Suheila,بني سهيلا,Khanyounos,خانيونس
+550,15, 'Abasan al Jadida(as Saghira),عبسان الجديدة (الصغيرة ),Khanyounos,خانيونس
+551,15, 'Abasan al Kabira,عبسان الكبيرة,Khanyounos,خانيونس
+552,15,Khuza'a,خزاعة,Khanyounos,خانيونس
+553,15,Al Fukhkhari,الفخاري,Khanyounos,خانيونس
+554,16,Rafah,رفح,Rafah,رفح
+555,16,Rafah Camp,مخيم رفح,Rafah,رفح
+556,16,Al-Nnaser (Al Bayuk),النصر (البيوك),Rafah,رفح
+557,16,Shokat as Sufi,شوكة الصوفي,Rafah,رفح
+559,7,AL-Mazraa AL-GHRBIA,المزرعة الغربية,Ramallah & Al-Birah,رام الله والبيرة
+560,7,Abu Eshkhadem,ابو اشخيدم,Ramallah & Al-Birah,رام الله والبيرة
+561,7,Um AL-Sharayet,ام الشرايط,Ramallah & Al-Birah,رام الله والبيرة
+562,7,Beit Reema,بيت ريما,Ramallah & Al-Birah,رام الله والبيرة
+563,7,mazare'e Nubani,مزارع النوباني,Ramallah & Al-Birah,رام الله والبيرة
+564,7,Deir Ghassana,دير غسانة,Ramallah & Al-Birah,رام الله والبيرة
+570,7,Jamalah,جمالة,Ramallah & Al-Birah,رام الله والبيرة
+571,7,DerAmmar,دير عمار,Ramallah & Al-Birah,رام الله والبيرة
+574,7,BetEllo,بيتلو,Ramallah & Al-Birah,رام الله والبيرة
+577,7,Arura,عارورة,Ramallah & Al-Birah,رام الله والبيرة
+578,7,Rawabi,روابي,Ramallah & Al-Birah,رام الله والبيرة
+579,7,Al-Reehan Neighborhood,ضاحية الريحان,Ramallah & Al-Birah,رام الله والبيرة

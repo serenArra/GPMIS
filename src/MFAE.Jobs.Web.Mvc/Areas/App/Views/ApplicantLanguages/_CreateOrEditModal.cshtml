@@ -1,0 +1,47 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.ApplicantLanguages
+@model CreateOrEditApplicantLanguageModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditApplicantLanguage")) : L("CreateNewApplicantLanguage")))
+
+<div class="modal-body">
+    <div id="ApplicantLanguageInformationsTab">
+        <form name="ApplicantLanguageInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.ApplicantLanguage.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="applicantId">@L("Applicant")</label>
+                @Html.DropDownList("applicantId", new SelectList(Model.ApplicantLanguageApplicantList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantLanguage.ApplicantId.ToString() : "")),@L("SelectAApplicant"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="languageId">@L("Language")</label>
+                @Html.DropDownList("languageId", new SelectList(Model.ApplicantLanguageLanguageList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantLanguage.LanguageId.ToString() : "")),@L("SelectALanguage"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="conversationId">@L("Conversation")</label>
+                @Html.DropDownList("conversationId", new SelectList(Model.ApplicantLanguageConversationList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantLanguage.ConversationId.ToString() : "")),@L("SelectAConversation"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="conversationRateId">@L("ConversationRate")</label>
+                @Html.DropDownList("conversationRateId", new SelectList(Model.ApplicantLanguageConversationRateList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantLanguage.ConversationRateId.ToString() : "")),@L("SelectAConversationRate"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="ApplicantLanguage_Narrative">@L("Narrative")</label>
+                <input class="form-control" id="ApplicantLanguage_Narrative" value="@Model.ApplicantLanguage.Narrative" type="text" name="narrative" maxlength="@MFAE.Jobs.ApplicationForm.ApplicantLanguageConsts.MaxNarrativeLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantLanguageConsts.MinNarrativeLength" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

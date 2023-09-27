@@ -1,4 +1,7 @@
 ﻿@model MFAE.Jobs.Web.Models.Account.RegisterViewModel
+@{
+   var defaultIdType = Model.IdentificationTypeList.FirstOrDefault(u => u.IsDefault.HasValue ? u.IsDefault.Value : false);
+}
 @using Abp.Json
 @using MFAE.Jobs.Localization
 @using MFAE.Jobs.Web.Security.Recaptcha
@@ -44,6 +47,7 @@
             <input type="hidden" name="@RecaptchaValidator.RecaptchaResponseKey" id="recaptchaResponse"/>
         }
 
+    
         <div class="mb-5">
             <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="text" placeholder="@L("Name")" name="Name" required value="@Model.Name" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxNameLength"/>
         </div>
@@ -54,6 +58,15 @@
             <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="email" placeholder="@L("EmailAddress")" name="EmailAddress" required value="@Model.EmailAddress" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength"/>
         </div>
 
+        <div class="mb-5 ">
+             @Html.DropDownList("identificationTypeId", new SelectList(Model.IdentificationTypeList,"Id","DisplayName",
+            (Model.IdentificationTypeList.Count > 0 ? (defaultIdType?.Id.ToString()) : "")),
+                    @L("SelectOption"), new { @class = "form-control form-control-solid" })
+        </div>
+        <div class="mb-5 ">
+             <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="text" placeholder="@L("DocumentNo")" name="DocumentNo" required value="@Model.DocumentNo" maxlength="15"/>
+        </div>
+         
         @if (!Model.IsExternalLogin)
         {
             <div class="mb-5">

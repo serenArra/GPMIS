@@ -1,0 +1,142 @@
+﻿@using MFAE.Jobs.Authorization
+@using MFAE.Jobs.Web.Areas.App.Models.XRoadServices
+@using MFAE.Jobs.Web.Areas.App.Startup
+@model XRoadServicesViewModel
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.XRoadServices;
+}
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/App/Views/XRoadServices/Index.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid">
+
+    <abp-page-subheader title="@L("XRoadServices")" description="@L("XRoadServicesHeaderInfo")">
+        @*<button id="ExportToExcelButton" class="btn btn-outline-success"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>*@
+
+        @if (IsGranted(AppPermissions.Pages_XRoadServices_Create))
+        {
+            <button id="CreateNewXRoadServiceButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewXRoadService")</button>
+        }
+
+        <div class="dropdown dropdown-inline mx-2" data-toggle="tooltip" title="" data-original-title="@L("Actions")" data-placement="bottom">
+            <a href="#" class="btn btn-icon btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="flaticon2-settings"></i>
+            </a>
+            <div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right" style="">
+                <!--begin::Navigation-->
+                <ul class="navi navi-hover">
+                    <li class="navi-header pb-1">
+                        <span class="text-primary text-uppercase font-weight-bold font-size-sm">@L("Actions")</span>
+                    </li>
+                    <li class="navi-item">
+                        <a href="#" class="navi-link" id="ExportToExcelButton">
+                            <span class="navi-icon">
+                                <i class="fa fa-file-excel"></i>
+                            </span>
+                            <span class="navi-text">@L("ExportToExcel")</span>
+                        </a>
+                    </li>
+                </ul>
+                <!--end::Navigation-->
+            </div>
+        </div>
+
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div class="form">
+                    <div class="row align-items-center mb-4">
+                        <div class="col-xl-12">
+                            <div class="form-group align-items-center">
+                                <div class="input-group">
+                                    <input type="text" id="XRoadServicesTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                                    <span class="input-group-btn">
+                                        <button id="GetXRoadServicesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="kt-separator kt-separator--border-dashed"></div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="NameFilterId">@L("Name")</label>
+                            <input type="text" class="form-control" name="nameFilter" id="NameFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="ProviderCodeFilterId">@L("ProviderCode")</label>
+                            <input type="text" class="form-control" name="providerCodeFilter" id="ProviderCodeFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="ActionNameFilterId">@L("ActionName")</label>
+                            <input type="text" class="form-control" name="actionNameFilter" id="ActionNameFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="SoapActionNameFilterId">@L("SoapActionName")</label>
+                            <input type="text" class="form-control" name="soapActionNameFilter" id="SoapActionNameFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="VersionNoFilterId">@L("VersionNo")</label>
+                            <input type="text" class="form-control" name="versionNoFilter" id="VersionNoFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="ProducerCodeFilterId">@L("ProducerCode")</label>
+                            <input type="text" class="form-control" name="producerCodeFilter" id="ProducerCodeFilterId">
+                        </div>
+                    </div>
+                    @*<div class="col-md-3">
+                            <div class="form-group">
+                                <label for="DescriptionFilterId">@L("Description")</label>
+                                <input type="text" class="form-control" name="descriptionFilter" id="DescriptionFilterId">
+                            </div>
+                        </div>*@
+                </div>
+                <div class="row mb-4">
+                    <div class="col-xl-12">
+                        <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                        <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <table id="XRoadServicesTable" class="table table-separate table-head-custom no-footer dtr-inline dt-responsive nowrap table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+
+                                <th>@L("Actions")</th>
+                                <th>@L("Name")</th>
+                                <th>@L("ProviderCode")</th>
+                                <th>@L("ActionName")</th>
+                                <th>@L("SoapActionName")</th>
+                                <th>@L("VersionNo")</th>
+                                <th>@L("ProducerCode")</th>
+                                <th>@L("Status")</th>
+                                @*<th>@L("Description")</th>*@
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

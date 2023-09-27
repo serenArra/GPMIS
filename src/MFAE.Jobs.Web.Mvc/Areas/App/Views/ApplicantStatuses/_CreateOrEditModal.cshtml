@@ -1,0 +1,43 @@
+﻿@using MFAE.Jobs.ApplicationForm.Enums;
+
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.ApplicantStatuses
+@model CreateOrEditApplicantStatusModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditApplicantStatus")) : L("CreateNewApplicantStatus")))
+
+<div class="modal-body">
+    <div id="ApplicantStatusInformationsTab">
+        <form name="ApplicantStatusInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.ApplicantStatus.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="applicantId">@L("Applicant")</label>
+                @Html.DropDownList("applicantId", new SelectList(Model.ApplicantStatusApplicantList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantStatus.ApplicantId.ToString() : "")),@L("SelectAApplicant"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            @{
+            var selectListStatus = Html.GetEnumSelectList(typeof(ApplicantStatusEnum));
+            foreach (var selectOption in selectListStatus) { selectOption.Text = L("Enum_ApplicantStatusEnum_" + selectOption.Value); }
+            }
+            <div class="my-3">
+                <label class="form-label" for="ApplicantStatus_Status">@L("Status")</label>
+                <select class="form-select m-input m-input--square" name="status" id="ApplicantStatus_Status" asp-for="@Model.ApplicantStatus.Status" asp-items="@selectListStatus">
+                </select>
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="ApplicantStatus_Description">@L("Description")</label>
+                <input class="form-control" id="ApplicantStatus_Description" value="@Model.ApplicantStatus.Description" type="text" name="description" maxlength="@MFAE.Jobs.ApplicationForm.ApplicantStatusConsts.MaxDescriptionLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantStatusConsts.MinDescriptionLength" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

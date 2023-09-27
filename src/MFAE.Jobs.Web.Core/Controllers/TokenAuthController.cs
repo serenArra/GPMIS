@@ -631,6 +631,8 @@ namespace MFAE.Jobs.Web.Controllers
             }
 
             var user = await _userRegistrationManager.RegisterAsync(
+                null,
+                null,
                 externalLoginInfo.Name,
                 externalLoginInfo.Surname,
                 externalLoginInfo.EmailAddress,

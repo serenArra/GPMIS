@@ -56,6 +56,7 @@ namespace MFAE.Jobs.Configuration.Host
                 UserManagement = await GetUserManagementAsync(),
                 Email = await GetEmailSettingsAsync(),
                 Security = await GetSecuritySettingsAsync(),
+                XRoad = await GetXRoadSettingsAsync(),
                 Billing = await GetBillingSettingsAsync(),
                 OtherSettings = await GetOtherSettingsAsync(),
                 ExternalLoginProviderSettings = await GetExternalLoginProviderSettings()
@@ -221,6 +222,15 @@ namespace MFAE.Jobs.Configuration.Host
                 AllowOneConcurrentLoginPerUser = await GetOneConcurrentLoginPerUserSetting()
             };
         }
+        private async Task<XRoadSettingsEditDto> GetXRoadSettingsAsync()
+        {
+            return new XRoadSettingsEditDto
+            {
+                XRoadURL = await SettingManager.GetSettingValueAsync(AppSettings.XRoadManagement.XRoadURL),
+                XRoadConsumer = await SettingManager.GetSettingValueAsync(AppSettings.XRoadManagement.XRoadConsumer),
+                XRoadID = await SettingManager.GetSettingValueAsync(AppSettings.XRoadManagement.XRoadID),
+            };
+        }
 
         private async Task<HostBillingSettingsEditDto> GetBillingSettingsAsync()
         {
@@ -352,10 +362,21 @@ namespace MFAE.Jobs.Configuration.Host
             await UpdateTenantManagementAsync(input.TenantManagement);
             await UpdateUserManagementSettingsAsync(input.UserManagement);
             await UpdateSecuritySettingsAsync(input.Security);
+            await UpdateXRoadSettingsAsync(input.XRoad);
             await UpdateEmailSettingsAsync(input.Email);
             await UpdateBillingSettingsAsync(input.Billing);
             await UpdateOtherSettingsAsync(input.OtherSettings);
             await UpdateExternalLoginSettingsAsync(input.ExternalLoginProviderSettings);
+        }
+
+        private async Task UpdateXRoadSettingsAsync(XRoadSettingsEditDto input)
+        {
+            await SettingManager.ChangeSettingForApplicationAsync(AppSettings.XRoadManagement.XRoadURL,
+                input.XRoadURL);
+            await SettingManager.ChangeSettingForApplicationAsync(AppSettings.XRoadManagement.XRoadConsumer,
+                input.XRoadConsumer);
+            await SettingManager.ChangeSettingForApplicationAsync(AppSettings.XRoadManagement.XRoadID,
+                input.XRoadID);
         }
 
         private async Task UpdateOtherSettingsAsync(OtherSettingsEditDto input)

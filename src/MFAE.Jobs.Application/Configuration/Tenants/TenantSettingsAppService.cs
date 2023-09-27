@@ -61,6 +61,7 @@ namespace MFAE.Jobs.Configuration.Tenants
             {
                 UserManagement = await GetUserManagementSettingsAsync(),
                 Security = await GetSecuritySettingsAsync(),
+                XRoad = await GetXRoadSettingsAsync(),
                 Billing = await GetBillingSettingsAsync(),
                 OtherSettings = await GetOtherSettingsAsync(),
                 Email = await GetEmailSettingsAsync(),
@@ -268,6 +269,16 @@ namespace MFAE.Jobs.Configuration.Tenants
             };
         }
 
+        private async Task<TenantXRoadSettingsEditDto> GetXRoadSettingsAsync()
+        {
+            return new TenantXRoadSettingsEditDto
+            {
+                XRoadURL = await SettingManager.GetSettingValueForTenantAsync(AppSettings.XRoadManagement.XRoadURL, AbpSession.GetTenantId()),
+                XRoadConsumer = await SettingManager.GetSettingValueForTenantAsync(AppSettings.XRoadManagement.XRoadConsumer, AbpSession.GetTenantId()),
+                XRoadID = await SettingManager.GetSettingValueForTenantAsync(AppSettings.XRoadManagement.XRoadID, AbpSession.GetTenantId()),
+            };
+        }
+
         private async Task<TenantBillingSettingsEditDto> GetBillingSettingsAsync()
         {
             return new TenantBillingSettingsEditDto()
@@ -431,6 +442,7 @@ namespace MFAE.Jobs.Configuration.Tenants
         {
             await UpdateUserManagementSettingsAsync(input.UserManagement);
             await UpdateSecuritySettingsAsync(input.Security);
+            await UpdateXRoadSettingsAsync(input.XRoad);
             await UpdateBillingSettingsAsync(input.Billing);
             await UpdateEmailSettingsAsync(input.Email);
             await UpdateExternalLoginSettingsAsync(input.ExternalLoginProviderSettings);
@@ -463,6 +475,16 @@ namespace MFAE.Jobs.Configuration.Tenants
             {
                 await UpdateLdapSettingsAsync(input.Ldap);
             }
+        }
+
+        private async Task UpdateXRoadSettingsAsync(TenantXRoadSettingsEditDto input)
+        {
+            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.XRoadManagement.XRoadURL,
+                input.XRoadURL);
+            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.XRoadManagement.XRoadConsumer,
+                input.XRoadConsumer);
+            await SettingManager.ChangeSettingForTenantAsync(AbpSession.GetTenantId(), AppSettings.XRoadManagement.XRoadID,
+                input.XRoadID);
         }
 
         private async Task UpdateOtherSettingsAsync(TenantOtherSettingsEditDto input)

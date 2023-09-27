@@ -1,0 +1,42 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.Localities
+@model CreateOrEditLocalityModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditLocality")) : L("CreateNewLocality")))
+
+<div class="modal-body">
+    <div id="LocalityInformationsTab">
+        <form name="LocalityInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.Locality.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="governorateId">@L("Governorate")</label>
+                @Html.DropDownList("governorateId", new SelectList(Model.LocalityGovernorateList,"Id","DisplayName", (Model.IsEditMode ? Model.Locality.GovernorateId.ToString() : "")),@L("SelectAGovernorate"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Locality_NameAr">@L("NameAr")</label>
+                <input class="form-control" id="Locality_NameAr" value="@Model.Locality.NameAr" type="text" name="nameAr" required maxlength="@MFAE.Jobs.Location.LocalityConsts.MaxNameArLength" minlength="@MFAE.Jobs.Location.LocalityConsts.MinNameArLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Locality_NameEn">@L("NameEn")</label>
+                <input class="form-control" id="Locality_NameEn" value="@Model.Locality.NameEn" type="text" name="nameEn" required maxlength="@MFAE.Jobs.Location.LocalityConsts.MaxNameEnLength" minlength="@MFAE.Jobs.Location.LocalityConsts.MinNameEnLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Locality_UniversalCode">@L("UniversalCode")</label>
+                <input class="form-control" id="Locality_UniversalCode" value="@Model.Locality.UniversalCode" type="text" name="universalCode" maxlength="@MFAE.Jobs.Location.LocalityConsts.MaxUniversalCodeLength" minlength="@MFAE.Jobs.Location.LocalityConsts.MinUniversalCodeLength" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

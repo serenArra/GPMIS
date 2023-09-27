@@ -1,4 +1,12 @@
-﻿using Abp.Application.Editions;
+﻿using MFAE.Jobs.XRoad.Dtos;
+using MFAE.Jobs.XRoad;
+using MFAE.Jobs.Location.Dtos;
+using MFAE.Jobs.Location;
+using MFAE.Jobs.ApplicationForm.Dtos;
+using MFAE.Jobs.ApplicationForm;
+using MFAE.Jobs.Attachments.Dtos;
+using MFAE.Jobs.Attachments;
+using Abp.Application.Editions;
 using Abp.Application.Features;
 using Abp.Auditing;
 using Abp.Authorization;
@@ -48,6 +56,56 @@ namespace MFAE.Jobs
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<CreateOrEditXRoadServiceErrorDto, XRoadServiceError>().ReverseMap();
+            configuration.CreateMap<XRoadServiceErrorDto, XRoadServiceError>().ReverseMap();
+            configuration.CreateMap<CreateOrEditXRoadServiceAttributeMappingDto, XRoadServiceAttributeMapping>().ReverseMap();
+            configuration.CreateMap<XRoadServiceAttributeMappingDto, XRoadServiceAttributeMapping>().ReverseMap();
+            configuration.CreateMap<CreateOrEditXRoadServiceAttributeDto, XRoadServiceAttribute>().ReverseMap();
+            configuration.CreateMap<XRoadServiceAttributeDto, XRoadServiceAttribute>().ReverseMap();
+            configuration.CreateMap<CreateOrEditXRoadServiceDto, XRoadService>().ReverseMap();
+            configuration.CreateMap<XRoadServiceDto, XRoadService>().ReverseMap();
+            configuration.CreateMap<CreateOrEditXRoadMappingDto, XRoadMapping>().ReverseMap();
+            configuration.CreateMap<XRoadMappingDto, XRoadMapping>().ReverseMap();
+            configuration.CreateMap<CreateOrEditLocalityDto, Locality>().ReverseMap();
+            configuration.CreateMap<LocalityDto, Locality>().ReverseMap();
+            configuration.CreateMap<CreateOrEditGovernorateDto, Governorate>().ReverseMap();
+            configuration.CreateMap<GovernorateDto, Governorate>().ReverseMap();
+            configuration.CreateMap<CreateOrEditCountryDto, Country>().ReverseMap();
+            configuration.CreateMap<CountryDto, Country>().ReverseMap();
+            configuration.CreateMap<CreateOrEditApplicantStatusDto, ApplicantStatus>().ReverseMap();
+            configuration.CreateMap<ApplicantStatusDto, ApplicantStatus>().ReverseMap();
+            configuration.CreateMap<CreateOrEditConversationRateDto, ConversationRate>().ReverseMap();
+            configuration.CreateMap<ConversationRateDto, ConversationRate>().ReverseMap();
+            configuration.CreateMap<CreateOrEditApplicantLanguageDto, ApplicantLanguage>().ReverseMap();
+            configuration.CreateMap<ApplicantLanguageDto, ApplicantLanguage>().ReverseMap();
+            configuration.CreateMap<CreateOrEditApplicantTrainingDto, ApplicantTraining>().ReverseMap();
+            configuration.CreateMap<ApplicantTrainingDto, ApplicantTraining>().ReverseMap();
+            configuration.CreateMap<CreateOrEditApplicantStudyDto, ApplicantStudy>().ReverseMap();
+            configuration.CreateMap<ApplicantStudyDto, ApplicantStudy>().ReverseMap();
+            configuration.CreateMap<CreateOrEditMaritalStatusDto, MaritalStatus>().ReverseMap();
+            configuration.CreateMap<MaritalStatusDto, MaritalStatus>().ReverseMap();
+            configuration.CreateMap<CreateOrEditIdentificationTypeDto, IdentificationType>().ReverseMap();
+            configuration.CreateMap<IdentificationTypeDto, IdentificationType>().ReverseMap();
+            configuration.CreateMap<CreateOrEditApplicantDto, Applicant>().ReverseMap();
+            configuration.CreateMap<ApplicantDto, Applicant>().ReverseMap();
+            configuration.CreateMap<CreateOrEditConversationDto, Conversation>().ReverseMap();
+            configuration.CreateMap<ConversationDto, Conversation>().ReverseMap();
+            configuration.CreateMap<CreateOrEditGraduationRateDto, GraduationRate>().ReverseMap();
+            configuration.CreateMap<GraduationRateDto, GraduationRate>().ReverseMap();
+            configuration.CreateMap<CreateOrEditSpecialtiesDto, Specialties>().ReverseMap();
+            configuration.CreateMap<SpecialtiesDto, Specialties>().ReverseMap();
+            configuration.CreateMap<CreateOrEditAcademicDegreeDto, AcademicDegree>().ReverseMap();
+            configuration.CreateMap<AcademicDegreeDto, AcademicDegree>().ReverseMap();
+            configuration.CreateMap<CreateOrEditAppLanguageDto, AppLanguage>().ReverseMap();
+            configuration.CreateMap<AppLanguageDto, AppLanguage>().ReverseMap();
+            configuration.CreateMap<CreateOrEditAttachmentFileDto, AttachmentFile>().ReverseMap();
+            configuration.CreateMap<AttachmentFileDto, AttachmentFile>().ReverseMap();
+            configuration.CreateMap<CreateOrEditAttachmentTypeDto, AttachmentType>().ReverseMap();
+            configuration.CreateMap<AttachmentTypeDto, AttachmentType>().ReverseMap();
+            configuration.CreateMap<CreateOrEditAttachmentTypeGroupDto, AttachmentTypeGroup>().ReverseMap();
+            configuration.CreateMap<AttachmentTypeGroupDto, AttachmentTypeGroup>().ReverseMap();
+            configuration.CreateMap<CreateOrEditAttachmentEntityTypeDto, AttachmentEntityType>().ReverseMap();
+            configuration.CreateMap<AttachmentEntityTypeDto, AttachmentEntityType>().ReverseMap();
             //Inputs
             configuration.CreateMap<CheckboxInputType, FeatureInputTypeDto>();
             configuration.CreateMap<SingleLineStringInputType, FeatureInputTypeDto>();
@@ -76,8 +134,6 @@ namespace MFAE.Jobs
             configuration.CreateMap<Role, RoleListDto>();
             configuration.CreateMap<UserRole, UserListRoleDto>();
 
-            
-
             //Edition
             configuration.CreateMap<EditionEditDto, SubscribableEdition>().ReverseMap();
             configuration.CreateMap<EditionCreateDto, SubscribableEdition>();
@@ -90,7 +146,6 @@ namespace MFAE.Jobs
             configuration.CreateMap<Edition, EditionEditDto>();
             configuration.CreateMap<Edition, SubscribableEdition>();
             configuration.CreateMap<Edition, EditionSelectDto>();
-
 
             //Payment
             configuration.CreateMap<SubscriptionPaymentDto, SubscriptionPayment>().ReverseMap();
@@ -159,7 +214,7 @@ namespace MFAE.Jobs
             configuration.CreateMap<DynamicEntityPropertyDto, DynamicEntityProperty>();
 
             configuration.CreateMap<DynamicEntityPropertyValue, DynamicEntityPropertyValueDto>().ReverseMap();
-            
+
             //User Delegations
             configuration.CreateMap<CreateUserDelegationDto, UserDelegation>();
 

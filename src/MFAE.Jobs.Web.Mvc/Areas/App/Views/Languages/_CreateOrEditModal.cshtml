@@ -1,51 +1,39 @@
-﻿@using Abp.Application.Services.Dto
+﻿
+@using System.Globalization
 @using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
 @using MFAE.Jobs.Web.Areas.App.Models.Languages
 @model CreateOrEditLanguageModalViewModel
-
-@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditLanguage") + ": " + Model.Language.Name) : L("CreateNewLanguage")))
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditLanguage")) : L("CreateNewLanguage")))
 
 <div class="modal-body">
-    <form name="LanguageInformationsForm" role="form" novalidate class="form-validation">
-        @if (Model.IsEditMode)
-        {
-            <input type="hidden" name="Id" value="@Model.Language.Id"/>
-        }
-        
-        <div class="mb-5">
-            <label for="LanguageNameEdit" class="form-label col-lg-12">@L("Language")</label>
-            @Html.DropDownList(
-                "Name",
-                Model.LanguageNames.Select(i => i.ToSelectListItem()),
-                new
-                {
-                    @class = "form-select select2",
-                    data_control = "select2",
-                    id = "LanguageNameEdit"
-                })
-        </div>
-        <div class="mb-5">
-            <label for="LanguageIconEdit" class="form-label">@L("Flag")</label>
-            <select id="LanguageIconEdit" name="Icon" class="form-select select2" data-control="select2">
-                @foreach (var flag in Model.Flags)
-                {
-                    <option data-icon="@flag.Value" value="@flag.Value" selected="@flag.IsSelected">
-                        @flag.DisplayText
-                    </option>
-                }
-            </select>
-        </div>
+    <div id="LanguageInformationsTab">
+        <form name="LanguageInformationsForm" role="form" novalidate class="form-validation">
 
-        <div class="checkbox-inline">
-            <label for="EditLanguage_IsEnabled" class="form-check form-check-custom form-check-solid">
-                <input id="EditLanguage_IsEnabled" type="checkbox" name="IsEnabled" class="form-check-input" value="true" @(Model.Language.IsEnabled || !Model.IsEditMode ? "checked=\"checked\"" : "")/>
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.Language.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="Language_NameAr">@L("NameAr")</label>
+                <input class="form-control" id="Language_NameAr" value="@Model.Language.NameAr" type="text" name="nameAr" required maxlength="@MFAE.Jobs.ApplicationForm.LanguageConsts.MaxNameArLength" minlength="@MFAE.Jobs.ApplicationForm.LanguageConsts.MinNameArLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Language_NameEn">@L("NameEn")</label>
+                <input class="form-control" id="Language_NameEn" value="@Model.Language.NameEn" type="text" name="nameEn" required maxlength="@MFAE.Jobs.ApplicationForm.LanguageConsts.MaxNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.LanguageConsts.MinNameEnLength" />
+            </div>
+
+            <label class="form-check form-check-custom">
+                <input id="Language_IsActive" name="isActive" type="checkbox" class="form-check-input" value="true" @Html.Raw(Model.Language.IsActive ?"checked=\"checked\"":"") />
                 <span class="form-check-label">
-                    @L("IsEnabled")
+                    @L("IsActive")
                 </span>
             </label>
-        </div>
 
-    </form>
+        </form>
+    </div>
 </div>
 
 @await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

@@ -1,0 +1,47 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.Countries
+@model CreateOrEditCountryModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditCountry")) : L("CreateNewCountry")))
+
+<div class="modal-body">
+    <div id="CountryInformationsTab">
+        <form name="CountryInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.Country.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="Country_IsoNumeric">@L("IsoNumeric")</label>
+                <input class="form-control" id="Country_IsoNumeric" value="@Model.Country.IsoNumeric" type="text" name="isoNumeric" required maxlength="@MFAE.Jobs.Location.CountryConsts.MaxIsoNumericLength" minlength="@MFAE.Jobs.Location.CountryConsts.MinIsoNumericLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Country_IsoAlpha">@L("IsoAlpha")</label>
+                <input class="form-control" id="Country_IsoAlpha" value="@Model.Country.IsoAlpha" type="text" name="isoAlpha" required maxlength="@MFAE.Jobs.Location.CountryConsts.MaxIsoAlphaLength" minlength="@MFAE.Jobs.Location.CountryConsts.MinIsoAlphaLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Country_NameAr">@L("NameAr")</label>
+                <input class="form-control" id="Country_NameAr" value="@Model.Country.NameAr" type="text" name="nameAr" required maxlength="@MFAE.Jobs.Location.CountryConsts.MaxNameArLength" minlength="@MFAE.Jobs.Location.CountryConsts.MinNameArLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Country_NameEn">@L("NameEn")</label>
+                <input class="form-control" id="Country_NameEn" value="@Model.Country.NameEn" type="text" name="nameEn" required maxlength="@MFAE.Jobs.Location.CountryConsts.MaxNameEnLength" minlength="@MFAE.Jobs.Location.CountryConsts.MinNameEnLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Country_UniversalCode">@L("UniversalCode")</label>
+                <input class="form-control" id="Country_UniversalCode" value="@Model.Country.UniversalCode" type="text" name="universalCode" maxlength="@MFAE.Jobs.Location.CountryConsts.MaxUniversalCodeLength" minlength="@MFAE.Jobs.Location.CountryConsts.MinUniversalCodeLength" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

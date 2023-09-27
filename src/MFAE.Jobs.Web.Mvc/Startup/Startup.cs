@@ -77,6 +77,7 @@ namespace MFAE.Jobs.Web.Startup
                 .AddRazorRuntimeCompilation()
 #endif
                 .AddNewtonsoftJson();
+            services.AddNodeServices();
 
             if (bool.Parse(_appConfiguration["KestrelServer:IsEnabled"]))
             {

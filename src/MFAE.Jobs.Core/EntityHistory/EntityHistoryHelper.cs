@@ -1,4 +1,8 @@
-﻿using System;
+﻿using MFAE.Jobs.XRoad;
+using MFAE.Jobs.Location;
+using MFAE.Jobs.ApplicationForm;
+using MFAE.Jobs.Attachments;
+using System;
 using System.Linq;
 using Abp.Organizations;
 using MFAE.Jobs.Authorization.Roles;

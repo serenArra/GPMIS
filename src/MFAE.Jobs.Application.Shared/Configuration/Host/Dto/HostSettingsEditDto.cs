@@ -21,6 +21,8 @@ namespace MFAE.Jobs.Configuration.Host.Dto
         [Required]
         public SecuritySettingsEditDto Security { get; set; }
 
+        public XRoadSettingsEditDto XRoad { get; set; }
+
         public HostBillingSettingsEditDto Billing { get; set; }
 
         public OtherSettingsEditDto OtherSettings { get; set; }

@@ -1,0 +1,43 @@
+﻿
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.ApplicantTrainings
+@model ApplicantTrainingViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="ApplicantTrainingInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("Subject") :</h6>
+                @Model.ApplicantTraining.Subject
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Location") :</h6>
+                @Model.ApplicantTraining.Location
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("TrainingDate") :</h6>
+                @Model.ApplicantTraining.TrainingDate
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Duration") :</h6>
+                @Model.ApplicantTraining.Duration
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("DurationType") :</h6>
+                @L("Enum_DurationType_" + (int)Model.ApplicantTraining.DurationType)
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>(@L("Applicant")) @L("FirstName") :</h6>
+                @Model.ApplicantFirstName
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

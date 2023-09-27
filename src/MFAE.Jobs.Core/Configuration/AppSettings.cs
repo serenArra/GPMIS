@@ -12,6 +12,13 @@
             public const string BillingAddress = "App.HostManagement.BillingAddress";
         }
 
+        public static class XRoadManagement
+        {
+            public const string XRoadURL = "XRoad-URL";
+            public const string XRoadConsumer = "XRoad-Consumer";
+            public const string XRoadID = "XRoad-ID";
+        }
+
         public static class DashboardCustomization {
             public const string Configuration = "App.DashboardCustomization.Configuration";
         }
@@ -74,7 +81,7 @@
             public const string SubscriptionExpireNotifyDayCount = "App.TenantManagement.SubscriptionExpireNotifyDayCount";
             public const string BillingLegalName = "App.TenantManagement.BillingLegalName";
             public const string BillingAddress = "App.TenantManagement.BillingAddress";
-            public const string BillingTaxVatNo = "App.TenantManagement.BillingTaxVatNo";
+            public const string BillingTaxVatNo = "App.TenantManagement.BillingTaxVatNo";            
         }
 
         public static class UserManagement

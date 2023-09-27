@@ -21,6 +21,8 @@ namespace MFAE.Jobs.Configuration.Tenants.Dto
         [Required]
         public SecuritySettingsEditDto Security { get; set; }
 
+        public TenantXRoadSettingsEditDto XRoad { get; set; }
+
         public TenantBillingSettingsEditDto Billing { get; set; }
 
         public TenantOtherSettingsEditDto OtherSettings { get; set; }

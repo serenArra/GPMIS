@@ -1,0 +1,39 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.GraduationRates
+@model CreateOrEditGraduationRateModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditGraduationRate")) : L("CreateNewGraduationRate")))
+
+<div class="modal-body">
+    <div id="GraduationRateInformationsTab">
+        <form name="GraduationRateInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.GraduationRate.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="GraduationRate_NameAr">@L("NameAr")</label>
+                <input class="form-control" id="GraduationRate_NameAr" value="@Model.GraduationRate.NameAr" type="text" name="nameAr" required maxlength="@MFAE.Jobs.ApplicationForm.GraduationRateConsts.MaxNameArLength" minlength="@MFAE.Jobs.ApplicationForm.GraduationRateConsts.MinNameArLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="GraduationRate_NameEn">@L("NameEn")</label>
+                <input class="form-control" id="GraduationRate_NameEn" value="@Model.GraduationRate.NameEn" type="text" name="nameEn" required maxlength="@MFAE.Jobs.ApplicationForm.GraduationRateConsts.MaxNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.GraduationRateConsts.MinNameEnLength" />
+            </div>
+
+            <label class="form-check form-check-custom">
+                <input id="GraduationRate_IsActive" name="isActive" type="checkbox" class="form-check-input" value="true" @Html.Raw(Model.GraduationRate.IsActive ?"checked=\"checked\"":"") />
+                <span class="form-check-label">
+                    @L("IsActive")
+                </span>
+            </label>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

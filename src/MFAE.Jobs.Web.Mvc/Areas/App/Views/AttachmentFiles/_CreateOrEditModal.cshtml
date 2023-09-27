@@ -1,0 +1,77 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.AttachmentFiles
+@model CreateOrEditAttachmentFileModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditAttachmentFile")) : L("CreateNewAttachmentFile")))
+
+<div class="modal-body">
+    <div id="AttachmentFileInformationsTab">
+        <form name="AttachmentFileInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.AttachmentFile.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="attachmentTypeId">@L("AttachmentType")</label>
+                @Html.DropDownList("attachmentTypeId", new SelectList(Model.AttachmentFileAttachmentTypeList,"Id","DisplayName", (Model.IsEditMode ? Model.AttachmentFile.AttachmentTypeId.ToString() : "")),@L("SelectAAttachmentType"), new { @class = "form-control" , @required="required" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentFile_PhysicalName">@L("PhysicalName")</label>
+                <input class="form-control" id="AttachmentFile_PhysicalName" value="@Model.AttachmentFile.PhysicalName" type="text" name="physicalName" required maxlength="@MFAE.Jobs.Attachments.AttachmentFileConsts.MaxPhysicalNameLength" minlength="@MFAE.Jobs.Attachments.AttachmentFileConsts.MinPhysicalNameLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentFile_Description">@L("Description")</label>
+                <input class="form-control" id="AttachmentFile_Description" value="@Model.AttachmentFile.Description" type="text" name="description" maxlength="@MFAE.Jobs.Attachments.AttachmentFileConsts.MaxDescriptionLength" minlength="@MFAE.Jobs.Attachments.AttachmentFileConsts.MinDescriptionLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentFile_OriginalName">@L("OriginalName")</label>
+                <input class="form-control" id="AttachmentFile_OriginalName" value="@Model.AttachmentFile.OriginalName" type="text" name="originalName" required maxlength="@MFAE.Jobs.Attachments.AttachmentFileConsts.MaxOriginalNameLength" minlength="@MFAE.Jobs.Attachments.AttachmentFileConsts.MinOriginalNameLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentFile_Size">@L("Size")</label>
+                <input class="form-control m-input" id="AttachmentFile_Size" value="@Model.AttachmentFile.Size.ToString(CultureInfo.InvariantCulture)" type="number" name="size" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentFile_ObjectId">@L("ObjectId")</label>
+                <input class="form-control" id="AttachmentFile_ObjectId" value="@Model.AttachmentFile.ObjectId" type="text" name="objectId" required />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentFile_Path">@L("Path")</label>
+                <input class="form-control" id="AttachmentFile_Path" value="@Model.AttachmentFile.Path" type="text" name="path" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentFile_Version">@L("Version")</label>
+                <input class="form-control m-input" id="AttachmentFile_Version" value="@Model.AttachmentFile.Version.ToString(CultureInfo.InvariantCulture)" type="number" name="version" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentFile_FileToken">@L("FileToken")</label>
+                <input class="form-control" id="AttachmentFile_FileToken" value="@Model.AttachmentFile.FileToken" type="text" name="fileToken" required />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentFile_Tag">@L("Tag")</label>
+                <input class="form-control" id="AttachmentFile_Tag" value="@Model.AttachmentFile.Tag" type="text" name="tag" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="AttachmentFile_FilterKey">@L("FilterKey")</label>
+                <input class="form-control" id="AttachmentFile_FilterKey" value="@Model.AttachmentFile.FilterKey" type="text" name="filterKey" maxlength="@MFAE.Jobs.Attachments.AttachmentFileConsts.MaxFilterKeyLength" minlength="@MFAE.Jobs.Attachments.AttachmentFileConsts.MinFilterKeyLength" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

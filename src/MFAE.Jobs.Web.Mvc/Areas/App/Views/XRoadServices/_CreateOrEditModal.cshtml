@@ -1,0 +1,65 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.XRoadServices
+@model CreateOrEditXRoadServiceModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditXRoadService")) : L("CreateNewXRoadService")))
+
+<div class="modal-body">
+        <div id="XRoadServiceInformationsTab">
+            <form name="XRoadServiceInformationsForm" role="form" novalidate class="form-validation">
+
+                @if (Model.IsEditMode)
+                {
+                    <input type="hidden" name="id" value="@Model.XRoadService.Id" />
+                }
+
+
+
+
+                <div class="form-group">
+                    <label for="XRoadService_Name">@L("Name")</label>
+                    <input class="form-control" id="XRoadService_Name" value="@Model.XRoadService.Name" type="text" name="name" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="XRoadService_ProviderCode">@L("ProviderCode")</label>
+                    <input class="form-control" id="XRoadService_ProviderCode" value="@Model.XRoadService.ProviderCode" type="text" name="providerCode" required />
+                </div>
+                <div class="form-group">
+                    <label for="XRoadService_ResultCodePath">@L("ResultCodePath")</label>
+                    <input class="form-control" id="XRoadService_ResultCodePath" value="@Model.XRoadService.ResultCodePath" type="text" name="resultCodePath" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="XRoadService_ActionName">@L("ActionName")</label>
+                    <input class="form-control" id="XRoadService_ActionName" value="@Model.XRoadService.ActionName" type="text" name="actionName" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="XRoadService_SoapActionName">@L("SoapActionName")</label>
+                    <input class="form-control" id="XRoadService_SoapActionName" value="@Model.XRoadService.SoapActionName" type="text" name="soapActionName" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="XRoadService_VersionNo">@L("VersionNo")</label>
+                    <input class="form-control" id="XRoadService_VersionNo" value="@Model.XRoadService.VersionNo" type="text" name="versionNo" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="XRoadService_ProducerCode">@L("ProducerCode")</label>
+                    <input class="form-control" id="XRoadService_ProducerCode" value="@Model.XRoadService.ProducerCode" type="text" name="producerCode" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="XRoadService_Description">@L("Description")</label>
+                    <input class="form-control" id="XRoadService_Description" value="@Model.XRoadService.Description" type="text" name="description" />
+                </div>
+
+
+            </form>
+        </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")
