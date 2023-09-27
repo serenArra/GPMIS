@@ -149,7 +149,7 @@
                     <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="text" placeholder="@L("Surname")" name="Surname" required value="@Model.Surname" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxSurnameLength"/>
                 </div>
                 <div class="mb-5 ">
-                    <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="email" placeholder="@L("EmailAddress")" name="EmailAddress" required value="@Model.EmailAddress" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength"/>
+                    <input class="form-control form-control-solid text-start h-auto py-7 px-6 rounded-lg fs-6" type="email" placeholder="@L("EmailAddress")" name="EmailAddress" required value="@Model.EmailAddress" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength"/>
                 </div>
 
                 <div class="mb-5 ">
@@ -224,7 +224,7 @@
                     
                     <div class="row form-group ">
                         <label>@L("EmailAddress")</label>
-                        <input id="EmailAddress" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="email" placeholder="@L("EmailAddress")" name="EmailAddress" required value="@Model.EmailAddress" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength" />
+                        <input id="EmailAddress" class="form-control form-control-solid text-start h-auto py-7 px-6 rounded-lg font-size-h6" type="email" placeholder="@L("EmailAddress")" name="EmailAddress" required value="@Model.EmailAddress" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength" />
                     </div>
 
                     <div class="form-group ">
@@ -280,9 +280,5 @@
     </form>
     <!--end::Form-->
 </div>
-<!--end::Stepper-->
-    <form class="form register-form" asp-action="Register" method="post">
-
-        
-    </form>
+<!--end::Stepper-->    
 </div>
