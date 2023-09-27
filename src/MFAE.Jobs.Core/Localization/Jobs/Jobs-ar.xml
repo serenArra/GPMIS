@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="ar">
   <texts>
+
+	<text name="LocationModel">العناوين</text>
+	<text name="Attachments">الملفات</text>
+	<text name="InformationBank">بنك المعلومات</text>
+	  
     <text name="Enum_XRoadServiceStatusEnum_1">فعال</text>
     <text name="Enum_XRoadServiceStatusEnum_2">غير فعال</text>
     <text name="IsoNumeric">رقم ISO</text>
