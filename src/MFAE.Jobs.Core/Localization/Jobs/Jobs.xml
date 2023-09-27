@@ -1,19 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>    <text name="JobAdvertisement">Job advertisement</text>
-    <text name="MFAE.Jobs.ApplicationForm.JobAdvertisement">JobAdvertisement</text>
-    <text name="JobAdvertisementsHeaderInfo">You can add/delete/edit the job advertisement</text>
-    <text name="CreateNewJobAdvertisement">Create new job advertisement</text>
-    <text name="EditJobAdvertisement">Edit job advertisement</text>
-    <text name="DeleteJobAdvertisement">Delete job advertisement</text>
-    <text name="JobAdvertisements">Job advertisements</text>
-
-	<text name="WantToApply">Want to apply?? </text>
-	<text name="JobDescription">Job Description</text>
-	<text name="CallMethods">Call methods</text>
-	<text name="Call">Call</text>
-	<text name="Whatsapp">Whatsapp</text>
+  <texts>
+   <text name="JobAdvertisement">Job advertisement</text>
+   <text name="MFAE.Jobs.ApplicationForm.JobAdvertisement">JobAdvertisement</text>
+   <text name="JobAdvertisementsHeaderInfo">You can add/delete/edit the job advertisement</text>
+   <text name="CreateNewJobAdvertisement">Create new job advertisement</text>
+   <text name="EditJobAdvertisement">Edit job advertisement</text>
+   <text name="DeleteJobAdvertisement">Delete job advertisement</text>
+   <text name="JobAdvertisements">Job advertisements</text>
+  
+   <text name="WantToApply">Want to apply?? </text>
+   <text name="JobDescription">Job Description</text>
+   <text name="CallMethods">Call methods</text>
+   <text name="Call">Call</text>
+   <text name="Whatsapp">Whatsapp</text>
 	  
+    <text name="SelectOption">Select Option ...</text>
     <text name="JOBS">Job Management System</text>
     <text name="JobsPhone">For support or assistance services, call this number 00000000</text>
     <text name="JobsMail">E-mail : jobs@mfae.gov.ps</text>

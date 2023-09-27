@@ -20,71 +20,221 @@
     }
 
     <script abp-src="/view-resources/Areas/App/Views/_Bundles/account-register.min.js" asp-append-version="true"></script>
+    <script abp-src="/metronic/themes/theme2/js/components/stepper.js" asp-append-version="true"></script>
 }
 
 <div class="login-form">
     <div class="pb-13 pt-lg-0 pt-5">
         <h3 class="fw-bolder text-dark fs-4 fs-1-lg">@L("SignUp")</h3>
     </div>
-    <form class="form register-form" asp-action="Register" method="post">
-
-        @if (@ViewBag.ErrorMessage != null)
-        {
-            <div class="alert alert-danger">
-                <div class="alert-icon">
-                    <i class="fa fa-exclamation-triangle"></i>
-                </div>
-                <div class="alert-text">@ViewBag.ErrorMessage</div>
+    <!--begin::Stepper-->
+<div class="stepper stepper-pills" id="kt_wizard">
+<!--begin::Nav-->
+<div class="stepper-nav flex-center flex-wrap mb-10">
+    <!--begin::Step 1-->
+    <div class="stepper-item mx-8 my-4 current" data-kt-stepper-element="nav">
+        <!--begin::Wrapper-->
+        <div class="stepper-wrapper d-flex align-items-center">
+            <!--begin::Icon-->
+            <div class="stepper-icon w-40px h-40px">
+                <i class="stepper-check fas fa-check"></i>
+                <span class="stepper-number">1</span>
             </div>
-        }
+            <!--end::Icon-->
 
-        <input type="hidden" name="IsExternalLogin" value="@Model.IsExternalLogin.ToString()"/>
-        <input type="hidden" name="ExternalLoginAuthSchema" value="@Model.ExternalLoginAuthSchema"/>
-        <input type="hidden" name="SingleSignOn" value="@Model.SingleSignIn"/>
-        <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl"/>
-        @if (ViewBag.UseCaptcha)
-        {
-            <input type="hidden" name="@RecaptchaValidator.RecaptchaResponseKey" id="recaptchaResponse"/>
-        }
+            <!--begin::Label-->
+            <div class="stepper-label">
+                <h3 class="stepper-title">
+                    @L("PersonalInformation")
+                </h3>
+            </div>
+            <!--end::Label-->
+        </div>
+        <!--end::Wrapper-->
+
+        <!--begin::Line-->
+        <div class="stepper-line h-40px"></div>
+        <!--end::Line-->
+    </div>
+    <!--end::Step 1-->
+
+    <!--begin::Step 2-->
+    <div class="stepper-item mx-8 my-4" data-kt-stepper-element="nav">
+        <!--begin::Wrapper-->
+        <div class="stepper-wrapper d-flex align-items-center">
+             <!--begin::Icon-->
+            <div class="stepper-icon w-40px h-40px">
+                <i class="stepper-check fas fa-check"></i>
+                <span class="stepper-number">2</span>
+            </div>
+            <!--begin::Icon-->
+
+            <!--begin::Label-->
+            <div class="stepper-label">
+                <h3 class="stepper-title">
+                    @L("AccountInformation")
+                </h3>
+            </div>
+            <!--end::Label-->
+        </div>
+        <!--end::Wrapper-->
+
+        <!--begin::Line-->
+        <div class="stepper-line h-40px"></div>
+        <!--end::Line-->
+    </div>
+    <!--end::Step 2-->
+
+    <!--begin::Step 3-->
+    <div class="stepper-item mx-8 my-4" data-kt-stepper-element="nav">
+        <!--begin::Wrapper-->
+        <div class="stepper-wrapper d-flex align-items-center">
+             <!--begin::Icon-->
+            <div class="stepper-icon w-40px h-40px">
+                <i class="stepper-check fas fa-check"></i>
+                <span class="stepper-number">3</span>
+            </div>
+            <!--begin::Icon-->
+
+            <!--begin::Label-->
+            <div class="stepper-label">
+                <h3 class="stepper-title">
+                    @L("AccountVerification")
+                </h3>
+            </div>
+            <!--end::Label-->
+        </div>
+        <!--end::Wrapper-->
+
+        <!--begin::Line-->
+        <div class="stepper-line h-40px"></div>
+        <!--end::Line-->
+    </div>
+    <!--end::Step 3-->
+</div>
+<!--end::Nav-->
+
+    <!--begin::Form-->
+    <form class="form register-form" asp-action="Register" method="post" novalidate="novalidate" id="kt_stepper_example_basic_form">
+        <!--begin::Group-->
+        <div class="mb-5">
+            <!--begin::Step 1-->
+            <div class="flex-column current" data-kt-stepper-element="content">
+                @if (@ViewBag.ErrorMessage != null)
+                {
+                    <div class="alert alert-danger">
+                        <div class="alert-icon">
+                            <i class="fa fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="alert-text">@ViewBag.ErrorMessage</div>
+                    </div>
+                }
+
+                <input type="hidden" name="IsExternalLogin" value="@Model.IsExternalLogin.ToString()"/>
+                <input type="hidden" name="ExternalLoginAuthSchema" value="@Model.ExternalLoginAuthSchema"/>
+                <input type="hidden" name="SingleSignOn" value="@Model.SingleSignIn"/>
+                <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl"/>
+                @if (ViewBag.UseCaptcha)
+                {
+                    <input type="hidden" name="@RecaptchaValidator.RecaptchaResponseKey" id="recaptchaResponse"/>
+                }
 
     
-        <div class="mb-5">
-            <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="text" placeholder="@L("Name")" name="Name" required value="@Model.Name" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxNameLength"/>
-        </div>
-        <div class="mb-5 ">
-            <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="text" placeholder="@L("Surname")" name="Surname" required value="@Model.Surname" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxSurnameLength"/>
-        </div>
-        <div class="mb-5 ">
-            <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="email" placeholder="@L("EmailAddress")" name="EmailAddress" required value="@Model.EmailAddress" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength"/>
-        </div>
+                <div class="mb-5">
+                    <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="text" placeholder="@L("Name")" name="Name" required value="@Model.Name" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxNameLength"/>
+                </div>
+                <div class="mb-5 ">
+                    <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="text" placeholder="@L("Surname")" name="Surname" required value="@Model.Surname" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxSurnameLength"/>
+                </div>
+                <div class="mb-5 ">
+                    <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="email" placeholder="@L("EmailAddress")" name="EmailAddress" required value="@Model.EmailAddress" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength"/>
+                </div>
 
-        <div class="mb-5 ">
-             @Html.DropDownList("identificationTypeId", new SelectList(Model.IdentificationTypeList,"Id","DisplayName",
-            (Model.IdentificationTypeList.Count > 0 ? (defaultIdType?.Id.ToString()) : "")),
-                    @L("SelectOption"), new { @class = "form-control form-control-solid" })
-        </div>
-        <div class="mb-5 ">
-             <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="text" placeholder="@L("DocumentNo")" name="DocumentNo" required value="@Model.DocumentNo" maxlength="15"/>
-        </div>
+                <div class="mb-5 ">
+                     @Html.DropDownList("identificationTypeId", new SelectList(Model.IdentificationTypeList,"Id","DisplayName",
+                    (Model.IdentificationTypeList.Count > 0 ? (defaultIdType?.Id.ToString()) : "")),
+                            @L("SelectOption"), new { @class = "form-control form-control-solid" })
+                </div>
+                <div class="mb-5 ">
+                     <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="text" placeholder="@L("DocumentNo")" name="DocumentNo" id="DocumentNo" required value="@Model.DocumentNo" maxlength="15"/>
+                </div>
          
-        @if (!Model.IsExternalLogin)
-        {
-            <div class="mb-5">
-                <input class="form-control input-ltr form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="text" autocomplete="new-password" placeholder="@L("UserName")" name="UserName" value="@Model.UserName" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxUserNameLength"/>
-            </div>
-            <div class="mb-5 pwstrength-div">
-                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="password" autocomplete="new-password" id="RegisterPassword" placeholder="@L("Password")" name="Password" required/>
-            </div>
-            <div class="mb-5 ">
-                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="password" autocomplete="new-password" placeholder="@L("PasswordRepeat")" name="PasswordRepeat" required/>
-            </div>
-        }
+                @if (!Model.IsExternalLogin)
+                {
+                    <div class="mb-5">
+                        <input class="form-control input-ltr form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="text" autocomplete="new-password" placeholder="@L("UserName")" name="UserName" value="@Model.UserName" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxUserNameLength"/>
+                    </div>
+                    <div class="mb-5 pwstrength-div">
+                        <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="password" autocomplete="new-password" id="RegisterPassword" placeholder="@L("Password")" name="Password" required/>
+                    </div>
+                    <div class="mb-5 ">
+                        <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="password" autocomplete="new-password" placeholder="@L("PasswordRepeat")" name="PasswordRepeat" required/>
+                    </div>
+                }
 
-        <div class="pb-lg-0 pb-5">
-            <a asp-action="Login">
-                <button type="button" id="register-back-btn" class="btn btn-light-primary fw-bolder fs-6 px-8 py-4 my-3">@L("Back")</button>
-            </a>
-            <button type="submit" id="register-submit-btn" class="btn btn-primary fw-bolder fs-6 px-8 py-4 my-3 me-3">@L("Submit")</button>
+                <div class="pb-lg-0 pb-5">
+                    <a asp-action="Login">
+                        <button type="button" id="register-back-btn" class="btn btn-light-primary fw-bolder fs-6 px-8 py-4 my-3">@L("Back")</button>
+                    </a>
+                    <button type="submit" id="register-submit-btn" class="btn btn-primary fw-bolder fs-6 px-8 py-4 my-3 me-3">@L("Submit")</button>
+                </div>
+            </div>
+            <!--begin::Step 1-->
+
+            <!--begin::Step 1-->
+            <div class="flex-column" data-kt-stepper-element="content">
+                
+                
+            </div>
+            
+            <div class="flex-column" data-kt-stepper-element="content">
+                
+            </div>
+            <!--begin::Step 1-->
+
+            <!--begin::Step 1-->
+            <div class="flex-column" data-kt-stepper-element="content">
+                <!--begin::Input group-->
+                
+            </div>
+            <!--begin::Step 1-->
         </div>
+        <!--end::Group-->
+
+        <!--begin::Actions-->
+        <div class="d-flex flex-stack">
+            <!--begin::Wrapper-->
+            <div class="me-2">
+                <button type="button" class="btn btn-light btn-active-light-primary" data-kt-stepper-action="previous">
+                    Back
+                </button>
+            </div>
+            <!--end::Wrapper-->
+
+            <!--begin::Wrapper-->
+            <div>
+                <button type="button" class="btn btn-primary" data-kt-stepper-action="submit">
+                    <span class="indicator-label">
+                        Submit
+                    </span>
+                    <span class="indicator-progress">
+                        Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                    </span>
+                </button>
+
+                <button type="button" class="btn btn-primary" data-kt-stepper-action="next">
+                    Continue
+                </button>
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Actions-->
+    </form>
+    <!--end::Form-->
+</div>
+<!--end::Stepper-->
+    <form class="form register-form" asp-action="Register" method="post">
+
+        
     </form>
 </div>
