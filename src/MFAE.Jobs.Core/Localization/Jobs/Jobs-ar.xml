@@ -1,12 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="ar">
   <texts>
-
+	  
+	<text name="AttachmentFiles">قائمة الملفات</text>
+	<text name="AttachmentTypes">انواع الملفات</text>
 	<text name="LocationModel">العناوين</text>
 	<text name="Attachments">الملفات</text>
 	<text name="InformationBank">بنك المعلومات</text>
-	  
-    <text name="Enum_XRoadServiceStatusEnum_1">فعال</text>
+	<text name="AttachmentTypeGroups">تصنيفات نوع الملفات</text>
+	<text name="CreateNewAttachmentType">انشاء نوع ملف جديد</text>
+	<text name="AttachmentTypesHeaderInfo">قائمة انواع الملفات</text>
+	<text name="AllowedExtensions">الامتدادات المسموحة</text>
+	<text name="MaxAttachments">الحد الاعلى للملفات</text>
+	<text name="MinRequiredAttachments">عدد الملفات الضرورية</text>
+	<text name="Category">التصنيف</text>
+	<text name="PrivacyFlag">خصوصية الملف</text>
+	<text name="PhysicalName">الاسم الفعلي</text>
+	<text name="OriginalName">الاسم الاصلي</text>
+	<text name="Size">حجم الملف </text>
+	<text name="Path">مسار الملف </text>
+	<text name="ObjectId"> رقم الوثيقة</text>
+	<text name="FileToken">رمز الملف</text>
+	<text name="AttachmentTypeArName">نوع الملف</text>
+	<text name="Version">الإصدار</text>
+	<text name="MaxSizeMB">الحد الاقصى لحجم الملف</text>
+	<text name="CreateNewAttachmentFile">انشاء ملف جديد</text>
+	<text name="AttachmentType">نوع الملف</text>
+	<text name="CreateNewAttachmentTypeGroup">إنشاء تصنيف ملف جديد</text>
+	<text name="ArName">الاسم (بالعربية)</text>
+	<text name="EnName">الاسم (بالإنجليزية)</text>
+
+	<text name="Enum_XRoadServiceStatusEnum_1">فعال</text>
     <text name="Enum_XRoadServiceStatusEnum_2">غير فعال</text>
     <text name="IsoNumeric">رقم ISO</text>
     <text name="IsoAlpha">كود ISO</text>
