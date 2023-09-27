@@ -20,7 +20,7 @@
 					"content" : "
 								<div class=\"form-group\">
 									<label for=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\">@L(\"{{Property_Name_Here}}\")</label>
-									<input class=\"form-control m-input\" id=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\" value=\"@Model.{{Entity_Name_Here}}.{{Property_Name_Here}}{{Property_Nullable_Question_Mark_Here}}.ToString(CultureInfo.InvariantCulture)\" type=\"number\" name=\"{{property_Name_Here}}\" {{MinValue}} {{MaxValue}} {{Required}} {{Decimal_Precision}}/>
+									<input class=\"form-control m-input\" id=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\" value=\"@Model.{{Entity_Name_Here}}.{{Property_Name_Here}}{{Property_Nullable_Question_Mark_Here}}.ToString(CultureInfo.InvariantCulture)\" type=\"number\" name=\"{{property_Name_Here}}\" {{MinValue}} {{MaxValue}} {{Required}}/>
 								</div>
 					"
 					},
@@ -110,7 +110,7 @@
 					"content" : "
 								<div class=\"my-3\">
 									<label class=\"form-label\" for=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\">@L(\"{{Property_Name_Here}}\")</label>
-									<input class=\"form-control m-input\" id=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\" value=\"@Model.{{Entity_Name_Here}}.{{Property_Name_Here}}{{Property_Nullable_Question_Mark_Here}}.ToString(CultureInfo.InvariantCulture)\" type=\"number\" name=\"{{property_Name_Here}}\" {{MinValue}} {{MaxValue}} {{Required}} {{Decimal_Precision}}/>
+									<input class=\"form-control m-input\" id=\"{{Entity_Name_Here}}_{{Property_Name_Here}}\" value=\"@Model.{{Entity_Name_Here}}.{{Property_Name_Here}}{{Property_Nullable_Question_Mark_Here}}.ToString(CultureInfo.InvariantCulture)\" type=\"number\" name=\"{{property_Name_Here}}\" {{MinValue}} {{MaxValue}} {{Required}}/>
 								</div>
 					"
 					},
@@ -348,11 +348,6 @@
 			"content": "</div>"
 		},
 		{
-			"placeholder": "{{Div_Before_Metronic_V812}}",
-			"condition": "{{Project_Version_Here}} < 110400",
-			"content": "</div>"
-		},
-		{
 			"placeholder": "{{Content_Class_After_Metronic_V606}}",
 			"condition": "{{Project_Version_Here}} >= 070200 && {{Project_Version_Here}} < 090000",
 			"content": "<div class=\"kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor\">"
@@ -364,7 +359,7 @@
 		},
         {
             "placeholder": "{{Content_Class_After_Metronic_V90}}",
-            "condition": "{{Project_Version_Here}} >= 090000 && {{Project_Version_Here}} < 110400",
+            "condition": "{{Project_Version_Here}} >= 090000",
             "content": "<div class=\"content d-flex flex-column flex-column-fluid\">"
         },        
 		{
@@ -450,15 +445,10 @@
             "condition": "{{Project_Version_Here}} >= 090000",
             "content": "@using {{Namespace_Here}}.Web.TagHelpers"
         },
-        {
-            "placeholder": "{{KT_Here}}",
-            "condition": "{{Project_Version_Here}} < 090000",
-            "content": "kt-"
-        },
-        {
-          "placeholder": "{{Decimal_Precision}}",
-          "condition": "{{Property_Has_Decimal_Precision_Here}} == true",
-          "content": " step=\"{{Property_Decimal_Precision_Here}}\" "
-        }         
+         {
+             "placeholder": "{{KT_Here}}",
+             "condition": "{{Project_Version_Here}} < 090000",
+             "content": "kt-"
+         }
 	]
 }

@@ -1,0 +1,27 @@
+﻿
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
+@using MFAE.Jobs.Web.Areas.App.Models.JobAdvertisements
+@model CreateOrEditJobAdvertisementModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditJobAdvertisement")) : L("CreateNewJobAdvertisement")))
+
+<div class="modal-body">
+    <div id="JobAdvertisementInformationsTab">
+        <form name="JobAdvertisementInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.JobAdvertisement.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="JobAdvertisement_Description">@L("Description")</label>
+                <input class="form-control" id="JobAdvertisement_Description" value="@Model.JobAdvertisement.Description" type="text" name="description" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

@@ -37,7 +37,7 @@
 					{
 					"type" : "string",
 					"content" : "
-						.WhereIf(!string.IsNullOrWhiteSpace(input.{{Property_Name_Here}}Filter),  e => e.{{Property_Name_Here}}.Contains(input.{{Property_Name_Here}}Filter))"
+						.WhereIf(!string.IsNullOrWhiteSpace(input.{{Property_Name_Here}}Filter),  e => e.{{Property_Name_Here}} == input.{{Property_Name_Here}}Filter)"
 					},
 					{
 					"type" : "bool",

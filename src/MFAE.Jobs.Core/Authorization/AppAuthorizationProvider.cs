@@ -30,6 +30,11 @@ namespace MFAE.Jobs.Authorization
 
             var pages = context.GetPermissionOrNull(AppPermissions.Pages) ?? context.CreatePermission(AppPermissions.Pages, L("Pages"));
 
+            var jobAdvertisements = pages.CreateChildPermission(AppPermissions.Pages_JobAdvertisements, L("JobAdvertisements"));
+            jobAdvertisements.CreateChildPermission(AppPermissions.Pages_JobAdvertisements_Create, L("CreateNewJobAdvertisement"));
+            jobAdvertisements.CreateChildPermission(AppPermissions.Pages_JobAdvertisements_Edit, L("EditJobAdvertisement"));
+            jobAdvertisements.CreateChildPermission(AppPermissions.Pages_JobAdvertisements_Delete, L("DeleteJobAdvertisement"));
+
             var xRoadServiceErrors = pages.CreateChildPermission(AppPermissions.Pages_XRoadServiceErrors, L("XRoadServiceErrors"));
             xRoadServiceErrors.CreateChildPermission(AppPermissions.Pages_XRoadServiceErrors_Create, L("CreateNewXRoadServiceError"));
             xRoadServiceErrors.CreateChildPermission(AppPermissions.Pages_XRoadServiceErrors_Edit, L("EditXRoadServiceError"));

@@ -19,6 +19,8 @@ namespace MFAE.Jobs.EntityFrameworkCore
 {
     public class JobsDbContext : AbpZeroDbContext<Tenant, Role, User, JobsDbContext>
     {
+        public virtual DbSet<JobAdvertisement> JobAdvertisements { get; set; }
+
         public virtual DbSet<XRoadServiceError> XRoadServiceErrors { get; set; }
 
         public virtual DbSet<XRoadServiceAttributeMapping> XRoadServiceAttributeMappings { get; set; }

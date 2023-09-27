@@ -56,6 +56,8 @@ namespace MFAE.Jobs
     {
         public static void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            configuration.CreateMap<CreateOrEditJobAdvertisementDto, JobAdvertisement>().ReverseMap();
+            configuration.CreateMap<JobAdvertisementDto, JobAdvertisement>().ReverseMap();
             configuration.CreateMap<CreateOrEditXRoadServiceErrorDto, XRoadServiceError>().ReverseMap();
             configuration.CreateMap<XRoadServiceErrorDto, XRoadServiceError>().ReverseMap();
             configuration.CreateMap<CreateOrEditXRoadServiceAttributeMappingDto, XRoadServiceAttributeMapping>().ReverseMap();

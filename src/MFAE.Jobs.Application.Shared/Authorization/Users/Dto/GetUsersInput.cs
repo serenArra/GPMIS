@@ -6,6 +6,8 @@ namespace MFAE.Jobs.Authorization.Users.Dto
 {
     public class GetUsersInput : PagedAndSortedInputDto, IShouldNormalize, IGetUsersInput
     {
+        public long? UserId { get; set; }
+
         public string Filter { get; set; }
 
         public List<string> Permissions { get; set; }
