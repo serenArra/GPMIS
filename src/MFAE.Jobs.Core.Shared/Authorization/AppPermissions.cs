@@ -6,6 +6,11 @@
     /// </summary>
     public static class AppPermissions
     {
+        public const string Pages_ApplicationForms = "Pages.ApplicationForms";
+        public const string Pages_ApplicationForms_Create = "Pages.ApplicationForms.Create";
+        public const string Pages_ApplicationForms_Edit = "Pages.ApplicationForms.Edit";
+        public const string Pages_ApplicationForms_Delete = "Pages.ApplicationForms.Delete";
+
         public const string Pages_JobAdvertisements = "Pages.JobAdvertisements";
         public const string Pages_JobAdvertisements_Create = "Pages.JobAdvertisements.Create";
         public const string Pages_JobAdvertisements_Edit = "Pages.JobAdvertisements.Edit";
@@ -143,6 +148,7 @@
 
         public const string Pages_DemoUiComponents = "Pages.DemoUiComponents";
         public const string Pages_Administration = "Pages.Administration";
+        public const string Pages_Administration_Menu = "Pages.Administration.Menu";
 
         public const string Pages_Administration_Roles = "Pages.Administration.Roles";
         public const string Pages_Administration_Roles_Create = "Pages.Administration.Roles.Create";

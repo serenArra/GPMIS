@@ -2,15 +2,15 @@
 @using MFAE.Jobs.Web.Areas.App.Models.Welcomes
 @using MFAE.Jobs.Web.Areas.App.Startup
 @model WelcomesViewModel
-
- @* <script>
-      $(document).ready(function() {
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function() {
         $("#applyBtn").click(function () {
-              window.location.href = "/another-page";
+            window.location.href = "/App/Welcome/ApplicationForms";
           });
       });
-  </script> *@
-
+    </script>
+}
 <abp-page-subheader>
     </abp-page-subheader>
  
@@ -253,9 +253,6 @@
             </div>
         </div>
     </div>
-
-
-    
+        
 </div>
-
 

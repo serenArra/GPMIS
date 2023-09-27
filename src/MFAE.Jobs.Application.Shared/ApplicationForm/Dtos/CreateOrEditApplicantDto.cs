@@ -8,6 +8,9 @@ namespace MFAE.Jobs.ApplicationForm.Dtos
 {
     public class CreateOrEditApplicantDto : EntityDto<long?>
     {
+        public long? UserId { get; set; }
+
+        public Guid ProfilePictureId { get; set; }
 
         [Required]
         [StringLength(ApplicantConsts.MaxDocumentNoLength, MinimumLength = ApplicantConsts.MinDocumentNoLength)]
