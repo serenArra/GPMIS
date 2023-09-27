@@ -24,8 +24,24 @@ namespace MFAE.Jobs.Web.Models.Account
         public string Name { get; set; }
 
         [Required]
+        [StringLength(UserConsts.MaxSecondNameLength)]
+        public string SecondName { get; set; }
+
+        [Required]
+        [StringLength(UserConsts.MaxThirdNameLength)]
+        public string ThirdName { get; set; }
+
+        [Required]
         [StringLength(User.MaxSurnameLength)]
         public string Surname { get; set; }
+
+        public string FirstNameEn { get; set; }
+
+        public string SecondNameEn { get; set; }
+
+        public string ThirdNameEn { get; set; }
+
+        public string FourthNameEn { get; set; }
 
         [StringLength(AbpUserBase.MaxUserNameLength)]
         public string UserName { get; set; }
@@ -34,6 +50,10 @@ namespace MFAE.Jobs.Web.Models.Account
         [EmailAddress]
         [StringLength(AbpUserBase.MaxEmailAddressLength)]
         public string EmailAddress { get; set; }
+
+        [Required]
+        [StringLength(AbpUserBase.MaxPhoneNumberLength)]
+        public string PhoneNumber { get; set; }
 
         [StringLength(User.MaxPlainPasswordLength)]
         [DisableAuditing]

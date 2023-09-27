@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="ar">
   <texts>
+    <text name="PersonalInformation">المعلومات الشخصية</text>
+    <text name="AccountVerification">توثيق الحساب</text>
+    <text name="AccountInformation">معلومات الحساب</text>
     <text name="SelectOption">الرجاء الاختيار ...</text>
     <text name="Enum_XRoadServiceStatusEnum_1">فعال</text>
     <text name="Enum_XRoadServiceStatusEnum_2">غير فعال</text>
