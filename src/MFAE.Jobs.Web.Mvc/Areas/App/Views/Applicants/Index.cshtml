@@ -28,7 +28,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.Applicants;
 
                         <div class="my-3">
                             <div class="input-group">
-                                <input type="text" id="ApplicantsTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <input type="text" id="ApplicantsTableFilter" class="form-control reload-on-change form-control-solid" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
                                 <button id="GetApplicantsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
                             </div>
                         </div>
@@ -44,55 +44,55 @@ ViewBag.CurrentPageName = AppPageNames.Common.Applicants;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="DocumentNoFilterId">@L("DocumentNo")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="documentNoFilter" id="DocumentNoFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="documentNoFilter" id="DocumentNoFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="FirstNameFilterId">@L("FirstName")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="firstNameFilter" id="FirstNameFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="firstNameFilter" id="FirstNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="FatherNameFilterId">@L("FatherName")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="fatherNameFilter" id="FatherNameFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="fatherNameFilter" id="FatherNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="GrandFatherNameFilterId">@L("GrandFatherName")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="grandFatherNameFilter" id="GrandFatherNameFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="grandFatherNameFilter" id="GrandFatherNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="FamilyNameFilterId">@L("FamilyName")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="familyNameFilter" id="FamilyNameFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="familyNameFilter" id="FamilyNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="FirstNameEnFilterId">@L("FirstNameEn")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="firstNameEnFilter" id="FirstNameEnFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="firstNameEnFilter" id="FirstNameEnFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="FatherNameEnFilterId">@L("FatherNameEn")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="fatherNameEnFilter" id="FatherNameEnFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="fatherNameEnFilter" id="FatherNameEnFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="GrandFatherNameEnFilterId">@L("GrandFatherNameEn")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="grandFatherNameEnFilter" id="GrandFatherNameEnFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="grandFatherNameEnFilter" id="GrandFatherNameEnFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="FamilyNameEnFilterId">@L("FamilyNameEn")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="familyNameEnFilter" id="FamilyNameEnFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="familyNameEnFilter" id="FamilyNameEnFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -108,40 +108,40 @@ ViewBag.CurrentPageName = AppPageNames.Common.Applicants;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="BirthPlaceFilterId">@L("BirthPlace")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="birthPlaceFilter" id="BirthPlaceFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="birthPlaceFilter" id="BirthPlaceFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="MinNumberOfChildrenFilterId">@L("MinMax") @L("NumberOfChildren")</label>
                         <div class="input-group">
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MinValue")" name="minNumberOfChildrenFilter" id="MinNumberOfChildrenFilterId" />
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MaxValue")" name="maxNumberOfChildrenFilter" id="MaxNumberOfChildrenFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MinValue")" name="minNumberOfChildrenFilter" id="MinNumberOfChildrenFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MaxValue")" name="maxNumberOfChildrenFilter" id="MaxNumberOfChildrenFilterId" />
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="AddressFilterId">@L("Address")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="addressFilter" id="AddressFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="addressFilter" id="AddressFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="MobileFilterId">@L("Mobile")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="mobileFilter" id="MobileFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="mobileFilter" id="MobileFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="EmailFilterId">@L("Email")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="emailFilter" id="EmailFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="emailFilter" id="EmailFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="IsLockedFilterId">@L("IsLocked")</label>
-                        <select class="form-select reload-on-change" name="IsLockedFilter" id="IsLockedFilterId">
+                        <select class="form-select form-control reload-on-change form-control-solid" name="IsLockedFilter" id="IsLockedFilterId">
                             <option value="-1">@L("All")</option>
                             <option value="0">@L("False")</option>
                             <option value="1">@L("True")</option>
@@ -151,7 +151,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.Applicants;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="GenderFilterId">@L("Gender")</label>
-                        <select class="form-select reload-on-change" name="GenderFilter" id="GenderFilterId">
+                        <select class="form-select form-control reload-on-change form-control-solid" name="GenderFilter" id="GenderFilterId">
                             <option value="-1">@L("All")</option>
                             <option value="1">@L("Enum_Gender_1")</option>
 
@@ -164,43 +164,43 @@ ViewBag.CurrentPageName = AppPageNames.Common.Applicants;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="IdentificationTypeNameFilterId">(@L("IdentificationType")) @L("Name")</label>
-                        <input type="text" class="form-control" name="identificationTypeNameFilter" id="IdentificationTypeNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="identificationTypeNameFilter" id="IdentificationTypeNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="MaritalStatusNameFilterId">(@L("MaritalStatus")) @L("Name")</label>
-                        <input type="text" class="form-control" name="maritalStatusNameFilter" id="MaritalStatusNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="maritalStatusNameFilter" id="MaritalStatusNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="UserNameFilterId">(@L("User")) @L("Name")</label>
-                        <input type="text" class="form-control" name="userNameFilter" id="UserNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="userNameFilter" id="UserNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="ApplicantStatusDescriptionFilterId">(@L("ApplicantStatus")) @L("Description")</label>
-                        <input type="text" class="form-control" name="applicantStatusDescriptionFilter" id="ApplicantStatusDescriptionFilterId">
+                        <input type="text" class="form-control form-control-solid" name="applicantStatusDescriptionFilter" id="ApplicantStatusDescriptionFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="CountryNameFilterId">(@L("Country")) @L("Name")</label>
-                        <input type="text" class="form-control" name="countryNameFilter" id="CountryNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="countryNameFilter" id="CountryNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="GovernorateNameFilterId">(@L("Governorate")) @L("Name")</label>
-                        <input type="text" class="form-control" name="governorateNameFilter" id="GovernorateNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="governorateNameFilter" id="GovernorateNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="LocalityNameFilterId">(@L("Locality")) @L("Name")</label>
-                        <input type="text" class="form-control" name="localityNameFilter" id="LocalityNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="localityNameFilter" id="LocalityNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-12 mt-5">
@@ -214,7 +214,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.Applicants;
                 </div>
             </div>
             <div class="row align-items-center">
-                <table id="ApplicantsTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                <table id="ApplicantsTable" class="display table table-striped table-hover dt-responsive nowrap">
                     <thead>
                         <tr>
                             <th></th>

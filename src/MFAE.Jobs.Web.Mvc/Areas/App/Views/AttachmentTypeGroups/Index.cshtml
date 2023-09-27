@@ -28,7 +28,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.AttachmentTypeGroups;
 
                         <div class="my-3">
                             <div class="input-group">
-                                <input type="text" id="AttachmentTypeGroupsTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <input type="text" id="AttachmentTypeGroupsTableFilter" class="form-control reload-on-change form-control-solid" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
                                 <button id="GetAttachmentTypeGroupsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
                             </div>
                         </div>
@@ -44,13 +44,13 @@ ViewBag.CurrentPageName = AppPageNames.Common.AttachmentTypeGroups;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="ArNameFilterId">@L("ArName")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="arNameFilter" id="ArNameFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="arNameFilter" id="ArNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="EnNameFilterId">@L("EnName")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="enNameFilter" id="EnNameFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="enNameFilter" id="EnNameFilterId">
                     </div>
                 </div>
 
@@ -65,7 +65,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.AttachmentTypeGroups;
                 </div>
             </div>
             <div class="row align-items-center">
-                <table id="AttachmentTypeGroupsTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                <table id="AttachmentTypeGroupsTable" class="display table table-striped table-hover dt-responsive nowrap">
                     <thead>
                         <tr>
                             <th></th>

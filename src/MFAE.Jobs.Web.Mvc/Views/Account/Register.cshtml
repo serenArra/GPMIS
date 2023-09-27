@@ -155,7 +155,7 @@
                 <div class="mb-5 ">
                      @Html.DropDownList("identificationTypeId", new SelectList(Model.IdentificationTypeList,"Id","DisplayName",
                     (Model.IdentificationTypeList.Count > 0 ? (defaultIdType?.Id.ToString()) : "")),
-                            @L("SelectOption"), new { @class = "form-control form-control-solid" })
+                        @L("SelectOption"), new { @class = "form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" })
                 </div>
                 <div class="mb-5 ">
                      <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg fs-6" type="text" placeholder="@L("DocumentNo")" name="DocumentNo" id="DocumentNo" required value="@Model.DocumentNo" maxlength="15"/>

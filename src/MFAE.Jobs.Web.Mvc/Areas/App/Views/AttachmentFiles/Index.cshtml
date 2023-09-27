@@ -28,7 +28,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.AttachmentFiles;
 
                         <div class="my-3">
                             <div class="input-group">
-                                <input type="text" id="AttachmentFilesTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <input type="text" id="AttachmentFilesTableFilter" class="form-control reload-on-change form-control-solid" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
                                 <button id="GetAttachmentFilesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
                             </div>
                         </div>
@@ -44,74 +44,74 @@ ViewBag.CurrentPageName = AppPageNames.Common.AttachmentFiles;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="PhysicalNameFilterId">@L("PhysicalName")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="physicalNameFilter" id="PhysicalNameFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="physicalNameFilter" id="PhysicalNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="DescriptionFilterId">@L("Description")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="descriptionFilter" id="DescriptionFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="descriptionFilter" id="DescriptionFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="OriginalNameFilterId">@L("OriginalName")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="originalNameFilter" id="OriginalNameFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="originalNameFilter" id="OriginalNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="MinSizeFilterId">@L("MinMax") @L("Size")</label>
                         <div class="input-group">
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MinValue")" name="minSizeFilter" id="MinSizeFilterId" />
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MaxValue")" name="maxSizeFilter" id="MaxSizeFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MinValue")" name="minSizeFilter" id="MinSizeFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MaxValue")" name="maxSizeFilter" id="MaxSizeFilterId" />
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="ObjectIdFilterId">@L("ObjectId")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="objectIdFilter" id="ObjectIdFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="objectIdFilter" id="ObjectIdFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="PathFilterId">@L("Path")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="pathFilter" id="PathFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="pathFilter" id="PathFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="MinVersionFilterId">@L("MinMax") @L("Version")</label>
                         <div class="input-group">
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MinValue")" name="minVersionFilter" id="MinVersionFilterId" />
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MaxValue")" name="maxVersionFilter" id="MaxVersionFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MinValue")" name="minVersionFilter" id="MinVersionFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MaxValue")" name="maxVersionFilter" id="MaxVersionFilterId" />
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="FileTokenFilterId">@L("FileToken")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="fileTokenFilter" id="FileTokenFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="fileTokenFilter" id="FileTokenFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="TagFilterId">@L("Tag")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="tagFilter" id="TagFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="tagFilter" id="TagFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="FilterKeyFilterId">@L("FilterKey")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="filterKeyFilter" id="FilterKeyFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="filterKeyFilter" id="FilterKeyFilterId">
                     </div>
                 </div>
 
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="AttachmentTypeArNameFilterId">(@L("AttachmentType")) @L("ArName")</label>
-                        <input type="text" class="form-control" name="attachmentTypeArNameFilter" id="AttachmentTypeArNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="attachmentTypeArNameFilter" id="AttachmentTypeArNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-12 mt-5">
@@ -125,7 +125,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.AttachmentFiles;
                 </div>
             </div>
             <div class="row align-items-center">
-                <table id="AttachmentFilesTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                <table id="AttachmentFilesTable" class="display table table-striped table-hover dt-responsive nowrap">
                     <thead>
                         <tr>
                             <th></th>

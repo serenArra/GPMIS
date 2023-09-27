@@ -5,17 +5,17 @@
     <form name="LinkAccountModalForm" role="form" novalidate class="form-validation">
         <div class="mb-5">
             <label for="TenancyName" class="form-label">@L("TenancyName")</label>
-            <input id="TenancyName" type="text" name="TenancyName" class="form-control" value="@(ViewBag.TenancyName ?? "")" maxlength="@MFAE.Jobs.MultiTenancy.Tenant.MaxTenancyNameLength">
+            <input id="TenancyName" type="text" name="TenancyName" class="form-control form-control-solid" value="@(ViewBag.TenancyName ?? "")" maxlength="@MFAE.Jobs.MultiTenancy.Tenant.MaxTenancyNameLength">
         </div>
 
         <div class="mb-5">
             <label for="UsernameOrEmailAddress" class="form-label">@L("UserName")</label>
-            <input id="UsernameOrEmailAddress" class="form-control" type="text" name="UsernameOrEmailAddress" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength">
+            <input id="UsernameOrEmailAddress" class="form-control form-control-solid" type="text" name="UsernameOrEmailAddress" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength">
         </div>
 
         <div class="mb-5">
             <label for="Password" class="form-label">@L("Password")</label>
-            <input id="Password" type="password" name="Password"  autocomplete="new-password" class="form-control" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxPasswordLength">
+            <input id="Password" type="password" name="Password"  autocomplete="new-password" class="form-control form-control-solid" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxPasswordLength">
         </div>
     </form>
 </div>

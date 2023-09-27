@@ -17,22 +17,22 @@
 
             <div class="my-3">
                 <label class="form-label" for="AttachmentEntityType_ArName">@L("ArName")</label>
-                <input class="form-control" id="AttachmentEntityType_ArName" value="@Model.AttachmentEntityType.ArName" type="text" name="arName" required maxlength="@MFAE.Jobs.Attachments.AttachmentEntityTypeConsts.MaxArNameLength" minlength="@MFAE.Jobs.Attachments.AttachmentEntityTypeConsts.MinArNameLength" />
+                <input class="form-control form-control-solid" id="AttachmentEntityType_ArName" value="@Model.AttachmentEntityType.ArName" type="text" name="arName" required maxlength="@MFAE.Jobs.Attachments.AttachmentEntityTypeConsts.MaxArNameLength" minlength="@MFAE.Jobs.Attachments.AttachmentEntityTypeConsts.MinArNameLength" />
             </div>
 
             <div class="my-3">
                 <label class="form-label" for="AttachmentEntityType_EnName">@L("EnName")</label>
-                <input class="form-control" id="AttachmentEntityType_EnName" value="@Model.AttachmentEntityType.EnName" type="text" name="enName" required maxlength="@MFAE.Jobs.Attachments.AttachmentEntityTypeConsts.MaxEnNameLength" minlength="@MFAE.Jobs.Attachments.AttachmentEntityTypeConsts.MinEnNameLength" />
+                <input class="form-control form-control-solid" id="AttachmentEntityType_EnName" value="@Model.AttachmentEntityType.EnName" type="text" name="enName" required maxlength="@MFAE.Jobs.Attachments.AttachmentEntityTypeConsts.MaxEnNameLength" minlength="@MFAE.Jobs.Attachments.AttachmentEntityTypeConsts.MinEnNameLength" />
             </div>
 
             <div class="my-3">
                 <label class="form-label" for="AttachmentEntityType_Folder">@L("Folder")</label>
-                <input class="form-control" id="AttachmentEntityType_Folder" value="@Model.AttachmentEntityType.Folder" type="text" name="folder" required maxlength="@MFAE.Jobs.Attachments.AttachmentEntityTypeConsts.MaxFolderLength" minlength="@MFAE.Jobs.Attachments.AttachmentEntityTypeConsts.MinFolderLength" />
+                <input class="form-control form-control-solid" id="AttachmentEntityType_Folder" value="@Model.AttachmentEntityType.Folder" type="text" name="folder" required maxlength="@MFAE.Jobs.Attachments.AttachmentEntityTypeConsts.MaxFolderLength" minlength="@MFAE.Jobs.Attachments.AttachmentEntityTypeConsts.MinFolderLength" />
             </div>
 
             <div class="my-3">
                 <label class="form-label" for="AttachmentEntityType_ParentTypeId">@L("ParentTypeId")</label>
-                <input class="form-control m-input" id="AttachmentEntityType_ParentTypeId" value="@Model.AttachmentEntityType.ParentTypeId?.ToString(CultureInfo.InvariantCulture)" type="number" name="parentTypeId" />
+                <input class="form-control m-input form-control-solid" id="AttachmentEntityType_ParentTypeId" value="@Model.AttachmentEntityType.ParentTypeId?.ToString(CultureInfo.InvariantCulture)" type="number" name="parentTypeId" />
             </div>
 
         </form>

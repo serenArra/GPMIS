@@ -291,15 +291,15 @@
             </div>
             <div class="mb-5">
                 <label for="Domain" class="form-label">@L("DomainName")</label>
-                <input id="Domain" type="text" name="Domain" class="form-control" value="@Model.Settings.Ldap.Domain" maxlength="128">
+                <input id="Domain" type="text" name="Domain" class="form-control form-control-solid" value="@Model.Settings.Ldap.Domain" maxlength="128">
             </div>
             <div class="mb-5">
                 <label for="UserName" class="form-label">@L("UserName")</label>
-                <input id="UserName" type="text" name="UserName" class="form-control" value="@Model.Settings.Ldap.UserName" maxlength="128">
+                <input id="UserName" type="text" name="UserName" class="form-control form-control-solid" value="@Model.Settings.Ldap.UserName" maxlength="128">
             </div>
             <div class="mb-5">
                 <label for="Password" class="form-label">@L("Password")</label>
-                <input id="Password" type="password" name="Password" class="form-control" value="@Model.Settings.Ldap.Password" maxlength="128" autocomplete="new-password">
+                <input id="Password" type="password" name="Password" class="form-control form-control-solid" value="@Model.Settings.Ldap.Password" maxlength="128" autocomplete="new-password">
             </div>
         </form>
     }
@@ -367,7 +367,7 @@
             </div>
             <div class="mb-5">
                 <label for="RequiredLength" class="form-label">@L("PasswordComplexity_RequiredLength")</label>
-                <input id="RequiredLength" type="number" min="@Model.Settings.Security.PasswordComplexity.AllowedMinimumLength" name="RequiredLength" class="form-control" value="@Model.Settings.Security.PasswordComplexity.RequiredLength">
+                <input id="RequiredLength" type="number" min="@Model.Settings.Security.PasswordComplexity.AllowedMinimumLength" name="RequiredLength" class="form-control form-control-solid" value="@Model.Settings.Security.PasswordComplexity.RequiredLength">
             </div>
         </form>
         <form class="p-5" id="DefaultPasswordComplexitySettingsForm" style="@(!Model.Settings.Security.UseDefaultPasswordComplexitySettings ? "display:none;" : "")">
@@ -399,7 +399,7 @@
             </div>
             <div class="mb-0">
                 <label for="RequiredLength" class="form-label">@L("PasswordComplexity_RequiredLength")</label>
-                <input id="RequiredLength" type="number" name="RequiredLength" class="form-control" value="@Model.Settings.Security.DefaultPasswordComplexity.RequiredLength" disabled>
+                <input id="RequiredLength" type="number" name="RequiredLength" class="form-control form-control-solid" value="@Model.Settings.Security.DefaultPasswordComplexity.RequiredLength" disabled>
             </div>
         </form>
     </div>
@@ -415,11 +415,11 @@
             </label>
             <div class="mb-5 form-group">
                 <label for="MaxFailedAccessAttemptsBeforeLockout" class="form-label">@L("MaxFailedAccessAttemptsBeforeLockout")</label>
-                <input id="MaxFailedAccessAttemptsBeforeLockout" type="number" name="MaxFailedAccessAttemptsBeforeLockout" required="required" class="form-control" value="@Model.Settings.Security.UserLockOut.MaxFailedAccessAttemptsBeforeLockout">
+                <input id="MaxFailedAccessAttemptsBeforeLockout" type="number" name="MaxFailedAccessAttemptsBeforeLockout" required="required" class="form-control form-control-solid" value="@Model.Settings.Security.UserLockOut.MaxFailedAccessAttemptsBeforeLockout">
             </div>
             <div class="mb-5 form-group">
                 <label for="DefaultAccountLockoutSeconds" class="form-label">@L("DefaultAccountLockoutDurationAsSeconds")</label>
-                <input id="DefaultAccountLockoutSeconds" type="number" name="DefaultAccountLockoutSeconds" required="required" class="form-control" value="@Model.Settings.Security.UserLockOut.DefaultAccountLockoutSeconds">
+                <input id="DefaultAccountLockoutSeconds" type="number" name="DefaultAccountLockoutSeconds" required="required" class="form-control form-control-solid" value="@Model.Settings.Security.UserLockOut.DefaultAccountLockoutSeconds">
             </div>
         </form>
     </div>
@@ -523,22 +523,22 @@
             <div class="Settings_Email_Group" @Html.Raw(Model.Settings.Email.UseHostDefaultEmailSettings ? "style=\"display: none;\"" : "")>
                 <div class="mb-5">
                     <label for="DefaultFromAddress" class="form-label">@L("DefaultFromAddress")</label>
-                    <input id="DefaultFromAddress" type="email" name="DefaultFromAddress" class="form-control" value="@Model.Settings.Email.DefaultFromAddress" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength">
+                    <input id="DefaultFromAddress" type="email" name="DefaultFromAddress" class="form-control form-control-solid" value="@Model.Settings.Email.DefaultFromAddress" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength">
                 </div>
 
                 <div class="mb-5">
                     <label for="DefaultFromDisplayName" class="form-label">@L("DefaultFromDisplayName")</label>
-                    <input id="DefaultFromDisplayName" type="text" name="DefaultFromDisplayName" class="form-control" value="@Model.Settings.Email.DefaultFromDisplayName" maxlength="128">
+                    <input id="DefaultFromDisplayName" type="text" name="DefaultFromDisplayName" class="form-control form-control-solid" value="@Model.Settings.Email.DefaultFromDisplayName" maxlength="128">
                 </div>
 
                 <div class="mb-5">
                     <label for="SmtpHost" class="form-label">@L("SmtpHost")</label>
-                    <input id="SmtpHost" type="text" name="SmtpHost" class="form-control" value="@Model.Settings.Email.SmtpHost" maxlength="64">
+                    <input id="SmtpHost" type="text" name="SmtpHost" class="form-control form-control-solid" value="@Model.Settings.Email.SmtpHost" maxlength="64">
                 </div>
 
                 <div class="mb-5">
                     <label for="SmtpPort" class="form-label">@L("SmtpPort")</label>
-                    <input id="SmtpPort" type="number" name="SmtpPort" class="form-control" value="@Model.Settings.Email.SmtpPort" maxlength="5">
+                    <input id="SmtpPort" type="number" name="SmtpPort" class="form-control form-control-solid" value="@Model.Settings.Email.SmtpPort" maxlength="5">
                 </div>
 
                 <div class="checkbox-list">
@@ -558,17 +558,17 @@
 
                 <div class="mb-5">
                     <label for="SmtpDomain" class="form-label">@L("DomainName")</label>
-                    <input id="SmtpDomain" type="text" name="SmtpDomain" class="form-control" value="@Model.Settings.Email.SmtpDomain" maxlength="128">
+                    <input id="SmtpDomain" type="text" name="SmtpDomain" class="form-control form-control-solid" value="@Model.Settings.Email.SmtpDomain" maxlength="128">
                 </div>
 
                 <div class="mb-5">
                     <label for="SmtpUserName" class="form-label">@L("UserName")</label>
-                    <input id="SmtpUserName" type="text" name="SmtpUserName" class="form-control" value="@Model.Settings.Email.SmtpUserName" maxlength="128">
+                    <input id="SmtpUserName" type="text" name="SmtpUserName" class="form-control form-control-solid" value="@Model.Settings.Email.SmtpUserName" maxlength="128">
                 </div>
 
                 <div class="mb-5">
                     <label for="SmtpPassword" class="form-label">@L("Password")</label>
-                    <input id="SmtpPassword" type="password" name="SmtpPassword" class="form-control" value="@Model.Settings.Email.SmtpPassword" maxlength="128" autocomplete="new-password">
+                    <input id="SmtpPassword" type="password" name="SmtpPassword" class="form-control form-control-solid" value="@Model.Settings.Email.SmtpPassword" maxlength="128" autocomplete="new-password">
                 </div>
             </div>
         </form>
@@ -596,17 +596,17 @@
             <h5>@L("InvoiceInformation")</h5>
             <div class="mb-5">
                 <label for="LegalName" class="form-label">@L("LegalName")</label>
-                <input id="LegalName" type="text" class="form-control" name="LegalName" value="@Model.Settings.Billing.LegalName" maxlength="64">
+                <input id="LegalName" type="text" class="form-control form-control-solid" name="LegalName" value="@Model.Settings.Billing.LegalName" maxlength="64">
             </div>
 
             <div class="mb-5">
                 <label for="Address" class="form-label">@L("Address")</label>
-                <textarea id="Address" rows="5" class="form-control" name="Address" class="form-control" maxlength="256">@Model.Settings.Billing.Address</textarea>
+                <textarea id="Address" rows="5" class="form-control form-control-solid" name="Address" class="form-control form-control-solid" maxlength="256">@Model.Settings.Billing.Address</textarea>
             </div>
 
             <div class="mb-5">
                 <label for="TaxVatNo" class="form-label">@L("Tax/VatNo")</label>
-                <input id="TaxVatNo" type="text" class="form-control" name="TaxVatNo" value="@Model.Settings.Billing.TaxVatNo" maxlength="32">
+                <input id="TaxVatNo" type="text" class="form-control form-control-solid" name="TaxVatNo" value="@Model.Settings.Billing.TaxVatNo" maxlength="32">
             </div>
         </form>
     </div>
@@ -683,12 +683,12 @@
                     <div class="collapse @(string.IsNullOrWhiteSpace(Model.Settings.ExternalLoginProviderSettings.Facebook.AppId) ? "" : "show")">
                         <div class="mb-5">
                             <label for="Setting_Facebook_AppId" class="form-label">@L("AppId")*</label>
-                            <input id="Setting_Facebook_AppId" type="text" class="form-control" name="AppId" value="@Model.Settings.ExternalLoginProviderSettings.Facebook.AppId">
+                            <input id="Setting_Facebook_AppId" type="text" class="form-control form-control-solid" name="AppId" value="@Model.Settings.ExternalLoginProviderSettings.Facebook.AppId">
                         </div>
                         <div class="mb-5">
                             <label for="Setting_Facebook_AppSecret" class="form-label">@L("AppSecret")*</label>
                             <div class="input-group">
-                                <input id="Setting_Facebook_AppSecret" type="password" class="form-control" name="AppSecret" value="@Model.Settings.ExternalLoginProviderSettings.Facebook.AppSecret">
+                                <input id="Setting_Facebook_AppSecret" type="password" class="form-control form-control-solid" name="AppSecret" value="@Model.Settings.ExternalLoginProviderSettings.Facebook.AppSecret">
                                 <button class="btn btn-primary passwordShowButton" type="button" data-id="Setting_Facebook_AppSecret">
                                     <i class="far fa-eye text-white"></i> <span> @L("Show")</span>
                                 </button>
@@ -715,12 +715,12 @@
                     <div class="collapse @(string.IsNullOrWhiteSpace(Model.Settings.ExternalLoginProviderSettings.Google.ClientId) ? "" : "show")">
                         <div class="mb-5">
                             <label for="Setting_Google_ClientId" class="form-label">@L("ClientId")*</label>
-                            <input id="Setting_Google_ClientId" type="text" class="form-control" name="ClientId" value="@Model.Settings.ExternalLoginProviderSettings.Google.ClientId">
+                            <input id="Setting_Google_ClientId" type="text" class="form-control form-control-solid" name="ClientId" value="@Model.Settings.ExternalLoginProviderSettings.Google.ClientId">
                         </div>
                         <div class="mb-5">
                             <label for="Setting_Google_ClientSecret" class="form-label">@L("ClientSecret")*</label>
                             <div class="input-group">
-                                <input id="Setting_Google_ClientSecret" type="password" class="form-control" name="ClientSecret" value="@Model.Settings.ExternalLoginProviderSettings.Google.ClientSecret">
+                                <input id="Setting_Google_ClientSecret" type="password" class="form-control form-control-solid" name="ClientSecret" value="@Model.Settings.ExternalLoginProviderSettings.Google.ClientSecret">
                                 <button class="btn btn-primary passwordShowButton" type="button" data-id="Setting_Google_ClientSecret">
                                     <i class="far fa-eye text-white"></i> <span> @L("Show")</span>
                                 </button>
@@ -728,7 +728,7 @@
                         </div>
                         <div class="mb-5">
                             <label for="Setting_Google_UserInfoEndpoint" class="form-label">@L("UserInfoEndpoint")</label>
-                            <input id="Setting_Google_UserInfoEndpoint" type="text" class="form-control" name="UserInfoEndpoint" value="@Model.Settings.ExternalLoginProviderSettings.Google.UserInfoEndpoint">
+                            <input id="Setting_Google_UserInfoEndpoint" type="text" class="form-control form-control-solid" name="UserInfoEndpoint" value="@Model.Settings.ExternalLoginProviderSettings.Google.UserInfoEndpoint">
                         </div>
                     </div>
                 </div>
@@ -751,12 +751,12 @@
                     <div class="collapse @(string.IsNullOrWhiteSpace(Model.Settings.ExternalLoginProviderSettings.Twitter.ConsumerKey) ? "" : "show")">
                         <div class="mb-5">
                             <label for="Setting_Twitter_ConsumerKey" class="form-label">@L("ConsumerKey")*</label>
-                            <input id="Setting_Twitter_ConsumerKey" type="text" class="form-control" name="ConsumerKey" value="@Model.Settings.ExternalLoginProviderSettings.Twitter.ConsumerKey">
+                            <input id="Setting_Twitter_ConsumerKey" type="text" class="form-control form-control-solid" name="ConsumerKey" value="@Model.Settings.ExternalLoginProviderSettings.Twitter.ConsumerKey">
                         </div>
                         <div class="mb-5">
                             <label for="Setting_Twitter_ConsumerSecret" class="form-label">@L("ConsumerSecret")*</label>
                             <div class="input-group">
-                                <input id="Setting_Twitter_ConsumerSecret" type="password" class="form-control" name="ConsumerSecret" value="@Model.Settings.ExternalLoginProviderSettings.Twitter.ConsumerSecret">
+                                <input id="Setting_Twitter_ConsumerSecret" type="password" class="form-control form-control-solid" name="ConsumerSecret" value="@Model.Settings.ExternalLoginProviderSettings.Twitter.ConsumerSecret">
                                 <button class="btn btn-primary passwordShowButton" type="button" data-id="Setting_Twitter_ConsumerSecret">
                                     <i class="far fa-eye text-white"></i> <span> @L("Show")</span>
                                 </button>
@@ -783,12 +783,12 @@
                     <div class="collapse @(string.IsNullOrWhiteSpace(Model.Settings.ExternalLoginProviderSettings.Microsoft.ClientId) ? "" : "show")">
                         <div class="mb-5">
                             <label for="Setting_Microsoft_ClientId" class="form-label">@L("ClientId")*</label>
-                            <input id="Setting_Microsoft_ClientId" type="text" class="form-control" name="ClientId" value="@Model.Settings.ExternalLoginProviderSettings.Microsoft.ClientId">
+                            <input id="Setting_Microsoft_ClientId" type="text" class="form-control form-control-solid" name="ClientId" value="@Model.Settings.ExternalLoginProviderSettings.Microsoft.ClientId">
                         </div>
                         <div class="mb-5">
                             <label for="Setting_Microsoft_ClientSecret" class="form-label">@L("ClientSecret")*</label>
                             <div class="input-group">
-                                <input id="Setting_Microsoft_ClientSecret" type="password" class="form-control" name="ClientSecret" value="@Model.Settings.ExternalLoginProviderSettings.Microsoft.ClientSecret">
+                                <input id="Setting_Microsoft_ClientSecret" type="password" class="form-control form-control-solid" name="ClientSecret" value="@Model.Settings.ExternalLoginProviderSettings.Microsoft.ClientSecret">
                                 <button class="btn btn-primary passwordShowButton" type="button" data-id="Setting_Microsoft_ClientSecret">
                                     <i class="far fa-eye text-white"></i> <span> @L("Show")</span>
                                 </button>
@@ -816,12 +816,12 @@
                     <div class="collapse @(string.IsNullOrWhiteSpace(Model.Settings.ExternalLoginProviderSettings.OpenIdConnect.ClientId) ? "" : "show")">
                         <div class="mb-5">
                             <label for="Setting_OpenIdConnect_ClientId" class="form-label">@L("ClientId")*</label>
-                            <input id="Setting_OpenIdConnect_ClientId" type="text" class="form-control" name="ClientId" value="@Model.Settings.ExternalLoginProviderSettings.OpenIdConnect.ClientId">
+                            <input id="Setting_OpenIdConnect_ClientId" type="text" class="form-control form-control-solid" name="ClientId" value="@Model.Settings.ExternalLoginProviderSettings.OpenIdConnect.ClientId">
                         </div>
                         <div class="mb-5">
                             <label for="Setting_OpenIdConnect_ClientSecret" class="form-label">@L("ClientSecret")</label>
                             <div class="input-group">
-                                <input id="Setting_OpenIdConnect_ClientSecret" type="password" class="form-control" name="ClientSecret" value="@Model.Settings.ExternalLoginProviderSettings.OpenIdConnect.ClientSecret">
+                                <input id="Setting_OpenIdConnect_ClientSecret" type="password" class="form-control form-control-solid" name="ClientSecret" value="@Model.Settings.ExternalLoginProviderSettings.OpenIdConnect.ClientSecret">
                                 <button class="btn btn-primary passwordShowButton" type="button" data-id="Setting_OpenIdConnect_ClientSecret">
                                     <i class="far fa-eye text-white"></i> <span> @L("Show")</span>
                                 </button>
@@ -829,7 +829,7 @@
                         </div>
                         <div class="mb-5">
                             <label for="Setting_OpenIdConnect_Authority" class="form-label">@L("Authority")*</label>
-                            <input id="Setting_OpenIdConnect_Authority" type="text" class="form-control" name="Authority" value="@Model.Settings.ExternalLoginProviderSettings.OpenIdConnect.Authority">
+                            <input id="Setting_OpenIdConnect_Authority" type="text" class="form-control form-control-solid" name="Authority" value="@Model.Settings.ExternalLoginProviderSettings.OpenIdConnect.Authority">
                         </div>
 
                         <label for="Setting_OpenIdConnect_ValidateIssuer" class="form-check form-check-custom form-check-solid mb-5">
@@ -899,23 +899,23 @@
                     <div class="collapse @(string.IsNullOrWhiteSpace(Model.Settings.ExternalLoginProviderSettings.WsFederation.ClientId) ? "" : "show")">
                         <div class="mb-5">
                             <label for="Setting_WsFederation_ClientId" class="form-label">@L("ClientId")</label>
-                            <input id="Setting_WsFederation_ClientId" type="text" class="form-control" name="ClientId" value="@Model.Settings.ExternalLoginProviderSettings.WsFederation.ClientId">
+                            <input id="Setting_WsFederation_ClientId" type="text" class="form-control form-control-solid" name="ClientId" value="@Model.Settings.ExternalLoginProviderSettings.WsFederation.ClientId">
                         </div>
                         <div class="mb-5">
                             <label for="Setting_WsFederation_Tenant" class="form-label">@L("Tenant")</label>
-                            <input id="Setting_WsFederation_Tenant" type="text" class="form-control" name="Tenant" value="@Model.Settings.ExternalLoginProviderSettings.WsFederation.Tenant">
+                            <input id="Setting_WsFederation_Tenant" type="text" class="form-control form-control-solid" name="Tenant" value="@Model.Settings.ExternalLoginProviderSettings.WsFederation.Tenant">
                         </div>
                         <div class="mb-5">
                             <label for="Setting_WsFederation_MetaDataAddress" class="form-label">@L("MetaDataAddress")</label>
-                            <input id="Setting_WsFederation_MetaDataAddress" type="text" class="form-control" name="MetaDataAddress" value="@Model.Settings.ExternalLoginProviderSettings.WsFederation.MetaDataAddress">
+                            <input id="Setting_WsFederation_MetaDataAddress" type="text" class="form-control form-control-solid" name="MetaDataAddress" value="@Model.Settings.ExternalLoginProviderSettings.WsFederation.MetaDataAddress">
                         </div>
                         <div class="mb-5">
                             <label for="Setting_WsFederation_Wtrealm" class="form-label">@L("Wtrealm")</label>
-                            <input id="Setting_WsFederation_Wtrealm" type="text" class="form-control" name="Wtrealm" value="@Model.Settings.ExternalLoginProviderSettings.WsFederation.Wtrealm">
+                            <input id="Setting_WsFederation_Wtrealm" type="text" class="form-control form-control-solid" name="Wtrealm" value="@Model.Settings.ExternalLoginProviderSettings.WsFederation.Wtrealm">
                         </div>
                         <div class="mb-5">
                             <label for="Setting_WsFederation_Authority" class="form-label">@L("Authority")</label>
-                            <input id="Setting_WsFederation_Authority" type="text" class="form-control" name="Authority" value="@Model.Settings.ExternalLoginProviderSettings.WsFederation.Authority">
+                            <input id="Setting_WsFederation_Authority" type="text" class="form-control form-control-solid" name="Authority" value="@Model.Settings.ExternalLoginProviderSettings.WsFederation.Authority">
                         </div>
 
                         <div class="mb-5">

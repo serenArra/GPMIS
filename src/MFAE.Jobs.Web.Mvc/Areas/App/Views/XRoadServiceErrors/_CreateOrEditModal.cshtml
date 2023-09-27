@@ -20,7 +20,7 @@
                     <label for="XRoadServiceName">@L("XRoadService")</label>
                     <span class="text-danger">*</span>
                     <div class="input-group">
-                        <input class="form-control" id="XRoadServiceName" name="xRoadServiceName" value="@Model.XRoadServiceName" type="text" disabled>
+                        <input class="form-control form-control-solid" id="XRoadServiceName" name="xRoadServiceName" value="@Model.XRoadServiceName" type="text" disabled>
                         @*<div class="input-group-append">
                             <button class="btn btn-primary blue" id="OpenXRoadServiceLookupTableButton" type="button"><i class="fa fa-search"></i> @L("Pick")</button>
                         </div>
@@ -30,24 +30,24 @@
                     </div>
                 </div>
 
-                <input class="form-control" id="XRoadServiceError_XRoadServiceId" value="@Model.XRoadServiceError.XRoadServiceId" type="text" name="xRoadServiceId" required hidden />
+                <input class="form-control form-control-solid" id="XRoadServiceError_XRoadServiceId" value="@Model.XRoadServiceError.XRoadServiceId" type="text" name="xRoadServiceId" required hidden />
 
                 <div class="form-group col-md-6">
                     <label for="XRoadServiceError_ErrorCode">@L("ErrorCode")</label>
                     <span class="text-danger">*</span>
-                    <input class="form-control" id="XRoadServiceError_ErrorCode" value="@Model.XRoadServiceError.ErrorCode" type="text" name="errorCode" required />
+                    <input class="form-control form-control-solid" id="XRoadServiceError_ErrorCode" value="@Model.XRoadServiceError.ErrorCode" type="text" name="errorCode" required />
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="XRoadServiceError_ErrorMessageAr">@L("ErrorMessageAr")</label>
                     <span class="text-danger">*</span>
-                    <input class="form-control" id="XRoadServiceError_ErrorMessageAr" value="@Model.XRoadServiceError.ErrorMessageAr" type="text" name="errorMessageAr" required />
+                    <input class="form-control form-control-solid" id="XRoadServiceError_ErrorMessageAr" value="@Model.XRoadServiceError.ErrorMessageAr" type="text" name="errorMessageAr" required />
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="XRoadServiceError_ErrorMessageEn">@L("ErrorMessageEn")</label>
                     <span class="text-danger">*</span>
-                    <input class="form-control" id="XRoadServiceError_ErrorMessageEn" value="@Model.XRoadServiceError.ErrorMessageEn" type="text" name="errorMessageEn" required />
+                    <input class="form-control form-control-solid" id="XRoadServiceError_ErrorMessageEn" value="@Model.XRoadServiceError.ErrorMessageEn" type="text" name="errorMessageEn" required />
                 </div>
 
             </div>

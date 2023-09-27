@@ -28,7 +28,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantStatuses;
 
                         <div class="my-3">
                             <div class="input-group">
-                                <input type="text" id="ApplicantStatusesTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <input type="text" id="ApplicantStatusesTableFilter" class="form-control reload-on-change form-control-solid" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
                                 <button id="GetApplicantStatusesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
                             </div>
                         </div>
@@ -44,7 +44,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantStatuses;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="StatusFilterId">@L("Status")</label>
-                        <select class="form-select reload-on-change" name="StatusFilter" id="StatusFilterId">
+                        <select class="form-select form-control reload-on-change form-control-solid" name="StatusFilter" id="StatusFilterId">
                             <option value="-1">@L("All")</option>
                             <option value="1">@L("Enum_ApplicantStatusEnum_1")</option>
 
@@ -60,14 +60,14 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantStatuses;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="DescriptionFilterId">@L("Description")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="descriptionFilter" id="DescriptionFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="descriptionFilter" id="DescriptionFilterId">
                     </div>
                 </div>
 
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="ApplicantFullNameFilterId">(@L("Applicant")) @L("FullName")</label>
-                        <input type="text" class="form-control" name="applicantFullNameFilter" id="ApplicantFullNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="applicantFullNameFilter" id="ApplicantFullNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-12 mt-5">
@@ -81,7 +81,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantStatuses;
                 </div>
             </div>
             <div class="row align-items-center">
-                <table id="ApplicantStatusesTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                <table id="ApplicantStatusesTable" class="display table table-striped table-hover dt-responsive nowrap">
                     <thead>
                         <tr>
                             <th></th>

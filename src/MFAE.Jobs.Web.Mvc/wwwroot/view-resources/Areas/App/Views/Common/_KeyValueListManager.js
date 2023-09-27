@@ -58,10 +58,10 @@
       let view = `
                  <div class="form-group mb-2">
                          <div class="input-group">
-                             <input type="text" class="form-control" id="${
+                             <input type="text" class="form-control form-control-solid" id="${
                                _args.name
                              }-key" placeholder="${keyNameLocalized}">
-                             <input type="text" class="form-control" id="${
+                             <input type="text" class="form-control form-control-solid" id="${
                                _args.name
                              }-value" placeholder="${valueNameLocalized}">
                              <button id="${

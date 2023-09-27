@@ -18,17 +18,17 @@
 
             <div class="my-3">
                 <label class="form-label" for="applicantId">@L("Applicant")</label>
-                @Html.DropDownList("applicantId", new SelectList(Model.ApplicantTrainingApplicantList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantTraining.ApplicantId.ToString() : "")),@L("SelectAApplicant"), new { @class = "form-control" , @required="required" })
+                @Html.DropDownList("applicantId", new SelectList(Model.ApplicantTrainingApplicantList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantTraining.ApplicantId.ToString() : "")),@L("SelectAApplicant"), new { @class = "form-control form-control-solid" , @required="required" })
             </div>
 
             <div class="my-3">
                 <label class="form-label" for="ApplicantTraining_Subject">@L("Subject")</label>
-                <input class="form-control" id="ApplicantTraining_Subject" value="@Model.ApplicantTraining.Subject" type="text" name="subject" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantTrainingConsts.MaxSubjectLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantTrainingConsts.MinSubjectLength" />
+                <input class="form-control form-control-solid" id="ApplicantTraining_Subject" value="@Model.ApplicantTraining.Subject" type="text" name="subject" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantTrainingConsts.MaxSubjectLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantTrainingConsts.MinSubjectLength" />
             </div>
 
             <div class="my-3">
                 <label class="form-label" for="ApplicantTraining_Location">@L("Location")</label>
-                <input class="form-control" id="ApplicantTraining_Location" value="@Model.ApplicantTraining.Location" type="text" name="location" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantTrainingConsts.MaxLocationLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantTrainingConsts.MinLocationLength" />
+                <input class="form-control form-control-solid" id="ApplicantTraining_Location" value="@Model.ApplicantTraining.Location" type="text" name="location" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantTrainingConsts.MaxLocationLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantTrainingConsts.MinLocationLength" />
             </div>
 
             <div class="my-3">
@@ -38,7 +38,7 @@
 
             <div class="my-3">
                 <label class="form-label" for="ApplicantTraining_Duration">@L("Duration")</label>
-                <input class="form-control m-input" id="ApplicantTraining_Duration" value="@Model.ApplicantTraining.Duration.ToString(CultureInfo.InvariantCulture)" type="number" name="duration" />
+                <input class="form-control m-input form-control-solid" id="ApplicantTraining_Duration" value="@Model.ApplicantTraining.Duration.ToString(CultureInfo.InvariantCulture)" type="number" name="duration" />
             </div>
 
             @{

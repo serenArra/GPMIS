@@ -63,30 +63,30 @@
                     <div class="col-sm-9">
                         <div class="mb-5">
                             <label for="Name" class="form-label">@L("FirstName")</label>
-                            <input id="Name" class="form-control" value="@Model.User.Name" type="text" name="Name" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxNameLength">
+                            <input id="Name" class="form-control form-control-solid" value="@Model.User.Name" type="text" name="Name" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxNameLength">
                         </div>
 
                         <div class="mb-5">
                             <label for="Surname" class="form-label">@L("Surname")</label>
-                            <input id="Surname" type="text" name="Surname" class="form-control" value="@Model.User.Surname" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxSurnameLength">
+                            <input id="Surname" type="text" name="Surname" class="form-control form-control-solid" value="@Model.User.Surname" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxSurnameLength">
                         </div>
                     </div>
                 </div>
 
                 <div class="mb-5">
                     <label for="EmailAddress" class="form-label">@L("EmailAddress")</label>
-                    <input id="EmailAddress" type="email" name="EmailAddress" class="form-control" value="@Model.User.EmailAddress" required maxlength="@AbpUserBase.MaxEmailAddressLength">
+                    <input id="EmailAddress" type="email" name="EmailAddress" class="form-control form-control-solid" value="@Model.User.EmailAddress" required maxlength="@AbpUserBase.MaxEmailAddressLength">
                 </div>
 
                 <div class="mb-5">
                     <label for="PhoneNumber" class="form-label">@L("PhoneNumber")</label>
-                    <input id="PhoneNumber" type="text" name="PhoneNumber" class="form-control" value="@Model.User.PhoneNumber" maxlength="@UserConsts.MaxPhoneNumberLength">
+                    <input id="PhoneNumber" type="text" name="PhoneNumber" class="form-control form-control-solid" value="@Model.User.PhoneNumber" maxlength="@UserConsts.MaxPhoneNumberLength">
                 </div>
 
                 <div class="mb-5 form-md-line-input form-md-floating-label">
                     <label for="UserName" class="form-label">@L("UserName")</label>
                     <div class="input-group">
-                        <input id="UserName" type="text" @Html.Raw(!Model.CanChangeUserName ? "disabled=\"disabled\"" : "") name="UserName" class="form-control" value="@Model.User.UserName" required maxlength="@AbpUserBase.MaxUserNameLength">
+                        <input id="UserName" type="text" @Html.Raw(!Model.CanChangeUserName ? "disabled=\"disabled\"" : "") name="UserName" class="form-control form-control-solid" value="@Model.User.UserName" required maxlength="@AbpUserBase.MaxUserNameLength">
                         <span class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="right" title="@L("AllowedUserNameCharactersInfoText", Model.AllowedUserNameCharacters)">
                             <i class="fas fa-info-circle"></i>
                         </span>

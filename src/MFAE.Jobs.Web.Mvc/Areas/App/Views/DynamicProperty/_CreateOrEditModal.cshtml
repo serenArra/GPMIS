@@ -11,12 +11,12 @@
 
     <div class="mb-5">
         <label for="propertyName" class="form-label">@L("PropertyName")</label>
-        <input id="propertyName" type="text" name="propertyName" class="form-control" value="@Model.DynamicPropertyDto.PropertyName">
+        <input id="propertyName" type="text" name="propertyName" class="form-control form-control-solid" value="@Model.DynamicPropertyDto.PropertyName">
     </div>
 
     <div class="mb-5">
         <label for="displayName" class="form-label">@L("DisplayName")</label>
-        <input id="displayName" type="text" name="displayName" class="form-control" value="@Model.DynamicPropertyDto.DisplayName">
+        <input id="displayName" type="text" name="displayName" class="form-control form-control-solid" value="@Model.DynamicPropertyDto.DisplayName">
     </div>
 
 
@@ -29,7 +29,7 @@
         <label for="permission" class="form-label">@L("Permission")</label>
         <div class="mb-2">
             <div class="input-group">
-                <input type="text" class="form-control" name="permission" disabled="disabled" placeholder="@L("SelectAPermission")" value="@Model.DynamicPropertyDto.Permission">
+                <input type="text" class="form-control form-control-solid" name="permission" disabled="disabled" placeholder="@L("SelectAPermission")" value="@Model.DynamicPropertyDto.Permission">
                 <button class="btn btn-primary" type="button" id="FilterByPermissionsButton">
                     <i class="fa fa-hand-pointer" style="color: white"></i>
                 </button>

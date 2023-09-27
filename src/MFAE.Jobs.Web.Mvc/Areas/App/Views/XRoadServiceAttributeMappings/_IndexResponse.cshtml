@@ -25,7 +25,7 @@
                 <div class="col-xl-12">
                     <div class="form-group align-items-center">
                         <div class="input-group">
-                            <input type="text" id="XRoadServiceAttributeMappingsTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                            <input type="text" id="XRoadServiceAttributeMappingsTableFilter" class="form-control m-input form-control-solid" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
                             <span class="input-group-btn">
                                 <button id="GetXRoadServiceAttributeMappingsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
                             </span>
@@ -41,7 +41,7 @@
 
             <div class="col-md-3">
                 <label for="ServiceAttributeTypeFilterId">@L("ServiceAttributeType")</label>
-                <select class="form-control" name="ServiceAttributeTypeFilter" id="ServiceAttributeTypeFilterId">
+                <select class="form-control form-control-solid" name="ServiceAttributeTypeFilter" id="ServiceAttributeTypeFilterId">
                     <option value="-1">@L("All")</option>
                     <option value="1">@L("Enum_XRoadAttributeTypeEnum_1")</option>
 
@@ -55,19 +55,19 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="SourceValueFilterId">@L("SourceValue")</label>
-                    <input type="text" class="form-control" name="sourceValueFilter" id="SourceValueFilterId">
+                    <input type="text" class="form-control form-control-solid" name="sourceValueFilter" id="SourceValueFilterId">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="DestinationValueFilterId">@L("DestinationValue")</label>
-                    <input type="text" class="form-control" name="destinationValueFilter" id="DestinationValueFilterId">
+                    <input type="text" class="form-control form-control-solid" name="destinationValueFilter" id="DestinationValueFilterId">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="XRoadServiceAttributeNameFilterId">(@L("XRoadServiceAttribute")) @L("Name")</label>
-                    <input type="text" class="form-control" name="xRoadServiceAttributeNameFilter" id="XRoadServiceAttributeNameFilterId">
+                    <input type="text" class="form-control form-control-solid" name="xRoadServiceAttributeNameFilter" id="XRoadServiceAttributeNameFilterId">
                 </div>
             </div>
         </div>

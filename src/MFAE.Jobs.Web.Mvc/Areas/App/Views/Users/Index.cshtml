@@ -63,7 +63,7 @@
                     <div class="col-xl-12">
                         <div class="mb-5 align-items-center">
                             <div class="input-group">
-                                <input type="text" id="UsersTableFilter" class="form-control" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                                <input type="text" id="UsersTableFilter" class="form-control form-control-solid" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
                                 <button id="GetUsersButton" class="btn btn-primary" type="submit">
                                     <i class="flaticon-search-1" aria-label="@L("Search")"></i>
                                 </button>
@@ -81,7 +81,7 @@
                     {
                         <div class="col-xl-6">
                             <div class="mb-5">
-                                @Html.DropDownList("RoleSelectionCombobox", Model.Roles.Select(i => i.ToSelectListItem()), new {@class = "form-control", id = "RoleSelectionCombo"})
+                                @Html.DropDownList("RoleSelectionCombobox", Model.Roles.Select(i => i.ToSelectListItem()), new {@class = "form-control form-control-solid", id = "RoleSelectionCombo"})
                             </div>
                         </div>
                     }
@@ -120,7 +120,7 @@
                 </div>
             </div>
             <div class="align-items-center">
-                <table id="UsersTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable dtr-inline no-footer">
+                <table id="UsersTable" class="display table table-striped table-hover dt-responsive nowrap">
                     <thead>
                     <tr>
                         <th></th>

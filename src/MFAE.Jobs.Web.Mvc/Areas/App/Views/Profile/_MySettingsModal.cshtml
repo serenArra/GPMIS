@@ -30,12 +30,12 @@
 
                 <div class="mb-5">
                     <label for="Surname" class="form-label">@L("Surname")</label>
-                    <input id="Surname" type="text" name="Surname" class="form-control" value="@Model.Surname" required maxlength="@AbpUserBase.MaxSurnameLength">
+                    <input id="Surname" type="text" name="Surname" class="form-control form-control-solid" value="@Model.Surname" required maxlength="@AbpUserBase.MaxSurnameLength">
                 </div>
 
                 <div class="mb-5">
                     <label for="EmailAddress" class="form-label">@L("EmailAddress")</label>
-                    <input id="EmailAddress" type="email" name="EmailAddress" class="form-control" value="@Model.EmailAddress" required maxlength="@AbpUserBase.MaxEmailAddressLength">
+                    <input id="EmailAddress" type="email" name="EmailAddress" class="form-control form-control-solid" value="@Model.EmailAddress" required maxlength="@AbpUserBase.MaxEmailAddressLength">
                 </div>
 
                 @if (Model.SmsVerificationEnabled)
@@ -43,7 +43,7 @@
                     <div class="mb-5">
                         <label class="form-label">@L("PhoneNumber")</label>
                         <div class="input-group">
-                            <input id="PhoneNumber" type="text" name="PhoneNumber" class="form-control" value="@Model.PhoneNumber" maxlength="@UserConsts.MaxPhoneNumberLength">
+                            <input id="PhoneNumber" type="text" name="PhoneNumber" class="form-control form-control-solid" value="@Model.PhoneNumber" maxlength="@UserConsts.MaxPhoneNumberLength">
                             <input type="hidden" id="savedPhoneNumber" value="@Model.PhoneNumber"/>
                             <input type="hidden" id="isPhoneNumberConfirmed" value="@Model.IsPhoneNumberConfirmed"/>
 
