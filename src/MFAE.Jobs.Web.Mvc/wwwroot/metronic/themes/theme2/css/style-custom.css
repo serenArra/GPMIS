@@ -1,6 +1,6 @@
 .login-aside {
     width: 100%;
-    max-width: 40%;
+    max-width: 50%;
 }
 
 .font-size-base {
@@ -96,18 +96,17 @@ span.input-group-text {
     }
 
     .list-item-jobs-rtl, .list-item-jobs {
-        padding: 60px 0px;
-        width: 70%;
+        padding: 20px 0px;
+        width: 80%;
+        margin-top:0px !important
     }
-
-        .list-item-jobs-rtl li, .list-item-jobs li {
-            padding: 5px 5px;
-            border-radius: 2px;
-            background-color: #00476f;
+        .logo{
+            margin:0px !important;
         }
-
+            .logo img{
+                max-width:250px !important;
+            }
             .list-item-jobs-rtl li span, .list-item-jobs li span {
-                font-size: 12px !important
             }
 
     .bg-login {
