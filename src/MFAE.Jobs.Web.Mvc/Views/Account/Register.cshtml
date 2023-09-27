@@ -21,6 +21,8 @@
 
     <script abp-src="/view-resources/Areas/App/Views/_Bundles/account-register.min.js" asp-append-version="true"></script>
     <script abp-src="/metronic/themes/theme2/js/components/stepper.js" asp-append-version="true"></script>
+    <script abp-src="/metronic/themes/theme2/js/components/util.js" asp-append-version="true"></script>
+    <script abp-src="/metronic/themes/theme2/js/components/event-handler.js" asp-append-version="true"></script>
 }
 
 <div class="login-form">
@@ -115,7 +117,7 @@
 <!--end::Nav-->
 
     <!--begin::Form-->
-    <form class="form register-form" asp-action="Register" method="post" novalidate="novalidate" id="kt_stepper_example_basic_form">
+    <form class="form register-form" asp-action="Register" method="post" novalidate="novalidate" id="ApplicationForm" name="ApplicationForm">
         <!--begin::Group-->
         <div class="mb-5">
             <!--begin::Step 1-->
@@ -172,18 +174,63 @@
                     </div>
                 }
 
-                <div class="pb-lg-0 pb-5">
-                    <a asp-action="Login">
-                        <button type="button" id="register-back-btn" class="btn btn-light-primary fw-bolder fs-6 px-8 py-4 my-3">@L("Back")</button>
-                    </a>
-                    <button type="submit" id="register-submit-btn" class="btn btn-primary fw-bolder fs-6 px-8 py-4 my-3 me-3">@L("Submit")</button>
-                </div>
+                
             </div>
             <!--begin::Step 1-->
 
             <!--begin::Step 1-->
             <div class="flex-column" data-kt-stepper-element="content">
-                
+                <div class="row form-group">
+                        <div class="col-lg-6">
+                            <label for="FirstName">@L("FirstName")</label>
+                            <input id="FirstName" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="@L("FirstName")" name="Name" required value="@Model.Name" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxNameLength" />
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="SecondName">@L("SecondName")</label>
+                            <input id="SecondName" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="@L("SecondName")" name="SecondName" required value="@Model.SecondName" maxlength="@MFAE.Jobs.Authorization.Users.UserConsts.MaxSecondNameLength" />
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-6">
+                            <label for="ThirdName">@L("ThirdName")</label>
+                            <input id="ThirdName" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="@L("ThirdName")" name="ThirdName" required value="@Model.ThirdName" maxlength="@MFAE.Jobs.Authorization.Users.UserConsts.MaxThirdNameLength" />
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="Surname">@L("Surname")</label>
+                            <input id="Surname" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="@L("Surname")" name="Surname" required value="@Model.Surname" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxSurnameLength" />
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-lg-6">
+                            <label for="FirstNameEn">@L("FirstNameEn")</label>
+                            <input id="FirstNameEn" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="@L("FirstNameEn")" name="FirstNameEn" required value="@Model.FirstNameEn" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxNameLength" />
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="SecondNameEn">@L("SecondNameEn")</label>
+                            <input id="SecondNameEn" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="@L("SecondNameEn")" name="SecondNameEn" required value="@Model.SecondNameEn" maxlength="@MFAE.Jobs.Authorization.Users.UserConsts.MaxSecondNameLength" />
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-6">
+                            <label for="ThirdNameEn">@L("ThirdNameEn")</label>
+                            <input id="ThirdNameEn" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="@L("ThirdNameEn")" name="ThirdNameEn" required value="@Model.ThirdNameEn" maxlength="@MFAE.Jobs.Authorization.Users.UserConsts.MaxThirdNameLength" />
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="FourthNameEn">@L("FourthNameEn")</label>
+                            <input id="FourthNameEn" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="@L("FourthNameEn")" name="FourthNameEn" required value="@Model.FourthNameEn" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxSurnameLength" />
+                        </div>
+                    </div>
+                    
+                    <div class="row form-group ">
+                        <label>@L("EmailAddress")</label>
+                        <input id="EmailAddress" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="email" placeholder="@L("EmailAddress")" name="EmailAddress" required value="@Model.EmailAddress" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength" />
+                    </div>
+
+                    <div class="form-group ">
+                        <label>@L("PhoneNumber")</label>
+                        <input id="PhoneNumber" value="@Model.PhoneNumber" class="rtlInput form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="tel" name="PhoneNumber" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxPhoneNumberLength" />
+                    </div>
                 
             </div>
             
@@ -206,25 +253,26 @@
             <!--begin::Wrapper-->
             <div class="me-2">
                 <button type="button" class="btn btn-light btn-active-light-primary" data-kt-stepper-action="previous">
-                    Back
+                    @L("Previous")
                 </button>
             </div>
             <!--end::Wrapper-->
 
             <!--begin::Wrapper-->
             <div>
-                <button type="button" class="btn btn-primary" data-kt-stepper-action="submit">
+                <button type="submit" id="register-submit-btn" class="btn btn-primary" data-kt-stepper-action="submit">
                     <span class="indicator-label">
-                        Submit
+                        @L("Submit")
                     </span>
                     <span class="indicator-progress">
-                        Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                        @L("PleaseWait") <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                     </span>
                 </button>
 
+                <button type="button" id="register-back-btn" class="btn btn-light-primary fw-bolder fs-6 px-8 py-4 my-3">@L("Back")</button>
                 <button type="button" class="btn btn-primary" data-kt-stepper-action="next">
-                    Continue
-                </button>
+                    @L("Next")
+                </button>                
             </div>
             <!--end::Wrapper-->
         </div>
