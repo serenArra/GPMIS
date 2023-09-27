@@ -1,6 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="ar">
   <texts>
+
+	<text name="CreateNewXRoadServiceAttribute">انشاء سمة اكس-روود</text>
+	<text name="EditXRoadServiceAttribute">تعديل سمة اكس-روود</text>
+	<text name="DeleteXRoadServiceAttribute">حذف سمة اكس-روود</text>
+	<text name="XRoadServiceAttributes">سمات الخدمة اكس-روود </text>
+	<text name="XRoadServiceName">اسم خدمة اكس-روود</text>
+	<text name="PickXRoadService">Pick XRoad service</text>
+	<text name="XRoadService">خدمة اكس-روود</text>
+	<text name="ProviderCode">كود المزود</text>
+	<text name="ProducerCode">كود المزود للخدمة</text>
+	<text name="XRoadServicesHeaderInfo">خدمات اكس-روود</text>
+	<text name="CreateNewXRoadService">انشاء خدمة اكس-روود جديدة </text>
+	<text name="EditXRoadService">تعديل خدمة اكس-روود </text>
+	<text name="DeleteXRoadService">حذف خدمة اكس-روود </text>
+	<text name="XRoadServices">خدمات اكس-روود</text>
+	<text name="RequestAttributes">سمات الطلب</text>
+	<text name="ResponseAttributes">سمات النتيجة</text>
+	<text name="EditXRoadServiceAttributeResponse">تعديل سمة خدمة اكس-روود </text>
+	<text name="CreateNewXRoadServiceAttributeResponse">انشاء سمة خدمة اكس-روود </text>
+	<text name="EditXRoadServiceAttributeRequest">تعديل سمة خدمة اكس-روود </text>
+	<text name="CreateNewXRoadServiceAttributeRequest">انشاء سمة خدمة اكس-روود </text>
+	<text name="CreateNewXRoadServiceAttributeMappingRequest">انشاء تحويلة سمة اكس-روود</text>
+	<text name="EditXRoadServiceAttributeMappingRequest">تعديل تحويلة سمة اكس-روود</text>
+	<text name="EditXRoadServiceAttributeMappingResponse">تعديل تحويلة سمة اكس-روود</text>
+	<text name="CreateNewXRoadServiceAttributeMappingResponse">انشاء تحويلة سمة اكس-روود</text>
+	<text name="GoBack">رجوع</text>
+	<text name="BasicInfo">المعلومات الاساسية</text>
+	<text name="ResultCodePath">مسار رمز النتيجة</text>
+	<text name="SoapActionName">اسم الاجراء على الخدمة</text>
+	<text name="ErrorCode">رمز الخطا</text>
+	<text name="XRoadServiceErrorsHeaderInfo">أخطاء خدمة اكس-روود</text>
+	<text name="CreateNewXRoadServiceError">انشاء خطا خدمة اكس-روود</text>
+	<text name="EditXRoadServiceError">تحرير خطا خدمة اكس-روود</text>
+	<text name="DeleteXRoadServiceError">حذف خطا خدمة اكس-روود</text>
+	<text name="XRoadServiceErrors">أخطاء خدمة اكس-روود</text>
+	<text name="XMLPath">XML path</text>
+	<text name="XRoadServiceAttributeMapping">تحويلات سمات اكس-روود</text>
+	<text name="AttributeID">Attribute ID</text>
+	<text name="SourceValue">من قيمة</text>
+	<text name="DestinationValue">الى قيمة</text>
+	<text name="CreateNewXRoadServiceAttributeMapping">انشاء تحويلة سمة اكس-روود</text>
+	<text name="EditXRoadServiceAttributeMapping">تعديل تحويلة سمة اكس-روود</text>
+	<text name="DeleteXRoadServiceAttributeMapping">حذف تحويلة سمة اكس-روود</text>
+	<text name="XRoadServiceAttributeMappings">تحويلات سمات اكس-روود</text>
+	<text name="XRoadServiceAttributeName">اسم تحويلة سمة اكس-روود</text>
+	<text name="PickXRoadServiceAttribute">اختر سمة خدمة XRoad</text>
+	<text name="ServiceAttributeType">نوع سمة الخدمة</text>
+	<text name="Enum_XRoadServiceAttributeTypeEnum_1">طلب</text>
+	<text name="Enum_XRoadServiceAttributeTypeEnum_2">استجابة</text>
+	<text name="Enum_XRoadAttributeTypeEnum_1">Value</text>
+	<text name="Enum_XRoadAttributeTypeEnum_2">Array</text>
+	<text name="Enum_XRoadAttributeTypeEnum_3">Object</text>
+	<text name="XRoadServiceAttribute">XRoad service attribute</text>
+	<text name="AttributeCode">كود السمة</text>
+	<text name="FormatTransition">صيغة التحويل</text>
+	<text name="XRoadServiceAttributesHeaderInfo">XRoad service attributes header info</text>
+	  
 	  
 	<text name="AttachmentFiles">قائمة الملفات</text>
 	<text name="AttachmentTypes">انواع الملفات</text>
