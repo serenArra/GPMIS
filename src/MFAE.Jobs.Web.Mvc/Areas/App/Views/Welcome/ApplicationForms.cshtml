@@ -1,0 +1,325 @@
+﻿@using MFAE.Jobs.ApplicationForm.Enums;
+@using MFAE.Jobs.Authorization
+@using MFAE.Jobs.Web.Areas.App.Models.Welcomes
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Startup
+@model CreateOrEditApplicationModel
+@using Abp.Extensions
+@using MFAE.Jobs.Web.TagHelpers
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.ApplicationForms;
+}
+
+
+@section Scripts
+ {
+   <script abp-src="/metronic/themes/theme2/js/components/stepper.js" asp-append-version="true"></script>
+ }
+
+ <abp-page-subheader>
+ </abp-page-subheader>
+
+ <div class="content d-flex flex-column flex-column-fluid">
+   <div class="@(await GetContainerClass())">
+            <div class="card card-custom gutter-b">
+                <abp-wizard id="kt_wizard" formName="ApplicationFormInformationsForm">
+    <abp-wizard-steps>
+        <abp-wizard-step title="@L("ApplicationMainInformation")"></abp-wizard-step>
+        <abp-wizard-step title="@L("ApplicantStudies")"></abp-wizard-step>
+        <abp-wizard-step title="@L("ApplicantLanguages")"></abp-wizard-step>
+        <abp-wizard-step title="@L("ApplicantTrainings")"></abp-wizard-step>
+        <abp-wizard-step title="@L("Attachments")"></abp-wizard-step>
+    </abp-wizard-steps>
+
+    <abp-wizard-body>
+        <abp-wizard-step-body number="1">
+            <div id="ApplicantInformationsForm">
+
+            @if (Model.IsEditMode)
+            {
+               <input type="hidden" name="id" id="ApplicantId" value="@Model.Applicant.Id" />
+            }
+
+             <div class="row my-3">
+                  <div class="col-xl-3">
+                     <label class="form-label" for="identificationTypeId">@L("IdentificationType")</label>
+                     @Html.DropDownList("identificationTypeId", new SelectList(Model.ApplicantIdentificationTypeList,"Id","DisplayName", (Model.IsEditMode ? Model.Applicant.IdentificationTypeId.ToString() : "")),@L("SelectAIdentificationType"), new { @class = "form-control form-control-solid" , @required="required" })
+                  </div>
+                  <div class="col-xl">
+                     <label class="form-label" for="Applicant_DocumentNo">@L("DocumentNo")</label>
+                     <input class="form-control form-control-solid" id="Applicant_DocumentNo" value="@Model.Applicant.DocumentNo" type="text" name="documentNo" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxDocumentNoLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinDocumentNoLength" />
+                  </div>
+             </div>
+
+             <div class="row g-3 iframe-facility my-3">
+                <div class="col-xl-3">
+                    <label class="form-label" for="countryId">@L("Country")<span class="text-danger">*</span></label>
+                     <abp-autocomplete id="countryId" name="countryId" values='[{"id": "@Model.Applicant.CountryId", "text": "@Model.CountryName"}]'
+                      action="GetAll" controller="Coun" optionKey="region.id" required="true"
+                      optionValue="region.name">
+                    </abp-autocomplete>
+                </div>
+                 <div class="col-xl-3">
+                    <label class="form-label" for="governorateId">@L("Governorate")<span class="text-danger">*</span></label>
+                    <abp-autocomplete id="governorateId" name="governorateId" values='[{"id": "@Model.Applicant.GovernorateId", "text": "@Model.GovernorateName"}]'
+                      action="GetAll" controller="Governorates" optionKey="governorate.id" required="true"
+                      optionValue="governorate.name" paramsGenerateFunction="getGovernorateParams()">
+                    </abp-autocomplete>
+                </div>
+                <div class="col-xl-3">
+                    <label class="form-label" for="localityId">@L("Locality")<span class="text-danger">*</span></label>
+                    <abp-autocomplete id="localityId" name="localityId" values='[{"id": "@Model.Applicant.LocalityId", "text": "@Model.LocalityName"}]'
+                      action="GetAll" controller="Localities" optionKey="locality.id" required="true"
+                      optionValue="locality.name" paramsGenerateFunction="getLocalityParams()">
+                    </abp-autocomplete>
+                </div>  
+                 <div class="col-xl-3">
+                   <label class="form-label" for="Applicant_Address">@L("Address")</label>
+                   <input class="form-control form-control-solid" id="Applicant_Address" value="@Model.Applicant.Address" type="text" name="address" maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxAddressLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinAddressLength" />
+                 </div>
+             </div>
+
+             <div class="row my-3">
+                <div class="col-sm-3 text-center margin-top-15 margin-bottom-15">
+                    @if (Model.Applicant.UserId > 0)
+                    {
+                        <img src="@Url.Action("GetProfilePictureByUser", "Profile", new {area = string.Empty})?userId=@(Model.Applicant.UserId)&&profilePictureId=@(Model.Applicant.ProfilePictureId)" width="128" height="128" class="img-thumbnail img-rounded user-edit-dialog-profile-image"/>
+                    }
+                    else
+                    {
+                        <img src="@Url.Content("~/Common/Images/default-profile-picture.png")" width="128" height="128" class="img-thumbnail img-rounded user-edit-dialog-profile-image"/>
+                    }
+                    
+                    @if(Model.Applicant.UserId > 0 && await PermissionChecker.IsGrantedAsync(AppPermissions.Pages_Administration_Users_ChangeProfilePicture)){
+                        <button class="btn btn-light btn-sm mb-5" id="changeProfilePicture">@L("ChangeProfilePicture")</button>
+                    }
+                </div>
+                <div class="col-sm-9">
+                   <div class="row">
+                       <div class="form-group col-lg-3">
+                           <label class="form-label" for="Applicant_FirstName">@L("FirstName")</label>
+                           <input class="form-control form-control-solid" id="Applicant_FirstName" value="@Model.Applicant.FirstName" type="text" name="firstName" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFirstNameLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFirstNameLength" />
+                       </div>
+                     
+                       <div class="form-group col-lg-3">
+                           <label class="form-label" for="Applicant_FatherName">@L("FatherName")</label>
+                           <input class="form-control form-control-solid" id="Applicant_FatherName" value="@Model.Applicant.FatherName" type="text" name="fatherName" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFatherNameLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFatherNameLength" />
+                       </div>
+                     
+                       <div class="form-group col-lg-3">
+                           <label class="form-label" for="Applicant_GrandFatherName">@L("GrandFatherName")</label>
+                           <input class="form-control form-control-solid" id="Applicant_GrandFatherName" value="@Model.Applicant.GrandFatherName" type="text" name="grandFatherName" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxGrandFatherNameLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinGrandFatherNameLength" />
+                       </div>
+                     
+                       <div class="form-group col-lg-3">
+                           <label class="form-label" for="Applicant_FamilyName">@L("FamilyName")</label>
+                           <input class="form-control form-control-solid" id="Applicant_FamilyName" value="@Model.Applicant.FamilyName" type="text" name="familyName" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFamilyNameLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFamilyNameLength" />
+                       </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-3">
+                            <label class="form-label" for="Applicant_FirstNameEn">@L("FirstNameEn")</label>
+                            <input class="form-control form-control-solid" id="Applicant_FirstNameEn" value="@Model.Applicant.FirstNameEn" type="text" name="firstNameEn" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFirstNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFirstNameEnLength" />
+                        </div>
+                     
+                        <div class="form-group col-lg-3">
+                            <label class="form-label" for="Applicant_FatherNameEn">@L("FatherNameEn")</label>
+                            <input class="form-control form-control-solid" id="Applicant_FatherNameEn" value="@Model.Applicant.FatherNameEn" type="text" name="fatherNameEn" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFatherNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFatherNameEnLength" />
+                        </div>
+                     
+                        <div class="form-group col-lg-3">
+                            <label class="form-label" for="Applicant_GrandFatherNameEn">@L("GrandFatherNameEn")</label>
+                            <input class="form-control form-control-solid" id="Applicant_GrandFatherNameEn" value="@Model.Applicant.GrandFatherNameEn" type="text" name="grandFatherNameEn" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxGrandFatherNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinGrandFatherNameEnLength" />
+                        </div>
+                     
+                        <div class="form-group col-lg-3">
+                            <label class="form-label" for="Applicant_FamilyNameEn">@L("FamilyNameEn")</label>
+                            <input class="form-control form-control-solid " id="Applicant_FamilyNameEn" value="@Model.Applicant.FamilyNameEn" type="text" name="familyNameEn" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFamilyNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFamilyNameEnLength" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-3">
+                
+                 <div class="col-xl">
+                  <label class="form-label" for="Applicant_BirthPlace">@L("BirthPlace")</label>
+                  <input class="form-control form-control-solid" id="Applicant_BirthPlace" value="@Model.Applicant.BirthPlace" type="text" name="birthPlace" />
+                </div>
+             </div>
+
+            <div class="row">
+                <div class="form-group col-lg-3">
+                    <label for="Applicant_BirthDate" class="form-label">@L("BirthDate")</label>
+                    <abp-datePicker id="Applicant_BirthDate" format="DD/MM/Y" name="birthDate"
+                                value="@Model.Applicant.BirthDate">
+                    </abp-datePicker>
+                </div>
+                <div class="form-group col-lg-3">
+                    <label for="Applicant_BirthPlace" class="form-label">@L("BirthPlace")</label>
+                    <input class="form-control form-control-solid" id="Applicant_BirthPlace" type="text" name="birthPlace"
+                           maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxBirthPlaceLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinBirthPlaceLength"
+                           value="@Model.Applicant.BirthPlace" />
+                </div>
+
+                <div class="form-group col-lg-3">
+                      <label class="form-label" for="Applicant_NumberOfChildren">@L("NumberOfChildren")</label>
+                     <input class="form-control form-control-solid m-input" id="Applicant_NumberOfChildren" value="@Model.Applicant.NumberOfChildren?.ToString(CultureInfo.InvariantCulture)" type="number" name="numberOfChildren" />
+                </div>
+
+                @{
+                    var selectListGender = Html.GetEnumSelectList(typeof(Gender));
+                    foreach (var selectOption in selectListGender) { selectOption.Text = L("Enum_Gender_" + selectOption.Value); }
+                }
+                <div class="col-lg form-group m-form__group">
+                    <label for="Applicant_Gender" class="form-label">@L("Gender")</label>
+                    <select class="form-control form-control-solid m-input m-input--square" name="gender" id="Applicant_Gender"
+                            asp-for="@Model.Applicant.Gender"
+                            asp-items="@selectListGender">
+                    </select>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="form-group col-lg">
+                    <label class="form-label" for="Applicant_Mobile">@L("Mobile")</label>
+                    <input class="form-control form-control-solid" id="Applicant_Mobile" value="@Model.Applicant.Mobile" type="text" name="mobile" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxMobileLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinMobileLength" />
+                </div>
+               
+                <div  class="form-group col-lg">
+                    <label class="form-label" for="Applicant_Email">@L("Email")</label>
+                    <input class="form-control form-control-solid" id="Applicant_Email" value="@Model.Applicant.Email" type="text" name="email" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxEmailLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinEmailLength" />
+                </div>
+            </div>
+
+             <label class="form-check form-check-custom form-check-solid mb-3">
+                <input id="Applicant_IsLocked" name="isLocked" type="checkbox" class="form-check-input" value="true" @Html.Raw(Model.Applicant.IsLocked ?"checked=\"checked\"":"") />
+                <span class="form-check-label">
+                    @L("IsLocked")
+                </span>
+            </label>
+          
+           </div>
+        </abp-wizard-step-body>
+        <abp-wizard-step-body number="2">
+            @if (Model.IsEditMode)
+            {
+                  <input type="hidden" name="ApplicantId" value="@Model.Applicant.Id" />
+            }
+          
+            <div class="d-flex justify-content-between my-12">
+                <h3 class="card-title font-weight-bolder text-dark"><i class="flaticon-star icon-lg mx-2 color-tree"></i>@L("ApplicantStudies")</h3>
+                <div class="card-toolbar">
+                    
+                   @if (IsGranted(AppPermissions.Pages_ApplicantStudies_Create))
+                   {
+                   <button id="CreateNewApplicantStudyButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewApplicantStudy")</button>
+                   }
+                </div>
+            </div>
+            <div class="row align-items-center">
+               <table id="ApplicantStudiesTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            <th>@L("Actions")</th>
+                            <th>@L("OtherSpecialty")</th>
+                            <th>@L("SecondSpecialty")</th>
+                            <th>@L("University")</th>
+                            <th>@L("GraduationYear")</th>
+                            <th>@L("GraduationCountry")</th>
+                            <th>@L("GraduationRateName")</th>
+                            <th>@L("AcademicDegreeName")</th>
+                            <th>@L("SpecialtiesName")</th>
+                            <th>@L("ApplicantFirstName")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </abp-wizard-step-body>
+        <abp-wizard-step-body number="3">
+            <div class="d-flex justify-content-between my-12">
+                <h3 class="card-title font-weight-bolder text-dark"><i class="flaticon-star icon-lg mx-2 color-tree"></i>@L("ApplicantLanguages")</h3>
+                <div class="card-toolbar">
+                    @if (IsGranted(AppPermissions.Pages_ApplicantLanguages_Create))
+                     {
+                     <button id="CreateNewApplicantLanguageButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewApplicantLanguage")</button>
+                     }
+                </div>
+            </div>
+            <div class="row align-items-center">
+               <table id="ApplicantLanguagesTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            <th>@L("Actions")</th>
+                            <th>@L("Narrative")</th>
+                            <th>@L("ApplicantFirstName")</th>
+                            <th>@L("LanguageName")</th>
+                            <th>@L("ConversationName")</th>
+                            <th>@L("ConversationRateName")</th>
+                        </tr>
+                    </thead>
+                </table>            
+            </div>
+        </abp-wizard-step-body>
+        <abp-wizard-step-body number="4">
+            <div class="d-flex justify-content-between my-12">
+                <h3 class="card-title font-weight-bolder text-dark"><i class="flaticon-star icon-lg mx-2 color-tree"></i>@L("ApplicantTrainings")</h3>
+                <div class="card-toolbar">
+                     @if (IsGranted(AppPermissions.Pages_ApplicantTrainings_Create))
+                      {
+                       <button id="CreateNewApplicantTrainingButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewApplicantTraining")</button>
+                      }
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="ApplicantTrainingsTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            <th>@L("Actions")</th>
+                            <th>@L("Subject")</th>
+                            <th>@L("Location")</th>
+                            <th>@L("TrainingDate")</th>
+                            <th>@L("Duration")</th>
+                            <th>@L("DurationType")</th>
+                            <th>@L("ApplicantFirstName")</th>
+                        </tr>
+                    </thead>
+                </table>            
+            </div>
+        </abp-wizard-step-body>
+        <abp-wizard-step-body number="5">
+            <div class="d-flex justify-content-between my-12">
+                <h3 class="card-title font-weight-bolder text-dark"><i class="flaticon-star icon-lg mx-2 color-tree"></i>@L("Attachments")</h3>
+                <div class="card-toolbar">
+                    @if (IsGranted(AppPermissions.Pages_ApplicationForms_Create))
+                    {
+                        <button id="CreateMultiAttachmentButton" class="btn btn-primary blue"><i class="fa fa-file"></i> @L("CreateMultiAttachment")</button>
+                    }
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="ApplicationFormAttachmentsTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer table-striped bordered p-0">
+                    <thead>
+                        <tr>
+                            <th>@L("Actions")</th>
+                            <th>@L("AttachmentType")</th>
+                            <th>@L("Description")</th>                            
+                        </tr>
+                    </thead>
+                </table>                
+            </div>
+        </abp-wizard-step-body>
+
+    </abp-wizard-body>
+</abp-wizard>
+     </div>
+   </div>
+</div>
+
+ 

@@ -4,6 +4,8 @@
     {
         public static class Common
         {
+            public const string ApplicationForms = "App.ApplicationForms";
+
             public const string JobAdvertisements = "ApplicationForm.JobAdvertisements";
             public const string XRoadServiceErrors = "XRoad.XRoadServiceErrors";
             public const string XRoadServiceAttributeMappings = "XRoad.XRoadServiceAttributeMappings";

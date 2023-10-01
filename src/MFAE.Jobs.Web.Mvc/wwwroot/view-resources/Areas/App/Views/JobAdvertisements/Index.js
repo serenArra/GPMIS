@@ -5,10 +5,47 @@
         var _jobAdvertisementsService = abp.services.app.jobAdvertisements;
 		var _entityTypeFullName = 'MFAE.Jobs.ApplicationForm.JobAdvertisement';
         
-        $('.date-picker').datetimepicker({
-            locale: abp.localization.currentLanguage.name,
-            format: 'L'
+        var $selectedDate = {
+            startDate: null,
+            endDate: null,
+        }
+
+        $('.date-picker').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('MM/DD/YYYY'));
         });
+
+         $('.startDate').daterangepicker({
+             autoUpdateInput: false,
+             singleDatePicker: true,
+             locale: abp.localization.currentLanguage.name,
+             format: 'L',
+         })
+        .on("apply.daterangepicker", (ev, picker) => {
+            $selectedDate.startDate = picker.startDate;
+            getLocalities();
+        })
+        .on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val("");
+            $selectedDate.startDate = null;
+            getLocalities();
+        });
+
+        $('.endDate').daterangepicker({
+            autoUpdateInput: false,
+            singleDatePicker: true,
+            locale: abp.localization.currentLanguage.name,
+            format: 'L',
+        })
+        .on("apply.daterangepicker", (ev, picker) => {
+            $selectedDate.endDate = picker.startDate;
+            getLocalities();
+        })
+        .on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val("");
+            $selectedDate.endDate = null;
+            getLocalities();
+        });
+
 
         var _permissions = {
             create: abp.auth.hasPermission('Pages.JobAdvertisements.Create'),
@@ -28,8 +65,8 @@
             modalClass: 'ViewJobAdvertisementModal'
         });
 
-		        var _entityTypeHistoryModal = app.modals.EntityTypeHistoryModal.create();
-		        function entityHistoryIsEnabled() {
+	  var _entityTypeHistoryModal = app.modals.EntityTypeHistoryModal.create();
+	  function entityHistoryIsEnabled() {
             return abp.auth.hasPermission('Pages.Administration.AuditLogs') &&
                 abp.custom.EntityHistory &&
                 abp.custom.EntityHistory.IsEnabled &&
@@ -37,17 +74,17 @@
         }
 
         var getDateFilter = function (element) {
-            if (element.data("DateTimePicker").date() == null) {
+            if ($selectedDate.startDate == null) {
                 return null;
             }
-            return element.data("DateTimePicker").date().format("YYYY-MM-DDT00:00:00Z"); 
+            return $selectedDate.startDate.format("YYYY-MM-DDT00:00:00Z");
         }
-        
+
         var getMaxDateFilter = function (element) {
-            if (element.data("DateTimePicker").date() == null) {
+            if ($selectedDate.endDate == null) {
                 return null;
             }
-            return element.data("DateTimePicker").date().format("YYYY-MM-DDT23:59:59Z"); 
+            return $selectedDate.endDate.format("YYYY-MM-DDT23:59:59Z");
         }
 
         var dataTable = _$jobAdvertisementsTable.DataTable({

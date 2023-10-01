@@ -1,7 +1,4 @@
-﻿using MFAE.Jobs.ApplicationForm;
-
-using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Linq.Dynamic.Core;
 using Abp.Linq.Extensions;
 using System.Collections.Generic;
@@ -12,11 +9,8 @@ using MFAE.Jobs.ApplicationForm.Dtos;
 using MFAE.Jobs.Dto;
 using Abp.Application.Services.Dto;
 using MFAE.Jobs.Authorization;
-using Abp.Extensions;
 using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Abp.UI;
-using MFAE.Jobs.Storage;
 
 namespace MFAE.Jobs.ApplicationForm
 {

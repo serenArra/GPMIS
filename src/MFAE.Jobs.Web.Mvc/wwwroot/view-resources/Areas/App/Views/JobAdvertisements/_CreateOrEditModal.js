@@ -7,9 +7,6 @@
         var _$jobAdvertisementInformationForm = null;
 
 		
-		
-		
-
         this.init = function (modalManager) {
             _modalManager = modalManager;
 

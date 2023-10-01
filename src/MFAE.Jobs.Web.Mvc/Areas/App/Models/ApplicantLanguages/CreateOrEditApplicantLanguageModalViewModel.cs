@@ -1,10 +1,5 @@
 ﻿using MFAE.Jobs.ApplicationForm.Dtos;
 using System.Collections.Generic;
-using System.Collections.Generic;
-using System.Collections.Generic;
-using System.Collections.Generic;
-
-using Abp.Extensions;
 
 namespace MFAE.Jobs.Web.Areas.App.Models.ApplicantLanguages
 {
