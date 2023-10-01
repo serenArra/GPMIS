@@ -51,7 +51,10 @@
                             <!--end::Svg Icon-->
                         </div>
                     </div>
-                    @await Component.InvokeAsync(typeof(AppTheme2BrandViewComponent))
+                    <a href="/">
+                        <img alt="Logo" src="@(ApplicationPath)metronic/assets/media/photos/JOBS@(CultureHelper.IsRtl ? "-rtl" : "-ltr").png" style="max-width:180px"/>
+                    </a>
+                   @*  @await Component.InvokeAsync(typeof(AppTheme2BrandViewComponent)) *@
                     <!--end::Aside mobile toggle-->
                     <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1 ms-10">
                         <div class="d-flex align-items-stretch" id="kt_header_nav">

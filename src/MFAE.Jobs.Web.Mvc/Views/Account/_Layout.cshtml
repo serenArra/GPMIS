@@ -54,93 +54,8 @@
     {
         <link rel="stylesheet" href="/Common/Styles/abp-zero-template-rtl.css" asp-append-version="true" />
     }
-    <style>
-          .login-aside{
-             width: 100%;
-             max-width: 40%;
-           }
-
-        .font-size-base {
-            font-size: 1rem;
-        }
-
-        .font-size-sm {
-            font-size: 0.925rem;
-        }
-
-        .font-size-xs {
-            font-size: 0.8rem;
-        }
-
-        .font-size-lg {
-            font-size: 1.08rem;
-        }
-
-        .font-size-h1 {
-            font-size: 2rem !important;
-        }
-
-        .font-size-h2 {
-            font-size: 1.75rem !important;
-        }
-
-        .font-size-h3 {
-            font-size: 1.5rem !important;
-        }
-
-        .font-size-h4 {
-            font-size: 1.35rem !important;
-        }
-
-        .font-size-h5 {
-            font-size: 1.25rem !important;
-        }
-
-        .font-size-h6 {
-            font-size: 1.175rem !important;
-        }
-
-        .font-weight-bolder {
-            font-weight: 600 !important;
-        }
-
-        span.input-group-text{
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            border: 1px solid #eef3f7 !important;
-            padding: 1.75rem 1rem !important;
-        }
-
-        span.input-group-text i{
-                line-height: 0;
-                font-size: 1.3rem;
-                color: #B5B5C3;
-        }
-
-        .font-size-lg {
-            font-size: 1.08rem;
-        }
-
-        .text-dark-50 {
-            color: #7E8299 !important;
-        }
-        .list-item-jobs-rtl{
-            direction:rtl;
-            float:right;
-            width:400px;
-            margin-right:60px
-        }
-
-        .list-item-jobs {
-            direction: ltr;
-            float: right;
-            width: 400px;
-            margin-left: 50px;
-        }
-        
-    </style>
     <link rel="stylesheet" abp-href="/view-resources/Views/Account/_Layout@(CultureHelper.IsRtl ? "-rtl" : "").css" asp-append-version="true" />
-
+    <link rel="stylesheet" href="@(ApplicationPath)metronic/themes/theme2/css/style-custom.css"/>
     @await RenderSectionAsync("Styles", false)
 
     <script type="text/javascript">
@@ -153,15 +68,16 @@
 <body class="header-fixed header-mobile-fixed subheader-fixed subheader-enabled subheader-solid aside-enabled aside-fixed">
     <div class="d-flex flex-column flex-root">
         <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed flex-column flex-lg-row flex-column-fluid bg-white">
-            <div class="login-aside order-2 order-lg-2 d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
-                    <div class="d-flex  justify-content-end align-items-end py-7 py-lg-0 fw-bold fs-6 w-100">
+            <div class="login-aside order-2 order-lg-2 d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20 justify-content-between  ">
+                <div class="d-flex flex-column-fluid flex-column justify-content-between py-9 px-7 py-lg-13 px-lg-35">
+                    <div class="d-flex  justify-content-end align-items-end py-7 py-lg-0 fw-bold fs-6 w-100 lang-login">
                         <vc:account-languages></vc:account-languages>
                     </div>
                @*  <vc:account-logo skin="light"></vc:account-logo> *@
                  @*   <a href="/">
                       <img alt="Logo" src="@(ApplicationPath)metronic/assets/media/photos/JOBS@(CultureHelper.IsRtl ? "-rtl" : "-ltr").png" />
                     </a> *@ 
-                <div class="w-lg-700px bg-body rounded p-10 p-lg-15 mx-auto">
+                <div class="bg-body rounded p-10 p-lg-15 mx-auto form-login">
                     @if (!(ViewBag.DisableTenantChange ?? false) && MultiTenancyConfig.IsEnabled && !WebUrlService.SupportsTenancyNameInUrl)
                     {
                         <div class="tenant-change-box mb-5">
@@ -171,27 +87,27 @@
                     @RenderBody()
                 </div>
                 <div class="d-flex justify-content-lg-center justify-content-center align-items-center py-7 py-lg-0">
-                    <div class="d-flex justify-content-lg-center justify-content-center align-items-center text-dark-50 font-size-lg font-weight-bolder mr-10">
+                    <div class="d-flex justify-content-lg-center justify-content-center align-items-center text-dark-50 font-size-lg font-weight-bolder mr-10 mt-15">
                         <div class="mr-1 word-wrap-login">@L("FooterRights")</div>
                     </div>
 
                 </div>
             </div>
-            <div class="justify-content-@(CultureHelper.IsRtl ? "center" : "end") content order-1 order-lg-1 d-flex flex-column w-100 pb-0 bgi-no-repeat relative"
-                 style="background-image: url(@(ApplicationPath)metronic/assets/media/photos/login-bg@(CultureHelper.IsRtl ? ".png" : "-ltr.png")); background-size: cover;">
-                @* <div class="d-flex flex-column justify-content-end pt-lg-40 pt-md-5 pt-sm-5 pt-5 px-20 mt-20 me-10" style="">
-                    <a href="/" class="text-end mt-20 me-20">
-                        <img alt="Logo" src="@(ApplicationPath)metronic/assets/media/photos/JOBS@(CultureHelper.IsRtl ? "-rtl" : "-ltr").png" style="width:450px"/>
+            </div>
+            <div class="justify-content-@(CultureHelper.IsRtl ? "start" : "start") content order-1 order-lg-1 d-flex flex-column w-100 pb-0 bgi-no-repeat relative bg-login"
+                 style="background-image: url(@(ApplicationPath)metronic/assets/media/photos/header-bg-2.jpg); background-size: cover;">
+                 <div class="d-flex flex-column justify-content-end pt-lg-40 pt-md-5 pt-sm-5 pt-5 px-20 mt-20 me-10 logo" style="">
+                    <a href="/" class="text-start mt-20 me-20 logo">
+                        <img alt="Logo" src="@(ApplicationPath)metronic/assets/media/photos/JOBS@(CultureHelper.IsRtl ? "-rtl" : "-ltr").png" style="width:350px"/>
                     </a>
-                </div> *@
-@*                 <div class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center" style="background-image: url(/metronic/assets/media/svg/illustrations/job.svg);background-position-x: left;background-position-y: center;background-size: 800px;"></div>
- *@
-                <ul class="fa-ul list-item-jobs@(CultureHelper.IsRtl ? "-rtl" : "")">
+                </div>
+                <br />
+                <ul class="fa-ul list-item-jobs@(CultureHelper.IsRtl ? "-rtl" : "") mt-20">
                     <li class="text-white"><span class="font-size-h4 font-weight-bolder text-white">@L("JobsPhone")</span></li>
                     </ br>
                     <li class="text-white"><span class="font-size-h5 font-weight-bolder text-white">@L("JobsMail")</span></li>
                 </ul>
-
+               <div class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center" style="background-image: url(/metronic/assets/media/photos/job.svg);background-position-x: left;background-position-y: center;background-size: 800px;"></div>
             </div>
         </div>
     </div>

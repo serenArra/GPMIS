@@ -45599,7 +45599,7 @@ body.page-bg-image-lg {
 }
 
 html:not([data-theme=dark]) body:not(.app-blank) {
-  background-image: url("../media/patterns/header-bg-1.jpg");
+  background-image: url("../media/patterns/header-bg-2.jpg");
 }
 
 [data-theme=dark] body:not(.app-blank) {
