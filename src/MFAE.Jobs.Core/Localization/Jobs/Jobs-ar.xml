@@ -87,7 +87,6 @@
 	<text name="ArName">الاسم (بالعربية)</text>
 	<text name="EnName">الاسم (بالإنجليزية)</text>
 
-	<text name="Enum_XRoadServiceStatusEnum_1">فعال</text>
     <text name="PersonalInformation">المعلومات الشخصية</text>
     <text name="AccountVerification">توثيق الحساب</text>
     <text name="AccountInformation">معلومات الحساب</text>
