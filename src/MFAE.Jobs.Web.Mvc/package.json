@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "abpzerotemplate",
   "scripts": {
     "create-bundles": "yarn && gulp buildDev",
@@ -18,6 +18,7 @@
     "blueimp-file-upload": "^10.32.0",
     "bootstrap": "5.1.1",
     "bootstrap-daterangepicker": "^3.1.0",
+    "bootstrap4-datetimepicker": "^5.2.3",
     "bootstrap-hover-dropdown": "^2.2.1",
     "bootstrap-markdown": "^2.10.0",
     "bootstrap-maxlength": "^1.10.1",
