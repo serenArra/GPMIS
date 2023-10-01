@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="ar">
   <texts>
-	  
-	<text name="AcademicDegrees">الدرجات الأكاديمية</text>
+
+	<text name="Filter">تصفية</text>
+
+    <text name="AcademicDegrees">الدرجات الأكاديمية</text>
 	<text name="Conversations">المحادثات</text>
 	<text name="ConversationRates">معدل المحادثات</text>
 	<text name="GraduationRates">التقدير الاكاديمي</text>
@@ -33,7 +35,7 @@
 	<text name="ApplicationModel">الجداول التعريفية</text>
 
 
-	  <text name="CreateNewXRoadServiceAttribute">انشاء سمة اكس-روود</text>
+	<text name="CreateNewXRoadServiceAttribute">انشاء سمة اكس-روود</text>
 	<text name="EditXRoadServiceAttribute">تعديل سمة اكس-روود</text>
 	<text name="DeleteXRoadServiceAttribute">حذف سمة اكس-روود</text>
 	<text name="XRoadServiceAttributes">سمات الخدمة اكس-روود </text>
