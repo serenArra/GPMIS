@@ -18,7 +18,7 @@
 
             <div class="my-3">
                 <label class="form-label" for="applicantId">@L("Applicant")</label>
-                @Html.DropDownList("applicantId", new SelectList(Model.ApplicantStatusApplicantList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantStatus.ApplicantId.ToString() : "")),@L("SelectAApplicant"), new { @class = "form-control" , @required="required" })
+                @Html.DropDownList("applicantId", new SelectList(Model.ApplicantStatusApplicantList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantStatus.ApplicantId.ToString() : "")),@L("SelectAApplicant"), new { @class = "form-control form-control-solid" , @required="required" })
             </div>
 
             @{
@@ -33,7 +33,7 @@
 
             <div class="my-3">
                 <label class="form-label" for="ApplicantStatus_Description">@L("Description")</label>
-                <input class="form-control" id="ApplicantStatus_Description" value="@Model.ApplicantStatus.Description" type="text" name="description" maxlength="@MFAE.Jobs.ApplicationForm.ApplicantStatusConsts.MaxDescriptionLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantStatusConsts.MinDescriptionLength" />
+                <input class="form-control form-control-solid" id="ApplicantStatus_Description" value="@Model.ApplicantStatus.Description" type="text" name="description" maxlength="@MFAE.Jobs.ApplicationForm.ApplicantStatusConsts.MaxDescriptionLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantStatusConsts.MinDescriptionLength" />
             </div>
 
         </form>

@@ -19,42 +19,42 @@
 
             <div class="my-3">
                 <label class="form-label" for="entityTypeId">@L("AttachmentEntityType")</label>
-                @Html.DropDownList("entityTypeId", new SelectList(Model.AttachmentTypeAttachmentEntityTypeList,"Id","DisplayName", (Model.IsEditMode ? Model.AttachmentType.EntityTypeId.ToString() : "")),@L("SelectAAttachmentEntityType"), new { @class = "form-control" })
+                @Html.DropDownList("entityTypeId", new SelectList(Model.AttachmentTypeAttachmentEntityTypeList,"Id","DisplayName", (Model.IsEditMode ? Model.AttachmentType.EntityTypeId.ToString() : "")),@L("SelectAAttachmentEntityType"), new { @class = "form-control form-control-solid" })
             </div>
 
             <div class="my-3">
                 <label class="form-label" for="groupId">@L("AttachmentTypeGroup")</label>
-                @Html.DropDownList("groupId", new SelectList(Model.AttachmentTypeAttachmentTypeGroupList,"Id","DisplayName", (Model.IsEditMode ? Model.AttachmentType.GroupId.ToString() : "")),@L("SelectAAttachmentTypeGroup"), new { @class = "form-control" })
+                @Html.DropDownList("groupId", new SelectList(Model.AttachmentTypeAttachmentTypeGroupList,"Id","DisplayName", (Model.IsEditMode ? Model.AttachmentType.GroupId.ToString() : "")),@L("SelectAAttachmentTypeGroup"), new { @class = "form-control form-control-solid" })
             </div>
 
             <div class="my-3">
                 <label class="form-label" for="AttachmentType_ArName">@L("ArName")</label>
-                <input class="form-control" id="AttachmentType_ArName" value="@Model.AttachmentType.ArName" type="text" name="arName" required maxlength="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxArNameLength" minlength="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinArNameLength" />
+                <input class="form-control form-control-solid" id="AttachmentType_ArName" value="@Model.AttachmentType.ArName" type="text" name="arName" required maxlength="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxArNameLength" minlength="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinArNameLength" />
             </div>
 
             <div class="my-3">
                 <label class="form-label" for="AttachmentType_EnName">@L("EnName")</label>
-                <input class="form-control" id="AttachmentType_EnName" value="@Model.AttachmentType.EnName" type="text" name="enName" required maxlength="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxEnNameLength" minlength="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinEnNameLength" />
+                <input class="form-control form-control-solid" id="AttachmentType_EnName" value="@Model.AttachmentType.EnName" type="text" name="enName" required maxlength="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxEnNameLength" minlength="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinEnNameLength" />
             </div>
 
             <div class="my-3">
                 <label class="form-label" for="AttachmentType_MaxSizeMB">@L("MaxSizeMB")</label>
-                <input class="form-control m-input" id="AttachmentType_MaxSizeMB" value="@Model.AttachmentType.MaxSizeMB.ToString(CultureInfo.InvariantCulture)" type="number" name="maxSizeMB" min="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinMaxSizeMBValue" max="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxMaxSizeMBValue" />
+                <input class="form-control m-input form-control-solid" id="AttachmentType_MaxSizeMB" value="@Model.AttachmentType.MaxSizeMB.ToString(CultureInfo.InvariantCulture)" type="number" name="maxSizeMB" min="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinMaxSizeMBValue" max="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxMaxSizeMBValue" />
             </div>
 
             <div class="my-3">
                 <label class="form-label" for="AttachmentType_AllowedExtensions">@L("AllowedExtensions")</label>
-                <input class="form-control" id="AttachmentType_AllowedExtensions" value="@Model.AttachmentType.AllowedExtensions" type="text" name="allowedExtensions" />
+                <input class="form-control form-control-solid" id="AttachmentType_AllowedExtensions" value="@Model.AttachmentType.AllowedExtensions" type="text" name="allowedExtensions" />
             </div>
 
             <div class="my-3">
                 <label class="form-label" for="AttachmentType_MaxAttachments">@L("MaxAttachments")</label>
-                <input class="form-control m-input" id="AttachmentType_MaxAttachments" value="@Model.AttachmentType.MaxAttachments.ToString(CultureInfo.InvariantCulture)" type="number" name="maxAttachments" min="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinMaxAttachmentsValue" max="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxMaxAttachmentsValue" />
+                <input class="form-control m-input form-control-solid" id="AttachmentType_MaxAttachments" value="@Model.AttachmentType.MaxAttachments.ToString(CultureInfo.InvariantCulture)" type="number" name="maxAttachments" min="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinMaxAttachmentsValue" max="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxMaxAttachmentsValue" />
             </div>
 
             <div class="my-3">
                 <label class="form-label" for="AttachmentType_MinRequiredAttachments">@L("MinRequiredAttachments")</label>
-                <input class="form-control m-input" id="AttachmentType_MinRequiredAttachments" value="@Model.AttachmentType.MinRequiredAttachments.ToString(CultureInfo.InvariantCulture)" type="number" name="minRequiredAttachments" min="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinMinRequiredAttachmentsValue" max="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxMinRequiredAttachmentsValue" />
+                <input class="form-control m-input form-control-solid" id="AttachmentType_MinRequiredAttachments" value="@Model.AttachmentType.MinRequiredAttachments.ToString(CultureInfo.InvariantCulture)" type="number" name="minRequiredAttachments" min="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MinMinRequiredAttachmentsValue" max="@MFAE.Jobs.Attachments.AttachmentTypeConsts.MaxMinRequiredAttachmentsValue" />
             </div>
 
             @{

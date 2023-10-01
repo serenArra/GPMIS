@@ -45046,3 +45046,7 @@ body:not([data-kt-sticky-header=on]) .topbar .active.show > .btn.btn-custom .svg
     padding: 15px 0;
   }
 }
+
+table.dataTable.nowrap td, table.dataTable.nowrap th {
+    text-align: right !important;
+}

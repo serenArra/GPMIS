@@ -12,12 +12,12 @@
     <form name="TenantInformationsForm">
         <div class="mb-5">
             <label for="TenancyName" class="form-label">@L("TenancyName")</label>
-            <input id="TenancyName" class="form-control" type="text" name="TenancyName" required maxlength="@Tenant.MaxTenancyNameLength" regex="@Tenant.TenancyNameRegex">
+            <input id="TenancyName" class="form-control form-control-solid" type="text" name="TenancyName" required maxlength="@Tenant.MaxTenancyNameLength" regex="@Tenant.TenancyNameRegex">
         </div>
 
         <div class="mb-5 no-hint">
             <label for="Name" class="form-label">@L("Name")</label>
-            <input id="Name" type="text" name="Name" class="form-control" required maxlength="@Tenant.MaxNameLength">
+            <input id="Name" type="text" name="Name" class="form-control form-control-solid" required maxlength="@Tenant.MaxNameLength">
         </div>
 
         <div class="checkbox-list">
@@ -31,22 +31,22 @@
 
         <div class="form-group mb-5 no-hint" style="display: none">
             <label for="ConnectionString" class="form-label">@L("DatabaseConnectionString")</label>
-            <input id="ConnectionString" type="text" name="ConnectionString" class="form-control" required maxlength="@Tenant.MaxConnectionStringLength">
+            <input id="ConnectionString" type="text" name="ConnectionString" class="form-control form-control-solid" required maxlength="@Tenant.MaxConnectionStringLength">
         </div>
         
         <div class="mb-5">
             <label for="AdminName" class="form-label">@L("AdminName")</label>
-            <input id="AdminName" type="text" name="AdminName" class="form-control" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxNameLength" value="@MFAE.Jobs.Authorization.Users.User.AdminUserName">
+            <input id="AdminName" type="text" name="AdminName" class="form-control form-control-solid" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxNameLength" value="@MFAE.Jobs.Authorization.Users.User.AdminUserName">
         </div>
         
         <div class="mb-5">
             <label for="AdminSurname" class="form-label">@L("AdminSurname")</label>
-            <input id="AdminSurname" type="text" name="AdminSurname" class="form-control" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxSurnameLength" value="@MFAE.Jobs.Authorization.Users.User.AdminUserName">
+            <input id="AdminSurname" type="text" name="AdminSurname" class="form-control form-control-solid" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxSurnameLength" value="@MFAE.Jobs.Authorization.Users.User.AdminUserName">
         </div>
 
         <div class="mb-5">
             <label for="AdminEmailAddress" class="form-label">@L("AdminEmailAddress")</label>
-            <input id="AdminEmailAddress" type="email" name="AdminEmailAddress" class="form-control" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength">
+            <input id="AdminEmailAddress" type="email" name="AdminEmailAddress" class="form-control form-control-solid" required maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength">
         </div>
 
         <div class="checkbox-list">
@@ -60,12 +60,12 @@
 
         <div class="mb-5 no-hint tenant-admin-password" style="display: none">
             <label for="CreateTenant_AdminPassword" class="form-label">@L("Password")</label>
-            <input id="CreateTenant_AdminPassword" type="password" name="AdminPassword" class="form-control" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxPlainPasswordLength" autocomplete="new-password">
+            <input id="CreateTenant_AdminPassword" type="password" name="AdminPassword" class="form-control form-control-solid" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxPlainPasswordLength" autocomplete="new-password">
         </div>
 
         <div class="mb-5 tenant-admin-password" style="display: none">
             <label for="AdminPasswordRepeat" class="form-label">@L("PasswordRepeat")</label>
-            <input id="AdminPasswordRepeat" type="password" name="AdminPasswordRepeat" class="form-control" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxPlainPasswordLength" equalto="#CreateTenant_AdminPassword" autocomplete="new-password">
+            <input id="AdminPasswordRepeat" type="password" name="AdminPasswordRepeat" class="form-control form-control-solid" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxPlainPasswordLength" equalto="#CreateTenant_AdminPassword" autocomplete="new-password">
         </div>
 
         <div class="mb-5 no-hint">
@@ -89,7 +89,7 @@
 
         <div class="mb-5 subscription-component">
             <label for="SubscriptionEndDateUtc" class="form-label">@L("SubscriptionEndDateUtc")</label>
-            <input id="SubscriptionEndDateUtc" type="datetime" name="SubscriptionEndDateUtc" class="form-control date-time-picker" required>
+            <input id="SubscriptionEndDateUtc" type="datetime" name="SubscriptionEndDateUtc" class="form-control date-time-picker form-control-solid" required>
         </div>
 
         <div class="checkbox-list subscription-component">

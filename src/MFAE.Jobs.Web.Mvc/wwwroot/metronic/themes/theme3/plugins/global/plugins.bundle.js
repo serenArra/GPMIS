@@ -37160,11 +37160,11 @@ return tns;
         },
         template: '<div class="row" data-multiselectsplitter-wrapper-selector>' +
         '<div class="col-xs-6 col-sm-6">' +
-        '<select class="form-control" data-multiselectsplitter-firstselect-selector></select>' +
+        '<select class="form-control form-control-solid" data-multiselectsplitter-firstselect-selector></select>' +
         '</div>' +
         ' <!-- Add the extra clearfix for only the required viewport -->' +
         '<div class="col-xs-6 col-sm-6">' +
-        '<select class="form-control" data-multiselectsplitter-secondselect-selector></select>' +
+        '<select class="form-control form-control-solid" data-multiselectsplitter-secondselect-selector></select>' +
         '</div>' +
         '</div>'
     };

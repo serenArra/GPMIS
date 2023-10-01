@@ -28,7 +28,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantStudies;
 
                         <div class="my-3">
                             <div class="input-group">
-                                <input type="text" id="ApplicantStudiesTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <input type="text" id="ApplicantStudiesTableFilter" class="form-control reload-on-change form-control-solid" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
                                 <button id="GetApplicantStudiesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
                             </div>
                         </div>
@@ -44,59 +44,59 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantStudies;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="OtherSpecialtyFilterId">@L("OtherSpecialty")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="otherSpecialtyFilter" id="OtherSpecialtyFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="otherSpecialtyFilter" id="OtherSpecialtyFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="SecondSpecialtyFilterId">@L("SecondSpecialty")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="secondSpecialtyFilter" id="SecondSpecialtyFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="secondSpecialtyFilter" id="SecondSpecialtyFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="UniversityFilterId">@L("University")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="universityFilter" id="UniversityFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="universityFilter" id="UniversityFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="MinGraduationYearFilterId">@L("MinMax") @L("GraduationYear")</label>
                         <div class="input-group">
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MinValue")" name="minGraduationYearFilter" id="MinGraduationYearFilterId" />
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MaxValue")" name="maxGraduationYearFilter" id="MaxGraduationYearFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MinValue")" name="minGraduationYearFilter" id="MinGraduationYearFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MaxValue")" name="maxGraduationYearFilter" id="MaxGraduationYearFilterId" />
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="GraduationCountryFilterId">@L("GraduationCountry")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="graduationCountryFilter" id="GraduationCountryFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="graduationCountryFilter" id="GraduationCountryFilterId">
                     </div>
                 </div>
 
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="GraduationRateNameFilterId">(@L("GraduationRate")) @L("Name")</label>
-                        <input type="text" class="form-control" name="graduationRateNameFilter" id="GraduationRateNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="graduationRateNameFilter" id="GraduationRateNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="AcademicDegreeNameFilterId">(@L("AcademicDegree")) @L("Name")</label>
-                        <input type="text" class="form-control" name="academicDegreeNameFilter" id="AcademicDegreeNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="academicDegreeNameFilter" id="AcademicDegreeNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="SpecialtiesNameFilterId">(@L("Specialties")) @L("Name")</label>
-                        <input type="text" class="form-control" name="specialtiesNameFilter" id="SpecialtiesNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="specialtiesNameFilter" id="SpecialtiesNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="ApplicantFirstNameFilterId">(@L("Applicant")) @L("FirstName")</label>
-                        <input type="text" class="form-control" name="applicantFirstNameFilter" id="ApplicantFirstNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="applicantFirstNameFilter" id="ApplicantFirstNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-12 mt-5">
@@ -110,7 +110,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantStudies;
                 </div>
             </div>
             <div class="row align-items-center">
-                <table id="ApplicantStudiesTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                <table id="ApplicantStudiesTable" class="display table table-striped table-hover dt-responsive nowrap">
                     <thead>
                         <tr>
                             <th></th>

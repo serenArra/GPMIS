@@ -28,7 +28,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantLanguages;
 
                         <div class="my-3">
                             <div class="input-group">
-                                <input type="text" id="ApplicantLanguagesTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <input type="text" id="ApplicantLanguagesTableFilter" class="form-control reload-on-change form-control-solid" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
                                 <button id="GetApplicantLanguagesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
                             </div>
                         </div>
@@ -44,32 +44,32 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantLanguages;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="NarrativeFilterId">@L("Narrative")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="narrativeFilter" id="NarrativeFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="narrativeFilter" id="NarrativeFilterId">
                     </div>
                 </div>
 
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="ApplicantFirstNameFilterId">(@L("Applicant")) @L("FirstName")</label>
-                        <input type="text" class="form-control" name="applicantFirstNameFilter" id="ApplicantFirstNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="applicantFirstNameFilter" id="ApplicantFirstNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="LanguageNameFilterId">(@L("Language")) @L("Name")</label>
-                        <input type="text" class="form-control" name="languageNameFilter" id="LanguageNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="languageNameFilter" id="LanguageNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="ConversationNameFilterId">(@L("Conversation")) @L("Name")</label>
-                        <input type="text" class="form-control" name="conversationNameFilter" id="ConversationNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="conversationNameFilter" id="ConversationNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="ConversationRateNameFilterId">(@L("ConversationRate")) @L("Name")</label>
-                        <input type="text" class="form-control" name="conversationRateNameFilter" id="ConversationRateNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="conversationRateNameFilter" id="ConversationRateNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-12 mt-5">
@@ -83,7 +83,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantLanguages;
                 </div>
             </div>
             <div class="row align-items-center">
-                <table id="ApplicantLanguagesTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                <table id="ApplicantLanguagesTable" class="display table table-striped table-hover dt-responsive nowrap">
                     <thead>
                         <tr>
                             <th></th>

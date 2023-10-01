@@ -14,7 +14,7 @@
           type = 'number';
         }
       }
-      $textbox = $('<input class="form-control" type="' + type + '" />').on('change', function () {
+      $textbox = $('<input class="form-control form-control-solid" type="' + type + '" />').on('change', function () {
         if (_options && typeof _options.onChange === 'function') {
           _options.onChange($textbox.val());
         }

@@ -29,7 +29,7 @@
                     <div class="col-xl-12">
                         <div class="form-group align-items-center">
                             <div class="input-group">
-                                <input type="text" id="XrodeMappingsTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                                <input type="text" id="XrodeMappingsTableFilter" class="form-control m-input form-control-solid" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
                                 <span class="input-group-btn">
                                     <button id="GetXrodeMappingsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
                                 </span>
@@ -66,15 +66,15 @@
 							<div class="col-md-3">
 								<div class="form-group">
 									<label for="CodeFilterId">@L("Code")</label>
-									<input type="text" class="form-control" name="codeFilter" id="CodeFilterId">
+									<input type="text" class="form-control form-control-solid" name="codeFilter" id="CodeFilterId">
 								</div>
                             </div>
                             <div class="col-md-3">
                                  <div class="form-group">
 									<label  for="MinSystemIdFilterId">@L("MinMax") @L("SystemId")</label>
 									<div class="input-group">
-										<input type="number" class="form-control m-input" placeholder="@L("MinValue")" name="minSystemIdFilter" id="MinSystemIdFilterId"/>
-                                        <input type="number" class="form-control m-input" placeholder="@L("MaxValue")" name="maxSystemIdFilter"  id="MaxSystemIdFilterId"/>
+										<input type="number" class="form-control m-input form-control-solid" placeholder="@L("MinValue")" name="minSystemIdFilter" id="MinSystemIdFilterId"/>
+                                        <input type="number" class="form-control m-input form-control-solid" placeholder="@L("MaxValue")" name="maxSystemIdFilter"  id="MaxSystemIdFilterId"/>
 									</div>
                                 </div>
                             </div>

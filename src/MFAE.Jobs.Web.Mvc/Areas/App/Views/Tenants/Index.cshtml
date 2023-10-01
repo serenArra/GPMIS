@@ -38,7 +38,7 @@
                         <div class="col-xl-6">
                             <label for="TenantsTableFilter" class="form-label">@L("TenantNameOrTenancyCode")</label>
                             <div class="input-group">
-                                <input id="TenantsTableFilter" class="form-control" type="text" value="@ViewBag.FilterText" placeholder="@L("SearchWithThreeDot")" aria-describedby="basic-addon2">
+                                <input id="TenantsTableFilter" class="form-control form-control-solid" type="text" value="@ViewBag.FilterText" placeholder="@L("SearchWithThreeDot")" aria-describedby="basic-addon2">
                                 <button id="GetTenantsButton" class="btn btn-primary" type="submit">
                                     <i class="flaticon-search-1" aria-label="@L("Search")"></i>
                                 </button>
@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div class="align-items-center">
-                <table id="TenantsTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable dtr-inline no-footer">
+                <table id="TenantsTable" class="display table table-striped table-hover dt-responsive nowrap">
                     <thead>
                     <tr>
                         <th></th>

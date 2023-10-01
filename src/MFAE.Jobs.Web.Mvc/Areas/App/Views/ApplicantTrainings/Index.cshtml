@@ -28,7 +28,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantTrainings;
 
                         <div class="my-3">
                             <div class="input-group">
-                                <input type="text" id="ApplicantTrainingsTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <input type="text" id="ApplicantTrainingsTableFilter" class="form-control reload-on-change form-control-solid" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
                                 <button id="GetApplicantTrainingsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
                             </div>
                         </div>
@@ -44,13 +44,13 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantTrainings;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="SubjectFilterId">@L("Subject")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="subjectFilter" id="SubjectFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="subjectFilter" id="SubjectFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="LocationFilterId">@L("Location")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="locationFilter" id="LocationFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="locationFilter" id="LocationFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -67,15 +67,15 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantTrainings;
                     <div class="my-3">
                         <label class="form-label" for="MinDurationFilterId">@L("MinMax") @L("Duration")</label>
                         <div class="input-group">
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MinValue")" name="minDurationFilter" id="MinDurationFilterId" />
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MaxValue")" name="maxDurationFilter" id="MaxDurationFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MinValue")" name="minDurationFilter" id="MinDurationFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MaxValue")" name="maxDurationFilter" id="MaxDurationFilterId" />
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="DurationTypeFilterId">@L("DurationType")</label>
-                        <select class="form-select reload-on-change" name="DurationTypeFilter" id="DurationTypeFilterId">
+                        <select class="form-select form-control reload-on-change form-control-solid" name="DurationTypeFilter" id="DurationTypeFilterId">
                             <option value="-1">@L("All")</option>
                             <option value="1">@L("Enum_DurationType_1")</option>
 
@@ -90,7 +90,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantTrainings;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="ApplicantFirstNameFilterId">(@L("Applicant")) @L("FirstName")</label>
-                        <input type="text" class="form-control" name="applicantFirstNameFilter" id="ApplicantFirstNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="applicantFirstNameFilter" id="ApplicantFirstNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-12 mt-5">
@@ -104,7 +104,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.ApplicantTrainings;
                 </div>
             </div>
             <div class="row align-items-center">
-                <table id="ApplicantTrainingsTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                <table id="ApplicantTrainingsTable" class="display table table-striped table-hover dt-responsive nowrap">
                     <thead>
                         <tr>
                             <th></th>

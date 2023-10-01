@@ -28,7 +28,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.AttachmentTypes;
 
                         <div class="my-3">
                             <div class="input-group">
-                                <input type="text" id="AttachmentTypesTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <input type="text" id="AttachmentTypesTableFilter" class="form-control reload-on-change form-control-solid" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
                                 <button id="GetAttachmentTypesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
                             </div>
                         </div>
@@ -44,36 +44,36 @@ ViewBag.CurrentPageName = AppPageNames.Common.AttachmentTypes;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="ArNameFilterId">@L("ArName")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="arNameFilter" id="ArNameFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="arNameFilter" id="ArNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="EnNameFilterId">@L("EnName")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="enNameFilter" id="EnNameFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="enNameFilter" id="EnNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="MinMaxSizeMBFilterId">@L("MinMax") @L("MaxSizeMB")</label>
                         <div class="input-group">
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MinValue")" name="minMaxSizeMBFilter" id="MinMaxSizeMBFilterId" />
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MaxValue")" name="maxMaxSizeMBFilter" id="MaxMaxSizeMBFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MinValue")" name="minMaxSizeMBFilter" id="MinMaxSizeMBFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MaxValue")" name="maxMaxSizeMBFilter" id="MaxMaxSizeMBFilterId" />
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="AllowedExtensionsFilterId">@L("AllowedExtensions")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="allowedExtensionsFilter" id="AllowedExtensionsFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="allowedExtensionsFilter" id="AllowedExtensionsFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="MinMaxAttachmentsFilterId">@L("MinMax") @L("MaxAttachments")</label>
                         <div class="input-group">
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MinValue")" name="minMaxAttachmentsFilter" id="MinMaxAttachmentsFilterId" />
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MaxValue")" name="maxMaxAttachmentsFilter" id="MaxMaxAttachmentsFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MinValue")" name="minMaxAttachmentsFilter" id="MinMaxAttachmentsFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MaxValue")" name="maxMaxAttachmentsFilter" id="MaxMaxAttachmentsFilterId" />
                         </div>
                     </div>
                 </div>
@@ -81,15 +81,15 @@ ViewBag.CurrentPageName = AppPageNames.Common.AttachmentTypes;
                     <div class="my-3">
                         <label class="form-label" for="MinMinRequiredAttachmentsFilterId">@L("MinMax") @L("MinRequiredAttachments")</label>
                         <div class="input-group">
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MinValue")" name="minMinRequiredAttachmentsFilter" id="MinMinRequiredAttachmentsFilterId" />
-                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MaxValue")" name="maxMinRequiredAttachmentsFilter" id="MaxMinRequiredAttachmentsFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MinValue")" name="minMinRequiredAttachmentsFilter" id="MinMinRequiredAttachmentsFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup form-control-solid" placeholder="@L(" MaxValue")" name="maxMinRequiredAttachmentsFilter" id="MaxMinRequiredAttachmentsFilterId" />
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="CategoryFilterId">@L("Category")</label>
-                        <select class="form-select reload-on-change" name="CategoryFilter" id="CategoryFilterId">
+                        <select class="form-select form-control reload-on-change form-control-solid" name="CategoryFilter" id="CategoryFilterId">
                             <option value="-1">@L("All")</option>
                             <option value="1">@L("Enum_AttachmentTypeCategories_1")</option>
 
@@ -105,7 +105,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.AttachmentTypes;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="PrivacyFlagFilterId">@L("PrivacyFlag")</label>
-                        <select class="form-select reload-on-change" name="PrivacyFlagFilter" id="PrivacyFlagFilterId">
+                        <select class="form-select form-control reload-on-change form-control-solid" name="PrivacyFlagFilter" id="PrivacyFlagFilterId">
                             <option value="-1">@L("All")</option>
                             <option value="1">@L("Enum_PrivacyFlag_1")</option>
 
@@ -120,13 +120,13 @@ ViewBag.CurrentPageName = AppPageNames.Common.AttachmentTypes;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="AttachmentEntityTypeNameFilterId">(@L("AttachmentEntityType")) @L("Name")</label>
-                        <input type="text" class="form-control" name="attachmentEntityTypeNameFilter" id="AttachmentEntityTypeNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="attachmentEntityTypeNameFilter" id="AttachmentEntityTypeNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="AttachmentTypeGroupNameFilterId">(@L("AttachmentTypeGroup")) @L("Name")</label>
-                        <input type="text" class="form-control" name="attachmentTypeGroupNameFilter" id="AttachmentTypeGroupNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="attachmentTypeGroupNameFilter" id="AttachmentTypeGroupNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-12 mt-5">
@@ -140,7 +140,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.AttachmentTypes;
                 </div>
             </div>
             <div class="row align-items-center">
-                <table id="AttachmentTypesTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                <table id="AttachmentTypesTable" class="display table table-striped table-hover dt-responsive nowrap">
                     <thead>
                         <tr>
                             <th></th>

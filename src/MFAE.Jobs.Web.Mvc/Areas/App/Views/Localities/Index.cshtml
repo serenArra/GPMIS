@@ -28,7 +28,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.Localities;
 
                         <div class="my-3">
                             <div class="input-group">
-                                <input type="text" id="LocalitiesTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <input type="text" id="LocalitiesTableFilter" class="form-control reload-on-change form-control-solid" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
                                 <button id="GetLocalitiesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
                             </div>
                         </div>
@@ -44,26 +44,26 @@ ViewBag.CurrentPageName = AppPageNames.Common.Localities;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="NameArFilterId">@L("NameAr")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="nameArFilter" id="NameArFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="nameArFilter" id="NameArFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="NameEnFilterId">@L("NameEn")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="nameEnFilter" id="NameEnFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="nameEnFilter" id="NameEnFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="UniversalCodeFilterId">@L("UniversalCode")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="universalCodeFilter" id="UniversalCodeFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="universalCodeFilter" id="UniversalCodeFilterId">
                     </div>
                 </div>
 
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="GovernorateNameFilterId">(@L("Governorate")) @L("Name")</label>
-                        <input type="text" class="form-control" name="governorateNameFilter" id="GovernorateNameFilterId">
+                        <input type="text" class="form-control form-control-solid" name="governorateNameFilter" id="GovernorateNameFilterId">
                     </div>
                 </div>
                 <div class="col-md-12 mt-5">
@@ -77,7 +77,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.Localities;
                 </div>
             </div>
             <div class="row align-items-center">
-                <table id="LocalitiesTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                <table id="LocalitiesTable" class="display table table-striped table-hover dt-responsive nowrap">
                     <thead>
                         <tr>
                             <th></th>

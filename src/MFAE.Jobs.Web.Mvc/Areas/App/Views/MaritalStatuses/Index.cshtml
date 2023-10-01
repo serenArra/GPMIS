@@ -28,7 +28,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.MaritalStatuses;
 
                         <div class="my-3">
                             <div class="input-group">
-                                <input type="text" id="MaritalStatusesTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <input type="text" id="MaritalStatusesTableFilter" class="form-control reload-on-change form-control-solid" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
                                 <button id="GetMaritalStatusesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
                             </div>
                         </div>
@@ -44,19 +44,19 @@ ViewBag.CurrentPageName = AppPageNames.Common.MaritalStatuses;
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="NameArFilterId">@L("NameAr")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="nameArFilter" id="NameArFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="nameArFilter" id="NameArFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="NameEnFilterId">@L("NameEn")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="nameEnFilter" id="NameEnFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="nameEnFilter" id="NameEnFilterId">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="my-3">
                         <label class="form-label" for="IsActiveFilterId">@L("IsActive")</label>
-                        <input type="text" class="form-control reload-on-keyup" name="isActiveFilter" id="IsActiveFilterId">
+                        <input type="text" class="form-control reload-on-keyup form-control-solid" name="isActiveFilter" id="IsActiveFilterId">
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@ ViewBag.CurrentPageName = AppPageNames.Common.MaritalStatuses;
                 </div>
             </div>
             <div class="row align-items-center">
-                <table id="MaritalStatusesTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                <table id="MaritalStatusesTable" class="display table table-striped table-hover dt-responsive nowrap">
                     <thead>
                         <tr>
                             <th></th>
