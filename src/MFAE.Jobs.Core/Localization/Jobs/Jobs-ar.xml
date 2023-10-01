@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="ar">
   <texts>
+    <text name="PersonalInformation">المعلومات الشخصية</text>
+    <text name="AccountVerification">توثيق الحساب</text>
+    <text name="AccountInformation">معلومات الحساب</text>
     <text name="JobAdvertisement">الاعلان الوظيفي</text>
     <text name="MFAE.Jobs.ApplicationForm.JobAdvertisement">الاعلان الوظيفي</text>
     <text name="JobAdvertisementsHeaderInfo">يمكنك إضافة/حذف/تعديل إعلان الوظيفة</text>
