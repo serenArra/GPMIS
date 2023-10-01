@@ -469,6 +469,22 @@ progress {
   font-weight: 300;
 }
 
+.fa-angle-double-left:before, .fa-angles-left:before {
+    content: "\f101" !important;
+}
+
+.fa-angle-left:before {
+    content: "\f105" !important;
+}
+
+.fa-angle-right:before {
+    content: "\f104" !important;
+}
+
+.fa-angle-double-right:before, .fa-angles-right:before {
+    content: "\f100" !important;
+}
+
 .display-1 {
   font-size: calc(1.625rem + 4.5vw);
   font-weight: 700;

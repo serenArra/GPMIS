@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="ar">
   <texts>
+    <text name="FooterText">جميع الحقوق محفوظة - وزارة الخارجية والمغتربين</text>
+    <text name="FooterButton1">عن النظام</text>
+    <text name="FooterButton2">سياسات والشروط</text>
+    <text name="FooterButton3">تواصل معنا</text>
 
     <text name="Fetch">جلب</text>
     <text name="MOIInformation">معلومات وزارة الداخلية</text>

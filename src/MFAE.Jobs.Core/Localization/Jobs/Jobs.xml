@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
-
+    <text name="FooterText">All rights reserved - Ministry of Foreign Affairs and Expatriates</text>
+    <text name="FooterButton1">About Us</text>
+    <text name="FooterButton2">Policies and Terms</text>
+    <text name="FooterButton3">Contact Us</text>
+    
     <text name="XRoadSettings">XRoad Settings</text>
     <text name="XRoadURL">XRoad URL</text>
     <text name="XRoadConsumer">XRoad Consumer</text>
