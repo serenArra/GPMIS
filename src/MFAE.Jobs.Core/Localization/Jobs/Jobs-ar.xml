@@ -1,8 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="ar">
   <texts>
+	  
+	<text name="AcademicDegrees">الدرجات الأكاديمية</text>
+	<text name="Conversations">المحادثات</text>
+	<text name="ConversationRates">معدل المحادثات</text>
+	<text name="GraduationRates">التقدير الاكاديمي</text>
+	<text name="IdentificationTypes">انواع الوثائق</text>
+	<text name="MaritalStatuses">الحالات الاجتماعية</text>
+	<text name="Specialtieses">التخصصات</text>
+	<text name="AcademicDegreesHeaderInfo">قائمة الدرجات الاكاديمية</text>
+	<text name="CreateNewAcademicDegree">انشاء درجة علمية جديدة</text>
+	<text name="ConversationRatesHeaderInfo">قائمة معدل المحادثات </text>
+	<text name="CreateNewConversationRate">انشاء معدل محادثة جديدة</text>
+	<text name="GraduationRatesHeaderInfo">قائمة التقدير الاكاديمي</text>
+	<text name="CreateNewGraduationRate">انشاء تقدير اكاديمي جديد</text>
+	<text name="IdentificationTypesHeaderInfo">قائمة انواع الوثائق</text>
+	<text name="CreateNewIdentificationType">انشاء نوع وثيقة جديدة</text>
+	<text name="ConversationHeaderInfo">قائمةالمحادثات </text>
+	<text name="CreateNewConversation">انشاء محادثة جديدة</text>
+	<text name="IsDefault">افتراضي</text>
+	<text name="MaritalStatusesHeaderInfo">قائمة الحالات الاجتماعية </text>
+	<text name="CreateNewMaritalStatus">انشاء حالة اجتماعية جديدة</text>
+	<text name="CreateNewSpecialties">انشاء تخصص جديد</text>
+	<text name="SpecialtiesesHeaderInfo">قائمة التخصصات</text>
+	<text name="XRoadSettings">إعدادات اكس-رود</text>
+	<text name="XRoadURL">عنوان خادم اكس رود</text>
+	<text name="XRoadConsumer">رمز المستهلك</text>
+	<text name="XRoadID">معرف المستهلك</text>
+	<text name="ActionName">اسم الإجراء</text>
+	<text name="VersionNo">رقم النسخة</text>
+	<text name="ApplicationModel">الجداول التعريفية</text>
 
-	<text name="CreateNewXRoadServiceAttribute">انشاء سمة اكس-روود</text>
+
+	  <text name="CreateNewXRoadServiceAttribute">انشاء سمة اكس-روود</text>
 	<text name="EditXRoadServiceAttribute">تعديل سمة اكس-روود</text>
 	<text name="DeleteXRoadServiceAttribute">حذف سمة اكس-روود</text>
 	<text name="XRoadServiceAttributes">سمات الخدمة اكس-روود </text>
