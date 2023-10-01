@@ -424,9 +424,5 @@
             $('.reload-on-change,.reload-on-keyup,#MyEntsTableFilter').val('');
             getApplicants();
         });
-		
-		
-		
-
     });
 })();
