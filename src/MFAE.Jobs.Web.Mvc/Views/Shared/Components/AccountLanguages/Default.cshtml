@@ -4,9 +4,19 @@
 {
     <div class="language-switch-area ml-1 mb-5">
         <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                @(Model.CurrentLanguage.DisplayName)
-            </button>
+            @if (Model.CurrentLanguage.Name == "ar")
+            {
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @(Model.CurrentLanguage.DisplayName)
+                </button>
+            }
+            else
+            {
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @(Model.CurrentLanguage.DisplayName)
+                </button>
+
+            }
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 @foreach (var languageInfo in Model.Languages)
                 {

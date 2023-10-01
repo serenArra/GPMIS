@@ -129,3 +129,55 @@
         },
     };
 })();
+
+$("#register-back-btn").on("click", function () {
+    location.href = '/Account/Login';
+});
+
+$(document).ready(function () {
+    var _$applicationFormInformationForm = null;
+    _$applicationFormInformationForm = $('form[name=ApplicationForm]');
+    var element = document.querySelector("#kt_wizard");
+
+    // Initialize Stepper
+    var stepper = new KTStepper(element);
+
+    // Handle next step
+    stepper.on("kt.stepper.next", function (stepper) {
+
+        var isValid = true;
+        $('#step' + stepper.getCurrentStepIndex()).find(':input').each(function () {
+            if ($(this).valid() == false) {
+                isValid = false;
+            }
+        });
+
+        if (isValid) {
+            if (stepper.getCurrentStepIndex() == "1") {
+
+                if (!_$applicationFormInformationForm.valid()) {
+                    return false;
+                }
+
+                
+            }
+            if (stepper.getCurrentStepIndex() == "2") {
+
+
+
+            }
+            if (stepper.getCurrentStepIndex() == "3") {
+
+                if (!_$applicationFormInformationForm.valid()) {
+                    return false;
+                }
+            }
+            stepper.goNext(); // go next step
+        }
+    });
+
+    // Handle previous step
+    stepper.on("kt.stepper.previous", function (stepper) {
+        stepper.goPrevious(); // go previous step
+    });
+});
