@@ -2,15 +2,15 @@
 <localizationDictionary culture="en">
   <texts>
 
-	<text name="XRoadSettings">XRoad Settings</text>
-	<text name="XRoadURL">XRoad URL</text>
-	<text name="XRoadConsumer">XRoad Consumer</text>
-	<text name="XRoadID">XRoad ID</text>
-	<text name="ApplicationModel">Definition Tables</text>
+    <text name="XRoadSettings">XRoad Settings</text>
+    <text name="XRoadURL">XRoad URL</text>
+    <text name="XRoadConsumer">XRoad Consumer</text>
+    <text name="XRoadID">XRoad ID</text>
+    <text name="ApplicationModel">Definition Tables</text>
 
-	<text name="LocationModel">Addresses</text>
-	<text name="InformationBank">Information Bank</text>
-	  
+    <text name="LocationModel">Addresses</text>
+    <text name="InformationBank">Information Bank</text>
+
     <text name="MFAE">Ministry of Foreign Affairs and Expatriates</text>
     <text name="InvalidDocumentId">Invalid Document Number!</text>
     <text name="SelectOption">Select Option ...</text>
