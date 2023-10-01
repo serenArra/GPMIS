@@ -2,6 +2,18 @@
 <localizationDictionary culture="ar">
   <texts>
 
+	<text name="Fetch">جلب</text>
+	<text name="MOIInformation">معلومات وزارة الداخلية</text>
+	<text name="PreviousFamilyName">اسم العائلة السابق</text>
+	<text name="MotherName">اسم الأم</text>
+	<text name="DeathDate">تاريخ الوفاة</text>
+	<text name="Religion">الديانة</text>
+	<text name="CurrentResidence">مكان السكن الحالي</text>
+	<text name="IdentificationDocumentNo">رقم الوثيقة</text>
+	<text name="PassportInformation">بيانات جواز السفر</text>
+	<text name="Picture">الصورة</text>
+	<text name="CitizenPicture">صورة المواطن</text>
+
 	<text name="Filter">تصفية</text>
 
     <text name="AcademicDegrees">الدرجات الأكاديمية</text>
