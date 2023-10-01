@@ -113,6 +113,12 @@ Login page
     margin: 0;
 }
 
+.pwstrength-div .password-verdict {
+    left: 24px !important;
+    right: unset !important;
+    text-align: left !important;
+}
+
 .social-icons li {
     float: left;
     display: inline;

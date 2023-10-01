@@ -72,6 +72,7 @@ namespace MFAE.Jobs.Web.Startup
                 .AddRazorRuntimeCompilation()
 #endif
                 .AddNewtonsoftJson();
+            services.AddNodeServices();
 
             services.AddSignalR();
 

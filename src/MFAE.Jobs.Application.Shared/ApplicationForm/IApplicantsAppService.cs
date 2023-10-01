@@ -42,5 +42,7 @@ namespace MFAE.Jobs.ApplicationForm
 
         Task<List<ApplicantLocalityLookupTableDto>> GetAllLocalityForTableDropdown();
 
+        Task<GetApplicantForEditOutput> FetchPerson(FetchPersonDto input);
+
     }
 }

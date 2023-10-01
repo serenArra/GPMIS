@@ -35,8 +35,7 @@ using System.Text;
 using System.Xml;
 
 namespace MFAE.Jobs.XRoad
-{
-    [AbpAuthorize(AppPermissions.Pages_XRoadServices)]
+{    
     public class XRoadServicesAppService : JobsAppServiceBase, IXRoadServicesAppService
     {
         private readonly INodeServices _nodeServices;
@@ -135,7 +134,7 @@ namespace MFAE.Jobs.XRoad
 
 
             var resultXML = await SendSOAPRequest2(xRoadURL, service.ActionName, requestXMLStr, service.SoapActionName,
-                service.ProducerCode, xRoadConsumer, xRoadID, AbpSession.UserId.ToString(), service.VersionNo);
+                service.ProducerCode, xRoadConsumer, xRoadID, AbpSession.UserId.HasValue ? AbpSession.UserId.ToString() : "1", service.VersionNo);
             XDocument doc = XDocument.Parse(resultXML);
 
             var responseXML = doc.Descendants().Where(x => x.Name.LocalName == "response").First();
@@ -178,6 +177,7 @@ namespace MFAE.Jobs.XRoad
             return dyn;
         }
 
+        [AbpAuthorize(AppPermissions.Pages_XRoadServices)]
         public async Task<PagedResultDto<GetXRoadServiceForViewDto>> GetAll(GetAllXRoadServicesInput input)
         {
             var filteredXRoadServices = _xRoadServiceRepository.GetAll()
@@ -221,6 +221,7 @@ namespace MFAE.Jobs.XRoad
 
         }
 
+        [AbpAuthorize(AppPermissions.Pages_XRoadServices)]
         public async Task<List<IdentificationTypeLookupTableDto>> GetAllIdentificationTypeForTableDropdown()
         {
             using (_unitOfWorkManager.Current.DisableFilter(AbpDataFilters.MayHaveTenant))
@@ -236,6 +237,7 @@ namespace MFAE.Jobs.XRoad
             }
         }
 
+        [AbpAuthorize(AppPermissions.Pages_XRoadServices)]
         public async Task<GetXRoadServiceForViewDto> GetXRoadServiceForView(int id)
         {
             var xRoadService = await _xRoadServiceRepository.GetAsync(id);
@@ -245,24 +247,29 @@ namespace MFAE.Jobs.XRoad
             return output;
         }
 
+        [AbpAuthorize(AppPermissions.Pages_XRoadServices)]
+
         public async Task<CitizensListWithCodesDto> GetInformationBankForViewCitizensListWithCodes(int identificationTypeId, string identificationDocumentNo)
         {
             CitizensListWithCodesDto citizensListWithCodesDto = await GetCitizensListWithCodes(identificationTypeId, identificationDocumentNo);
             return citizensListWithCodesDto;
         }
 
+        [AbpAuthorize(AppPermissions.Pages_XRoadServices)]
         public async Task<PassportInfoDto> GetInformationBankForViewPassportInfo(int identificationTypeId, string identificationDocumentNo)
         {
             PassportInfoDto citizensListWithCodesDto = await GetPassportInfo(identificationTypeId, identificationDocumentNo);
             return citizensListWithCodesDto;
         }
 
+        [AbpAuthorize(AppPermissions.Pages_XRoadServices)]
         public async Task<CitizenPhotoDto> GetInformationCitizenPhoto(int identificationTypeId, string identificationDocumentNo)
         {
             CitizenPhotoDto citizenPhotoDto = await GetCitizenPhoto(identificationTypeId, identificationDocumentNo);
             return citizenPhotoDto;
         }
 
+        [AbpAuthorize(AppPermissions.Pages_XRoadServices)]
         public async Task<InformationBankViewDto> GetInformationBankForView(int identificationTypeId, string identificationDocumentNo)
         {
             using (_unitOfWorkManager.Current.DisableFilter(AbpDataFilters.MayHaveTenant))
@@ -322,6 +329,7 @@ namespace MFAE.Jobs.XRoad
             }
         }
 
+        [AbpAuthorize(AppPermissions.Pages_XRoadServices)]
         private async Task<CitizensListWithCodesDto> GetCitizensListWithCodes(int identificationTypeId, string identificationDocumentNo)
         {
             var citizensListWithCodes = new CitizensListWithCodesDto();
@@ -378,6 +386,7 @@ namespace MFAE.Jobs.XRoad
             return citizensListWithCodes;
         }
 
+        [AbpAuthorize(AppPermissions.Pages_XRoadServices)]
         private async Task<PassportInfoDto> GetPassportInfo(int identificationTypeId, string identificationDocumentNo)
         {
             var passportInfo = new PassportInfoDto();
@@ -425,6 +434,7 @@ namespace MFAE.Jobs.XRoad
             return passportInfo;
         }
 
+        [AbpAuthorize(AppPermissions.Pages_XRoadServices)]
         private async Task<CitizenPhotoDto> GetCitizenPhoto(int identificationTypeId, string identificationDocumentNo)
         {
             var pictureInfo = new CitizenPhotoDto();
@@ -450,6 +460,7 @@ namespace MFAE.Jobs.XRoad
             return output;
         }
 
+        [AbpAuthorize(AppPermissions.Pages_XRoadServices)]
         public async Task<CreateOrEditXRoadServiceDto> CreateOrEdit(CreateOrEditXRoadServiceDto input)
         {
             if (input.Id == null)
@@ -488,6 +499,7 @@ namespace MFAE.Jobs.XRoad
             await _xRoadServiceRepository.DeleteAsync(input.Id);
         }
 
+        [AbpAuthorize(AppPermissions.Pages_XRoadServices)]
         public async Task<FileDto> GetXRoadServicesToExcel(GetAllXRoadServicesForExcelInput input)
         {
             var statusFilter = input.StatusFilter.HasValue
@@ -532,6 +544,8 @@ namespace MFAE.Jobs.XRoad
         }
 
         #region XRoad Request managment
+
+        
         private async Task<string> SendSOAPRequest2(string url, string action, string requestStr, string soapAction,
            string producer, string consumer, string id, string userId, string versioNO)
         {
@@ -606,6 +620,7 @@ namespace MFAE.Jobs.XRoad
             }
         }
 
+        [AbpAuthorize(AppPermissions.Pages_XRoadServices)]
         private async Task<string> SendSOAPRequest(string url, string action, string request, string soapAction,
             string producer, string consumer, string id, string userId, string versioNO)
         {
@@ -646,7 +661,7 @@ namespace MFAE.Jobs.XRoad
             Logger.Log(LogSeverity.Info, $"request: {xmlWithParameters}  \n response: {result}");
             return result;
         }
-
+        
         private async Task<string> GetResponseAsStringAsync(HttpWebRequest webRequest, string post)
         {
             if (post != null)

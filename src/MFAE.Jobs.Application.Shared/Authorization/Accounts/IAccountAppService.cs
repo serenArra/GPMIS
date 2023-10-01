@@ -29,5 +29,7 @@ namespace MFAE.Jobs.Authorization.Accounts
         Task<ImpersonateOutput> BackToImpersonator();
 
         Task<SwitchToLinkedAccountOutput> SwitchToLinkedAccount(SwitchToLinkedAccountInput input);
+
+        Task<CitizenOutput> VerifyCitizenInfo(CitizenInput input);
     }
 }

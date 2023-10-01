@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="ar">
   <texts>
+    <text name="MFAE">وزارة الخارجية والمغتربين</text>
+    <text name="InvalidDocumentId">رقم الوثيقة غير صحيح</text>
     <text name="PersonalInformation">المعلومات الشخصية</text>
     <text name="AccountVerification">توثيق الحساب</text>
     <text name="AccountInformation">معلومات الحساب</text>
@@ -34,14 +36,14 @@
     <text name="Applicants">الطلبات</text>
     <text name="ApplicantsHeaderInfo">قائمة الطلبات</text>
     <text name="CreateNewApplicant">انشاء طلب جديد</text>
-    <text name="DocumentNo">رقم الطلب</text>
+    <text name="DocumentNo">رقم الوثيقة</text>
     <text name="FatherName">اسم الاب</text>
     <text name="GrandFatherName">اسم الجد</text>
     <text name="FamilyName">اسم العائلة</text>
-    <text name="FirstNameEn">الاسم الاول (بالعربية)</text>
-    <text name="FatherNameEn">اسم الاب (بالعربية)</text>
-    <text name="GrandFatherNameEn">اسم الجد (بالعربية)</text>
-    <text name="FamilyNameEn">اسم العائلة (بالعربية)</text>
+    <text name="FirstNameEn">الاسم الاول (بالإنجليزية)</text>
+    <text name="FatherNameEn">اسم الاب (بالإنجليزية)</text>
+    <text name="GrandFatherNameEn">اسم الجد (بالإنجليزية)</text>
+    <text name="FamilyNameEn">اسم العائلة (بالإنجليزية)</text>
     <text name="BirthDateRange">تاريخ الميلاد</text>
     <text name="Mobile">رقم الهاتف المحمول</text>
 
@@ -81,10 +83,10 @@
     <text name="InvalidFormMessage">النموذج يحتوي على أخطاء - يرجى تصحيح الأخطاء و المحاولة مرة اخرى</text>
     <text name="InvalidUserNameOrPassword">اسم المستخدم أو كلمة المرور غير صحيحة</text>
     <text name="ThereIsNoTenantDefinedWithName{0}">لا يوجد عميل  باسم {0}</text>
-    <text name="TenantIsNotActive">العميل {0} غير مغعّل</text>
+    <text name="TenantIsNotActive">المؤسسة {0} غير مغعّل</text>
     <text name="UserIsNotActiveAndCanNotLogin">العضو {0} غير مفعّل ولا يمكن تسجيل الدخول</text>
     <text name="PleaseEnterLoginInformation">الرجاء إدخال معلومات تسجيل الدخول</text>
-    <text name="TenancyName">اسم العميل</text>
+    <text name="TenancyName">المؤسسة</text>
     <text name="UserNameOrEmail">اسم المستخدم أو البريد الإلكتروني</text>
     <text name="Password">كلمة المرور</text>
     <text name="RememberMe">تذكرنى</text>
@@ -133,20 +135,20 @@
     <text name="Tenants">عملاء</text>
     <text name="TenantsHeaderInfo">إدارة العملاء</text>
     <text name="CreateNewTenant">إنشاء عميل الجديد</text>
-    <text name="TenancyCodeName">كود العميل</text>
-    <text name="TenantName">اسم العميل</text>
-    <text name="TenantDeleteWarningMessage">سيتم حذف العميل {0}</text>
+    <text name="TenancyCodeName">كود المؤسسة</text>
+    <text name="TenantName">اسم المؤسسة</text>
+    <text name="TenantDeleteWarningMessage">سيتم حذف المؤسسة {0}</text>
     <text name="AdminEmailAddress">البريد الإلكتروني للمشرف</text>
     <text name="AdminPassword">كلمة مرور المشرف</text>
     <text name="AdminPasswordRepeat">إعادة كلمة مرور المشرف</text>
-    <text name="EditTenant">تحرير العميل</text>
+    <text name="EditTenant">تحرير المؤسسة</text>
     <text name="ChangingPermissions">تغيير الإذونات</text>
     <text name="EditingUser"> تحرير المستخدم </text>
     <text name="CreatingNewUser"> إنشاء مستخدم جديد</text>
     <text name="Edit">تحرير</text>
-    <text name="EditingTenant">تحرير العميل</text>
+    <text name="EditingTenant">تحرير المؤسسة</text>
     <text name="CreatingNewTenant">إنشاء عميل الجديد</text>
-    <text name="DeletingTenant">حذف العميل</text>
+    <text name="DeletingTenant">حذف المؤسسة</text>
     <text name="EditingRole"> تحرير الدور</text>
     <text name="CreatingNewRole"> إنشاء دور جديد</text>
     <text name="DeletingRole"> حذف الدور</text>
@@ -216,9 +218,9 @@
     <text name="StaticRole_Tooltip">لا يمكن حذف أدوار ثابتة.</text>
     <text name="EmailConfirmationRequiredForLogin">مطلوب تأكيد البريد الإلكتروني لتسجيل الدخول </text>
     <text name="{0}UserCannotBeDeleted">لا يمكن حذف المستخدم {0}.</text>
-    <text name="TenantNameCanNotBeEmpty">اسم العميل لا يمكن أن يكون فارغا</text>
+    <text name="TenantNameCanNotBeEmpty">اسم المؤسسة لا يمكن أن يكون فارغا</text>
     <text name="ChangeProfilePicture">تغيير الصورة الشخصية</text>
-    <text name="TenantName_Regex_Description">يجب أن يكون اسم العميل على الأقل حرفين ويبدأ بحرف ومن ثم : حرف أو رقم أو شرطه أو شرطه سفلية.</text>
+    <text name="TenantName_Regex_Description">يجب أن يكون اسم المؤسسة على الأقل حرفين ويبدأ بحرف ومن ثم : حرف أو رقم أو شرطه أو شرطه سفلية.</text>
     <text name="ProfilePicture_Change_Info">يمكنك إختيار ملف JPG/JPEG/PNG وبحد أقصى للحجم {0} كيلوبايت  </text>
     <text name="ProfilePicture_Change_Error">تعذّر تغيير صورة ملفك الشخصي</text>
     <text name="ProfilePicture_Warn_SizeLimit">يجب أن يكون حجم الصورة أصغر من {0} كيلوبايت يرجى تحديد ملف آخر</text>
@@ -226,7 +228,7 @@
     <text name="Dashboard">لوحة القيادة</text>
     <text name="DashboardHeaderInfo">الإحصاءات والتقارير</text>
     <text name="GoToApplication">الى النظام</text>
-    <text name="TenantInformations">معلومات العميل</text>
+    <text name="TenantInformations">معلومات المؤسسة</text>
     <text name="PersonalInformations">معلومات شخصية</text>
     <text name="AccountSettings">إعدادات الحساب</text>
     <text name="Captha_Hint">الرجاء إدخال الرمز الذي يظهر في الصورة أدناه</text>
@@ -284,7 +286,7 @@
     <text name="Last30Days">اخر 30 يوم</text>
     <text name="ThisMonth">هذا الشهر</text>
     <text name="LastMonth">الشهر الماضي</text>
-    <text name="TenantSelection">اختيار العميل</text>
+    <text name="TenantSelection">اختيار المؤسسة</text>
     <text name="TenantSelection_Detail">الرجاء اختيار واحد من العملاء</text>
     <text name="LoginWith">تسجيل الدخول مع:</text>
     <text name="PasswordChangeDontRememberMessage">إذا كنت لا تتذكر كلمة المرور {0}.</text>
@@ -316,7 +318,7 @@
     <text name="DeletingEdition">حذف النسخة</text>
     <text name="ChangingFeatures"> تغيير المميزات</text>
     <text name="ResetSpecialFeatures">مسح المميزات الخاصة</text>
-    <text name="ResetFeaturesTooltip">هذا الزر سيقوم على الفور بمسح المميزات للعميل. العميل سيملك المميزات المرتبطة بالنسخات المعينة من قبل.</text>
+    <text name="ResetFeaturesTooltip">هذا الزر سيقوم على الفور بمسح المميزات للعميل. المؤسسة سيملك المميزات المرتبطة بالنسخات المعينة من قبل.</text>
     <text name="NotAssigned">لم يعيّن</text>
     <text name="InvalidFeaturesWarning">واحد أو أكثر من قيم الميزة غير صحيح</text>
     <text name="Languages">اللغات</text>
@@ -385,7 +387,7 @@
     <text name="None">لا شيء</text>
     <text name="YouCanBackToYourAccount">يمكنك العودة لحسابك هنا.</text>
     <text name="CascadeImpersonationErrorMessage">لايمكن ثمتيل شخص آخر. لان تسجيل دخولك الحالي ممثّل من قبل مستخدم آخر.</text>
-    <text name="FromTenantToHostImpersonationErrorMessage">لا يمكن تمثيل مستخدم النظام من مستخدم العميل.</text>
+    <text name="FromTenantToHostImpersonationErrorMessage">لا يمكن تمثيل مستخدم النظام من مستخدم المؤسسة.</text>
     <text name="DifferentTenantImpersonationErrorMessage">لا يمكن تمثيل مستخدم من عميل آخر!</text>
     <text name="ImpersonationTokenErrorMessage">رمز التمثيل غير صالح أو منتهية صلاحيتة!</text>
     <text name="NotImpersonatedLoginErrorMessage">هذا ليس تسجيل دخول ممثّل</text>
@@ -434,9 +436,9 @@
     <text name="AllowTenantsToRegisterThemselves_Hint">إذا قمت بتعطيل هذا, يمكن فقط إضافة العملاء من قبل المشرف من خلال صفحة إدارة العملاء.</text>
     <text name="NewRegisteredTenantsIsActiveByDefault">العملاء المسشتركين جديدا سيتم تفعيلهم إفتراضيا.</text>
     <text name="NewRegisteredTenantsIsActiveByDefault_Hint">إذا قمت بتعطيل هذا، العملاء الجدد لن يكونوا مفعلين (ولا يمكن تسجيل الدخول) حتى يقوم المشرف بتفعيل الحساب يدويا.</text>
-    <text name="TenantSignUp">إشتراك العميل</text>
+    <text name="TenantSignUp">إشتراك المؤسسة</text>
     <text name="NewTenantRegisteredNotificationDefinition">عند إشتراك عميل جديد بالنظام.</text>
-    <text name="NewTenantRegisteredNotificationMessage">تم إشتراك عميل جديد بالنظام. إسم العميل : {tenancyName}.</text>
+    <text name="NewTenantRegisteredNotificationMessage">تم إشتراك عميل جديد بالنظام. إسم المؤسسة : {tenancyName}.</text>
     <text name="LoginAttempts">محاولات الدخول</text>
     <text name="Failed">فشل</text>
     <text name="NewTenant">إشتراك العملاء</text>
@@ -444,7 +446,7 @@
     <text name="RegisterFormUserNameInvalidMessage">من فضلك لاتدخل بريد إلكتروني كإسم مستخدم.</text>
     <text name="UseHostDatabase">إستخدم قاعدة بيانات المضيف</text>
     <text name="DatabaseConnectionString">Database connection string</text>
-    <text name="TenantDatabaseConnectionStringChangeWarningMessage">ملاحظة: قبل تغيير طريقة إتصال قاعدة بيانات العميل, عليك نقل قاعدة بيانات العميل الى الوجهة الجديدة. تغيير طريقة الإتصال لاتنقل قاعدة بيانات العميل.</text>
+    <text name="TenantDatabaseConnectionStringChangeWarningMessage">ملاحظة: قبل تغيير طريقة إتصال قاعدة بيانات المؤسسة, عليك نقل قاعدة بيانات المؤسسة الى الوجهة الجديدة. تغيير طريقة الإتصال لاتنقل قاعدة بيانات المؤسسة.</text>
     <text name="Timezone">منطقة زمنية</text>
     <text name="HasOwnDatabase">لديه قاعدة بيانات خاصة</text>
     <text name="TimeZoneSettingChangedRefreshPageNotification">تم تغيير إعدادات المنطقة الزمنية. انقر على زر موافق لتحديث الصفحة وسيتم تفعيل التغييرات.</text>
@@ -475,11 +477,11 @@
     <text name="YouDontHaveAnyBlockedFriend">لا يوجد محظورين. للحظر, إختر المستخدم ثم قم بإختيار حظر من قائمة الإجراءات.</text>
     <text name="ChatUserSearch_Hint">
       <![CDATA[
-        للمستخدمين من نفس العميل ,إكتب إسم المتسخدم فقط <br>
-       <strong>[اسم العميل]\[اسم المستخدم]</strong> للمستخدمين من عملاء آخرين <br><br>
+        للمستخدمين من نفس المؤسسة ,إكتب إسم المتسخدم فقط <br>
+       <strong>[اسم المؤسسة]\[اسم المستخدم]</strong> للمستخدمين من عملاء آخرين <br><br>
        مثال: <br>
        .\admin -> للمشرف العام المضيف <br>
-       Test\admin -> للمشرف العميل Test <br>
+       Test\admin -> للمشرف المؤسسة Test <br>
        admin -> للمشرف المحلي
        ]]>
     </text>
@@ -528,10 +530,10 @@
     <text name="IsEmailVerificationEnabled">تمكين التوثيق عن طريق البريد الإلكتروني.</text>
     <text name="IsSmsVerificationEnabled">تمكين التوثيق عن طريق الرسائل الهاتفية - أس أم أس.</text>
     <text name="AllowToRememberBrowserForTwoFactorLogin">السماح بتذكر المتصفح. إذا تم تمكين هذه، يمكن للمستخدم اختيار تذكر المتصفح لتخطي التوثيق ذوعاملين عند تسجيل الدخول بنفس المتصفح للمرة الثانية.</text>
-    <text name="CurrentTenant">العميل الحالي</text>
+    <text name="CurrentTenant">المؤسسة الحالي</text>
     <text name="NotSelected">لم يتم اختياره</text>
     <text name="Change">تغيير</text>
-    <text name="ChangeTenant">تغيير العميل</text>
+    <text name="ChangeTenant">تغيير المؤسسة</text>
     <text name="UnknownTenantId{0}">عميل غير معرّف رقم : {0}</text>
     <text name="TenantIdIsNotActive{0}">عميل غير نشط رقم : {0}</text>
     <text name="TimeoutPleaseTryAgain">نفذ الوقت! حاول مرة اخرى.</text>
@@ -562,7 +564,7 @@
     <text name="MaximumUserCount">الحد الأقصى لعدد المستخدمين</text>
     <text name="MaximumUserCount_Description">0 = غير محدود</text>
     <text name="MaximumUserCount_Error_Message">وصلت إلى الحد الأقصى المسموح به للمستخدمين!</text>
-    <text name="MaximumUserCount_Error_Detail">يسمح لهذا العميل {0} مستخدم بحد أقصى.</text>
+    <text name="MaximumUserCount_Error_Detail">يسمح لهذا المؤسسة {0} مستخدم بحد أقصى.</text>
     <text name="UnlockedTenandAdmin">تم إلغاء قفل المشرف {0}</text>
     <text name="Email">البريد الإلكتروني</text>
     <text name="EmailSecurityCodeSubject">رمز الحماية</text>
@@ -600,7 +602,7 @@
     <text name="ExpiringTenantsHelpText">تنتهي صلاحية {1} من العملاء خلال {0} أيام ...</text>
     <text name="NoData">لايوجد بيانات</text>
     <text name="SubscriptionEndDate">تاريخ انتهاء الاشتراك</text>
-    <text name="TenantNameOrTenancyCode">إسم العميل \ كود العميل</text>
+    <text name="TenantNameOrTenancyCode">إسم المؤسسة \ كود المؤسسة</text>
     <text name="IncomeWithAmount">الدخل: {0}</text>
     <text name="Subscription">الاشتراكات</text>
     <text name="Extend">تمديد</text>
@@ -624,7 +626,7 @@
     <text name="FreeTrial">تجربة مجانية</text>
     <text name="BuyNow">اشتري الآن</text>
     <text name="WhatWillDoneAfterSubscriptionExpiry">ما الذي سيحدث بعد انتهاء صلاحية الاشتراك</text>
-    <text name="DeactiveTenant">تعطيل العميل</text>
+    <text name="DeactiveTenant">تعطيل المؤسسة</text>
     <text name="AssignToAnotherEdition">تعيين إلى نسخة اخرى</text>
     <text name="SubscriptionPrice">سعر الإشتراك</text>
     <text name="Free">مجاني</text>
@@ -672,9 +674,9 @@
     <text name="TrialSubscriptionNotification">أنت في الفترة التجريبية لنسخة {0}، {1} للشراء.</text>
     <text name="SubscriptionExpireNotification">سينتهي اشتراكك خلال {0} أيام.</text>
     <text name="TrialExpireNotification">ستنتهي الفترة التجريبية خلال {0} أيام.</text>
-    <text name="CanNotUpgradeSubscriptionSinceTenantHasNoEditionAssigned">لا يمكن ترقية الاشتراك لأن العميل لم يعين نسخة.</text>
+    <text name="CanNotUpgradeSubscriptionSinceTenantHasNoEditionAssigned">لا يمكن ترقية الاشتراك لأن المؤسسة لم يعين نسخة.</text>
     <text name="PaymentCouldNotCompleted">تعذر إتمام الدفع</text>
-    <text name="TenantEditionIsNotAssigned">لم يتم تعيين نسخة العميل</text>
+    <text name="TenantEditionIsNotAssigned">لم يتم تعيين نسخة المؤسسة</text>
     <text name="FreeEditionsCannotHaveTrialVersions">لا يمكن أن يكون للنسخ المجانية فترة تجريبية</text>
     <text name="Total">المجموع</text>
     <text name="Extend_Edition_Description">تمديد النسخة {0}</text>
@@ -843,7 +845,7 @@
     <text name="NewValue">القيمة الجديدة</text>
     <text name="Detail">تفاصيل</text>
     <text name="CreatedAtByUser"><![CDATA[تم الإنشاء في <b> {0} </ b> بواسطة <b> {1} </ b>]]></text>
-    <text name="MFAE.Jobs.MultiTenancy.Tenant">العميل</text>
+    <text name="MFAE.Jobs.MultiTenancy.Tenant">المؤسسة</text>
     <text name="Abp.Organizations.OrganizationUnit">الوحدة التنظيمية</text>
     <text name="Search">بحث</text>
     <text name="Pin">تثبيت</text>
@@ -966,10 +968,10 @@
     <text name="UiCustomization_HeaderMinimizeType_Menu">Menu</text>
     <text name="UiCustomization_HeaderMenuArrows">Menu arrows</text>
     <text name="InvalidPattern">غير صالح</text>
-    <text name="SwitchToTenant">التبديل إلى العميل</text>
-    <text name="TenancyNameRequired">اسم العميل مطلوب!</text>
-    <text name="EnterTenancyName">أدخل اسم العميل ...</text>
-    <text name="SwitchToTheTenant">التبديل إلى العميل</text>
+    <text name="SwitchToTenant">التبديل إلى المؤسسة</text>
+    <text name="TenancyNameRequired">اسم المؤسسة مطلوب!</text>
+    <text name="EnterTenancyName">أدخل اسم المؤسسة ...</text>
+    <text name="SwitchToTheTenant">التبديل إلى المؤسسة</text>
     <text name="SwitchToTheHost">التبديل إلى المضيف</text>
     <text name="DeleteListedNotifications">حذف الإشعارات المدرجة</text>
     <text name="DeleteListedNotificationsWarningMessage">سيتم حذف جميع الإشعارات المدرجة.</text>
@@ -1135,8 +1137,8 @@
     <text name="Info">معلومات</text>
     <text name="AppId">معرف التطبيق</text>
     <text name="AppSecret">سر التطبيق</text>
-    <text name="ClientId">معرف العميل</text>
-    <text name="ClientSecret">سر العميل</text>
+    <text name="ClientId">معرف المؤسسة</text>
+    <text name="ClientSecret">سر المؤسسة</text>
     <text name="UserInfoEndpoint">نقطة نهاية معلومات المستخدم</text>
     <text name="ConsumerKey">مفتاح المستهلك</text>
     <text name="ConsumerSecret">سر المستهلك</text>
@@ -1150,8 +1152,8 @@
     <text name="Authority">السلطة</text>
     <text name="ClaimKey">مفتاح المطالبة</text>
     <text name="ClaimValue">قيمة المطالبة</text>
-    <text name="SelfTenantRegistrationIsDisabledMessage_Detail">تم تعطيل تسجيل العميل الذاتي. يرجى الاتصال بمسؤول النظام للتسجيل.</text>
-    <text name="Tenant">العميل</text>
+    <text name="SelfTenantRegistrationIsDisabledMessage_Detail">تم تعطيل تسجيل المؤسسة الذاتي. يرجى الاتصال بمسؤول النظام للتسجيل.</text>
+    <text name="Tenant">المؤسسة</text>
     <text name="MetaDataAddress">عنوان بيانات التعريف</text>
     <text name="Wtrealm">Wtrealm</text>
     <text name="AllowUsingGravatarProfilePicture">السماح للمستخدمين باستخدام صورة ملف تعريف Gravatar</text>

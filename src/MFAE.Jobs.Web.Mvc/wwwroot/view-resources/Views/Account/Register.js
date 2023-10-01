@@ -130,11 +130,86 @@
     };
 })();
 
+function verfiyCitizenInfo(successCallback) {
+    var _verfiyCitizenService = abp.services.app.account;
+    var DocType = $('#identificationTypeId').val();
+    if (DocType == 1) {
+        abp.ui.setBusy();
+        _verfiyCitizenService.verifyCitizenInfo({
+            identificationTypeId: DocType,
+            identityNo: $('#DocumentNo').val()           
+        }).done(function (output) {
+
+            if (output.code != "") {
+                abp.message.error(output.message, app.localize('Error'))
+            }
+            else {
+
+                $('#fakeId').val(output.identityNo);
+                $('#FirstName').val(output.name).prop("readonly", true).addClass('readonly-input');
+                $('#SecondName').val(output.secondName).prop("readonly", true).addClass('readonly-input');
+                $('#ThirdName').val(output.thirdName).prop("readonly", true).addClass('readonly-input');
+                $('#Surname').val(output.surname).prop("readonly", true).addClass('readonly-input');
+                if (output.firstNameEn.trim() != 'null') {
+                    $('#FirstNameEn').val(output.firstNameEn).prop("readonly", true).addClass('readonly-input');
+                }
+                else {
+                    $('#FirstNameEn').val(output.name).prop("readonly", true).addClass('readonly-input');
+                }
+                if (output.secondNameEn.trim() != 'null') {
+                    $('#SecondNameEn').val(output.secondNameEn).prop("readonly", true).addClass('readonly-input');
+                }
+                else {
+                    $('#SecondNameEn').val(output.secondName).prop("readonly", true).addClass('readonly-input');
+                }
+                if (output.thirdNameEn.trim() != 'null') {
+                    $('#ThirdNameEn').val(output.thirdNameEn).prop("readonly", true).addClass('readonly-input');
+                }
+                else {
+                    $('#ThirdNameEn').val(output.thirdName).prop("readonly", true).addClass('readonly-input');
+                }
+                if (output.fourthNameEn.trim() != 'null') {
+                    $('#FourthNameEn').val(output.fourthNameEn).prop("readonly", true).addClass('readonly-input');
+                }
+                else {
+                    $('#FourthNameEn').val(output.surname).prop("readonly", true).addClass('readonly-input');
+                }
+                if (output.docPhoto.trim() != 'null') {
+                    $('#imageUrl').removeClass('d-none');
+                    $('#defaultImage').addClass('d-none');
+                    $('#imageUrl').attr('src', 'data:image/png;base64,' + output.docPhoto);
+                }
+                else {
+                    $('#imageUrl').addClass('d-none');
+                    $('#defaultImage').removeClass('d-none');
+                }
+
+                if (typeof (successCallback) === 'function') {
+                    successCallback();
+                }
+            }
+        }).always(function () {
+            abp.ui.clearBusy();
+        });
+    }
+    else {
+        $('.readonly-input').val('').prop("readonly", false).removeClass('readonly-input');
+        $('#imageUrl').addClass('d-none');
+        $('#defaultImage').removeClass('d-none');
+
+        if (typeof (successCallback) === 'function') {
+            successCallback();
+        }
+    }
+}
+
 $("#register-back-btn").on("click", function () {
     location.href = '/Account/Login';
 });
 
 $(document).ready(function () {
+    
+
     var _$applicationFormInformationForm = null;
     _$applicationFormInformationForm = $('form[name=ApplicationForm]');
     var element = document.querySelector("#kt_wizard");
@@ -155,13 +230,20 @@ $(document).ready(function () {
         if (isValid) {
             if (stepper.getCurrentStepIndex() == "1") {
 
-                if (!_$applicationFormInformationForm.valid()) {
+                if (!_$applicationFormInformationForm.valid()) {                    
                     return false;
                 }
+
+                verfiyCitizenInfo(function () {
+                    
+                });
 
                 
             }
             if (stepper.getCurrentStepIndex() == "2") {
+                if (!_$applicationFormInformationForm.valid()) {
+                    return false;
+                }
 
 
 

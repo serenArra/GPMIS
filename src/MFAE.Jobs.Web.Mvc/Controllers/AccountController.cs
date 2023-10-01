@@ -57,6 +57,7 @@ using MFAE.Jobs.Authorization.Users.Profile;
 using MFAE.Jobs.Authorization.Users.Profile.Dto;
 using Abp.Runtime.Security;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
+using MFAE.Jobs.ApplicationForm.Dtos;
 
 namespace MFAE.Jobs.Web.Controllers
 {
@@ -518,6 +519,7 @@ namespace MFAE.Jobs.Web.Controllers
         {
             try
             {
+                model.IdentificationTypeList = await _userRegistrationManager.GetAllIdentificationTypeForTableDropdown();
                 if (!model.IsExternalLogin && UseCaptchaOnRegistration())
                 {
                     await _recaptchaValidator.ValidateAsync(
@@ -545,13 +547,40 @@ namespace MFAE.Jobs.Web.Controllers
                 }
                 else
                 {
+                    model.UserName = model.DocumentNo;
+
                     if (model.UserName.IsNullOrEmpty() || model.Password.IsNullOrEmpty())
                     {
                         throw new UserFriendlyException(L("FormIsNotValidMessage"));
                     }
                 }
 
-                var user = await _userRegistrationManager.RegisterAsync(
+                CitizenInput input = new CitizenInput();
+                input.IdentificationTypeId = model.IdentificationTypeId;
+                input.IdentityNo = model.DocumentNo;
+
+                if (model.IdentificationTypeId == PersonNationalityConsts.palestinianIdentityTypeID || model.IdentificationTypeId == PersonNationalityConsts.palestinianPassportTypeID)
+                {
+                    var citizen = await _accountAppService.VerifyCitizenInfo(input);
+
+                    if (citizen.CitizenStatusId != 1)
+                    {
+                        throw new UserFriendlyException(L("DataNotMatch", ""));
+                    }
+
+                    if (string.IsNullOrEmpty(citizen.FirstNameEn) || citizen.FirstNameEn == "null")
+                    {
+                        model.Name = citizen.FirstNameEn;
+                    }
+                    
+                    if (string.IsNullOrEmpty(citizen.FourthNameEn) || citizen.FourthNameEn == "null")
+                    {
+                        model.Surname = citizen.FourthNameEn;
+                    }
+                }
+
+
+                    var user = await _userRegistrationManager.RegisterAsync(
                     model.IdentificationTypeId,
                     model.DocumentNo,
                     model.Name,

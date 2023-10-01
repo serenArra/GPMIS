@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+    <text name="MFAE">Ministry of Foreign Affairs and Expatriates</text>
+    <text name="InvalidDocumentId">Invalid Document Number!</text>
     <text name="SelectOption">Select Option ...</text>
     <text name="JOBS">Job Management System</text>
     <text name="JobsPhone">For support or assistance services, call this number 00000000</text>
@@ -204,7 +206,7 @@
     <text name="EditMaritalStatus">Edit marital status</text>
     <text name="DeleteMaritalStatus">Delete marital status</text>
     <text name="MaritalStatuses">Marital statuses</text>
-    <text name="IdentificationType">Identification type</text>
+    <text name="IdentificationType">Identification Type</text>
     <text name="MFAE.Jobs.ApplicationForm.IdentificationType">IdentificationType</text>
     <text name="IdentificationTypesHeaderInfo">Identification types header info</text>
     <text name="CreateNewIdentificationType">Create new identification type</text>
@@ -213,19 +215,19 @@
     <text name="IdentificationTypes">Identification types</text>
     <text name="Applicant">Applicant</text>
     <text name="MFAE.Jobs.ApplicationForm.Applicant">Applicant</text>
-    <text name="DocumentNo">Document no</text>
-    <text name="FatherName">Father name</text>
-    <text name="GrandFatherName">Grand father name</text>
-    <text name="FamilyName">Family name</text>
-    <text name="FirstNameEn">First name en</text>
-    <text name="FatherNameEn">Father name en</text>
-    <text name="GrandFatherNameEn">Grand father name en</text>
-    <text name="FamilyNameEn">Family name en</text>
-    <text name="BirthDate">Birth date</text>
-    <text name="BirthPlace">Birth place</text>
-    <text name="NumberOfChildren">Number of children</text>
+    <text name="DocumentNo">Document No</text>
+    <text name="FatherName">Father Name</text>
+    <text name="GrandFatherName">Grand Father Name</text>
+    <text name="FamilyName">Family Name</text>
+    <text name="FirstNameEn">First Name (English)</text>
+    <text name="FatherNameEn">Father Name (English)</text>
+    <text name="GrandFatherNameEn">Grand Father Name (English)</text>
+    <text name="FamilyNameEn">Family Name (English)</text>
+    <text name="BirthDate">Birth Date</text>
+    <text name="BirthPlace">Birth Place</text>
+    <text name="NumberOfChildren">Number of Children</text>
     <text name="Mobile">Mobile</text>
-    <text name="IsLocked">Is locked</text>
+    <text name="IsLocked">Is Locked</text>
     <text name="NotIsLocked">Not is locked</text>
     <text name="ApplicantsHeaderInfo">Applicants header info</text>
     <text name="CreateNewApplicant">Create new applicant</text>

@@ -566,20 +566,7 @@ namespace MFAE.Jobs.ApplicationForm
                         {
                             birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameEn.Contains(propertyList["CityName_EN"].ToString())).FirstOrDefaultAsync();
                         }
-                    }
-                    //else
-                    //{
-                    //    birthGovernorate = await _lookup_governorateRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["Governorate"].ToString())).FirstOrDefaultAsync();
-                    //    if (birthGovernorate != null)
-                    //    {
-                    //        birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["BirthCityName"].ToString())).FirstOrDefaultAsync();
-
-                    //        if (birthLocality == null)
-                    //        {
-                    //            birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["CityName_AR"].ToString())).FirstOrDefaultAsync();
-                    //        }
-                    //    }
-                    //}
+                    }                    
                 }
                 else
                 {
@@ -594,20 +581,7 @@ namespace MFAE.Jobs.ApplicationForm
                     }
                 }
 
-                //birthGovernorate = await _lookup_governorateRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["BirthCityName"].ToString())).FirstOrDefaultAsync();
-                //if(birthGovernorate == null)
-                //{
-                //    birthGovernorate = await _lookup_governorateRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["Governorate"].ToString())).FirstOrDefaultAsync();
-                //}
-                //birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["CityName_AR"].ToString())).FirstOrDefaultAsync();
-                //if (birthLocality == null)
-                //{
-                //    birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameAr.Contains(propertyList["BirthCityName"].ToString())).FirstOrDefaultAsync();                    
-                //}
-                //if (birthGovernorate != null)
-                //    birthCountry = await _lookup_countryRepository.GetAsync(birthGovernorate.CountryId);
-                //else
-                //    birthGovernorate = null;
+                
 
                 var passport = await GetPassportInfo(input);
 

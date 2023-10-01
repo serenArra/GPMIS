@@ -13,14 +13,12 @@ using MFAE.Jobs.Authorization.Accounts.Dto;
 using MFAE.Jobs.Authorization.Impersonation;
 using MFAE.Jobs.Authorization.Users;
 using MFAE.Jobs.Configuration;
-using MFAE.Jobs.Debugging;
 using MFAE.Jobs.MultiTenancy;
 using MFAE.Jobs.Security.Recaptcha;
 using MFAE.Jobs.Url;
 using MFAE.Jobs.Authorization.Delegation;
-using Abp.Domain.Repositories;
 using Abp.Timing;
-
+using MFAE.Jobs.ApplicationForm.Dtos;
 
 namespace MFAE.Jobs.Authorization.Accounts
 {
@@ -36,7 +34,7 @@ namespace MFAE.Jobs.Authorization.Accounts
         private readonly IUserLinkManager _userLinkManager;
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly IWebUrlService _webUrlService;
-        private readonly IUserDelegationManager _userDelegationManager;
+        private readonly IUserDelegationManager _userDelegationManager;        
 
         public AccountAppService(
             IUserEmailer userEmailer,
@@ -56,7 +54,7 @@ namespace MFAE.Jobs.Authorization.Accounts
 
             AppUrlService = NullAppUrlService.Instance;
             RecaptchaValidator = NullRecaptchaValidator.Instance;
-            _userDelegationManager = userDelegationManager;
+            _userDelegationManager = userDelegationManager;            
         }
 
         public async Task<IsTenantAvailableOutput> IsTenantAvailable(IsTenantAvailableInput input)
@@ -241,6 +239,101 @@ namespace MFAE.Jobs.Authorization.Accounts
                 ImpersonationToken = await _impersonationManager.GetBackToImpersonatorToken(),
                 TenancyName = await GetTenancyNameOrNullAsync(AbpSession.ImpersonatorTenantId)
             };
+        }
+
+        public virtual async Task<CitizenOutput> VerifyCitizenInfo(CitizenInput input)
+        {            
+            CitizenOutput output = new CitizenOutput();
+
+            if (input.IdentificationTypeId == PersonNationalityConsts.palestinianIdentityTypeID || input.IdentificationTypeId == PersonNationalityConsts.palestinianPassportTypeID)
+            {
+                var response = await _userRegistrationManager.GetApplicantInfo(new FetchPersonDto()
+                {
+                    IdentificationDocumentNoTypeId = input.IdentificationTypeId,
+                    IdentificationDocumentNoId = input.IdentityNo                    
+                });
+
+
+                if (response != null)
+                {
+                    if (string.IsNullOrEmpty(response.Applicant.DocumentNo))
+                    {
+                        output.Code = 406;
+                        output.Message = L("DataNotMatch");
+                    }
+                    else
+                    {
+                        var userInfo = await UserManager.FindByNameOrEmailAsync(response.Applicant.DocumentNo);
+                        if (userInfo != null)
+                        {
+                            output.IsExist = true;
+                            output.Code = 406;
+                            output.Message = L("IdNumberUsedBefore");
+                        }
+                        else
+                        {
+                            output.IdentificationTypeId = response.Applicant.IdentificationTypeId;
+                            output.IdentityNo = response.Applicant.DocumentNo;
+                            output.Name = response.Applicant.FirstName;
+                            output.SecondName = response.Applicant.FatherName;
+                            output.ThirdName = response.Applicant.GrandFatherName;
+                            output.Surname = response.Applicant.FamilyName;
+                            output.FirstNameEn = response.Applicant.FirstNameEn;
+                            output.SecondNameEn = response.Applicant.FatherNameEn;
+                            output.ThirdNameEn = response.Applicant.GrandFatherNameEn;
+                            output.FourthNameEn = response.Applicant.FamilyNameEn;
+                            output.DocPhoto = response.CitizenPicture;
+                            output.CitizenStatusId = 1;
+                            //output.FaultCode = response.Applicant.FaultCode;
+                            //output.FaultDesc = response.Applicant.FaultDesc;
+                        }
+                    }
+                }
+                else
+                {
+                    output.Code = 406;
+                    output.Message = L("MOIServiceError");
+                }
+            }
+            else
+            {
+                output.Code = 406;
+                output.Message = L("DataNotMatch");
+            }
+            return output;
+        }
+
+        public virtual async Task<CitizenOutput> GetCitizenInfo(CitizenInput input)
+        {
+            var response = await _userRegistrationManager.GetApplicantInfo(new FetchPersonDto()
+            {
+                IdentificationDocumentNoTypeId = input.IdentificationTypeId,
+                IdentificationDocumentNoId = input.IdentityNo
+            });
+           
+            CitizenOutput output = new CitizenOutput();
+            output.IdentityNo = response.Applicant.DocumentNo;
+            output.Name = response.Applicant.FirstName;
+            output.SecondName = response.Applicant.FatherName;
+            output.ThirdName = response.Applicant.GrandFatherName;
+            output.Surname = response.Applicant.FamilyName;
+            output.FirstNameEn = response.Applicant.FirstNameEn;
+            output.SecondNameEn = response.Applicant.FatherNameEn;
+            output.ThirdNameEn = response.Applicant.GrandFatherNameEn;
+            output.FourthNameEn = response.Applicant.FamilyNameEn;            
+            output.MotherNameEn = "";
+            output.MotherName = "";
+            output.BirthDate = Convert.ToDateTime(response.Applicant.BirthDate);
+            output.BirthPlace = response.Applicant.BirthPlace;
+
+            //output.FaultCode = int.Parse(response.FaultCode);
+            //output.FaultDesc = response.FaultDesc;
+
+            if (response.CitizenPicture != null)
+                output.DocPhoto = response.CitizenPicture;
+            //if (response.OtherPhoto != null)
+            //    output.OtherPhoto = Convert.ToBase64String(response.OtherPhoto);
+            return output;
         }
 
         public virtual async Task<SwitchToLinkedAccountOutput> SwitchToLinkedAccount(SwitchToLinkedAccountInput input)

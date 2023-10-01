@@ -90,6 +90,8 @@ var Jobs = {
             var select = $(this);
             var selectId = select.attr("id");
             $('#' + selectId).next().remove("span");
+
+            console.log("select: ", select);
             $('#' + selectId).select2({
                 theme: 'bootstrap5',
                 width: "100%",
