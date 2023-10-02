@@ -1342,5 +1342,10 @@
     <text name="DoYouWantToRemoveTheFile">هل تريد حذف الملف؟</text>
     <text name="CurrentFile">الملف الحالي</text>
     <text name="Dashboard_NoPageDefined_Warning">لا توجد صفحة محددة للوحة القيادة. يرجى التبديل إلى وضع التحرير وإضافة صفحة!</text>
+	<text name="AdvertisementId">رقم الإعلان</text>
+	<text name="AdvertisementDate">تاريخ الإعلان</text>
+	<text name="AllowedAge">العمر المسموح</text>
+	<text name="FromDate">بدء استقبال الطلبات  </text>
+	<text name="ToDate">انتهاء استقبال الطلبات </text>
   </texts>
 </localizationDictionary>

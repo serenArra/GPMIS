@@ -1,16 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>    <text name="AdvertisementId">Advertisement id</text>
-    <text name="AdvertisementDate">Advertisement date</text>
-    <text name="FromDate">From date</text>
-    <text name="ToDate">To date</text>
-    <text name="AllowedAge">Allowed age</text>
-    <text name="AdvertisementDateRange">Advertisement date range</text>
-    <text name="FromDateRange">From date range</text>
-    <text name="ToDateRange">To date range</text>
-
+  <texts>
     <text name="ApplicationMainInformation">Main Information</text>ApplicantStudies
-
     <text name="JobAdvertisement">Job advertisement</text>
     <text name="MFAE.Jobs.ApplicationForm.JobAdvertisement">JobAdvertisement</text>
     <text name="JobAdvertisementsHeaderInfo">You can add/delete/edit the job advertisement</text>
@@ -1614,5 +1605,14 @@
     <text name="UiCustomization_Toolbar_MobileFixedHeader">Mobile fixed header</text>
     <text name="UiCustomization_Toolbar">Toolbar</text>
     <text name="IncorrectImageDimensions">Image size exceeds allowed limits</text>
+	<text name="AdvertisementId">Advertisement Number</text>
+	<text name="AdvertisementDate">AdvertisementDate</text>
+	<text name="AllowedAge">AllowedAge</text>
+	<text name="FromDate">FromDate</text>
+	<text name="ToDate">ToDate</text>
+
+
+
+
   </texts>
 </localizationDictionary>
