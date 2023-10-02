@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>    <text name="AdvertisementId">Advertisement id</text>
+  <texts>
+    <text name="AdvertisementId">Advertisement id</text>
     <text name="AdvertisementDate">Advertisement date</text>
     <text name="FromDate">From date</text>
     <text name="ToDate">To date</text>
@@ -30,6 +31,7 @@
     <text name="FooterButton1">About Us</text>
     <text name="FooterButton2">Policies and Terms</text>
     <text name="FooterButton3">Contact Us</text>
+	<text name="IsAgree">I'm Agree</text>
 
     <text name="XRoadSettings">XRoad Settings</text>
     <text name="XRoadURL">XRoad URL</text>
@@ -1503,6 +1505,8 @@
     <text name="EditDynamicPropertyValue">Edit Dynamic Property Value</text>
     <text name="EditValues">Edit Values</text>
     <text name="FullName">Full Name</text>
+	<text name="FullNameAr">Full Name Arabic</text>
+	<text name="FullNameEn">Full Name English</text>
     <text name="FirstName">First Name</text>
     <text name="UiCustomization_HoverableAside">Expand menu when hovered</text>
     <text name="SMTPSettingsNotProvidedWarningText">SMTP settings not provided, Please provided SMTP settings.</text>

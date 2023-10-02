@@ -1,55 +1,60 @@
 ﻿(function ($) {
-    app.modals.CreateOrEditLanguageModal = function () {
+  app.modals.CreateOrEditLanguageModal = function () {
+    var _modalManager;
+    var _languageService = abp.services.app.language;
+    var _$languageInformationForm = null;
 
-        var _languagesService = abp.services.app.languages;
+    this.init = function (modalManager) {
+      _modalManager = modalManager;
 
-        var _modalManager;
-        var _$languageInformationForm = null;
+      _modalManager.getModal().find('#LanguageNameEdit').select2({
+        theme: 'bootstrap5',
+        dropdownParent : '.modal',
+        selectionCssClass: 'form-select',
+        language: abp.localization.currentCulture.name,
+        width: '100%',
+        dropdownCssClass: "long-select2",
+      });
 
-		
-		
-		
+      _modalManager.getModal().find('#LanguageIconEdit').select2({
+        theme: 'bootstrap5',
+        dropdownParent : '.modal',
+        selectionCssClass: 'form-select',
+        language: abp.localization.currentCulture.name,
+        width: '100%',
+        dropdownCssClass: "long-select2",
+        templateResult: iconFromValue,
+        templateSelection: iconFromValue,
+        escapeMarkup: (m) => m,
+      });
 
-        this.init = function (modalManager) {
-            _modalManager = modalManager;
+      function iconFromValue(val){
+        if (!val.id) {
+          return val.text;
+        }
+        val = `<i class="${val.element.value}"></i> ${val.text}`;
+        return val;
+      }
 
-			var modal = _modalManager.getModal();
-            modal.find('.date-picker').daterangepicker({
-                singleDatePicker: true,
-                locale: abp.localization.currentLanguage.name,
-                format: 'L'
-            });
-
-            _$languageInformationForm = _modalManager.getModal().find('form[name=LanguageInformationsForm]');
-            _$languageInformationForm.validate();
-        };
-
-		  
-
-        this.save = function () {
-            if (!_$languageInformationForm.valid()) {
-                return;
-            }
-
-            
-
-            var language = _$languageInformationForm.serializeFormToObject();
-            
-            
-            
-			
-			 _modalManager.setBusy(true);
-			 _languagesService.createOrEdit(
-				language
-			 ).done(function () {
-               abp.notify.info(app.localize('SavedSuccessfully'));
-               _modalManager.close();
-               abp.event.trigger('app.createOrEditLanguageModalSaved');
-			 }).always(function () {
-               _modalManager.setBusy(false);
-			});
-        };
-        
-        
+      _$languageInformationForm = _modalManager.getModal().find('form[name=LanguageInformationsForm]');
     };
+
+    this.save = function () {
+      var language = _$languageInformationForm.serializeFormToObject();
+
+      _modalManager.setBusy(true);
+      _languageService
+        .createOrUpdateLanguage({
+          language: language,
+        })
+        .done(function () {
+          abp.notify.info(app.localize('SavedSuccessfully'));
+          _modalManager.close();
+          abp.event.trigger('app.createOrEditLanguageModalSaved');
+        })
+        .always(function () {
+          _modalManager.setBusy(false);
+        });
+    };
+  };
 })(jQuery);

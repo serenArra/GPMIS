@@ -1,13 +1,11 @@
-﻿using MFAE.Jobs.ApplicationForm.Dtos;
-
-using Abp.Extensions;
+﻿using Abp.AutoMapper;
+using MFAE.Jobs.Localization.Dto;
 
 namespace MFAE.Jobs.Web.Areas.App.Models.Languages
 {
-    public class CreateOrEditLanguageModalViewModel
+    [AutoMapFrom(typeof(GetLanguageForEditOutput))]
+    public class CreateOrEditLanguageModalViewModel : GetLanguageForEditOutput
     {
-        public CreateOrEditAppLanguageDto Language { get; set; }
-
         public bool IsEditMode => Language.Id.HasValue;
     }
 }

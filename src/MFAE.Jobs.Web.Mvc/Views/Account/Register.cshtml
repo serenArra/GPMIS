@@ -228,7 +228,7 @@
 
                     <div class="row form-group ">
                         <label class="font-size-h6 font-weight-bolder text-dark mb-2" for="EmailAddress">@L("EmailAddress")</label>
-                        <input class="form-control form-control-solid text-start h-auto py-7 px-6 rounded-lg fs-6" type="email" placeholder="@L("EmailAddress")" name="EmailAddress" required value="@Model.EmailAddress" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength" />
+                        <input id="EmailAddress" class="form-control form-control-solid text-start h-auto py-7 px-6 rounded-lg fs-6" type="email" placeholder="@L("EmailAddress")" name="EmailAddress" required value="@Model.EmailAddress" maxlength="@MFAE.Jobs.Authorization.Users.User.MaxEmailAddressLength" />
                     </div>
 
                     <div class="form-group ">
@@ -238,7 +238,37 @@
 
                 </div>
 
-                <div class="flex-column" data-kt-stepper-element="content">
+                <div class="form-group flex-column" data-kt-stepper-element="content">
+                    <div class="list-group">
+                     <a href="#" class="list-group-item">
+                          <h4 class="list-group-item-heading" style="color:#337ab7">@L("IdentificationType")  -  @L("DocumentNo")</h4>
+                          <p class="list-group-item-text font-weight-bolder" id="document_no"></p>
+                     </a>
+                      <a href="#" class="list-group-item">
+                          <h4 class="list-group-item-heading" style="color:#337ab7">@L("FullNameAr")</h4>
+                          <p class="list-group-item-text font-weight-bolder" id="full_name_ar"></p>
+                     </a>
+                     <a href="#" class="list-group-item">
+                          <h4 class="list-group-item-heading" style="color:#337ab7">@L("FullNameEn")</h4>
+                          <p class="list-group-item-text font-weight-bolder" id="full_name_en"></p>
+                     </a>
+                       <a href="#" class="list-group-item">
+                          <h4 class="list-group-item-heading" style="color:#337ab7">@L("EmailAddress")</h4>
+                          <p class="list-group-item-text font-weight-bolder" id="email_address"></p>
+                     </a>
+                       <a href="#" class="list-group-item">
+                          <h4 class="list-group-item-heading" style="color:#337ab7">@L("Mobile")</h4>
+                          <p class="list-group-item-text font-weight-bolder" id="phone_number"></p>
+                     </a>
+                     </div>
+                          <br />
+                         <label class="form-check form-check-custom">
+                            <input id="Applicant_IsAgree" name="isAgree" type="checkbox" 
+                                  class="form-check-input" value="true"/>
+                            <span class="form-check-label">
+                              @L("IsAgree")
+                            </span>
+                         </label>
                 </div>
                 <!--begin::Step 1-->
                 <!--begin::Step 1-->
@@ -260,7 +290,7 @@
                 <!--end::Wrapper-->
                 <!--begin::Wrapper-->
                 <div>
-                    <button type="submit" id="register-submit-btn" class="btn btn-primary" data-kt-stepper-action="submit">
+                    <button type="submit" id="register-submit-btn" class="btn btn-primary btn-send" data-kt-stepper-action="submit" disabled>
                         <span class="indicator-label">
                             @L("Submit")
                         </span>

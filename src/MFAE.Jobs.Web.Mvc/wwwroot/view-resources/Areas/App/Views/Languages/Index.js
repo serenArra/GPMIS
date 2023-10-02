@@ -1,270 +1,190 @@
 ﻿(function () {
-    $(function () {
+  $(function () {
+    var _$languagesTable = $('#LanguagesTable');
+    var _languageService = abp.services.app.language;
+    var _defaultLanguageName = null;
 
-        var _$languagesTable = $('#LanguagesTable');
-        var _languagesService = abp.services.app.languages;
-		var _entityTypeFullName = 'MFAE.Jobs.ApplicationForm.Language';
-        
-       var $selectedDate = {
-            startDate: null,
-            endDate: null,
-        }
+    var _permissions = {
+      create: abp.auth.hasPermission('Pages.Administration.Languages.Create'),
+      edit: abp.auth.hasPermission('Pages.Administration.Languages.Edit'),
+      changeTexts: abp.auth.hasPermission('Pages.Administration.Languages.ChangeTexts'),
+      changeDefaultLanguage: abp.auth.hasPermission('Pages.Administration.Languages.ChangeDefaultLanguage'),
+      delete: abp.auth.hasPermission('Pages.Administration.Languages.Delete'),
+    };
 
-        $('.date-picker').on('apply.daterangepicker', function (ev, picker) {
-            $(this).val(picker.startDate.format('MM/DD/YYYY'));
-        });
-
-        $('.startDate').daterangepicker({
-            autoUpdateInput: false,
-            singleDatePicker: true,
-            locale: abp.localization.currentLanguage.name,
-            format: 'L',
-        })
-        .on("apply.daterangepicker", (ev, picker) => {
-            $selectedDate.startDate = picker.startDate;
-            getLanguages();
-        })
-        .on('cancel.daterangepicker', function (ev, picker) {
-            $(this).val("");
-            $selectedDate.startDate = null;
-            getLanguages();
-        });
-
-        $('.endDate').daterangepicker({
-            autoUpdateInput: false,
-            singleDatePicker: true,
-            locale: abp.localization.currentLanguage.name,
-            format: 'L',
-        })
-        .on("apply.daterangepicker", (ev, picker) => {
-            $selectedDate.endDate = picker.startDate;
-            getLanguages();
-        })
-        .on('cancel.daterangepicker', function (ev, picker) {
-            $(this).val("");
-            $selectedDate.endDate = null;
-            getLanguages();
-        });
-
-        var _permissions = {
-            create: abp.auth.hasPermission('Pages.Languages.Create'),
-            edit: abp.auth.hasPermission('Pages.Languages.Edit'),
-            'delete': abp.auth.hasPermission('Pages.Languages.Delete')
-        };
-
-         var _createOrEditModal = new app.ModalManager({
-                    viewUrl: abp.appPath + 'App/Languages/CreateOrEditModal',
-                    scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/Languages/_CreateOrEditModal.js',
-                    modalClass: 'CreateOrEditLanguageModal'
-                });
-                   
-
-		 var _viewLanguageModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'App/Languages/ViewlanguageModal',
-            modalClass: 'ViewLanguageModal'
-        });
-
-		        var _entityTypeHistoryModal = app.modals.EntityTypeHistoryModal.create();
-		        function entityHistoryIsEnabled() {
-            return abp.auth.hasPermission('Pages.Administration.AuditLogs') &&
-                abp.custom.EntityHistory &&
-                abp.custom.EntityHistory.IsEnabled &&
-                _.filter(abp.custom.EntityHistory.EnabledEntities, entityType => entityType === _entityTypeFullName).length === 1;
-        }
-
-        var getDateFilter = function (element) {
-            if ($selectedDate.startDate == null) {
-                return null;
-            }
-            return $selectedDate.startDate.format("YYYY-MM-DDT00:00:00Z"); 
-        }
-        
-        var getMaxDateFilter = function (element) {
-            if ($selectedDate.endDate == null) {
-                return null;
-            }
-            return $selectedDate.endDate.format("YYYY-MM-DDT23:59:59Z"); 
-        }
-
-        var dataTable = _$languagesTable.DataTable({
-            paging: true,
-            serverSide: true,
-            processing: true,
-            listAction: {
-                ajaxFunction: _languagesService.getAll,
-                inputFilter: function () {
-                    return {
-					filter: $('#LanguagesTableFilter').val(),
-					nameArFilter: $('#NameArFilterId').val(),
-					nameEnFilter: $('#NameEnFilterId').val(),
-					isActiveFilter: $('#IsActiveFilterId').val()
-                    };
-                }
-            },
-            columnDefs: [
-                {
-                    className: 'control responsive',
-                    orderable: false,
-                    render: function () {
-                        return '';
-                    },
-                    targets: 0
-                },
-                {
-                    width: 120,
-                    targets: 1,
-                    data: null,
-                    orderable: false,
-                    autoWidth: false,
-                    defaultContent: '',
-                    rowAction: {
-                        cssClass: 'btn btn-brand dropdown-toggle',
-                        text: '<i class="fa fa-cog"></i> ' + app.localize('Actions') + ' <span class="caret"></span>',
-                        items: [
-						{
-                                text: app.localize('View'),
-                                action: function (data) {
-                                    _viewLanguageModal.open({ id: data.record.language.id });
-                                }
-                        },
-						{
-                            text: app.localize('Edit'),
-                            visible: function () {
-                                return _permissions.edit;
-                            },
-                            action: function (data) {
-                            _createOrEditModal.open({ id: data.record.language.id });                                
-                            }
-                        },
-                        {
-                            text: app.localize('History'),
-                            iconStyle: 'fas fa-history mr-2',
-                            visible: function () {
-                                return entityHistoryIsEnabled();
-                            },
-                            action: function (data) {
-                                _entityTypeHistoryModal.open({
-                                    entityTypeFullName: _entityTypeFullName,
-                                    entityId: data.record.language.id
-                                });
-                            }
-						}, 
-						{
-                            text: app.localize('Delete'),
-                            visible: function () {
-                                return _permissions.delete;
-                            },
-                            action: function (data) {
-                                deleteLanguage(data.record.language);
-                            }
-                        }]
-                    }
-                },
-					{
-						targets: 2,
-						 data: "language.nameAr",
-						 name: "nameAr"   
-					},
-					{
-						targets: 3,
-						 data: "language.nameEn",
-						 name: "nameEn"   
-					},
-					{
-						targets: 4,
-						 data: "language.isActive",
-						 name: "isActive"  ,
-						render: function (isActive) {
-							if (isActive) {
-								return '<div class="text-center"><i class="fa fa-check text-success" title="True"></i></div>';
-							}
-							return '<div class="text-center"><i class="fa fa-times-circle" title="False"></i></div>';
-					}
-			 
-					}
-            ]
-        });
-
-        function getLanguages() {
-            dataTable.ajax.reload();
-        }
-
-        function deleteLanguage(language) {
-            abp.message.confirm(
-                '',
-                app.localize('AreYouSure'),
-                function (isConfirmed) {
-                    if (isConfirmed) {
-                        _languagesService.delete({
-                            id: language.id
-                        }).done(function () {
-                            getLanguages(true);
-                            abp.notify.success(app.localize('SuccessfullyDeleted'));
-                        });
-                    }
-                }
-            );
-        }
-
-		$('#ShowAdvancedFiltersSpan').click(function () {
-            $('#ShowAdvancedFiltersSpan').hide();
-            $('#HideAdvancedFiltersSpan').show();
-            $('#AdvacedAuditFiltersArea').slideDown();
-        });
-
-        $('#HideAdvancedFiltersSpan').click(function () {
-            $('#HideAdvancedFiltersSpan').hide();
-            $('#ShowAdvancedFiltersSpan').show();
-            $('#AdvacedAuditFiltersArea').slideUp();
-        });
-
-        $('#CreateNewLanguageButton').click(function () {
-            _createOrEditModal.open();
-        });        
-
-		$('#ExportToExcelButton').click(function () {
-            _languagesService
-                .getLanguagesToExcel({
-				filter : $('#LanguagesTableFilter').val(),
-					nameArFilter: $('#NameArFilterId').val(),
-					nameEnFilter: $('#NameEnFilterId').val(),
-					isActiveFilter: $('#IsActiveFilterId').val()
-				})
-                .done(function (result) {
-                    app.downloadTempFile(result);
-                });
-        });
-
-        abp.event.on('app.createOrEditLanguageModalSaved', function () {
-            getLanguages();
-        });
-
-		$('#GetLanguagesButton').click(function (e) {
-            e.preventDefault();
-            getLanguages();
-        });
-
-		$(document).keypress(function(e) {
-		  if(e.which === 13) {
-			getLanguages();
-		  }
-		});
-
-        $('.reload-on-change').change(function(e) {
-			getLanguages();
-		});
-
-        $('.reload-on-keyup').keyup(function(e) {
-			getLanguages();
-		});
-
-        $('#btn-reset-filters').click(function (e) {
-            $('.reload-on-change,.reload-on-keyup,#MyEntsTableFilter').val('');
-            getLanguages();
-        });
-		
-		
-		
-
+    var _createOrEditModal = new app.ModalManager({
+      viewUrl: abp.appPath + 'App/Languages/CreateOrEditModal',
+      scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/Languages/_CreateOrEditModal.js',
+      modalClass: 'CreateOrEditLanguageModal',
     });
+
+    var dataTable = _$languagesTable.DataTable({
+      paging: false,
+      serverSide: false,
+      processing: false,
+      listAction: {
+        ajaxFunction: _languageService.getLanguages,
+      },
+      columnDefs: [
+        {
+          className: 'dtr-control responsive',
+          orderable: false,
+          render: function () {
+            return '';
+          },
+          targets: 0,
+        },
+        {
+          targets: 1,
+          data: null,
+          orderable: false,
+          autoWidth: false,
+          defaultContent: '',
+          rowAction: {
+            text:
+              '<i class="fa fa-cog"></i> <span class="d-none d-md-inline-block d-lg-inline-block d-xl-inline-block">' +
+              app.localize('Actions') +
+              '</span> <span class="caret"></span>',
+            items: [
+              {
+                text: app.localize('Edit'),
+                visible: function (data) {
+                  return _permissions.edit && data.record.tenantId === abp.session.tenantId;
+                },
+                action: function (data) {
+                  _createOrEditModal.open({ id: data.record.id });
+                },
+              },
+              {
+                text: app.localize('ChangeTexts'),
+                visible: function () {
+                  return _permissions.changeTexts;
+                },
+                action: function (data) {
+                  document.location.href = abp.appPath + 'App/Languages/Texts?languageName=' + data.record.name;
+                },
+              },
+              {
+                text: app.localize('SetAsDefaultLanguage'),
+                visible: function () {
+                  return _permissions.changeDefaultLanguage;
+                },
+                action: function (data) {
+                  setAsDefaultLanguage(data.record);
+                },
+              },
+              {
+                text: app.localize('Delete'),
+                visible: function (data) {
+                  return _permissions.delete && data.record.tenantId === abp.session.tenantId;
+                },
+                action: function (data) {
+                  deleteLanguage(data.record);
+                },
+              },
+            ],
+          },
+        },
+        {
+          targets: 2,
+          data: 'displayName',
+          render: function (displayName, type, row, meta) {
+            var $span = $('<span/>')
+              .append($('<i/>').addClass(row.icon).css('margin-right', '5px'))
+              .append($('<span/>').attr('data-language-name', row.name).text(row.displayName));
+
+            if (meta.settings.rawServerResponse.defaultLanguageName === row.name) {
+              $span.addClass('text-bold').append(' (' + app.localize('Default') + ')');
+            }
+
+            return $span[0].outerHTML;
+          },
+        },
+        {
+          targets: 3,
+          data: 'name',
+        },
+        {
+          targets: 4,
+          data: 'tenantId',
+          visible: abp.session.tenantId ? true : false, //this field is visible only for tenants
+          render: function (tenantId, type, row, meta) {
+            var $span = $('<span/>').addClass('label');
+
+            if (meta.settings.rawServerResponse.defaultLanguageName === row.name) {
+              $span.addClass('badge badge-success').text(app.localize('Yes'));
+            } else {
+              $span.addClass('badge badge-dark').text(app.localize('No'));
+            }
+
+            return $span[0].outerHTML;
+          },
+        },
+        {
+          targets: 5,
+          data: 'isDisabled',
+          render: function (isDisabled) {
+            var isEnabled = !isDisabled;
+            var $span = $('<span/>').addClass('label');
+            if (isEnabled) {
+              $span.addClass('badge badge-success').text(app.localize('Yes'));
+            } else {
+              $span.addClass('badge badge-dark').text(app.localize('No'));
+            }
+
+            return $span[0].outerHTML;
+          },
+        },
+        {
+          targets: 6,
+          data: 'creationTime',
+          render: function (creationTime) {
+            return moment(creationTime).format('L');
+          },
+        },
+      ],
+    });
+
+    function setAsDefaultLanguage(language) {
+      _languageService
+        .setDefaultLanguage({
+          name: language.name,
+        })
+        .done(function () {
+          getLanguages();
+          abp.notify.success(app.localize('SuccessfullySaved'));
+        });
+    }
+
+    function deleteLanguage(language) {
+      abp.message.confirm(
+        app.localize('LanguageDeleteWarningMessage', language.displayName),
+        app.localize('AreYouSure'),
+        function (isConfirmed) {
+          if (isConfirmed) {
+            _languageService
+              .deleteLanguage({
+                id: language.id,
+              })
+              .done(function () {
+                getLanguages();
+                abp.notify.success(app.localize('SuccessfullyDeleted'));
+              });
+          }
+        }
+      );
+    }
+
+    $('#CreateNewLanguageButton').click(function () {
+      _createOrEditModal.open();
+    });
+
+    function getLanguages() {
+      dataTable.ajax.reload();
+    }
+
+    abp.event.on('app.createOrEditLanguageModalSaved', function () {
+      getLanguages();
+    });
+  });
 })();
