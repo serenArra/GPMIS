@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="ar">
   <texts>
-	  
-	<text name="FooterText">جميع الحقوق محفوظة - وزارة الخارجية والمغتربين</text>
+
+    <text name="FooterText">جميع الحقوق محفوظة - وزارة الخارجية والمغتربين</text>
     <text name="FooterButton1">عن النظام</text>
     <text name="FooterButton2">سياسات والشروط</text>
     <text name="FooterButton3">تواصل معنا</text>
-	<text name="IsAgree">أقر وأعترف أنني موافق على جميع الشروط</text>
+    <text name="IsAgree">أقر وأعترف أنني موافق على جميع الشروط</text>
     <text name="Fetch">جلب</text>
     <text name="MOIInformation">معلومات وزارة الداخلية</text>
     <text name="PreviousFamilyName">اسم العائلة السابق</text>
@@ -1319,7 +1319,7 @@
     <text name="VisualSettings_Description">تغيير مظهر النظام</text>
     <text name="DownloadCollectedData_Description">تحميل بيانات حسابك</text>
     <text name="New">جديد</text>
-    <text name="NotAMemberYet">لست عضوا حتى الآن ؟</text>
+    <text name="NotAMemberYet">لست مسجلاً حتى الآن ؟</text>
     <text name="DynamicEntityProperties">Dynamic Entity Properties</text>
     <text name="DynamicProperty">Dynamic Property</text>
     <text name="DynamicProperties">Dynamic Properties</text>
@@ -1333,8 +1333,8 @@
     <text name="EditDynamicPropertyValue">Edit Dynamic Property Value</text>
     <text name="EditValues">Edit Values</text>
     <text name="FullName">الاسم الكامل</text>
-	<text name="FullNameAr">الاسم الكامل بالعربية</text>
-	<text name="FullNameEn">الاسم الكامل بالإنجليزية</text>
+    <text name="FullNameAr">الاسم الكامل بالعربية</text>
+    <text name="FullNameEn">الاسم الكامل بالإنجليزية</text>
     <text name="FirstName">الاسم الاول</text>
     <text name="UiCustomization_HoverableAside">توسيع القائمة عند التمرير</text>
     <text name="SMTPSettingsNotProvidedWarningText">لم يتم توفير إعدادات SMTP ، يرجى توفير إعدادات SMTP.</text>
