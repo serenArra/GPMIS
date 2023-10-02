@@ -43,6 +43,7 @@ namespace MFAE.Jobs.ApplicationForm
                         .Include(e => e.LanguageFk)
                         .Include(e => e.ConversationFk)
                         .Include(e => e.ConversationRateFk)
+                        .Where(e => e.ApplicantId == input.ApplicantIdFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.Narrative.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.NarrativeFilter), e => e.Narrative.Contains(input.NarrativeFilter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.ApplicantFirstNameFilter), e => e.ApplicantFk != null && e.ApplicantFk.FirstName == input.ApplicantFirstNameFilter)

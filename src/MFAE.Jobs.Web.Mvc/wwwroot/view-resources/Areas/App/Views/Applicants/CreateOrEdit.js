@@ -2,7 +2,7 @@
     $(function ()
     {
         var _applicantsService = abp.services.app.applicants;
-        var _$applicantInformationForm = $('form[name=ApplicationForm]');
+        var _$applicantInformationForm = $('form[name=ApplicationFormInformation]');
 
         _$applicantInformationForm.validate(
             {
@@ -100,15 +100,14 @@
         $('#DocumentNo').on('change', function () {
             if ($('#identificationTypeId').val() == IdType.PS && $('#DocumentNo').valid())
             {                
-                fetchPersonInfo();               
+               /* fetchPersonInfo(); */            
             }
         });
 
         $("#DocumentNo").trigger("change");
        
         function fetchPersonInfo() {
-         
-            /*var DocType = $('#identificationTypeId').val();
+            var DocType = $('#identificationTypeId').val();
             if (DocType == IdType.PS) {
                 abp.ui.setBusy();
                 _applicantsService.fetchPerson({
@@ -120,7 +119,25 @@
                         abp.message.error(output.message, app.localize('Error'))
                     }
                     else {
-                        console.log(output);
+                        console.log("output", output);
+                        $("#DocumentNo").val(output.applicant.documentNo);
+
+                        $("#Applicant_FirstName").val(output.applicant.firstName);
+                        $("#Applicant_FatherName").val(output.applicant.fatherName);
+                        $("#Applicant_GrandFatherName").val(output.applicant.grandFatherName);
+                        $("#Applicant_FamilyName").val(output.applicant.familyName);
+
+                        $("#Applicant_FirstNameEn").val(output.applicant.firstNameEn);
+                        $("#Applicant_FatherNameEn").val(output.applicant.fatherNameEn);
+                        $("#Applicant_GrandFatherNameEn").val(output.applicant.grandFatherNameEn);
+                        $("#Applicant_FamilyNameEn").val(output.applicant.familyNameEn);
+
+                        $("#Applicant_Gender").val(output.applicant.gender).trigger('change');
+                        $("#Applicant_BirthDate").data("DateTimePicker").date(moment(output.applicant.birthDate));
+
+                        /*$("#countryId").val();
+                        $("#governorateId").val();
+                        $("#localityId").val();*/
                     }
                 }).always(function () {
                     abp.ui.clearBusy();
@@ -130,9 +147,8 @@
                 
                 $('#imageUrl').addClass('d-none');
                 $('#defaultImage').removeClass('d-none');
-            }*/
+            }
         }
-
 
         function save(successCallback) {
 

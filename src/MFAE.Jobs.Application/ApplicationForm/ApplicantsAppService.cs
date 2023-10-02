@@ -34,6 +34,10 @@ using Abp.Notifications;
 using MFAE.Jobs.Notifications;
 using Abp.Domain.Uow;
 using System.Transactions;
+using Abp.UI;
+using Microsoft.AspNetCore.NodeServices;
+using Newtonsoft.Json;
+using System.Xml.Linq;
 
 namespace MFAE.Jobs.ApplicationForm
 {
@@ -294,13 +298,13 @@ namespace MFAE.Jobs.ApplicationForm
 
             var output = new GetApplicantForEditOutput { Applicant = ObjectMapper.Map<CreateOrEditApplicantDto>(applicant) };
 
-            if (output.Applicant.IdentificationTypeId != null)
+            if (output.Applicant.IdentificationTypeId > 0)
             {
                 var _lookupIdentificationType = await _lookup_identificationTypeRepository.FirstOrDefaultAsync((int)output.Applicant.IdentificationTypeId);
                 output.IdentificationTypeName = _lookupIdentificationType?.Name?.ToString();
             }
 
-            if (output.Applicant.MaritalStatusId != null)
+            if (output.Applicant.MaritalStatusId > 0)
             {
                 var _lookupMaritalStatus = await _lookup_maritalStatusRepository.FirstOrDefaultAsync((int)output.Applicant.MaritalStatusId);
                 output.MaritalStatusName = _lookupMaritalStatus?.Name?.ToString();
@@ -318,7 +322,7 @@ namespace MFAE.Jobs.ApplicationForm
                 output.ApplicantStatusDescription = _lookupApplicantStatus?.Description?.ToString();
             }
 
-            if (output.Applicant.CountryId != null)
+            if (output.Applicant.CountryId > 0)
             {
                 var _lookupCountry = await _lookup_countryRepository.FirstOrDefaultAsync((int)output.Applicant.CountryId);
                 output.CountryName = _lookupCountry?.Name?.ToString();
@@ -725,7 +729,7 @@ namespace MFAE.Jobs.ApplicationForm
                     DisplayName = locality == null || locality.Name == null ? "" : locality.Name.ToString()
                 }).ToListAsync();
         }
-
+     
         public async Task<GetApplicantForEditOutput> FetchPerson(FetchPersonDto input)
         {
             var person = new Applicant();
