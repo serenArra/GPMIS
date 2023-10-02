@@ -1,15 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using MFAE.Jobs.ApplicationForm.Dtos;
 using MFAE.Jobs.Dto;
-using System.Collections.Generic;
-using System.Collections.Generic;
-using System.Collections.Generic;
-using System.Collections.Generic;
-using System.Collections.Generic;
-using System.Collections.Generic;
 using System.Collections.Generic;
 
 namespace MFAE.Jobs.ApplicationForm
@@ -22,7 +15,7 @@ namespace MFAE.Jobs.ApplicationForm
 
         Task<GetApplicantForEditOutput> GetApplicantForEdit(EntityDto<long> input);
 
-        Task CreateOrEdit(CreateOrEditApplicantDto input);
+        Task<long> CreateOrEdit(CreateOrEditApplicantDto input);
 
         Task Delete(EntityDto<long> input);
 

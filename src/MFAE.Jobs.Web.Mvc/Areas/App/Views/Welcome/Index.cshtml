@@ -2,11 +2,12 @@
 @using MFAE.Jobs.Web.Areas.App.Models.Welcomes
 @using MFAE.Jobs.Web.Areas.App.Startup
 @model WelcomesViewModel
-@section Scripts {
+@section Scripts 
+{
     <script type="text/javascript">
         $(document).ready(function() {
         $("#applyBtn").click(function () {
-            window.location.href = "/App/Welcome/ApplicationForms";
+            window.location.href = "Applicants/CreateOrEdit";
           });
       });
     </script>
@@ -213,9 +214,11 @@
                             <h3 class="card-title font-weight-bolder text-dark"><i class="flaticon-star icon-lg mx-2 color-tree"></i>@L("JobAdvertisement")</h3>
                         </div>
                         <div class="row align-items-center">
-                            <label class="form-control form-control-solid">
+                           <div class="col my-5">
+                                <label class="form-control form-control-solid">
                                 @Model.JobAdvertisement.Description
                             </label>
+                           </div>
                         </div>
                     </div>
 

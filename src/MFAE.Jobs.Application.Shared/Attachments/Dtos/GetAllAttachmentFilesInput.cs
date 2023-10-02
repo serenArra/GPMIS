@@ -7,6 +7,8 @@ namespace MFAE.Jobs.Attachments.Dtos
     {
         public string Filter { get; set; }
 
+        public long? ApplicantIdFilter { get; set; }
+
         public string PhysicalNameFilter { get; set; }
 
         public string DescriptionFilter { get; set; }

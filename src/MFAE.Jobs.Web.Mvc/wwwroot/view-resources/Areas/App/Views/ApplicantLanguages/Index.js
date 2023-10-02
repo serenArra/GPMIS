@@ -90,11 +90,14 @@
             paging: true,
             serverSide: true,
             processing: true,
+            makeAjax: $('#ApplicantId').val() > 0,
+            deferLoading: $('#ApplicantId').val() > 0 ? null : 0,
             listAction: {
                 ajaxFunction: _applicantLanguagesService.getAll,
                 inputFilter: function () {
                     return {
-					filter: $('#ApplicantLanguagesTableFilter').val(),
+                    filter: $('#ApplicantLanguagesTableFilter').val(),
+                    applicantIdFilter: $('#ApplicantId').val(),
 					narrativeFilter: $('#NarrativeFilterId').val(),
 					applicantFirstNameFilter: $('#ApplicantFirstNameFilterId').val(),
 					languageNameFilter: $('#LanguageNameFilterId').val(),

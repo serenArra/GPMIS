@@ -118,7 +118,7 @@ namespace MFAE.Jobs.ApplicationForm
 
             var output = new GetApplicantStatusForEditOutput { ApplicantStatus = ObjectMapper.Map<CreateOrEditApplicantStatusDto>(applicantStatus) };
 
-            if (output.ApplicantStatus.ApplicantId != null)
+            if (output.ApplicantStatus.ApplicantId > 0)
             {
                 var _lookupApplicant = await _lookup_applicantRepository.FirstOrDefaultAsync((long)output.ApplicantStatus.ApplicantId);
                 output.ApplicantFullName = _lookupApplicant?.FullName?.ToString();

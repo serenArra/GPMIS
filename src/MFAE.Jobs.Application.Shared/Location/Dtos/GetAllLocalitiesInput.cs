@@ -7,6 +7,8 @@ namespace MFAE.Jobs.Location.Dtos
     {
         public string Filter { get; set; }
 
+        public int? GovernorateIdFilter { get; set; }
+
         public string NameArFilter { get; set; }
 
         public string NameEnFilter { get; set; }

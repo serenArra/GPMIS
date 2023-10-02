@@ -1,13 +1,12 @@
 ﻿using MFAE.Jobs.ApplicationForm.Dtos;
 using System.Collections.Generic;
-using System.Collections.Generic;
-using System.Collections.Generic;
-using System.Collections.Generic;
-using System.Collections.Generic;
-using System.Collections.Generic;
-using System.Collections.Generic;
+
 
 using Abp.Extensions;
+using MFAE.Jobs.Web.Areas.App.Models.ApplicantLanguages;
+using MFAE.Jobs.Web.Areas.App.Models.ApplicantStudies;
+using MFAE.Jobs.Web.Areas.App.Models.ApplicantTrainings;
+using MFAE.Jobs.Web.Areas.App.Models.AttachmentFiles;
 
 namespace MFAE.Jobs.Web.Areas.App.Models.Applicants
 {
@@ -44,5 +43,14 @@ namespace MFAE.Jobs.Web.Areas.App.Models.Applicants
         public List<ApplicantLocalityLookupTableDto> ApplicantLocalityList { get; set; }
 
         public bool IsEditMode => Applicant.Id.HasValue;
+
+        public CreateOrEditApplicantStudyModalViewModel CreateOrEditApplicantStudyModal { get; set; }
+
+        public CreateOrEditApplicantLanguageModalViewModel CreateOrEditApplicantLanguageModal { get; set; }
+
+        public CreateOrEditApplicantTrainingModalViewModel CreateOrEditApplicantTrainingModel { get; set; }
+
+        public CreateOrEditAttachmentFileModalViewModel CreateOrEditAttachmentFileModel { get; set; }
+
     }
 }

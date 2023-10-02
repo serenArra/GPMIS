@@ -1,11 +1,10 @@
-﻿using Abp.Application.Services.Dto;
+﻿using MFAE.Jobs.Dto;
 
 namespace MFAE.Jobs.ApplicationForm.Dtos
 {
-    public class ApplicantIdentificationTypeLookupTableDto
+    public class ApplicantIdentificationTypeLookupTableDto : DisplayNameDto
     {
-        public int Id { get; set; }
+        public bool? IsDefault { get; set; }
 
-        public string DisplayName { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MFAE.Jobs.ApplicationForm.Dtos;
+using MFAE.Jobs.Authorization.Users.Dto;
 using MFAE.Jobs.Web.Areas.App.Models.ApplicantLanguages;
 using MFAE.Jobs.Web.Areas.App.Models.ApplicantStudies;
 using MFAE.Jobs.Web.Areas.App.Models.ApplicantTrainings;

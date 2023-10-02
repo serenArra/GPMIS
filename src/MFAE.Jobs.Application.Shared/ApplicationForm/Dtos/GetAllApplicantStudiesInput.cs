@@ -7,6 +7,8 @@ namespace MFAE.Jobs.ApplicationForm.Dtos
     {
         public string Filter { get; set; }
 
+        public long? ApplicantIdFilter { get; set; }
+
         public string OtherSpecialtyFilter { get; set; }
 
         public string SecondSpecialtyFilter { get; set; }

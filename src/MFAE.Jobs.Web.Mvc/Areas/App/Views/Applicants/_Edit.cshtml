@@ -1,0 +1,342 @@
+﻿@using MFAE.Jobs.ApplicationForm.Enums;
+@using MFAE.Jobs.Authorization
+@using MFAE.Jobs.Web.Areas.App.Models.Applicants
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Startup
+@model CreateOrEditApplicantModalViewModel
+@{
+    var defaultIdType = Model.ApplicantIdentificationTypeList.FirstOrDefault(u => u.IsDefault.HasValue ? u.IsDefault.Value : false);
+}
+@using Abp.Extensions
+@using MFAE.Jobs.Web.TagHelpers
+
+<abp-tab>
+   <abp-tab-items>
+        <abp-tab-item title="@L("ApplicationMainInformation")">
+            <span class="nav-icon mb-5">
+                <span class="svg-icon svg-icon-muted svg-icon-2hx">
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 493.474 493.474" xml:space="preserve"><g><g><path style="fill:#010002;" d="M314.284,314.029c-30.563,23.814-55.479,53.227-80.686,82.352c-10.786-11.428-20.596-23.559-26.917-38.184c-7.154-16.676-34.342,7.584-27.895,22.598c8.817,20.387,24.519,36.965,39.977,52.584c6.305,6.416,17.138-0.832,21.491-5.793c27.652-31.398,53.448-64.443,86.638-90.305C342.816,324.894,333.261,299.242,314.284,314.029z" /><path style="fill:#010002;" d="M402.266,35.399h-76.354c-5.358-5.895-13.04-9.679-21.632-9.679h-29.412v-4.984C274.867,9.946,260.415,0,246.738,0c-13.678,0-28.13,9.946-28.13,20.736v4.984h-29.413c-8.592,0-16.273,3.784-21.632,9.679H91.176c-8.099,0-14.594,6.554-14.594,14.619v428.829c0,8.049,6.479,14.627,14.594,14.627h311.091c8.081,0,14.626-6.527,14.626-14.627V50.018C416.891,41.953,410.346,35.399,402.266,35.399z M387.607,464.238H105.787V64.636h42.285v0.003h13.47c3.971,11.538,14.772,19.892,27.668,19.892h57.528h57.528c12.896,0,23.697-8.354,27.668-19.892h13.47v-0.003h42.204L387.607,464.238L387.607,464.238z" /><rect x="133.1" y="114.818" style="fill:#010002;" width="227.273" height="22.729" /><rect x="133.1" y="164.818" style="fill:#010002;" width="227.273" height="22.729" /><rect x="133.1" y="214.818" style="fill:#010002;" width="227.273" height="22.729" /><rect x="133.1" y="264.818" style="fill:#010002;" width="227.273" height="22.729" /></g></g></svg>
+                </span>
+            </span>
+        </abp-tab-item>
+        <abp-tab-item title="@L("ApplicantStudies")">
+            <span class="nav-icon mb-5">
+                <span class="svg-icon svg-icon-muted svg-icon-2hx">
+                    <svg class="svg-icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M776.854 776.328l57.87 57.87a1 1 0 0 1 0 1.414l-41.074 41.073a1 1 0 0 1-1.414 0l-57.87-57.869c-23.747 15.728-52.224 24.888-82.841 24.888-82.963 0-150.217-67.255-150.217-150.217 0-82.963 67.254-150.218 150.217-150.218 82.963 0 150.217 67.255 150.217 150.218 0 30.616-9.16 59.094-24.888 82.841zM305.868 358.273c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.823 30.095-29.823 16.62 0 30.095 13.352 30.095 29.823 0 16.47-13.474 29.823-30.095 29.823z m0 167.006c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.822 30.095-29.822 16.62 0 30.095 13.352 30.095 29.822s-13.474 29.823-30.095 29.823z m0 167.006c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.822 30.095-29.822 16.62 0 30.095 13.352 30.095 29.822 0 16.471-13.474 29.823-30.095 29.823z m67.409-393.658h303.506a1.2 1.2 0 0 1 1.2 1.2v57.246a1.2 1.2 0 0 1-1.2 1.2H373.277a1.2 1.2 0 0 1-1.2-1.2v-57.246a1.2 1.2 0 0 1 1.2-1.2z m0 167.007h303.506a1.2 1.2 0 0 1 1.2 1.2v57.245a1.2 1.2 0 0 1-1.2 1.2H373.277a1.2 1.2 0 0 1-1.2-1.2v-57.245a1.2 1.2 0 0 1 1.2-1.2z m0 167.006h93.227a1.2 1.2 0 0 1 1.2 1.2v57.245a1.2 1.2 0 0 1-1.2 1.2h-93.227a1.2 1.2 0 0 1-1.2-1.2V633.84a1.2 1.2 0 0 1 1.2-1.2z m278.248 150.977c49.778 0 90.13-40.353 90.13-90.13 0-49.778-40.352-90.13-90.13-90.13s-90.13 40.352-90.13 90.13c0 49.777 40.352 90.13 90.13 90.13zM238 751h241v60H208c-16.569 0-30-13.431-30-30V211c0-16.569 13.431-30 30-30h539c16.569 0 30 13.431 30 30v290.823h-60V241H238v510z" /></svg>
+                </span>
+            </span>
+        </abp-tab-item>
+        <abp-tab-item title="@L("ApplicantLanguages")">
+            <span class="nav-icon mb-5">
+                <span class="svg-icon svg-icon-muted svg-icon-2hx">
+                    <svg class="svg-icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M776.854 776.328l57.87 57.87a1 1 0 0 1 0 1.414l-41.074 41.073a1 1 0 0 1-1.414 0l-57.87-57.869c-23.747 15.728-52.224 24.888-82.841 24.888-82.963 0-150.217-67.255-150.217-150.217 0-82.963 67.254-150.218 150.217-150.218 82.963 0 150.217 67.255 150.217 150.218 0 30.616-9.16 59.094-24.888 82.841zM305.868 358.273c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.823 30.095-29.823 16.62 0 30.095 13.352 30.095 29.823 0 16.47-13.474 29.823-30.095 29.823z m0 167.006c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.822 30.095-29.822 16.62 0 30.095 13.352 30.095 29.822s-13.474 29.823-30.095 29.823z m0 167.006c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.822 30.095-29.822 16.62 0 30.095 13.352 30.095 29.822 0 16.471-13.474 29.823-30.095 29.823z m67.409-393.658h303.506a1.2 1.2 0 0 1 1.2 1.2v57.246a1.2 1.2 0 0 1-1.2 1.2H373.277a1.2 1.2 0 0 1-1.2-1.2v-57.246a1.2 1.2 0 0 1 1.2-1.2z m0 167.007h303.506a1.2 1.2 0 0 1 1.2 1.2v57.245a1.2 1.2 0 0 1-1.2 1.2H373.277a1.2 1.2 0 0 1-1.2-1.2v-57.245a1.2 1.2 0 0 1 1.2-1.2z m0 167.006h93.227a1.2 1.2 0 0 1 1.2 1.2v57.245a1.2 1.2 0 0 1-1.2 1.2h-93.227a1.2 1.2 0 0 1-1.2-1.2V633.84a1.2 1.2 0 0 1 1.2-1.2z m278.248 150.977c49.778 0 90.13-40.353 90.13-90.13 0-49.778-40.352-90.13-90.13-90.13s-90.13 40.352-90.13 90.13c0 49.777 40.352 90.13 90.13 90.13zM238 751h241v60H208c-16.569 0-30-13.431-30-30V211c0-16.569 13.431-30 30-30h539c16.569 0 30 13.431 30 30v290.823h-60V241H238v510z" /></svg>
+                </span>
+            </span>
+        </abp-tab-item>
+        <abp-tab-item title="@L("ApplicantTrainings")">
+            <span class="nav-icon mb-5">
+                <span class="svg-icon svg-icon-muted svg-icon-2hx">
+                    <svg class="svg-icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M776.854 776.328l57.87 57.87a1 1 0 0 1 0 1.414l-41.074 41.073a1 1 0 0 1-1.414 0l-57.87-57.869c-23.747 15.728-52.224 24.888-82.841 24.888-82.963 0-150.217-67.255-150.217-150.217 0-82.963 67.254-150.218 150.217-150.218 82.963 0 150.217 67.255 150.217 150.218 0 30.616-9.16 59.094-24.888 82.841zM305.868 358.273c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.823 30.095-29.823 16.62 0 30.095 13.352 30.095 29.823 0 16.47-13.474 29.823-30.095 29.823z m0 167.006c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.822 30.095-29.822 16.62 0 30.095 13.352 30.095 29.822s-13.474 29.823-30.095 29.823z m0 167.006c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.822 30.095-29.822 16.62 0 30.095 13.352 30.095 29.822 0 16.471-13.474 29.823-30.095 29.823z m67.409-393.658h303.506a1.2 1.2 0 0 1 1.2 1.2v57.246a1.2 1.2 0 0 1-1.2 1.2H373.277a1.2 1.2 0 0 1-1.2-1.2v-57.246a1.2 1.2 0 0 1 1.2-1.2z m0 167.007h303.506a1.2 1.2 0 0 1 1.2 1.2v57.245a1.2 1.2 0 0 1-1.2 1.2H373.277a1.2 1.2 0 0 1-1.2-1.2v-57.245a1.2 1.2 0 0 1 1.2-1.2z m0 167.006h93.227a1.2 1.2 0 0 1 1.2 1.2v57.245a1.2 1.2 0 0 1-1.2 1.2h-93.227a1.2 1.2 0 0 1-1.2-1.2V633.84a1.2 1.2 0 0 1 1.2-1.2z m278.248 150.977c49.778 0 90.13-40.353 90.13-90.13 0-49.778-40.352-90.13-90.13-90.13s-90.13 40.352-90.13 90.13c0 49.777 40.352 90.13 90.13 90.13zM238 751h241v60H208c-16.569 0-30-13.431-30-30V211c0-16.569 13.431-30 30-30h539c16.569 0 30 13.431 30 30v290.823h-60V241H238v510z" /></svg>
+                </span>
+            </span>
+        </abp-tab-item>
+        <abp-tab-item title="@L("Attachments")">
+            <span class="nav-icon mb-5">
+                <span class="svg-icon svg-icon-muted svg-icon-2hx">
+                    <svg class="svg-icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M776.854 776.328l57.87 57.87a1 1 0 0 1 0 1.414l-41.074 41.073a1 1 0 0 1-1.414 0l-57.87-57.869c-23.747 15.728-52.224 24.888-82.841 24.888-82.963 0-150.217-67.255-150.217-150.217 0-82.963 67.254-150.218 150.217-150.218 82.963 0 150.217 67.255 150.217 150.218 0 30.616-9.16 59.094-24.888 82.841zM305.868 358.273c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.823 30.095-29.823 16.62 0 30.095 13.352 30.095 29.823 0 16.47-13.474 29.823-30.095 29.823z m0 167.006c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.822 30.095-29.822 16.62 0 30.095 13.352 30.095 29.822s-13.474 29.823-30.095 29.823z m0 167.006c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.822 30.095-29.822 16.62 0 30.095 13.352 30.095 29.822 0 16.471-13.474 29.823-30.095 29.823z m67.409-393.658h303.506a1.2 1.2 0 0 1 1.2 1.2v57.246a1.2 1.2 0 0 1-1.2 1.2H373.277a1.2 1.2 0 0 1-1.2-1.2v-57.246a1.2 1.2 0 0 1 1.2-1.2z m0 167.007h303.506a1.2 1.2 0 0 1 1.2 1.2v57.245a1.2 1.2 0 0 1-1.2 1.2H373.277a1.2 1.2 0 0 1-1.2-1.2v-57.245a1.2 1.2 0 0 1 1.2-1.2z m0 167.006h93.227a1.2 1.2 0 0 1 1.2 1.2v57.245a1.2 1.2 0 0 1-1.2 1.2h-93.227a1.2 1.2 0 0 1-1.2-1.2V633.84a1.2 1.2 0 0 1 1.2-1.2z m278.248 150.977c49.778 0 90.13-40.353 90.13-90.13 0-49.778-40.352-90.13-90.13-90.13s-90.13 40.352-90.13 90.13c0 49.777 40.352 90.13 90.13 90.13zM238 751h241v60H208c-16.569 0-30-13.431-30-30V211c0-16.569 13.431-30 30-30h539c16.569 0 30 13.431 30 30v290.823h-60V241H238v510z" /></svg>
+                </span>
+            </span>
+        </abp-tab-item>
+   </abp-tab-items>
+
+
+  <abp-tab-body>
+      <abp-tab-item-body class="px-7" number="1">
+            <div id="ApplicantInformationsForm">
+
+                <input type="hidden" name="id" id="ApplicantId" value="@Model.Applicant.Id" />
+                <input type="hidden" name="UserId" value="@Model.Applicant.UserId" />
+
+                <div class="row my-3">
+                    <div class="col-xl-6">
+
+                        <div class="form-group fv-plugins-icon-container">
+                            <label for="identificationTypeId" class="form-label">@L("IdentificationType") <span class="text-danger">*</span></label>
+
+                            @Html.DropDownList("identificationTypeId", new SelectList(Model.ApplicantIdentificationTypeList,"Id","DisplayName",
+                            (Model.IsEditMode ?  Model.Applicant.IdentificationTypeId.ToString() : (defaultIdType?.Id.ToString()))),
+                            @L("SelectOption"), new { @class = "form-control form-control-solid" })
+
+                            <div class="fv-plugins-message-container"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <label class="form-label" for="Applicant_DocumentNo">@L("DocumentNo")</label>
+                        <input class="form-control form-control-solid" id="Applicant_DocumentNo" value="@Model.Applicant.DocumentNo" type="text" name="documentNo" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxDocumentNoLength" />
+                    </div>
+                </div>
+
+                <div class="row g-3 my-3">
+                    <div class="col-xl-3">
+                        <label class="form-label" for="countryId">@L("Country")<span class="text-danger">*</span></label>
+                        <abp-autocomplete id="countryId" name="countryId" values='[{"id": "@Model.Applicant.CountryId", "text": "@Model.CountryName"}]'
+                                          action="GetAll" controller="Countries" optionKey="country.id" required="true"
+                                          optionValue="country.name">
+                        </abp-autocomplete>
+                    </div>
+                    <div class="col-xl-3">
+                        <label class="form-label" for="governorateId">@L("Governorate")<span class="text-danger">*</span></label>
+                        <abp-autocomplete id="governorateId" name="governorateId" values='[{"id": "@Model.Applicant.GovernorateId", "text": "@Model.GovernorateName"}]'
+                                          action="GetAll" controller="Governorates" optionKey="governorate.id" required="true"
+                                          optionValue="governorate.name" paramsGenerateFunction="getGovernorateParams()">
+                        </abp-autocomplete>
+                    </div>
+                    <div class="col-xl-3">
+                        <label class="form-label" for="localityId">@L("Locality")</label>
+                        <abp-autocomplete id="localityId" name="localityId"
+                                          action="GetAll" controller="Localities" optionKey="locality.id"
+                                          optionValue="locality.name" paramsGenerateFunction="getLocalityParams()">
+                        </abp-autocomplete>
+                    </div>
+                    <div class="col-xl-3">
+                        <label class="form-label" for="Applicant_Address">@L("Address")</label>
+                        <input class="form-control form-control-solid" id="Applicant_Address" value="@Model.Applicant.Address" type="text" name="address" maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxAddressLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinAddressLength" />
+                    </div>
+                </div>
+
+                <div class="row my-3">
+                    <div class="col-sm-3 text-center margin-top-15 margin-bottom-15">
+                        @if (Model.Applicant.UserId > 0)
+                        {
+                            <img src="@Url.Action("GetProfilePictureByUser", "Profile", new {area = string.Empty})?userId=@(Model.Applicant.UserId)&&profilePictureId=@(Model.Applicant.ProfilePictureId)" width="128" height="128" class="img-thumbnail img-rounded user-edit-dialog-profile-image" />
+                        }
+                        else
+                        {
+                            <img src="@Url.Content("~/Common/Images/default-profile-picture.png")" width="128" height="128" class="img-thumbnail img-rounded user-edit-dialog-profile-image" />
+                        }
+
+                        @if (Model.Applicant.UserId > 0 && await PermissionChecker.IsGrantedAsync(AppPermissions.Pages_Administration_Users_ChangeProfilePicture))
+                        {
+                            <button class="btn btn-light btn-sm mb-5" id="changeProfilePicture">@L("ChangeProfilePicture")</button>
+                        }
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="form-group col-lg-3">
+                                <label class="form-label" for="Applicant_FirstName">@L("FirstName")<span class="text-danger">*</span></label>
+                                <input class="form-control form-control-solid copyto" id="Applicant_FirstName" copyto="Applicant_FirstNameEn" value="@Model.Applicant.FirstName" type="text" name="firstName" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFirstNameLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFirstNameLength" />
+                            </div>
+
+                            <div class="form-group col-lg-3">
+                                <label class="form-label" for="Applicant_FatherName">@L("FatherName")<span class="text-danger">*</span></label>
+                                <input class="form-control form-control-solid copyto" id="Applicant_FatherName" copyto="Applicant_FatherNameEn" value="@Model.Applicant.FatherName" type="text" name="fatherName" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFatherNameLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFatherNameLength" />
+                            </div>
+
+                            <div class="form-group col-lg-3">
+                                <label class="form-label" for="Applicant_GrandFatherName">@L("GrandFatherName")<span class="text-danger">*</span></label>
+                                <input class="form-control form-control-solid copyto" id="Applicant_GrandFatherName" copyto="Applicant_GrandFatherNameEn" value="@Model.Applicant.GrandFatherName" type="text" name="grandFatherName" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxGrandFatherNameLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinGrandFatherNameLength" />
+                            </div>
+
+                            <div class="form-group col-lg-3">
+                                <label class="form-label" for="Applicant_FamilyName">@L("FamilyName")<span class="text-danger">*</span></label>
+                                <input class="form-control form-control-solid copyto" id="Applicant_FamilyName" copyto="Applicant_FamilyNameEn" value="@Model.Applicant.FamilyName" type="text" name="familyName" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFamilyNameLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFamilyNameLength" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-3">
+                                <label class="form-label" for="Applicant_FirstNameEn">@L("FirstNameEn")<span class="text-danger">*</span></label>
+                                <input class="form-control form-control-solid" id="Applicant_FirstNameEn" value="@Model.Applicant.FirstNameEn" type="text" name="firstNameEn" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFirstNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFirstNameEnLength" />
+                            </div>
+
+                            <div class="form-group col-lg-3">
+                                <label class="form-label" for="Applicant_FatherNameEn">@L("FatherNameEn")<span class="text-danger">*</span></label>
+                                <input class="form-control form-control-solid" id="Applicant_FatherNameEn" value="@Model.Applicant.FatherNameEn" type="text" name="fatherNameEn" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFatherNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFatherNameEnLength" />
+                            </div>
+
+                            <div class="form-group col-lg-3">
+                                <label class="form-label" for="Applicant_GrandFatherNameEn">@L("GrandFatherNameEn")<span class="text-danger">*</span></label>
+                                <input class="form-control form-control-solid" id="Applicant_GrandFatherNameEn" value="@Model.Applicant.GrandFatherNameEn" type="text" name="grandFatherNameEn" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxGrandFatherNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinGrandFatherNameEnLength" />
+                            </div>
+
+                            <div class="form-group col-lg-3">
+                                <label class="form-label" for="Applicant_FamilyNameEn">@L("FamilyNameEn")<span class="text-danger">*</span></label>
+                                <input class="form-control form-control-solid " id="Applicant_FamilyNameEn" value="@Model.Applicant.FamilyNameEn" type="text" name="familyNameEn" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFamilyNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFamilyNameEnLength" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row my-3">
+
+                    <div class="col-xl">
+                        <label class="form-label" for="Applicant_BirthPlace">@L("BirthPlace")</label>
+                        <input class="form-control form-control-solid" id="Applicant_BirthPlace" value="@Model.Applicant.BirthPlace" type="text" name="birthPlace" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-lg-3">
+                        <label for="Applicant_BirthDate" class="form-label">@L("BirthDate")</label>
+                        <abp-datePicker id="Applicant_BirthDate" format="DD/MM/Y" name="birthDate"
+                                        value="@Model.Applicant.BirthDate">
+                        </abp-datePicker>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="Applicant_BirthPlace" class="form-label">@L("BirthPlace")</label>
+                        <input class="form-control form-control-solid" id="Applicant_BirthPlace" type="text" name="birthPlace"
+                               maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxBirthPlaceLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinBirthPlaceLength"
+                               value="@Model.Applicant.BirthPlace" />
+                    </div>
+
+                    <div class="form-group col-lg-3">
+                        <label class="form-label" for="Applicant_NumberOfChildren">@L("NumberOfChildren")</label>
+                        <input class="form-control form-control-solid m-input" id="Applicant_NumberOfChildren" value="@Model.Applicant.NumberOfChildren?.ToString(CultureInfo.InvariantCulture)" type="number" name="numberOfChildren" />
+                    </div>
+
+                    @{
+                        var selectListGender = Html.GetEnumSelectList(typeof(Gender));
+                        foreach (var selectOption in selectListGender) { selectOption.Text = L("Enum_Gender_" + selectOption.Value); }
+                    }
+                    <div class="col-lg form-group m-form__group">
+                        <label for="Applicant_Gender" class="form-label">@L("Gender")</label>
+                        <select class="form-control form-control-solid m-input m-input--square" name="gender" id="Applicant_Gender"
+                                asp-for="@Model.Applicant.Gender"
+                                asp-items="@selectListGender">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row my-5">
+                    <div class="form-group col-lg">
+                        <label class="form-label" for="Applicant_Mobile">@L("Mobile")<span class="text-danger">*</span></label>
+                        <input class="form-control form-control-solid" id="Applicant_Mobile" value="@Model.Applicant.Mobile" type="text" name="mobile" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxMobileLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinMobileLength" />
+                    </div>
+
+                    <div class="form-group col-lg">
+                        <label class="form-label" for="Applicant_Email">@L("Email")<span class="text-danger">*</span></label>
+                        <input class="form-control form-control-solid" id="Applicant_Email" value="@Model.Applicant.Email" type="text" name="email" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxEmailLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinEmailLength" />
+                    </div>
+                </div>
+               @*  <label class="form-check form-check-custom form-check-solid mb-3">
+                    <input id="Applicant_IsLocked" name="isLocked" type="checkbox" class="form-check-input" value="true" @Html.Raw(Model.Applicant.IsLocked ?"checked=\"checked\"":"") />
+                    <span class="form-check-label">
+                        @L("IsLocked")
+                    </span>
+                </label> *@
+
+            </div>
+      </abp-tab-item-body>
+
+      <abp-tab-item-body class="px-7" number="2">
+            <div class="d-flex justify-content-between my-12">
+                <input type="hidden" name="ApplicantId" value="@Model.Applicant.Id" />
+                <h3 class="card-title font-weight-bolder text-dark"><i class="flaticon-star icon-lg mx-2 color-tree"></i>@L("ApplicantStudies")</h3>
+                <div class="card-toolbar">
+
+                    @if (IsGranted(AppPermissions.Pages_ApplicantStudies_Create))
+                    {
+                        <button id="CreateNewApplicantStudyButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewApplicantStudy")</button>
+                    }
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="ApplicantStudiesTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            <th>@L("Actions")</th>
+                            <th>@L("OtherSpecialty")</th>
+                            <th>@L("SecondSpecialty")</th>
+                            <th>@L("University")</th>
+                            <th>@L("GraduationYear")</th>
+                            <th>@L("GraduationCountry")</th>
+                            <th>@L("GraduationRateName")</th>
+                            <th>@L("AcademicDegreeName")</th>
+                            <th>@L("SpecialtiesName")</th>
+                            <th>@L("ApplicantFirstName")</th>
+                        </tr>
+                    </thead>
+                </table>
+           </div>
+      </abp-tab-item-body>
+ 
+      <abp-tab-item-body class="px-7" number="3">
+            <div class="d-flex justify-content-between my-12">
+                <h3 class="card-title font-weight-bolder text-dark"><i class="flaticon-star icon-lg mx-2 color-tree"></i>@L("ApplicantLanguages")</h3>
+                <div class="card-toolbar">
+                    @if (IsGranted(AppPermissions.Pages_ApplicantLanguages_Create))
+                    {
+                        <button id="CreateNewApplicantLanguageButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewApplicantLanguage")</button>
+                    }
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="ApplicantLanguagesTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            <th>@L("Actions")</th>
+                            <th>@L("Narrative")</th>
+                            <th>@L("ApplicantFirstName")</th>
+                            <th>@L("LanguageName")</th>
+                            <th>@L("ConversationName")</th>
+                            <th>@L("ConversationRateName")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+      </abp-tab-item-body>
+      <abp-tab-item-body class="px-7" number="4">
+            <div class="d-flex justify-content-between my-12">
+                <h3 class="card-title font-weight-bolder text-dark"><i class="flaticon-star icon-lg mx-2 color-tree"></i>@L("ApplicantTrainings")</h3>
+                <div class="card-toolbar">
+                    @if (IsGranted(AppPermissions.Pages_ApplicantTrainings_Create))
+                    {
+                        <button id="CreateNewApplicantTrainingButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewApplicantTraining")</button>
+                    }
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="ApplicantTrainingsTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            <th>@L("Actions")</th>
+                            <th>@L("Subject")</th>
+                            <th>@L("Location")</th>
+                            <th>@L("TrainingDate")</th>
+                            <th>@L("Duration")</th>
+                            <th>@L("DurationType")</th>
+                            <th>@L("ApplicantFirstName")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+      </abp-tab-item-body>
+      <abp-tab-item-body class="px-7" number="5">
+            <div class="d-flex justify-content-between my-12">
+                <h3 class="card-title font-weight-bolder text-dark"><i class="flaticon-star icon-lg mx-2 color-tree"></i>@L("Attachments")</h3>
+                <div class="card-toolbar">
+                    @if (IsGranted(AppPermissions.Pages_AttachmentFiles))
+                    {
+                        <button id="CreateMultiAttachmentButton" class="btn btn-primary blue"><i class="fa fa-file"></i> @L("CreateMultiAttachment")</button>
+                    }
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="ApplicationFormAttachmentsTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer table-striped bordered p-0">
+                    <thead>
+                        <tr>
+                            <th>@L("Actions")</th>
+                            <th>@L("AttachmentType")</th>
+                            <th>@L("Description")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </abp-tab-item-body>
+  </abp-tab-body>
+</abp-tab>

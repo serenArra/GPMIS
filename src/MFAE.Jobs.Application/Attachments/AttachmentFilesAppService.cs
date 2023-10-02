@@ -12,12 +12,8 @@ using MFAE.Jobs.Attachments.Dtos;
 using MFAE.Jobs.Dto;
 using Abp.Application.Services.Dto;
 using MFAE.Jobs.Authorization;
-using Abp.Extensions;
 using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Abp.UI;
-using MFAE.Jobs.Storage;
-
 namespace MFAE.Jobs.Attachments
 {
     [AbpAuthorize(AppPermissions.Pages_AttachmentFiles)]
@@ -40,6 +36,7 @@ namespace MFAE.Jobs.Attachments
 
             var filteredAttachmentFiles = _attachmentFileRepository.GetAll()
                         .Include(e => e.AttachmentTypeFk)
+                        .Where(e => e.ObjectId == input.ApplicantIdFilter.ToString())
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.PhysicalName.Contains(input.Filter) || e.Description.Contains(input.Filter) || e.OriginalName.Contains(input.Filter) || e.ObjectId.Contains(input.Filter) || e.Path.Contains(input.Filter) || e.FileToken.Contains(input.Filter) || e.Tag.Contains(input.Filter) || e.FilterKey.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.PhysicalNameFilter), e => e.PhysicalName.Contains(input.PhysicalNameFilter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.DescriptionFilter), e => e.Description.Contains(input.DescriptionFilter))

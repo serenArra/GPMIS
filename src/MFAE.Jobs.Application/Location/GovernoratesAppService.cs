@@ -40,6 +40,7 @@ namespace MFAE.Jobs.Location
 
             var filteredGovernorates = _governorateRepository.GetAll()
                         .Include(e => e.CountryFk)
+                        .WhereIf(input.CountryIdFilter.HasValue, e => e.CountryId == input.CountryIdFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.NameAr.Contains(input.Filter) || e.NameEn.Contains(input.Filter) || e.UniversalCode.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.NameArFilter), e => e.NameAr.Contains(input.NameArFilter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.NameEnFilter), e => e.NameEn.Contains(input.NameEnFilter))
@@ -59,6 +60,7 @@ namespace MFAE.Jobs.Location
 
                                    o.NameAr,
                                    o.NameEn,
+                                   o.Name,
                                    o.UniversalCode,
                                    Id = o.Id,
                                    CountryName = s1 == null || s1.Name == null ? "" : s1.Name.ToString()
@@ -75,7 +77,7 @@ namespace MFAE.Jobs.Location
                 {
                     Governorate = new GovernorateDto
                     {
-
+                        Name = o.Name,
                         NameAr = o.NameAr,
                         NameEn = o.NameEn,
                         UniversalCode = o.UniversalCode,

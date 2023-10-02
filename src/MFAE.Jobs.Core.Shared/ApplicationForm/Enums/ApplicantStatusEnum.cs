@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MFAE.Jobs.ApplicationForm.Enums
+﻿namespace MFAE.Jobs.ApplicationForm.Enums
 {
     public enum ApplicantStatusEnum
     {

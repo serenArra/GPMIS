@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+	<text name="ApplicationMainInformation">Main Information</text>ApplicantStudies
+   
     <text name="JobAdvertisement">Job advertisement</text>
     <text name="MFAE.Jobs.ApplicationForm.JobAdvertisement">JobAdvertisement</text>
     <text name="JobAdvertisementsHeaderInfo">You can add/delete/edit the job advertisement</text>

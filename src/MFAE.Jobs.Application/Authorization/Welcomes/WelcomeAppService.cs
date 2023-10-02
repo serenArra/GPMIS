@@ -14,6 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using MFAE.Jobs.Authorization.Roles;
 using MFAE.Jobs.ApplicationForm;
 using MFAE.Jobs.ApplicationForm.Dtos;
+using System.Collections.Generic;
+using System.Globalization;
 
 namespace MFAE.Jobs.Authorization.Welcomes
 {
@@ -26,9 +28,10 @@ namespace MFAE.Jobs.Authorization.Welcomes
         private readonly IRepository<UserPermissionSetting, long> _userPermissionRepository;
         private readonly IRepository<RolePermissionSetting, long> _rolePermissionRepository;
         private readonly IRepository<JobAdvertisement> _jobAdvertisementRepository;
-
+        private readonly IRepository<IdentificationType> _lookup_identificationTypeRepository;
 
         public WelcomeAppService(
+            IRepository<IdentificationType> lookup_identificationTypeRepository,
             IRepository<JobAdvertisement> jobAdvertisementRepository,
             IRoleManagementConfig roleManagementConfig, 
             IRepository<UserRole, long> userRoleRepository,
@@ -43,7 +46,7 @@ namespace MFAE.Jobs.Authorization.Welcomes
             _userRoleRepository = userRoleRepository;
             _roleRepository = roleRepository;
             _userPermissionRepository = userPermissionRepository;
-
+            _lookup_identificationTypeRepository = lookup_identificationTypeRepository;
         }
 
         public async Task<WelcomeUserDto> GetWelcomeUserForView()

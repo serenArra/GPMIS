@@ -6,11 +6,6 @@
     /// </summary>
     public static class AppPermissions
     {
-        public const string Pages_ApplicationForms = "Pages.ApplicationForms";
-        public const string Pages_ApplicationForms_Create = "Pages.ApplicationForms.Create";
-        public const string Pages_ApplicationForms_Edit = "Pages.ApplicationForms.Edit";
-        public const string Pages_ApplicationForms_Delete = "Pages.ApplicationForms.Delete";
-
         public const string Pages_JobAdvertisements = "Pages.JobAdvertisements";
         public const string Pages_JobAdvertisements_Create = "Pages.JobAdvertisements.Create";
         public const string Pages_JobAdvertisements_Edit = "Pages.JobAdvertisements.Edit";
