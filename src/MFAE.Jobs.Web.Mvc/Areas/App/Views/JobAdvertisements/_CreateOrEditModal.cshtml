@@ -1,5 +1,4 @@
-﻿
-@using System.Globalization
+﻿@using System.Globalization
 @using MFAE.Jobs.Web.Areas.App.Models.Common.Modals
 @using MFAE.Jobs.Web.Areas.App.Models.JobAdvertisements
 @model CreateOrEditJobAdvertisementViewModel
@@ -12,45 +11,56 @@
 
             @if (Model.IsEditMode)
             {
-            <input type="hidden" name="id" value="@Model.JobAdvertisement.Id" />
+                <input type="hidden" name="id" value="@Model.JobAdvertisement.Id" />
             }
-
-            <div class="my-3">
-                <label class="form-label" for="JobAdvertisement_Description">@L("Description")</label>
-                <input class="form-control" id="JobAdvertisement_Description" value="@Model.JobAdvertisement.Description" type="text" name="description" />
+            <div class="row my-3">
+                <div class="col-xl-12">
+                    <label class="form-label" for="JobAdvertisement_AdvertisementId">@L("AdvertisementId")</label>
+                    <input class="form-control form-control-solid" id="JobAdvertisement_AdvertisementId" value="@Model.JobAdvertisement.AdvertisementId" type="text" name="advertisementId" required maxlength="@MFAE.Jobs.ApplicationForm.JobAdvertisementConsts.MaxAdvertisementIdLength" minlength="@MFAE.Jobs.ApplicationForm.JobAdvertisementConsts.MinAdvertisementIdLength" />
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-xl-6">
+                    <label class="form-label" for="JobAdvertisement_AdvertisementDate">@L("AdvertisementDate")</label>
+                    <input class="form-control form-control-solid m-input date-picker" id="JobAdvertisement_AdvertisementDate" type="text" name="advertisementDate" value="@Model.JobAdvertisement.AdvertisementDate" />
+                </div>
+                <div class="col-xl-6">
+                    <label class="form-label" for="JobAdvertisement_AllowedAge">@L("AllowedAge")</label>
+                    <input class="form-control form-control-solid text-start m-input" id="JobAdvertisement_AllowedAge" value="@Model.JobAdvertisement.AllowedAge.ToString(CultureInfo.InvariantCulture)" type="number" name="allowedAge" />
+                </div>
             </div>
 
-            <div class="my-3">
-                <label class="form-label" for="JobAdvertisement_AdvertisementId">@L("AdvertisementId")</label>
-                <input class="form-control" id="JobAdvertisement_AdvertisementId" value="@Model.JobAdvertisement.AdvertisementId" type="text" name="advertisementId" required maxlength="@MFAE.Jobs.ApplicationForm.JobAdvertisementConsts.MaxAdvertisementIdLength" minlength="@MFAE.Jobs.ApplicationForm.JobAdvertisementConsts.MinAdvertisementIdLength" />
+            <div class="row my-3">
+                <div class="col-xl-6">
+                    <label class="form-label" for="JobAdvertisement_FromDate">@L("FromDate")</label>
+                    <abp-datePicker id="JobAdvertisement_FromDate" format="DD/MM/Y" name="fromDate"
+                                    value="@Model.JobAdvertisement.FromDate">
+                    </abp-datePicker>
+                </div>
+
+                <div class="col-xl-6">
+                    <label class="form-label" for="JobAdvertisement_ToDate">@L("ToDate")</label>
+                    <input class="form-control form-control-solid m-input date-picker" id="JobAdvertisement_ToDate" type="text" name="toDate" value="@Model.JobAdvertisement.ToDate" />
+                </div>
             </div>
 
-            <div class="my-3">
-                <label class="form-label" for="JobAdvertisement_AdvertisementDate">@L("AdvertisementDate")</label>
-                <input class="form-control m-input date-picker" id="JobAdvertisement_AdvertisementDate" type="text" name="advertisementDate" value="@Model.JobAdvertisement.AdvertisementDate" />
+            <div class="row my-3">
+                <div class="mycol-xl-12">
+                    <label class="form-label" for="JobAdvertisement_Description">@L("Description")</label>
+                    <input class="form-control form-control-solid" id="JobAdvertisement_Description" value="@Model.JobAdvertisement.Description" type="text" name="description" />
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="mycol-xl-12">
+                    <label class="form-check form-check-custom">
+                        <input id="JobAdvertisement_IsActive" name="isActive" type="checkbox" class="form-check-input" value="true" @Html.Raw(Model.JobAdvertisement.IsActive ?"checked=\"checked\"":"") />
+                        <span class="form-check-label">
+                            @L("IsActive")
+                        </span>
+                    </label>
+                </div>
             </div>
 
-            <div class="my-3">
-                <label class="form-label" for="JobAdvertisement_FromDate">@L("FromDate")</label>
-                <input class="form-control m-input date-picker" id="JobAdvertisement_FromDate" type="text" name="fromDate" value="@Model.JobAdvertisement.FromDate" />
-            </div>
-
-            <div class="my-3">
-                <label class="form-label" for="JobAdvertisement_ToDate">@L("ToDate")</label>
-                <input class="form-control m-input date-picker" id="JobAdvertisement_ToDate" type="text" name="toDate" value="@Model.JobAdvertisement.ToDate" />
-            </div>
-
-            <div class="my-3">
-                <label class="form-label" for="JobAdvertisement_AllowedAge">@L("AllowedAge")</label>
-                <input class="form-control m-input" id="JobAdvertisement_AllowedAge" value="@Model.JobAdvertisement.AllowedAge.ToString(CultureInfo.InvariantCulture)" type="number" name="allowedAge" />
-            </div>
-
-            <label class="form-check form-check-custom">
-                <input id="JobAdvertisement_IsActive" name="isActive" type="checkbox" class="form-check-input" value="true" @Html.Raw(Model.JobAdvertisement.IsActive ?"checked=\"checked\"":"") />
-                <span class="form-check-label">
-                    @L("IsActive")
-                </span>
-            </label>
 
         </form>
     </div>
