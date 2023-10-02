@@ -21,7 +21,7 @@
 
     <abp-wizard-body>
         <abp-wizard-step-body number="1">
-            <div id="ApplicantInformationsForm">
+            <div name="ApplicantInformationsForm" id="ApplicantInformationsForm">
 
                 <input type="hidden" name="id" id="ApplicantId" value="@Model.Applicant.Id" />
                 <input type="hidden" name="UserId" value="@Model.Applicant.UserId" />
@@ -41,28 +41,28 @@
                     </div>
                     <div class="col-xl-6">
                         <label class="form-label" for="Applicant_DocumentNo">@L("DocumentNo")</label>
-                        <input class="form-control form-control-solid" id="Applicant_DocumentNo" value="@Model.Applicant.DocumentNo" type="text" name="documentNo" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxDocumentNoLength" />
+                        <input class="form-control form-control-solid" id="DocumentNo" value="@Model.Applicant.DocumentNo" type="text" name="documentNo" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxDocumentNoLength" />
                     </div>
                 </div>
 
                 <div class="row g-3 my-3">
                     <div class="col-xl-3">
                         <label class="form-label" for="countryId">@L("Country")<span class="text-danger">*</span></label>
-                        <abp-autocomplete id="countryId" name="CountryIdFilter" values='[{"id": "@Model.Applicant.CountryId", "text": "@Model.CountryName"}]'
+                        <abp-autocomplete id="countryId" name="countryId" values='[{"id": "@Model.Applicant.CountryId", "text": "@Model.CountryName"}]'
                                           action="GetAll" controller="Countries" optionKey="country.id" required="true"
                                           optionValue="country.name">
                         </abp-autocomplete>
                     </div>
                     <div class="col-xl-3">
                         <label class="form-label" for="governorateId">@L("Governorate")<span class="text-danger">*</span></label>
-                        <abp-autocomplete id="governorateId" name="governorateIdFilter" values='[{"id": "@Model.Applicant.GovernorateId", "text": "@Model.GovernorateName"}]'
+                        <abp-autocomplete id="governorateId" name="governorateId" values='[{"id": "@Model.Applicant.GovernorateId", "text": "@Model.GovernorateName"}]'
                                           action="GetAll" controller="Governorates" optionKey="governorate.id" required="true"
                                           optionValue="governorate.name" paramsGenerateFunction="getGovernorateParams()">
                         </abp-autocomplete>
                     </div>
                     <div class="col-xl-3">
                         <label class="form-label" for="localityId">@L("Locality")</label>
-                        <abp-autocomplete id="localityId" name="localityIdFilter"
+                        <abp-autocomplete id="localityId" name="localityId"
                                               action="GetAll" controller="Localities" optionKey="locality.id"
                                               optionValue="locality.name" paramsGenerateFunction="getLocalityParams()">
                          </abp-autocomplete>
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="row my-3">
-                    <div class="col-sm-3 text-center margin-top-15 margin-bottom-15">
+                   @*  <div class="col-sm-3 text-center margin-top-15 margin-bottom-15">
                         @if (Model.Applicant.UserId > 0)
                         {
                             <img src="@Url.Action("GetProfilePictureByUser", "Profile", new {area = string.Empty})?userId=@(Model.Applicant.UserId)&&profilePictureId=@(Model.Applicant.ProfilePictureId)" width="128" height="128" class="img-thumbnail img-rounded user-edit-dialog-profile-image" />
@@ -88,6 +88,11 @@
                         {
                             <button class="btn btn-light btn-sm mb-5" id="changeProfilePicture">@L("ChangeProfilePicture")</button>
                         }
+                    </div> *@
+
+                    <div class="col-sm-3 text-center margin-top-15 margin-bottom-15 p-7">
+                        <img id="imageUrl" width="128" height="128" class="d-none img-thumbnail img-rounded user-edit-dialog-profile-image" alt="image" />
+                        <img id="defaultImage" src="@Url.Content("~/Common/Images/default-profile-picture.png")" width="128" height="128" class="d-none img-thumbnail img-rounded user-edit-dialog-profile-image" />
                     </div>
                     <div class="col-sm-9">
                         <div class="row">
@@ -135,14 +140,6 @@
                     </div>
                 </div>
 
-                <div class="row my-3">
-
-                    <div class="col-xl">
-                        <label class="form-label" for="Applicant_BirthPlace">@L("BirthPlace")</label>
-                        <input class="form-control form-control-solid" id="Applicant_BirthPlace" value="@Model.Applicant.BirthPlace" type="text" name="birthPlace" />
-                    </div>
-                </div>
-
                 <div class="row">
                     <div class="form-group col-lg-3">
                         <label for="Applicant_BirthDate" class="form-label">@L("BirthDate")</label>
@@ -186,13 +183,6 @@
                         <input class="form-control form-control-solid" id="Applicant_Email" value="@Model.Applicant.Email" type="text" name="email" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxEmailLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinEmailLength" />
                     </div>
                 </div>
-
-                <label class="form-check form-check-custom form-check-solid mb-3">
-                    <input id="Applicant_IsLocked" name="isLocked" type="checkbox" class="form-check-input" value="true" @Html.Raw(Model.Applicant.IsLocked ?"checked=\"checked\"":"") />
-                    <span class="form-check-label">
-                        @L("IsLocked")
-                    </span>
-                </label>
 
             </div>
         </abp-wizard-step-body>

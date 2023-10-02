@@ -7,12 +7,11 @@
         _$applicantInformationForm.validate(
             {
                 rules: {
-                    identificationNo: {
+                    documentNo: {
                         required: true,
-                        maxLength: '#identificationTypeId',
+                        maxLength:"#identificationTypeId",
                         minLength: '#identificationTypeId',
-                        validateIdentificationNo: true, validateIdentificationNo: '#identificationTypeId'
-
+                        validateDocumentNo: true, validateDocumentNo: '#identificationTypeId'
                     },
                     firstName: {
                         arabicName: true
@@ -28,11 +27,11 @@
                     }
                 },
                 messages: {
-                    identificationNo: {
+                    documentNo: {
                         required: false,
                         maxLength: app.localize('maxlength', 9),
                         minLength: app.localize('minlength', 9),
-                        validateIdentificationNo: app.localize('NotValidIdentificationDocumentNo'),
+                        validateDocumentNo: app.localize('NotValidIdentificationDocumentNo'),
 
                     }
                 }
@@ -66,15 +65,15 @@
             locale: abp.localization.currentLanguage.name,
             format: 'L',
         })
-            .on("apply.daterangepicker", (ev, picker) => {
-                $selectedDate.endDate = picker.startDate;
-                getApplicants();
-            })
-            .on('cancel.daterangepicker', function (ev, picker) {
-                $(this).val("");
-                $selectedDate.endDate = null;
-                getApplicants();
-            });
+        .on("apply.daterangepicker", (ev, picker) => {
+            $selectedDate.endDate = picker.startDate;
+            getApplicants();
+        })
+        .on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val("");
+            $selectedDate.endDate = null;
+            getApplicants();
+        });
 
         var _permissions = {
             create: abp.auth.hasPermission('Pages.Applicants.Create'),
@@ -83,18 +82,7 @@
         };
 
         _$applicantInformationForm.validate();
-        var _createOrEditModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'App/Applicants/CreateOrEditModal',
-            scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/Applicants/_CreateOrEditModal.js',
-            modalClass: 'CreateOrEditApplicantModal'
-        });
-
-
-        var _viewApplicantModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'App/Applicants/ViewapplicantModal',
-            modalClass: 'ViewApplicantModal'
-        });
-        
+              
         var getDateFilter = function (element) {
             if ($selectedDate.startDate == null) {
                 return null;
@@ -108,6 +96,45 @@
             }
             return $selectedDate.endDate.format("YYYY-MM-DDT23:59:59Z");
         }
+
+        /*$('#DocumentNo').on('change', function () {
+           
+            if ($('#identificationTypeId').val() == IdType.PS && $("#DocumentNo").valid())
+            {
+               *//* fetchPersonInfo();*//*
+                $("#DocumentNo").trigger("change");
+            }
+        });
+
+        $("#DocumentNo").trigger("change");*/
+       
+        function fetchPersonInfo() {
+         
+            /*var DocType = $('#identificationTypeId').val();
+            if (DocType == IdType.PS) {
+                abp.ui.setBusy();
+                _applicantsService.fetchPerson({
+                    identificationDocumentNoTypeId: DocType,
+                    identificationDocumentNoId: $('#Applicant_DocumentNo').val()
+                }).done(function (output) {
+
+                    if (output.code != "") {
+                        abp.message.error(output.message, app.localize('Error'))
+                    }
+                    else {
+                        console.log(output);
+                    }
+                }).always(function () {
+                    abp.ui.clearBusy();
+                });
+            }
+            else {
+                
+                $('#imageUrl').addClass('d-none');
+                $('#defaultImage').removeClass('d-none');
+            }*/
+        }
+
 
         function save(successCallback) {
 
