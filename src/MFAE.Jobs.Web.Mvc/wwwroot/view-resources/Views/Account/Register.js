@@ -206,6 +206,12 @@ function verfiyCitizenInfo(successCallback) {
 $("#register-back-btn").on("click", function () {
     location.href = '/Account/Login';
 });
+$('.form-check-input').change(function () {
+    if (this.checked)
+        $('.btn-send').prop("disabled", false);
+    else
+        $('.btn-send').prop("disabled", true);
+});
 
 $(document).ready(function () {
     
@@ -249,12 +255,21 @@ $(document).ready(function () {
 
             }
             if (stepper.getCurrentStepIndex() == "3") {
-
                 if (!_$applicationFormInformationForm.valid()) {
                     return false;
                 }
+               
             }
             stepper.goNext(); // go next step
+        }
+        if (stepper.getCurrentStepIndex() == "3") {
+            $("#full_name_ar").text($("#FirstName").val() + " " + $("#SecondName").val() + " " + $("#ThirdName").val() + " " + $("#Surname").val());
+            $("#full_name_en").text($("#FirstNameEn").val() + " " + $("#SecondNameEn").val() + " " + $("#ThirdNameEn").val() + " " + $("#FourthNameEn").val());
+            $("#document_no").text($("#identificationTypeId option:selected").text() + " - " +$("#DocumentNo").val());
+            $("#email_address").text($("#EmailAddress").val());
+            $("#phone_number").text($("#PhoneNumber").val());
+           
+
         }
     });
 
