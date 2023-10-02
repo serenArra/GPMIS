@@ -52,7 +52,7 @@
 
   <abp-tab-body>
       <abp-tab-item-body class="px-7" number="1">
-            <div id="ApplicantInformationsForm">
+            <div name="ApplicantInformationsForm" id="ApplicantInformationsForm">
 
                 <input type="hidden" name="id" id="ApplicantId" value="@Model.Applicant.Id" />
                 <input type="hidden" name="UserId" value="@Model.Applicant.UserId" />
@@ -66,13 +66,12 @@
                             @Html.DropDownList("identificationTypeId", new SelectList(Model.ApplicantIdentificationTypeList,"Id","DisplayName",
                             (Model.IsEditMode ?  Model.Applicant.IdentificationTypeId.ToString() : (defaultIdType?.Id.ToString()))),
                             @L("SelectOption"), new { @class = "form-control form-control-solid" })
-
                             <div class="fv-plugins-message-container"></div>
                         </div>
                     </div>
                     <div class="col-xl-6">
                         <label class="form-label" for="Applicant_DocumentNo">@L("DocumentNo")</label>
-                        <input class="form-control form-control-solid" id="Applicant_DocumentNo" value="@Model.Applicant.DocumentNo" type="text" name="documentNo" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxDocumentNoLength" />
+                        <input class="form-control form-control-solid" id="DocumentNo" value="@Model.Applicant.DocumentNo" type="text" name="documentNo" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxDocumentNoLength" />
                     </div>
                 </div>
 
@@ -105,7 +104,7 @@
                 </div>
 
                 <div class="row my-3">
-                    <div class="col-sm-3 text-center margin-top-15 margin-bottom-15">
+                   @*  <div class="col-sm-3 text-center margin-top-15 margin-bottom-15">
                         @if (Model.Applicant.UserId > 0)
                         {
                             <img src="@Url.Action("GetProfilePictureByUser", "Profile", new {area = string.Empty})?userId=@(Model.Applicant.UserId)&&profilePictureId=@(Model.Applicant.ProfilePictureId)" width="128" height="128" class="img-thumbnail img-rounded user-edit-dialog-profile-image" />
@@ -119,6 +118,11 @@
                         {
                             <button class="btn btn-light btn-sm mb-5" id="changeProfilePicture">@L("ChangeProfilePicture")</button>
                         }
+                    </div> *@
+
+                    <div class="col-sm-3 text-center margin-top-15 margin-bottom-15 p-7">
+                        <img id="imageUrl" width="128" height="128" class="d-none img-thumbnail img-rounded user-edit-dialog-profile-image" alt="image" />
+                        <img id="defaultImage" src="@Url.Content("~/Common/Images/default-profile-picture.png")" width="128" height="128" class="d-none img-thumbnail img-rounded user-edit-dialog-profile-image" />
                     </div>
                     <div class="col-sm-9">
                         <div class="row">
@@ -163,14 +167,6 @@
                                 <input class="form-control form-control-solid " id="Applicant_FamilyNameEn" value="@Model.Applicant.FamilyNameEn" type="text" name="familyNameEn" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxFamilyNameEnLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinFamilyNameEnLength" />
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="row my-3">
-
-                    <div class="col-xl">
-                        <label class="form-label" for="Applicant_BirthPlace">@L("BirthPlace")</label>
-                        <input class="form-control form-control-solid" id="Applicant_BirthPlace" value="@Model.Applicant.BirthPlace" type="text" name="birthPlace" />
                     </div>
                 </div>
 
