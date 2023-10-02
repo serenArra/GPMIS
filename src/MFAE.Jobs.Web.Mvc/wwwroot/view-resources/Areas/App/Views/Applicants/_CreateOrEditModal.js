@@ -6,7 +6,7 @@
         var _modalManager;
         var _$applicantInformationForm = null;
 
-		        var _ApplicantidentificationTypeLookupTableModal = new app.ModalManager({
+		 var _ApplicantidentificationTypeLookupTableModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/Applicants/IdentificationTypeLookupTableModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/Applicants/_ApplicantIdentificationTypeLookupTableModal.js',
             modalClass: 'IdentificationTypeLookupTableModal'
@@ -157,7 +157,14 @@
                 _$applicantInformationForm.find('input[name=localityId]').val(''); 
         });
 		
+       
+        ('#changeProfilePicture').click(function () {
+            changeProfilePictureModal.open({ userId: _$applicantInformationForm.find('input[name=UserId]').val() });
+        });
 
+        changeProfilePictureModal.onClose(function () {
+            _modalManager.getModal().find('.user-edit-dialog-profile-image').attr('src', "/Profile/GetProfilePictureByUser?userId=" + _modalManager.getModal().find('input[name=Id]').val())
+        });
 
         this.save = function () {
             if (!_$applicantInformationForm.valid()) {
@@ -192,13 +199,8 @@
                 return;
             }
 
-            
-
             var applicant = _$applicantInformationForm.serializeFormToObject();
             
-            
-            
-			
 			 _modalManager.setBusy(true);
 			 _applicantsService.createOrEdit(
 				applicant

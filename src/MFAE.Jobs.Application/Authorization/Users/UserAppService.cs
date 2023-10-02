@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
@@ -19,12 +18,10 @@ using Abp.Organizations;
 using Abp.Runtime.Session;
 using Abp.UI;
 using Abp.Zero.Configuration;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using MiniExcelLibs;
 using MFAE.Jobs.Authorization.Permissions;
 using MFAE.Jobs.Authorization.Permissions.Dto;
 using MFAE.Jobs.Authorization.Roles;
@@ -432,6 +429,7 @@ namespace MFAE.Jobs.Authorization.Users
         private IQueryable<User> GetUsersFilteredQuery(IGetUsersInput input)
         {
             var query = UserManager.Users
+                .WhereIf(input.UserId.HasValue, u => u.Id == input.UserId)
                 .WhereIf(input.Role.HasValue, u => u.Roles.Any(r => r.RoleId == input.Role.Value))
                 .WhereIf(input.OnlyLockedUsers,
                     u => u.LockoutEndDateUtc.HasValue && u.LockoutEndDateUtc.Value > DateTime.UtcNow)

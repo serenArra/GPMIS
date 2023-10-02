@@ -54,6 +54,7 @@ namespace MFAE.Jobs.Location
                                 o.IsoAlpha,
                                 o.NameAr,
                                 o.NameEn,
+                                o.Name,
                                 o.UniversalCode,
                                 Id = o.Id
                             };
@@ -74,6 +75,7 @@ namespace MFAE.Jobs.Location
                         IsoAlpha = o.IsoAlpha,
                         NameAr = o.NameAr,
                         NameEn = o.NameEn,
+                        Name = o.Name,
                         UniversalCode = o.UniversalCode,
                         Id = o.Id,
                     }

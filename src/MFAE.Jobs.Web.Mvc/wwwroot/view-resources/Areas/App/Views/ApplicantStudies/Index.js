@@ -90,11 +90,14 @@
             paging: true,
             serverSide: true,
             processing: true,
+            makeAjax: $('#ApplicantId').val() > 0,
+            deferLoading: $('#ApplicantId').val() > 0 ? null : 0,
             listAction: {
                 ajaxFunction: _applicantStudiesService.getAll,
                 inputFilter: function () {
                     return {
-					filter: $('#ApplicantStudiesTableFilter').val(),
+                    filter: $('#ApplicantStudiesTableFilter').val(),
+                    applicantIdFilter: $('#ApplicantId').val(),
 					otherSpecialtyFilter: $('#OtherSpecialtyFilterId').val(),
 					secondSpecialtyFilter: $('#SecondSpecialtyFilterId').val(),
 					universityFilter: $('#UniversityFilterId').val(),

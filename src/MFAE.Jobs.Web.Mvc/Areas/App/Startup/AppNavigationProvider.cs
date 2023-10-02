@@ -21,8 +21,7 @@ namespace MFAE.Jobs.Web.Areas.App.Startup
                         icon: "flaticon-line-graph",
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Administration_Host_Dashboard)
                     )
-                )
-                .AddItem(new MenuItemDefinition(
+                ).AddItem(new MenuItemDefinition(
                         AppPageNames.Tenant.Dashboard,
                         L("Dashboard"),
                         url: "App/TenantDashboard",
@@ -30,6 +29,14 @@ namespace MFAE.Jobs.Web.Areas.App.Startup
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_Tenant_Dashboard)
                     )
                 )
+                .AddItem(new MenuItemDefinition(
+                        AppPageNames.Common.JobAdvertisements,
+                        L("JobAdvertisements"),
+                        url: "App/JobAdvertisements",
+                        icon: "flaticon-more",
+                        permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_JobAdvertisements)
+                    )
+                )               
                .AddItem(new MenuItemDefinition(
                            AppPageNames.Common.Applicants,
                            L("Applicants"),
@@ -140,6 +147,7 @@ namespace MFAE.Jobs.Web.Areas.App.Startup
                     )
                   )
                 )
+                              
                 .AddItem(new MenuItemDefinition(
                         AppPageNames.Common.Administration,
                         L("Attachments"),
@@ -176,7 +184,6 @@ namespace MFAE.Jobs.Web.Areas.App.Startup
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_AttachmentEntityTypes)
                     )
                 )
-
                 )
                 .AddItem(new MenuItemDefinition(
                         AppPageNames.Common.Administration,

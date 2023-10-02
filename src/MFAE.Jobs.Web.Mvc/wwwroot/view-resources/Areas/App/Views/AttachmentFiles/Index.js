@@ -90,11 +90,14 @@
             paging: true,
             serverSide: true,
             processing: true,
+            makeAjax: $('#ApplicantId').val() > 0,
+            deferLoading: $('#ApplicantId').val() > 0 ? null : 0,
             listAction: {
                 ajaxFunction: _attachmentFilesService.getAll,
                 inputFilter: function () {
                     return {
-					filter: $('#AttachmentFilesTableFilter').val(),
+                    filter: $('#AttachmentFilesTableFilter').val(),
+                    applicantIdFilter: $('#ApplicantId').val(),
 					physicalNameFilter: $('#PhysicalNameFilterId').val(),
 					descriptionFilter: $('#DescriptionFilterId').val(),
 					originalNameFilter: $('#OriginalNameFilterId').val(),

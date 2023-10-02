@@ -49,6 +49,7 @@ namespace MFAE.Jobs.ApplicationForm
                         .Include(e => e.AcademicDegreeFk)
                         .Include(e => e.SpecialtiesFk)
                         .Include(e => e.ApplicantFk)
+                        .Where(e => e.ApplicantId == input.ApplicantIdFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.OtherSpecialty.Contains(input.Filter) || e.SecondSpecialty.Contains(input.Filter) || e.University.Contains(input.Filter) || e.GraduationCountry.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.OtherSpecialtyFilter), e => e.OtherSpecialty.Contains(input.OtherSpecialtyFilter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.SecondSpecialtyFilter), e => e.SecondSpecialty.Contains(input.SecondSpecialtyFilter))

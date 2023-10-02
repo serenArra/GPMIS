@@ -1,8 +1,4 @@
-﻿using MFAE.Jobs.ApplicationForm;
-
-using MFAE.Jobs.ApplicationForm.Enums;
-
-using System;
+﻿using MFAE.Jobs.ApplicationForm.Enums;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using Abp.Linq.Extensions;
@@ -14,11 +10,8 @@ using MFAE.Jobs.ApplicationForm.Dtos;
 using MFAE.Jobs.Dto;
 using Abp.Application.Services.Dto;
 using MFAE.Jobs.Authorization;
-using Abp.Extensions;
 using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Abp.UI;
-using MFAE.Jobs.Storage;
 
 namespace MFAE.Jobs.ApplicationForm
 {
@@ -45,6 +38,7 @@ namespace MFAE.Jobs.ApplicationForm
 
             var filteredApplicantTrainings = _applicantTrainingRepository.GetAll()
                         .Include(e => e.ApplicantFk)
+                        .Where(e => e.ApplicantId == input.ApplicantIdFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.Subject.Contains(input.Filter) || e.Location.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.SubjectFilter), e => e.Subject.Contains(input.SubjectFilter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.LocationFilter), e => e.Location.Contains(input.LocationFilter))

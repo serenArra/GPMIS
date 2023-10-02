@@ -127,6 +127,7 @@
 			"content": "
 						{
                                 text: app.localize('View'),
+                                iconStyle: 'far fa-eye mr-2',
                                 action: function (data) {
                                     _view{{Entity_Name_Here}}Modal.open({ id: data.record.{{entity_Name_Here}}.id });
                                 }
@@ -138,6 +139,7 @@
 			"content": "
 						{
                                 text: app.localize('View'),
+                                iconStyle: 'far fa-eye mr-2',
                                 action: function (data) {
                                     window.location=\"/{{App_Area_Name_Here}}/{{Entity_Name_Plural_Here}}/View{{Entity_Name_Here}}/\" + data.record.{{entity_Name_Here}}.id;
                                 }

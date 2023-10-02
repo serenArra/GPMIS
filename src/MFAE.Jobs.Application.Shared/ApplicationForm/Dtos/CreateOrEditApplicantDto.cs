@@ -3,11 +3,15 @@
 using System;
 using Abp.Application.Services.Dto;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 
 namespace MFAE.Jobs.ApplicationForm.Dtos
 {
     public class CreateOrEditApplicantDto : EntityDto<long?>
     {
+        public long? UserId { get; set; }
+
+        public Guid ProfilePictureId { get; set; }
 
         [Required]
         [StringLength(ApplicantConsts.MaxDocumentNoLength, MinimumLength = ApplicantConsts.MinDocumentNoLength)]
@@ -16,6 +20,21 @@ namespace MFAE.Jobs.ApplicationForm.Dtos
         [Required]
         [StringLength(ApplicantConsts.MaxFirstNameLength, MinimumLength = ApplicantConsts.MinFirstNameLength)]
         public string FirstName { get; set; }
+
+        public string FirstNameBylanguage
+        {
+            get
+            {
+                var firstName = "";
+
+                if (CultureInfo.CurrentUICulture.Name == "ar")
+                    firstName = this.FirstName;
+                else
+                    firstName = this.FirstNameEn;
+
+                return firstName;
+            }
+        }
 
         [Required]
         [StringLength(ApplicantConsts.MaxFatherNameLength, MinimumLength = ApplicantConsts.MinFatherNameLength)]
@@ -44,6 +63,21 @@ namespace MFAE.Jobs.ApplicationForm.Dtos
         [Required]
         [StringLength(ApplicantConsts.MaxFamilyNameEnLength, MinimumLength = ApplicantConsts.MinFamilyNameEnLength)]
         public string FamilyNameEn { get; set; }
+
+        public string FamilyNameBylanguage
+        {
+            get
+            {
+                var familyName = "";
+
+                if (CultureInfo.CurrentUICulture.Name == "ar")
+                    familyName = this.FamilyName;
+                else
+                    familyName = this.FamilyNameEn;
+
+                return familyName;
+            }
+        }
 
         public DateTime BirthDate { get; set; }
 
@@ -80,6 +114,7 @@ namespace MFAE.Jobs.ApplicationForm.Dtos
         public int? GovernorateId { get; set; }
 
         public int? LocalityId { get; set; }
+
 
     }
 }

@@ -99,10 +99,4 @@ export class {{Entity_Name_Plural_Here}}Component extends AppComponentBase {
     {{Master_Detail_Table_Row_Opener_Here}}
     {{Master_Detail_Table_Close_All_Child_Rows_Here}}
     {{Get_Download_Url_Here}}
-
-    resetFilters(): void {
-        this.filterText = '';
-        {{Property_Filter_Def_Clear_Here}}{{NP_Filter_Def_Clear_Here}}
-        this.get{{Entity_Name_Plural_Here}}();
-    }
 }

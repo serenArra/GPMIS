@@ -40,6 +40,7 @@ namespace MFAE.Jobs.Location
 
             var filteredLocalities = _localityRepository.GetAll()
                         .Include(e => e.GovernorateFk)
+                        .WhereIf(input.GovernorateIdFilter.HasValue, e => e.GovernorateId == input.GovernorateIdFilter)
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.NameAr.Contains(input.Filter) || e.NameEn.Contains(input.Filter) || e.UniversalCode.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.NameArFilter), e => e.NameAr.Contains(input.NameArFilter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.NameEnFilter), e => e.NameEn.Contains(input.NameEnFilter))
@@ -56,7 +57,7 @@ namespace MFAE.Jobs.Location
 
                              select new
                              {
-
+                                 o.Name,
                                  o.NameAr,
                                  o.NameEn,
                                  o.UniversalCode,
@@ -75,7 +76,7 @@ namespace MFAE.Jobs.Location
                 {
                     Locality = new LocalityDto
                     {
-
+                        Name = o.Name,
                         NameAr = o.NameAr,
                         NameEn = o.NameEn,
                         UniversalCode = o.UniversalCode,

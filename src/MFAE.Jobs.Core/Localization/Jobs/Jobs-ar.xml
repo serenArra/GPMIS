@@ -141,6 +141,20 @@
     <text name="PersonalInformation">المعلومات الشخصية</text>
     <text name="AccountVerification">توثيق الحساب</text>
     <text name="AccountInformation">معلومات الحساب</text>
+    <text name="JobAdvertisement">الاعلان الوظيفي</text>
+    <text name="MFAE.Jobs.ApplicationForm.JobAdvertisement">الاعلان الوظيفي</text>
+    <text name="JobAdvertisementsHeaderInfo">يمكنك إضافة/حذف/تعديل إعلان الوظيفة</text>
+    <text name="CreateNewJobAdvertisement">إنشاء إعلان وظيفة جديد</text>
+    <text name="EditJobAdvertisement">تعديل إعلان الوظيفة</text>
+    <text name="DeleteJobAdvertisement">حذف إعلان الوظيفة</text>
+    <text name="JobAdvertisements">إعلانات الوظائف</text>
+
+    <text name="WantToApply">تريد التقديم؟؟ </text>
+    <text name="JobDescription"> المسمى الوظيفي</text>
+    <text name="CallMethods">طرق الاتصال</text>
+    <text name="Call">اتصال</text>
+    <text name="Whatsapp">واتس اب</text>
+
     <text name="SelectOption">الرجاء الاختيار ...</text>
     <text name="Enum_XRoadServiceStatusEnum_1">فعال</text>
     <text name="Enum_XRoadServiceStatusEnum_2">غير فعال</text>

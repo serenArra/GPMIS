@@ -35,6 +35,7 @@ namespace MFAE.Jobs.ApplicationForm
         {
 
             var filteredLanguages = _languageRepository.GetAll()
+                         /*.Where(e => e.ApplicantId == input.ApplicantIdFilter)*/
                         .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), e => false || e.NameAr.Contains(input.Filter) || e.NameEn.Contains(input.Filter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.NameArFilter), e => e.NameAr.Contains(input.NameArFilter))
                         .WhereIf(!string.IsNullOrWhiteSpace(input.NameEnFilter), e => e.NameEn.Contains(input.NameEnFilter))

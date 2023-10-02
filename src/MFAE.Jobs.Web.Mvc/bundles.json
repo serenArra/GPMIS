@@ -261,6 +261,7 @@
         "node_modules/chart.js/dist/chart.js",
         "node_modules/bootstrap-markdown/js/bootstrap-markdown.js",
         "node_modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js",
+        "node_modules/bootstrap4-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
         "node_modules/flot/jquery.flot.js",
         "node_modules/flot/jquery.flot.time.js",
         "node_modules/blueimp-file-upload/js/vendor/jquery.ui.widget.js",

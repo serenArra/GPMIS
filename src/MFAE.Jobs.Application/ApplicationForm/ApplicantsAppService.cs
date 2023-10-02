@@ -1,5 +1,4 @@
-﻿using MFAE.Jobs.ApplicationForm;
-using MFAE.Jobs.Authorization.Users;
+﻿using MFAE.Jobs.Authorization.Users;
 using MFAE.Jobs.Location;
 
 using MFAE.Jobs.ApplicationForm.Enums;
@@ -16,22 +15,33 @@ using MFAE.Jobs.ApplicationForm.Dtos;
 using MFAE.Jobs.Dto;
 using Abp.Application.Services.Dto;
 using MFAE.Jobs.Authorization;
-using Abp.Extensions;
 using Abp.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Abp.UI;
-using MFAE.Jobs.Storage;
 using MFAE.Jobs.XRoad.Dtos;
 using MFAE.Jobs.XRoad;
-using Stripe;
 using System.Dynamic;
 using System.Globalization;
+using Abp.Authorization.Users;
+using Abp.Runtime.Session;
+using MFAE.Jobs.Authorization.Users.Dto;
+using MFAE.Jobs.Url;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using Abp.Extensions;
+using Microsoft.AspNetCore.Identity;
+using MFAE.Jobs.Authorization.Roles;
+using Abp.Notifications;
+using MFAE.Jobs.Notifications;
+using Abp.Domain.Uow;
+using System.Transactions;
 
 namespace MFAE.Jobs.ApplicationForm
 {
     [AbpAuthorize(AppPermissions.Pages_Applicants)]
     public class ApplicantsAppService : JobsAppServiceBase, IApplicantsAppService
     {
+        public IAppUrlService AppUrlService { get; set; }
+
         private readonly IRepository<Applicant, long> _applicantRepository;
         private readonly IApplicantsExcelExporter _applicantsExcelExporter;
         private readonly IRepository<IdentificationType, int> _lookup_identificationTypeRepository;
@@ -42,10 +52,29 @@ namespace MFAE.Jobs.ApplicationForm
         private readonly IRepository<Governorate, int> _lookup_governorateRepository;
         private readonly IRepository<Locality, int> _lookup_localityRepository;
         private readonly IXRoadServicesAppService _xRoadServicesAppService;
+        private readonly IUserEmailer _userEmailer;
+        private readonly IUserPolicy _userPolicy;
+        private readonly UserManager _userManager;
+        private readonly IPasswordHasher<User> _passwordHasher;
+        private readonly RoleManager _roleManager;
+        private readonly IEnumerable<IPasswordValidator<User>> _passwordValidators;
+        private readonly INotificationSubscriptionManager _notificationSubscriptionManager;
+        private readonly IAppNotifier _appNotifier;
+        private readonly IUnitOfWorkManager _unitOfWorkManager;
+      
 
 
-        public ApplicantsAppService(IXRoadServicesAppService xRoadServicesAppService, IRepository<Applicant, long> applicantRepository, IApplicantsExcelExporter applicantsExcelExporter, IRepository<IdentificationType, int> lookup_identificationTypeRepository, IRepository<MaritalStatus, int> lookup_maritalStatusRepository, IRepository<User, long> lookup_userRepository, IRepository<ApplicantStatus, long> lookup_applicantStatusRepository, IRepository<Country, int> lookup_countryRepository, IRepository<Governorate, int> lookup_governorateRepository, IRepository<Locality, int> lookup_localityRepository)
+        public ApplicantsAppService(IUnitOfWorkManager unitOfWorkManager, IAppNotifier appNotifier, INotificationSubscriptionManager notificationSubscriptionManager, RoleManager roleManager, IEnumerable<IPasswordValidator<User>> passwordValidators, IUserPolicy userPolicy, UserManager userManager, IPasswordHasher<User> passwordHasher, IUserEmailer userEmailer, IXRoadServicesAppService xRoadServicesAppService, IRepository<Applicant, long> applicantRepository, IApplicantsExcelExporter applicantsExcelExporter, IRepository<IdentificationType, int> lookup_identificationTypeRepository, IRepository<MaritalStatus, int> lookup_maritalStatusRepository, IRepository<User, long> lookup_userRepository, IRepository<ApplicantStatus, long> lookup_applicantStatusRepository, IRepository<Country, int> lookup_countryRepository, IRepository<Governorate, int> lookup_governorateRepository, IRepository<Locality, int> lookup_localityRepository)
         {
+            _unitOfWorkManager = unitOfWorkManager;
+            _appNotifier = appNotifier;
+            _notificationSubscriptionManager = notificationSubscriptionManager;
+            _roleManager = roleManager;
+            _passwordValidators = passwordValidators;
+            _passwordHasher = passwordHasher;
+            _userManager = userManager;
+            _userPolicy = userPolicy;
+            _userEmailer = userEmailer;
             _applicantRepository = applicantRepository;
             _applicantsExcelExporter = applicantsExcelExporter;
             _lookup_identificationTypeRepository = lookup_identificationTypeRepository;
@@ -219,7 +248,7 @@ namespace MFAE.Jobs.ApplicationForm
                 output.IdentificationTypeName = _lookupIdentificationType?.Name?.ToString();
             }
 
-            if (output.Applicant.MaritalStatusId != null)
+            if (output.Applicant.MaritalStatusId > 0)
             {
                 var _lookupMaritalStatus = await _lookup_maritalStatusRepository.FirstOrDefaultAsync((int)output.Applicant.MaritalStatusId);
                 output.MaritalStatusName = _lookupMaritalStatus?.Name?.ToString();
@@ -237,7 +266,7 @@ namespace MFAE.Jobs.ApplicationForm
                 output.ApplicantStatusDescription = _lookupApplicantStatus?.Description?.ToString();
             }
 
-            if (output.Applicant.CountryId != null)
+            if (output.Applicant.CountryId > 0)
             {
                 var _lookupCountry = await _lookup_countryRepository.FirstOrDefaultAsync((int)output.Applicant.CountryId);
                 output.CountryName = _lookupCountry?.Name?.ToString();
@@ -310,32 +339,84 @@ namespace MFAE.Jobs.ApplicationForm
             return output;
         }
 
-        public async Task CreateOrEdit(CreateOrEditApplicantDto input)
+        public async Task<long> CreateOrEdit(CreateOrEditApplicantDto input)
         {
             if (input.Id == null)
             {
-                await Create(input);
+              return await Create(input);
             }
             else
             {
                 await Update(input);
+                return (long)input.Id;
             }
         }
 
         [AbpAuthorize(AppPermissions.Pages_Applicants_Create)]
-        protected virtual async Task Create(CreateOrEditApplicantDto input)
+        protected virtual async Task<long> Create(CreateOrEditApplicantDto input)
         {
-            var applicant = ObjectMapper.Map<Applicant>(input);
+            using (var uow = _unitOfWorkManager.Begin(TransactionScopeOption.RequiresNew)) {
+                var applicant = ObjectMapper.Map<Applicant>(input);
+                applicant.Id = await _applicantRepository.InsertAndGetIdAsync(applicant);
 
-            await _applicantRepository.InsertAsync(applicant);
+                var applicantStatus = new ApplicantStatus()
+                {
+                    Status = ApplicantStatusEnum.New,
+                    Description = L("NewApplicantAdded"),
+                    ApplicantId = applicant.Id,
+                    CreatorUserId = AbpSession.UserId,
+                };
 
+                applicant.CurrentStatusId = await _lookup_applicantStatusRepository.InsertAndGetIdAsync(applicantStatus);
+
+                await _applicantRepository.UpdateAsync(applicant);
+                await CurrentUnitOfWork.SaveChangesAsync();
+
+               /* var UserRecorde = await _lookup_userRepository.GetAll().Where(x => x.Id == input.UserId).FirstOrDefaultAsync();
+                var userRole = new string[] { "User" };
+
+                CreateOrUpdateUserInput user = new CreateOrUpdateUserInput
+                {
+                    User = new UserEditDto
+                    {
+                        EmailAddress = input.Email,
+                        PhoneNumber = input.Mobile,
+                        Name = input.FirstNameBylanguage,
+                        Surname = input.FamilyNameBylanguage,
+                        UserName = input.FirstName,
+                      *//*  Password = input.Password,
+                        IsActive = input.IsActive,
+                        IsLockoutEnabled = input.IsLockoutEnabled,
+                        IsTwoFactorEnabled = input.IsTwoFactorEnabled,*//*
+                    },
+                    SetRandomPassword = input.SetRandomPassword,
+                    SendActivationEmail = input.SendActivationEmail,
+                    AssignedRoleNames = userRole,
+                };
+
+                //From Existance User Recorde
+                if (UserRecorde != null)
+                {
+                    var _userRole = await UserManager.GetRolesAsync(UserRecorde);
+                    user.User.Id = UserRecorde.Id;
+                    user.AssignedRoleNames = _userRole.ToArray();
+                }
+
+                applicant.UserId = await CreateOrUpdateUser(user);*/
+                return applicant.Id;
+            }
         }
 
         [AbpAuthorize(AppPermissions.Pages_Applicants_Edit)]
         protected virtual async Task Update(CreateOrEditApplicantDto input)
         {
-            var applicant = await _applicantRepository.FirstOrDefaultAsync((long)input.Id);
-            ObjectMapper.Map(input, applicant);
+            using (var uow = _unitOfWorkManager.Begin(TransactionScopeOption.RequiresNew))
+            {
+                var applicant = await _applicantRepository.FirstOrDefaultAsync((long)input.Id);
+                input.CurrentStatusId = applicant.CurrentStatusId;
+                ObjectMapper.Map(input, applicant);
+            }
+           
 
         }
 
@@ -343,6 +424,126 @@ namespace MFAE.Jobs.ApplicationForm
         public async Task Delete(EntityDto<long> input)
         {
             await _applicantRepository.DeleteAsync(input.Id);
+        }
+
+        protected async Task<long> CreateOrUpdateUser(CreateOrUpdateUserInput input)
+        {
+            if (input.User.Id.HasValue)
+            {
+                await UpdateUserAsync(input);
+
+                return input.User.Id.Value;
+            }
+            else
+            {
+                return await CreateUserAsync(input);
+            }
+        }
+
+
+        [AbpAuthorize(AppPermissions.Pages_Applicants_Edit)]
+        protected virtual async Task UpdateUserAsync(CreateOrUpdateUserInput input)
+        {
+            Debug.Assert(input.User.Id != null, "input.User.Id should be set.");
+
+            var user = await UserManager.FindByIdAsync(input.User.Id.Value.ToString());
+
+            //Update user properties
+            ObjectMapper.Map(input.User, user); //Passwords is not mapped (see mapping configuration)
+
+            CheckErrors(await UserManager.UpdateAsync(user));
+
+            if (input.SetRandomPassword)
+            {
+                var randomPassword = await _userManager.CreateRandomPassword();
+                user.Password = _passwordHasher.HashPassword(user, randomPassword);
+                input.User.Password = randomPassword;
+            }
+            else if (!input.User.Password.IsNullOrEmpty())
+            {
+                await UserManager.InitializeOptionsAsync(AbpSession.TenantId);
+                CheckErrors(await UserManager.ChangePasswordAsync(user, input.User.Password));
+            }
+
+            //Update roles
+            CheckErrors(await UserManager.SetRolesAsync(user, input.AssignedRoleNames));
+
+            //update organization units
+            await UserManager.SetOrganizationUnitsAsync(user, input.OrganizationUnits.ToArray());
+
+            if (input.SendActivationEmail)
+            {
+                user.SetNewEmailConfirmationCode();
+                await _userEmailer.SendEmailActivationLinkAsync(
+                    user,
+                    AppUrlService.CreateEmailActivationUrlFormat(AbpSession.TenantId),
+                    input.User.Password
+                );
+            }
+        }
+
+
+        [AbpAuthorize(AppPermissions.Pages_Applicants_Create)]
+        protected virtual async Task<long> CreateUserAsync(CreateOrUpdateUserInput input)
+        {
+            if (AbpSession.TenantId.HasValue)
+            {
+                await _userPolicy.CheckMaxUserCountAsync(AbpSession.GetTenantId());
+            }
+
+            var user = ObjectMapper.Map<User>(input.User); //Passwords is not mapped (see mapping configuration)
+            user.TenantId = AbpSession.TenantId;
+
+            //Set password
+            if (input.SetRandomPassword)
+            {
+                var randomPassword = await _userManager.CreateRandomPassword();
+                user.Password = _passwordHasher.HashPassword(user, randomPassword);
+                input.User.Password = randomPassword;
+            }
+            else if (!input.User.Password.IsNullOrEmpty())
+            {
+                await UserManager.InitializeOptionsAsync(AbpSession.TenantId);
+                foreach (var validator in _passwordValidators)
+                {
+                    CheckErrors(await validator.ValidateAsync(UserManager, user, input.User.Password));
+                }
+
+                user.Password = _passwordHasher.HashPassword(user, input.User.Password);
+            }
+
+            user.ShouldChangePasswordOnNextLogin = input.User.ShouldChangePasswordOnNextLogin;
+
+            //Assign roles
+            user.Roles = new Collection<UserRole>();
+            foreach (var roleName in input.AssignedRoleNames)
+            {
+                var role = await _roleManager.GetRoleByNameAsync(roleName);
+                user.Roles.Add(new UserRole(AbpSession.TenantId, user.Id, role.Id));
+            }
+
+            CheckErrors(await UserManager.CreateAsync(user));
+            await CurrentUnitOfWork.SaveChangesAsync(); //To get new user's Id.
+
+            //Notifications
+            await _notificationSubscriptionManager.SubscribeToAllAvailableNotificationsAsync(user.ToUserIdentifier());
+            await _appNotifier.WelcomeToTheApplicationAsync(user);
+
+            //Organization Units
+            await UserManager.SetOrganizationUnitsAsync(user, input.OrganizationUnits.ToArray());
+
+            //Send activation email
+            if (input.SendActivationEmail)
+            {
+                user.SetNewEmailConfirmationCode();
+                await _userEmailer.SendEmailActivationLinkAsync(
+                    user,
+                    AppUrlService.CreateEmailActivationUrlFormat(AbpSession.TenantId),
+                    input.User.Password
+                );
+            }
+
+            return user.Id;
         }
 
         public async Task<FileDto> GetApplicantsToExcel(GetAllApplicantsForExcelInput input)
@@ -449,12 +650,14 @@ namespace MFAE.Jobs.ApplicationForm
         [AbpAuthorize(AppPermissions.Pages_Applicants)]
         public async Task<List<ApplicantIdentificationTypeLookupTableDto>> GetAllIdentificationTypeForTableDropdown()
         {
-            return await _lookup_identificationTypeRepository.GetAll()
-                .Select(identificationType => new ApplicantIdentificationTypeLookupTableDto
-                {
-                    Id = identificationType.Id,
-                    DisplayName = identificationType == null || identificationType.Name == null ? "" : identificationType.Name.ToString()
-                }).ToListAsync();
+            return await _lookup_identificationTypeRepository.GetAll().OrderBy(e => CultureInfo.CurrentUICulture.Name == "ar" ? e.NameAr : e.NameEn)
+               .Select(identificationType => new ApplicantIdentificationTypeLookupTableDto
+               {
+                   Id = identificationType.Id,
+                   NameAr = identificationType == null || identificationType.NameAr == null ? "" : identificationType.NameAr.ToString(),
+                   NameEn = identificationType == null || identificationType.NameEn == null ? "" : identificationType.NameEn.ToString(),
+                   IsDefault = identificationType.IsDefault
+               }).ToListAsync();
         }
 
         [AbpAuthorize(AppPermissions.Pages_Applicants)]

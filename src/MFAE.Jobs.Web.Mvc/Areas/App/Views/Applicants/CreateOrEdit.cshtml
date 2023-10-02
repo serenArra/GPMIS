@@ -1,0 +1,85 @@
+﻿@using MFAE.Jobs.ApplicationForm.Dtos;
+@using MFAE.Jobs.ApplicationForm.Enums;
+@using MFAE.Jobs.Authorization
+@using MFAE.Jobs.Web.Areas.App.Models.Applicants
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Startup
+@model CreateOrEditApplicantModalViewModel
+@using Abp.Extensions
+@using MFAE.Jobs.Web.TagHelpers
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.Applicants;
+}
+
+@section Styles
+{
+    <style>
+        .iframe-facility {
+            border: 2px solid #d4ecff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 16px;
+        }
+    </style>
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/App/Views/Applicants/CreateOrEdit.js" asp-append-version="true"></script>
+    <script abp-src="/metronic/themes/theme2/js/components/stepper.js" asp-append-version="true"></script>
+
+    <script abp-src="/view-resources/Areas/App/Views/ApplicantStudies/Index.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Areas/App/Views/ApplicantLanguages/Index.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Areas/App/Views/ApplicantTrainings/Index.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Areas/App/Views/AttachmentFiles/Index.js" asp-append-version="true"></script>
+
+    <script type="text/javascript">
+        function getGovernorateParams() {
+            var data = {};
+            data['CountryIdFilter'] = $('#countryId').val();
+            return data;
+        }
+
+        function getLocalityParams() {
+            var data = {};
+            data['GovernorateIdFilter'] = $('#governorateId').val();
+            return data;
+        }
+    </script>
+ }
+ 
+<div class="content d-flex flex-column flex-column-fluid">
+    @{
+        var breadcrumbs = new List<BreadcrumbItem>()
+    {
+    new BreadcrumbItem("/Applicants", L("Applicants")),
+    new BreadcrumbItem(Model.IsEditMode ? L("EditApplicant") : L("CreateNewApplicant"))
+    };
+    }
+
+    <abp-page-subheader title='@(Model.IsEditMode ? (L("EditApplicant")) : L("CreateNewApplicant"))' breadcrumbs="breadcrumbs">
+        @if (Model.IsEditMode)
+        {
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" id="saveBtn">
+                    <i class="fa fa-save"></i>
+                    @L("Save")
+                </button>
+            </div>
+        }
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            @if (!Model.IsEditMode)
+            {
+                @await Html.PartialAsync("~/Areas/App/Views/Applicants/_Create.cshtml", Model)
+            }
+            else
+            {
+                @await Html.PartialAsync("~/Areas/App/Views/Applicants/_Edit.cshtml", Model)
+            }
+
+        </div>
+    </div>
+</div>

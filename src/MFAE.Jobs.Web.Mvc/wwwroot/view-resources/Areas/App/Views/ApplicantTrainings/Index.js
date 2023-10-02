@@ -56,7 +56,7 @@
                     viewUrl: abp.appPath + 'App/ApplicantTrainings/CreateOrEditModal',
                     scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ApplicantTrainings/_CreateOrEditModal.js',
                     modalClass: 'CreateOrEditApplicantTrainingModal'
-                });
+         });
                    
 
 		 var _viewApplicantTrainingModal = new app.ModalManager({
@@ -90,11 +90,14 @@
             paging: true,
             serverSide: true,
             processing: true,
+            makeAjax: $('#ApplicantId').val() > 0,
+            deferLoading: $('#ApplicantId').val() > 0 ? null : 0,
             listAction: {
                 ajaxFunction: _applicantTrainingsService.getAll,
                 inputFilter: function () {
                     return {
-					filter: $('#ApplicantTrainingsTableFilter').val(),
+                    filter: $('#ApplicantTrainingsTableFilter').val(),
+                    applicantIdFilter: $('#ApplicantId').val(),
 					subjectFilter: $('#SubjectFilterId').val(),
 					locationFilter: $('#LocationFilterId').val(),
 					minTrainingDateFilter:  getDateFilter($('#MinTrainingDateFilterId')),
