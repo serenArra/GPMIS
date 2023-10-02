@@ -100,7 +100,7 @@
         $('#DocumentNo').on('change', function () {
             if ($('#identificationTypeId').val() == IdType.PS && $('#DocumentNo').valid())
             {                
-               /* fetchPersonInfo(); */            
+               fetchPersonInfo();            
             }
         });
 
@@ -115,7 +115,7 @@
                     identificationDocumentNoId: $('#DocumentNo').val()
                 }).done(function (output) {
 
-                    if (output.code != "") {
+                    if (output == null) {
                         abp.message.error(output.message, app.localize('Error'))
                     }
                     else {
@@ -133,6 +133,7 @@
                         $("#Applicant_FamilyNameEn").val(output.applicant.familyNameEn);
 
                         $("#Applicant_Gender").val(output.applicant.gender).trigger('change');
+                        $("#maritalStatusId").val(output.applicant.maritalStatusId).trigger('change');
                         $("#Applicant_BirthDate").data("DateTimePicker").date(moment(output.applicant.birthDate));
 
                         /*$("#countryId").val();

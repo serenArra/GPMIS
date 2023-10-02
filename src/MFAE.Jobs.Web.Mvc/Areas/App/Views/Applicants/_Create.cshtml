@@ -174,6 +174,10 @@
 
                 <div class="row my-5">
                     <div class="form-group col-lg">
+                        <label class="form-label" for="maritalStatusId">@L("MaritalStatus")</label>
+                        @Html.DropDownList("maritalStatusId", new SelectList(Model.ApplicantMaritalStatusList,"Id","DisplayName", (Model.IsEditMode ? Model.Applicant.MaritalStatusId.ToString() : "")),@L("SelectAMaritalStatus"), new { @class = "form-control form-control-solid" , @required="required" })
+                    </div>
+                    <div class="form-group col-lg">
                         <label class="form-label" for="Applicant_Mobile">@L("Mobile")</label>
                         <input class="form-control form-control-solid" id="Applicant_Mobile" value="@Model.Applicant.Mobile" type="text" name="mobile" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MaxMobileLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantConsts.MinMobileLength" />
                     </div>
