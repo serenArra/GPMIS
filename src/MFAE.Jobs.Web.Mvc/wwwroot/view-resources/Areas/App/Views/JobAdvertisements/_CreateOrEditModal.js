@@ -16,14 +16,22 @@
 			var modal = _modalManager.getModal();
             modal.find('.date-picker').daterangepicker({
                 singleDatePicker: true,
-                locale: abp.localization.currentLanguage.name,
-                format: 'L'
+                format: 'L',
+                useCurrent: false,
+                allowInputToggle: true,
+                minDate: new Date()      
             });
 
             _$jobAdvertisementInformationForm = _modalManager.getModal().find('form[name=JobAdvertisementInformationsForm]');
             _$jobAdvertisementInformationForm.validate();
         };
 
+
+        $('#JobAdvertisement_FromDate').change(function () {
+
+            //console.log("", $('#JobAdvertisement_ToDate').data("DateTimePicker").date());
+            //$('#JobAdvertisement_ToDate').data("DateTimePicker").minDate(moment($('#JobAdvertisement_FromDate').val()));
+        });
 		  
 
         this.save = function () {

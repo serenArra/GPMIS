@@ -166,24 +166,31 @@
                                 }
                             }]
                     }
-                },
+                },                
                 {
                     targets: 2,
-                    data: "jobAdvertisement.description",
-                    name: "description"
-                },
-                {
-                    targets: 3,
                     data: "jobAdvertisement.advertisementId",
                     name: "advertisementId"
                 },
                 {
-                    targets: 4,
+                    targets: 3,
                     data: "jobAdvertisement.advertisementDate",
                     name: "advertisementDate",
                     render: function (advertisementDate) {
                         if (advertisementDate) {
-                            return moment(advertisementDate).format('L');
+                            return moment(advertisementDate).format('D/M/Y');
+                        }
+                        return "";
+                    }
+
+                },
+                {
+                    targets: 4,
+                    data: "jobAdvertisement.fromDate",
+                    name: "fromDate",
+                    render: function (fromDate) {
+                        if (fromDate) {
+                            return moment(fromDate).format('D/M/Y');
                         }
                         return "";
                     }
@@ -191,11 +198,11 @@
                 },
                 {
                     targets: 5,
-                    data: "jobAdvertisement.fromDate",
-                    name: "fromDate",
-                    render: function (fromDate) {
-                        if (fromDate) {
-                            return moment(fromDate).format('L');
+                    data: "jobAdvertisement.toDate",
+                    name: "toDate",
+                    render: function (toDate) {
+                        if (toDate) {
+                            return moment(toDate).format('D/M/Y');
                         }
                         return "";
                     }
@@ -203,23 +210,11 @@
                 },
                 {
                     targets: 6,
-                    data: "jobAdvertisement.toDate",
-                    name: "toDate",
-                    render: function (toDate) {
-                        if (toDate) {
-                            return moment(toDate).format('L');
-                        }
-                        return "";
-                    }
-
-                },
-                {
-                    targets: 7,
                     data: "jobAdvertisement.allowedAge",
                     name: "allowedAge"
                 },
                 {
-                    targets: 8,
+                    targets: 7,
                     data: "jobAdvertisement.isActive",
                     name: "isActive",
                     render: function (isActive) {

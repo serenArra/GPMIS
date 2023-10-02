@@ -22,7 +22,9 @@
             <div class="row my-3">
                 <div class="col-xl-6">
                     <label class="form-label" for="JobAdvertisement_AdvertisementDate">@L("AdvertisementDate")</label>
-                    <input class="form-control form-control-solid m-input date-picker" id="JobAdvertisement_AdvertisementDate" type="text" name="advertisementDate" value="@Model.JobAdvertisement.AdvertisementDate" />
+                    <abp-datePicker id="JobAdvertisement_AdvertisementDate" format="DD/MM/Y" name="advertisementDate"
+                                    value="@Model.JobAdvertisement.AdvertisementDate">
+                    </abp-datePicker>                    
                 </div>
                 <div class="col-xl-6">
                     <label class="form-label" for="JobAdvertisement_AllowedAge">@L("AllowedAge")</label>
@@ -40,7 +42,9 @@
 
                 <div class="col-xl-6">
                     <label class="form-label" for="JobAdvertisement_ToDate">@L("ToDate")</label>
-                    <input class="form-control form-control-solid m-input date-picker" id="JobAdvertisement_ToDate" type="text" name="toDate" value="@Model.JobAdvertisement.ToDate" />
+                    <abp-datePicker id="JobAdvertisement_ToDate" format="DD/MM/Y" name="toDate"
+                                    value="@Model.JobAdvertisement.ToDate">
+                    </abp-datePicker>                    
                 </div>
             </div>
 
