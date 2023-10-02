@@ -2,7 +2,7 @@
     $(function ()
     {
         var _applicantsService = abp.services.app.applicants;
-        var _$applicantInformationForm = $('form[name=ApplicantInformationsForm]');
+        var _$applicantInformationForm = $('form[name=ApplicationForm]');
 
         _$applicantInformationForm.validate(
             {
@@ -97,16 +97,14 @@
             return $selectedDate.endDate.format("YYYY-MM-DDT23:59:59Z");
         }
 
-        /*$('#DocumentNo').on('change', function () {
-           
-            if ($('#identificationTypeId').val() == IdType.PS && $("#DocumentNo").valid())
-            {
-               *//* fetchPersonInfo();*//*
-                $("#DocumentNo").trigger("change");
+        $('#DocumentNo').on('change', function () {
+            if ($('#identificationTypeId').val() == IdType.PS && $('#DocumentNo').valid())
+            {                
+                fetchPersonInfo();               
             }
         });
 
-        $("#DocumentNo").trigger("change");*/
+        $("#DocumentNo").trigger("change");
        
         function fetchPersonInfo() {
          
@@ -115,7 +113,7 @@
                 abp.ui.setBusy();
                 _applicantsService.fetchPerson({
                     identificationDocumentNoTypeId: DocType,
-                    identificationDocumentNoId: $('#Applicant_DocumentNo').val()
+                    identificationDocumentNoId: $('#DocumentNo').val()
                 }).done(function (output) {
 
                     if (output.code != "") {
