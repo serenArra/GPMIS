@@ -10,65 +10,126 @@ ViewBag.CurrentPageName = AppPageNames.Common.JobAdvertisements;
 <script abp-src="/view-resources/Areas/App/Views/JobAdvertisements/Index.js" asp-append-version="true"></script>
 }
 
-<div class="content d-flex flex-column flex-column-fluid">
+<abp-page-subheader title='@L("JobAdvertisements")' description='@L("JobAdvertisementsHeaderInfo")'>
+    <button id="ExportToExcelButton" class="btn btn-outline btn-outline-success btn-active-light-success me-1"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>
 
-    <abp-page-subheader title='@L("JobAdvertisements")' description='@L("JobAdvertisementsHeaderInfo")'>
-        <button id="ExportToExcelButton" class="btn btn-outline btn-outline-success btn-active-light-success me-1"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>
+    @if (IsGranted(AppPermissions.Pages_JobAdvertisements_Create))
+    {
+    <button id="CreateNewJobAdvertisementButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewJobAdvertisement")</button>
+    }
+</abp-page-subheader>
 
-        @if (IsGranted(AppPermissions.Pages_JobAdvertisements_Create))
-        {
-        <button id="CreateNewJobAdvertisementButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewJobAdvertisement")</button>
-        }
-    </abp-page-subheader>
-
-    <div class="@(await GetContainerClass())">
-        <div class="card card-custom gutter-b">
-            <div class="card-body">
-                <div class="form">
-                    <div class="row align-items-center mb-4">
-                        <div class="col-xl-12">
-
-                            <div class="my-3">
-                                <div class="input-group">
-                                    <input type="text" id="JobAdvertisementsTableFilter" class="form-control" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
-                                    <button id="GetJobAdvertisementsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
-                    <div class="col-md-12">
-
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="my-3">
-                            <label class="form-label" for="DescriptionFilterId">@L("Description")</label>
-                            <input type="text" class="form-control" name="descriptionFilter" id="DescriptionFilterId">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row my-4">
+<div class="@(await GetContainerClass())">
+    <div class="card card-custom gutter-b">
+        <div class="card-body">
+            <div class="form">
+                <div class="row align-items-center mb-4">
                     <div class="col-xl-12">
-                        <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
-                        <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+
+                        <div class="my-3">
+                            <div class="input-group">
+                                <input type="text" id="JobAdvertisementsTableFilter" class="form-control reload-on-change" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                <button id="GetJobAdvertisementsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                <div class="row align-items-center">
-                    <table id="JobAdvertisementsTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
-                        <thead>
-                            <tr>
-                                <th></th>
+            </div>
+            <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
+                <div class="col-md-12">
 
-                                <th>@L("Actions")</th>
-                                <th>@L("Description")</th>
-                            </tr>
-                        </thead>
-                    </table>
                 </div>
+
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="DescriptionFilterId">@L("Description")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="descriptionFilter" id="DescriptionFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="AdvertisementIdFilterId">@L("AdvertisementId")</label>
+                        <input type="text" class="form-control reload-on-keyup" name="advertisementIdFilter" id="AdvertisementIdFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="MinAdvertisementDateFilterId">@L("AdvertisementDateRange")</label>
+                        <div class="input-group">
+                            <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MinAdvertisementDateFilterId">
+                            <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                            <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxAdvertisementDateFilterId">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="MinFromDateFilterId">@L("FromDateRange")</label>
+                        <div class="input-group">
+                            <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MinFromDateFilterId">
+                            <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                            <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxFromDateFilterId">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="MinToDateFilterId">@L("ToDateRange")</label>
+                        <div class="input-group">
+                            <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MinToDateFilterId">
+                            <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                            <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxToDateFilterId">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="MinAllowedAgeFilterId">@L("MinMax") @L("AllowedAge")</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MinValue")" name="minAllowedAgeFilter" id="MinAllowedAgeFilterId" />
+                            <input type="number" class="form-control m-input reload-on-keyup" placeholder="@L(" MaxValue")" name="maxAllowedAgeFilter" id="MaxAllowedAgeFilterId" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="my-3">
+                        <label class="form-label" for="IsActiveFilterId">@L("IsActive")</label>
+                        <select class="form-select reload-on-change" name="IsActiveFilter" id="IsActiveFilterId">
+                            <option value="-1">@L("All")</option>
+                            <option value="0">@L("False")</option>
+                            <option value="1">@L("True")</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 mt-5">
+                    <button class="btn btn-secondary btn-sm" id="btn-reset-filters">Reset</button>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-xl-12">
+                    <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                    <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="JobAdvertisementsTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            <th>@L("Actions")</th>
+                            <th>@L("Description")</th>
+                            <th>@L("AdvertisementId")</th>
+                            <th>@L("AdvertisementDate")</th>
+                            <th>@L("FromDate")</th>
+                            <th>@L("ToDate")</th>
+                            <th>@L("AllowedAge")</th>
+                            <th>@L("IsActive")</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>

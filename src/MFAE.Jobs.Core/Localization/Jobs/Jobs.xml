@@ -1,6 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
-  <texts>
+  <texts>    <text name="AdvertisementId">Advertisement id</text>
+    <text name="AdvertisementDate">Advertisement date</text>
+    <text name="FromDate">From date</text>
+    <text name="ToDate">To date</text>
+    <text name="AllowedAge">Allowed age</text>
+    <text name="AdvertisementDateRange">Advertisement date range</text>
+    <text name="FromDateRange">From date range</text>
+    <text name="ToDateRange">To date range</text>
+
     <text name="ApplicationMainInformation">Main Information</text>ApplicantStudies
 
     <text name="JobAdvertisement">Job advertisement</text>

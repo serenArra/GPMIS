@@ -9,7 +9,8 @@
    		{{File_Uploading_Init_Here}}
         {{File_Property_Init_Here}}
 
-        $('.date-picker').datetimepicker({
+        $('.date-picker').daterangepicker({
+            singleDatePicker: true,
             locale: abp.localization.currentLanguage.name,
             format: 'L'
         });

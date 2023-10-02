@@ -4,7 +4,7 @@ using Abp.Extensions;
 
 namespace MFAE.Jobs.Web.Areas.App.Models.JobAdvertisements
 {
-    public class CreateOrEditJobAdvertisementModalViewModel
+    public class CreateOrEditJobAdvertisementViewModel
     {
         public CreateOrEditJobAdvertisementDto JobAdvertisement { get; set; }
 

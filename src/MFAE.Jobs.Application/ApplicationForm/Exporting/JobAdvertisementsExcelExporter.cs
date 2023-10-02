@@ -18,7 +18,7 @@ namespace MFAE.Jobs.ApplicationForm.Exporting
             ITimeZoneConverter timeZoneConverter,
             IAbpSession abpSession,
             ITempFileCacheManager tempFileCacheManager) :
-            base(tempFileCacheManager)
+    base(tempFileCacheManager)
         {
             _timeZoneConverter = timeZoneConverter;
             _abpSession = abpSession;
@@ -26,14 +26,20 @@ namespace MFAE.Jobs.ApplicationForm.Exporting
 
         public FileDto ExportToFile(List<GetJobAdvertisementForViewDto> jobAdvertisements)
         {
-
             var items = new List<Dictionary<string, object>>();
 
             foreach (var jobAdvertisement in jobAdvertisements)
             {
                 items.Add(new Dictionary<string, object>()
                 {
-                    {L("Description"), jobAdvertisement.JobAdvertisement.Description}
+                    {L("AdvertisementId"), jobAdvertisement.JobAdvertisement.AdvertisementId},
+                    {L("AdvertisementDate"), jobAdvertisement.JobAdvertisement.AdvertisementDate},
+                    {L("FromDate"), jobAdvertisement.JobAdvertisement.FromDate},
+                    {L("ToDate"), jobAdvertisement.JobAdvertisement.ToDate},
+                    {L("AllowedAge"), jobAdvertisement.JobAdvertisement.AllowedAge},
+                    {L("Description"), jobAdvertisement.JobAdvertisement.Description},
+                    {L("IsActive"), jobAdvertisement.JobAdvertisement.IsActive}
+                    
                 });
             }
 

@@ -49,9 +49,12 @@ namespace MFAE.Jobs.Web.Areas.App.Controllers
                 {
                     JobAdvertisement = new CreateOrEditJobAdvertisementDto()
                 };
+                getJobAdvertisementForEditOutput.JobAdvertisement.AdvertisementDate = DateTime.Now;
+                getJobAdvertisementForEditOutput.JobAdvertisement.FromDate = DateTime.Now;
+                getJobAdvertisementForEditOutput.JobAdvertisement.ToDate = DateTime.Now;
             }
 
-            var viewModel = new CreateOrEditJobAdvertisementModalViewModel()
+            var viewModel = new CreateOrEditJobAdvertisementViewModel()
             {
                 JobAdvertisement = getJobAdvertisementForEditOutput.JobAdvertisement,
 

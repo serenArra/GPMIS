@@ -5,7 +5,7 @@
         var _jobAdvertisementsService = abp.services.app.jobAdvertisements;
 		var _entityTypeFullName = 'MFAE.Jobs.ApplicationForm.JobAdvertisement';
         
-        var $selectedDate = {
+       var $selectedDate = {
             startDate: null,
             endDate: null,
         }
@@ -14,20 +14,20 @@
             $(this).val(picker.startDate.format('MM/DD/YYYY'));
         });
 
-         $('.startDate').daterangepicker({
-             autoUpdateInput: false,
-             singleDatePicker: true,
-             locale: abp.localization.currentLanguage.name,
-             format: 'L',
-         })
+        $('.startDate').daterangepicker({
+            autoUpdateInput: false,
+            singleDatePicker: true,
+            locale: abp.localization.currentLanguage.name,
+            format: 'L',
+        })
         .on("apply.daterangepicker", (ev, picker) => {
             $selectedDate.startDate = picker.startDate;
-            getLocalities();
+            getJobAdvertisements();
         })
         .on('cancel.daterangepicker', function (ev, picker) {
             $(this).val("");
             $selectedDate.startDate = null;
-            getLocalities();
+            getJobAdvertisements();
         });
 
         $('.endDate').daterangepicker({
@@ -38,14 +38,13 @@
         })
         .on("apply.daterangepicker", (ev, picker) => {
             $selectedDate.endDate = picker.startDate;
-            getLocalities();
+            getJobAdvertisements();
         })
         .on('cancel.daterangepicker', function (ev, picker) {
             $(this).val("");
             $selectedDate.endDate = null;
-            getLocalities();
+            getJobAdvertisements();
         });
-
 
         var _permissions = {
             create: abp.auth.hasPermission('Pages.JobAdvertisements.Create'),
@@ -65,8 +64,8 @@
             modalClass: 'ViewJobAdvertisementModal'
         });
 
-	  var _entityTypeHistoryModal = app.modals.EntityTypeHistoryModal.create();
-	  function entityHistoryIsEnabled() {
+		        var _entityTypeHistoryModal = app.modals.EntityTypeHistoryModal.create();
+		        function entityHistoryIsEnabled() {
             return abp.auth.hasPermission('Pages.Administration.AuditLogs') &&
                 abp.custom.EntityHistory &&
                 abp.custom.EntityHistory.IsEnabled &&
@@ -77,14 +76,14 @@
             if ($selectedDate.startDate == null) {
                 return null;
             }
-            return $selectedDate.startDate.format("YYYY-MM-DDT00:00:00Z");
+            return $selectedDate.startDate.format("YYYY-MM-DDT00:00:00Z"); 
         }
-
+        
         var getMaxDateFilter = function (element) {
             if ($selectedDate.endDate == null) {
                 return null;
             }
-            return $selectedDate.endDate.format("YYYY-MM-DDT23:59:59Z");
+            return $selectedDate.endDate.format("YYYY-MM-DDT23:59:59Z"); 
         }
 
         var dataTable = _$jobAdvertisementsTable.DataTable({
@@ -96,7 +95,17 @@
                 inputFilter: function () {
                     return {
 					filter: $('#JobAdvertisementsTableFilter').val(),
-					descriptionFilter: $('#DescriptionFilterId').val()
+					descriptionFilter: $('#DescriptionFilterId').val(),
+					advertisementIdFilter: $('#AdvertisementIdFilterId').val(),
+					minAdvertisementDateFilter:  getDateFilter($('#MinAdvertisementDateFilterId')),
+					maxAdvertisementDateFilter:  getMaxDateFilter($('#MaxAdvertisementDateFilterId')),
+					minFromDateFilter:  getDateFilter($('#MinFromDateFilterId')),
+					maxFromDateFilter:  getMaxDateFilter($('#MaxFromDateFilterId')),
+					minToDateFilter:  getDateFilter($('#MinToDateFilterId')),
+					maxToDateFilter:  getMaxDateFilter($('#MaxToDateFilterId')),
+					minAllowedAgeFilter: $('#MinAllowedAgeFilterId').val(),
+					maxAllowedAgeFilter: $('#MaxAllowedAgeFilterId').val(),
+					isActiveFilter: $('#IsActiveFilterId').val()
                     };
                 }
             },
@@ -122,14 +131,12 @@
                         items: [
 						{
                                 text: app.localize('View'),
-                                iconStyle: 'far fa-eye mr-2',
                                 action: function (data) {
                                     _viewJobAdvertisementModal.open({ id: data.record.jobAdvertisement.id });
                                 }
                         },
 						{
                             text: app.localize('Edit'),
-                            iconStyle: 'far fa-edit mr-2',
                             visible: function () {
                                 return _permissions.edit;
                             },
@@ -152,7 +159,6 @@
 						}, 
 						{
                             text: app.localize('Delete'),
-                            iconStyle: 'far fa-trash-alt mr-2',
                             visible: function () {
                                 return _permissions.delete;
                             },
@@ -166,6 +172,64 @@
 						targets: 2,
 						 data: "jobAdvertisement.description",
 						 name: "description"   
+					},
+					{
+						targets: 3,
+						 data: "jobAdvertisement.advertisementId",
+						 name: "advertisementId"   
+					},
+					{
+						targets: 4,
+						 data: "jobAdvertisement.advertisementDate",
+						 name: "advertisementDate" ,
+					render: function (advertisementDate) {
+						if (advertisementDate) {
+							return moment(advertisementDate).format('L');
+						}
+						return "";
+					}
+			  
+					},
+					{
+						targets: 5,
+						 data: "jobAdvertisement.fromDate",
+						 name: "fromDate" ,
+					render: function (fromDate) {
+						if (fromDate) {
+							return moment(fromDate).format('L');
+						}
+						return "";
+					}
+			  
+					},
+					{
+						targets: 6,
+						 data: "jobAdvertisement.toDate",
+						 name: "toDate" ,
+					render: function (toDate) {
+						if (toDate) {
+							return moment(toDate).format('L');
+						}
+						return "";
+					}
+			  
+					},
+					{
+						targets: 7,
+						 data: "jobAdvertisement.allowedAge",
+						 name: "allowedAge"   
+					},
+					{
+						targets: 8,
+						 data: "jobAdvertisement.isActive",
+						 name: "isActive"  ,
+						render: function (isActive) {
+							if (isActive) {
+								return '<div class="text-center"><i class="fa fa-check text-success" title="True"></i></div>';
+							}
+							return '<div class="text-center"><i class="fa fa-times-circle" title="False"></i></div>';
+					}
+			 
 					}
             ]
         });
@@ -211,7 +275,17 @@
             _jobAdvertisementsService
                 .getJobAdvertisementsToExcel({
 				filter : $('#JobAdvertisementsTableFilter').val(),
-					descriptionFilter: $('#DescriptionFilterId').val()
+					descriptionFilter: $('#DescriptionFilterId').val(),
+					advertisementIdFilter: $('#AdvertisementIdFilterId').val(),
+					minAdvertisementDateFilter:  getDateFilter($('#MinAdvertisementDateFilterId')),
+					maxAdvertisementDateFilter:  getMaxDateFilter($('#MaxAdvertisementDateFilterId')),
+					minFromDateFilter:  getDateFilter($('#MinFromDateFilterId')),
+					maxFromDateFilter:  getMaxDateFilter($('#MaxFromDateFilterId')),
+					minToDateFilter:  getDateFilter($('#MinToDateFilterId')),
+					maxToDateFilter:  getMaxDateFilter($('#MaxToDateFilterId')),
+					minAllowedAgeFilter: $('#MinAllowedAgeFilterId').val(),
+					maxAllowedAgeFilter: $('#MaxAllowedAgeFilterId').val(),
+					isActiveFilter: $('#IsActiveFilterId').val()
 				})
                 .done(function (result) {
                     app.downloadTempFile(result);
@@ -232,8 +306,22 @@
 			getJobAdvertisements();
 		  }
 		});
+
+        $('.reload-on-change').change(function(e) {
+			getJobAdvertisements();
+		});
+
+        $('.reload-on-keyup').keyup(function(e) {
+			getJobAdvertisements();
+		});
+
+        $('#btn-reset-filters').click(function (e) {
+            $('.reload-on-change,.reload-on-keyup,#MyEntsTableFilter').val('');
+            getJobAdvertisements();
+        });
 		
 		
 		
+
     });
 })();

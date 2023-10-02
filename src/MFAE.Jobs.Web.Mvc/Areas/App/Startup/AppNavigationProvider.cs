@@ -36,7 +36,7 @@ namespace MFAE.Jobs.Web.Areas.App.Startup
                         icon: "flaticon-more",
                         permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_JobAdvertisements)
                     )
-                )               
+                )
                .AddItem(new MenuItemDefinition(
                            AppPageNames.Common.Applicants,
                            L("Applicants"),
@@ -97,7 +97,7 @@ namespace MFAE.Jobs.Web.Areas.App.Startup
                            icon: "flaticon-more",
                            permissionDependency: new SimplePermissionDependency(AppPermissions.Pages_AcademicDegrees)
                        )
-                    )                   
+                    )
                    .AddItem(new MenuItemDefinition(
                         AppPageNames.Common.ConversationRates,
                         L("ConversationRates"),
@@ -147,7 +147,7 @@ namespace MFAE.Jobs.Web.Areas.App.Startup
                     )
                   )
                 )
-                              
+
                 .AddItem(new MenuItemDefinition(
                         AppPageNames.Common.Administration,
                         L("Attachments"),

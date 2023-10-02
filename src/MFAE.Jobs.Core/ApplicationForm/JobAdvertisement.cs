@@ -14,5 +14,19 @@ namespace MFAE.Jobs.ApplicationForm
 
         public virtual string Description { get; set; }
 
+        [Required]
+        [StringLength(JobAdvertisementConsts.MaxAdvertisementIdLength, MinimumLength = JobAdvertisementConsts.MinAdvertisementIdLength)]
+        public virtual string AdvertisementId { get; set; }
+
+        public virtual DateTime AdvertisementDate { get; set; }
+
+        public virtual DateTime FromDate { get; set; }
+
+        public virtual DateTime ToDate { get; set; }
+
+        public virtual double AllowedAge { get; set; }
+
+        public virtual bool IsActive { get; set; }
+
     }
 }

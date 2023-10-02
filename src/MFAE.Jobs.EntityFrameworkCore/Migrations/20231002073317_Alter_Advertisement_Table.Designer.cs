@@ -4,6 +4,7 @@ using MFAE.Jobs.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MFAE.Jobs.Migrations
 {
     [DbContext(typeof(JobsDbContext))]
-    partial class JobsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231002073317_Alter_Advertisement_Table")]
+    partial class Alter_Advertisement_Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

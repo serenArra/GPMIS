@@ -59,7 +59,7 @@ export class {{Master_Detail_Child_Prefix_Here}}{{Entity_Name_Plural_Here}}Compo
 
         this._{{entity_Name_Plural_Here}}ServiceProxy.getAll(
             this.filterText,{{Property_Filter_Param_Here}}
-            null,{{NP_Filter_Param_Here}}
+            undefined,{{NP_Filter_Param_Here}}
             this.{{master_Detail_Child_Base_Entity_Name_Here}}Id,
             this.{{DataTable_Primenghelper_Here}}{{TruboTable_Primenghelper_Here}}.getSorting(this.dataTable),
             this.{{DataTable_Primenghelper_Here}}{{TruboTable_Primenghelper_Here}}.getSkipCount(this.paginator, event),

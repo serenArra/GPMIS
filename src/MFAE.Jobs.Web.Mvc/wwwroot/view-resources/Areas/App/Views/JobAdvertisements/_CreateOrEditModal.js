@@ -7,11 +7,15 @@
         var _$jobAdvertisementInformationForm = null;
 
 		
+		
+		
+
         this.init = function (modalManager) {
             _modalManager = modalManager;
 
 			var modal = _modalManager.getModal();
-            modal.find('.date-picker').datetimepicker({
+            modal.find('.date-picker').daterangepicker({
+                singleDatePicker: true,
                 locale: abp.localization.currentLanguage.name,
                 format: 'L'
             });
