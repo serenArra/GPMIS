@@ -143,7 +143,7 @@
                                 return _permissions.edit;
                             },
                             action: function (data) {
-                            _createOrEditModal.open({ id: data.record.applicantStudy.id });                                
+                                _createOrEditModal.open({ id: data.record.applicantStudy.id, applicantId: data.record.applicantStudy.applicantId });                                
                             }
                         },
                         {

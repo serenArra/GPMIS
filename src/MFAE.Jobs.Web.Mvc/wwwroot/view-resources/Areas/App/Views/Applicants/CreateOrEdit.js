@@ -4,6 +4,13 @@
         var _applicantsService = abp.services.app.applicants;
         var _$applicantInformationForm = $('form[name=ApplicationFormInformation]');
 
+
+        var _createOrEditModal = new app.ModalManager({
+            viewUrl: abp.appPath + 'App/ApplicantStudies/CreateOrEditModal',
+            scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ApplicantStudies/_CreateOrEditModal.js',
+            modalClass: 'CreateOrEditApplicantStudyModal'
+        });
+
         _$applicantInformationForm.validate(
             {
                 rules: {
@@ -229,6 +236,10 @@
                 }
             });
         });
+
+        $('#CreateApplicantStudyButton').click(function () {
+            _createOrEditModal.open({ applicantId: $("#ApplicantId").val() });
+        }); 
 
 
         var applicantId = function () {

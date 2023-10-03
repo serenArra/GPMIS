@@ -35,7 +35,7 @@ namespace MFAE.Jobs.Web.Areas.App.Controllers
         }
 
         [AbpMvcAuthorize(AppPermissions.Pages_ApplicantStudies_Create, AppPermissions.Pages_ApplicantStudies_Edit)]
-        public async Task<PartialViewResult> CreateOrEditModal(long? id)
+        public async Task<PartialViewResult> CreateOrEditModal(long? id, long applicantId)
         {
             GetApplicantStudyForEditOutput getApplicantStudyForEditOutput;
 
@@ -48,6 +48,9 @@ namespace MFAE.Jobs.Web.Areas.App.Controllers
                 getApplicantStudyForEditOutput = new GetApplicantStudyForEditOutput
                 {
                     ApplicantStudy = new CreateOrEditApplicantStudyDto()
+                    {
+                        ApplicantId = applicantId
+                    }
                 };
             }
 
