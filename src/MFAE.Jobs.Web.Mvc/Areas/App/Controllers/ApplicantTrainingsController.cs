@@ -34,7 +34,7 @@ namespace MFAE.Jobs.Web.Areas.App.Controllers
         }
 
         [AbpMvcAuthorize(AppPermissions.Pages_ApplicantTrainings_Create, AppPermissions.Pages_ApplicantTrainings_Edit)]
-        public async Task<PartialViewResult> CreateOrEditModal(long? id)
+        public async Task<PartialViewResult> CreateOrEditModal(long? id, long applicantId)
         {
             GetApplicantTrainingForEditOutput getApplicantTrainingForEditOutput;
 
@@ -47,6 +47,9 @@ namespace MFAE.Jobs.Web.Areas.App.Controllers
                 getApplicantTrainingForEditOutput = new GetApplicantTrainingForEditOutput
                 {
                     ApplicantTraining = new CreateOrEditApplicantTrainingDto()
+                    {
+                        ApplicantId = applicantId
+                    }
                 };
                 getApplicantTrainingForEditOutput.ApplicantTraining.TrainingDate = DateTime.Now;
             }

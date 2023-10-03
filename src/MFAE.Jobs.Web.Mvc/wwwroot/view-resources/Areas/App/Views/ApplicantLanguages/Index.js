@@ -138,7 +138,8 @@
                                 return _permissions.edit;
                             },
                             action: function (data) {
-                            _createOrEditModal.open({ id: data.record.applicantLanguage.id });                                
+                                _createOrEditModal.open({ id: data.record.applicantLanguage.id, applicantId: data.record.applicantLanguage.applicantId });   
+                              
                             }
                         },
                         {

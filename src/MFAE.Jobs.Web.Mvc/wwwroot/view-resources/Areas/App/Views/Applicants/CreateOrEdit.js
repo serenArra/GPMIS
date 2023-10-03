@@ -11,6 +11,19 @@
             modalClass: 'CreateOrEditApplicantStudyModal'
         });
 
+
+        var _createOrEditApplicantTrainingsModal = new app.ModalManager({
+            viewUrl: abp.appPath + 'App/ApplicantTrainings/CreateOrEditModal',
+            scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ApplicantTrainings/_CreateOrEditModal.js',
+            modalClass: 'CreateOrEditApplicantTrainingModal'
+        });
+
+        var _createOrEditApplicantLanguagesModal = new app.ModalManager({
+            viewUrl: abp.appPath + 'App/ApplicantLanguages/CreateOrEditModal',
+            scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ApplicantLanguages/_CreateOrEditModal.js',
+            modalClass: 'CreateOrEditApplicantLanguageModal'
+        });
+
         _$applicantInformationForm.validate(
             {
                 rules: {
@@ -241,7 +254,14 @@
             _createOrEditModal.open({ applicantId: $("#ApplicantId").val() });
         }); 
 
+        $('#CreateApplicantTrainingButton').click(function () {
+            _createOrEditApplicantTrainingsModal.open({ applicantId: $("#ApplicantId").val() });
+        });   
 
+        $('#CreateApplicantLanguageButton').click(function () {
+            _createOrEditApplicantLanguagesModal.open({ applicantId: $("#ApplicantId").val() });
+        });  
+        
         var applicantId = function () {
             return $("#ApplicantId").val();
         };

@@ -35,7 +35,7 @@ namespace MFAE.Jobs.Web.Areas.App.Controllers
         }
 
         [AbpMvcAuthorize(AppPermissions.Pages_ApplicantLanguages_Create, AppPermissions.Pages_ApplicantLanguages_Edit)]
-        public async Task<PartialViewResult> CreateOrEditModal(long? id)
+        public async Task<PartialViewResult> CreateOrEditModal(long? id, long applicantId)
         {
             GetApplicantLanguageForEditOutput getApplicantLanguageForEditOutput;
 
@@ -48,6 +48,9 @@ namespace MFAE.Jobs.Web.Areas.App.Controllers
                 getApplicantLanguageForEditOutput = new GetApplicantLanguageForEditOutput
                 {
                     ApplicantLanguage = new CreateOrEditApplicantLanguageDto()
+                    {
+                        ApplicantId = applicantId
+                    }
                 };
             }
 
