@@ -1,0 +1,389 @@
+﻿
+@using MFAE.Jobs.ApplicationForm.Dtos;
+@using MFAE.Jobs.ApplicationForm.Enums;
+@using MFAE.Jobs.Authorization
+@using MFAE.Jobs.Web.Areas.App.Models.Applicants
+@using System.Globalization
+@using MFAE.Jobs.Web.Areas.App.Startup
+@model ApplicantViewModel
+@using Abp.Extensions
+@using MFAE.Jobs.Web.TagHelpers
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.Applicants;
+}
+<style>
+     a {
+         text-decoration: none;
+         display: inline-block;
+         padding: 8px 16px;
+     }
+
+         a:hover {
+             background-color: #ddd;
+             color: black;
+         }
+
+     .previous {
+         background-color: #f1f1f1;
+         color: black;
+     }
+
+     .next {
+        background-color: rgb(53,149,246);
+         color: white;
+     }
+
+     .round {
+         border-radius: 50%;
+     }
+</style>
+
+    <abp-page-subheader title='@L("Applicants")' description='@L("ApplicantsHeaderInfo")'>
+  
+    </abp-page-subheader>
+        <div class="@(await GetContainerClass())">
+        <input type="hidden" name="id" id="PersonId" value="@Model.Applicant.Id" />
+    <div class="d-flex align-items-center justify-content-center">
+        <a href="#" class="previous round">&#8249;</a>
+        <a href="#" class="next round">&#8250;</a>
+    </div>
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div class="d-flex mb-9">
+                    <div class="flex-shrink-0 mr-7 mt-lg-0 mt-3">
+                    @if (Model.Applicant.UserId > 0)
+                    {
+                        <img src="@Url.Action("GetProfilePictureByUser", "Profile", new {area = string.Empty})?userId=@(Model.Applicant.UserId)&&profilePictureId=@(Model.Applicant.ProfilePictureId)" width="128" height="128" class="img-thumbnail img-rounded user-edit-dialog-profile-image" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content("~/Common/Images/default-profile-picture.png")" width="128" height="128" class="img-thumbnail img-rounded user-edit-dialog-profile-image" />
+                    }
+                    </div>
+                    <div class="flex-grow-1 align-items-center">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap mt-1">
+                            <div class="mr-3">
+                                <b><span class="text-dark-75 text-hover-primary font-size-h4 font-weight-bold mr-3">@Model.Applicant.FirstName   @Model.Applicant.FatherName @Model.Applicant.GrandFatherName  @Model.Applicant.FamilyName </span></b>
+                                <div class="d-flex flex-wrap my-2">
+                                    <b class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
+                                    @L("ApplicantsNumber") : @Model.Applicant.Id
+                                    </b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="separator separator-solid"></div>
+                <div class="d-flex align-items-center flex-wrap mt-8">
+                    <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                        <span class="mr-4">
+                            <i class="flaticon2-paper display-4 text-muted font-weight-bold"></i>
+                        </span>
+                        <div class="d-flex flex-column text-dark-75">
+                            <span class="font-weight-bolder font-size-sm">@L("IdentificationDocumentNo")</span>
+                            <span class="font-size-h5">
+                                @Model.Applicant.DocumentNo
+                            </span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                        <span class="mr-4">
+                            <i class="flaticon2-paper display-4 text-muted font-weight-bold"></i>
+                        </span>
+                        <div class="d-flex flex-column text-dark-75">
+                        <span class="font-weight-bolder font-size-sm">@L("BirthDate")</span>
+                            <span class="font-size-h5">
+                                @Model.Applicant.BirthDate.ToShortDateString()
+                            </span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                        <span class="mr-4">
+                            <i class="flaticon-user display-4 text-muted font-weight-bold"></i>
+                        </span>
+                        <div class="d-flex flex-column flex-lg-fill">
+                            <span class="text-dark-75 font-weight-bolder font-size-sm">@L("Gender")</span>
+                            <span class="font-size-h5">
+                                @Model.Applicant.Gender
+                            </span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                        <span class="mr-4">
+                            <i class="flaticon-user-settings display-4 text-muted font-weight-bold"></i>
+                        </span>
+                        <div class="d-flex flex-column flex-lg-fill">
+                            <span class="text-dark-75 font-weight-bolder font-size-sm">@L("MaritalStatus")</span>
+                            <span class="font-size-h5">
+                                @Model.Applicant.MaritalStatusId
+                            </span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center flex-lg-fill mr-5 mb-2">
+                        <span class="mr-4">
+                            <i class="flaticon-list display-4 text-muted font-weight-bold"></i>
+                        </span>
+                        <div class="d-flex flex-column">
+                            <span class="text-dark-75 font-weight-bolder font-size-sm">
+                                @L("Status")
+                            </span>
+                        @*     @{
+                                var color = "";
+                            }
+                            @switch (Model.Applicant.CurrentStatusId)
+                            {
+                                 case ApplicantStatusEnum.Accepted:
+                                    color = "label-light-success";
+                                    break;
+                                case ApplicantStatusEnum.Rejected:
+                                    color = "label-light-danger";
+                                    break;
+                                default: 
+                                    break;
+                            } *@
+                            <span id="CurrentStatus" class="label label-xl font-weight-boldest label-inline @* @color *@">
+                                @L("Enum_PersonEnum_" + (int)Model.Applicant.CurrentStatusId)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex">
+            <div class="col-lg-3 d-flex flex-column">
+                <div class="card card-custom card-stretch gutter-b">
+                    <div class="card-body ">
+                        <ul class="nav nav-primary flex-column nav-pills">
+                            <li class="nav-item mb-2">
+                                <a class="nav-link py-4 active" data-toggle="tab" href="#kt_tab_pane_2" id="ConsularRecordsTab">
+                                    <span class="nav-icon mr-4">
+                                        <i class="fab fa-black-tie">
+                                        </i>
+                                    </span>
+                                    <span class="nav-text font-size-lg">
+                                    @L("ApplicantData")
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a class="nav-link py-4" data-toggle="tab" href="#kt_tab_pane_3" id="ServicesTab">
+                                    <span class="nav-icon mr-4">
+                                        <i class="flaticon-warning icon-lg">
+                                        </i>
+                                    </span>
+                                    <span class="nav-text font-size-lg ">
+                                    @L("Languages")
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a class="nav-link py-4" data-toggle="tab" href="#kt_tab_pane_4" id="IdentificationTab">
+                                    <span class="nav-icon mr-4">
+                                        <i class="flaticon2-group icon-lg">
+                                        </i>
+                                    </span>
+                                    <span class="nav-text font-size-lg">
+                                    @L("Trainingcourses")
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a class="nav-link py-4" data-toggle="tab" href="#kt_tab_pane_5" id="PersonResidencesTab">
+                                    <span class="nav-icon mr-4">
+                                        <i class="flaticon-warning icon-lg">
+                                        </i>
+                                    </span>
+                                    <span class="nav-text font-size-lg">
+                                    @L("Attachments")
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a class="nav-link py-4" data-toggle="tab" href="#kt_tab_pane_6" id="ConsularcardTab">
+                                    <span class="nav-icon mr-4">
+                                        <i class=flaticon2-open-box icon-lg"></i>
+                                    </span>
+                                    <span class="nav-text font-size-lg">
+                                    @L("Recommendations")
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 d-flex flex-column">
+                <div class="tab-content card-stretch" id="myTabContent">
+                    <div class="tab-pane card-stretch fade show active" id="kt_tab_pane_2" role="tabpanel" aria-labelledby="kt_tab_pane_2">
+                        <div class="card card-custom card-stretch">
+                            <div class="row">
+                                <div class="col-12">
+                                    <abp-card>
+                                    <abp-card-header title="@L("ApplicantData")" icon="fab fa-black-tie">
+                                        </abp-card-header>
+                                        <abp-card-body>
+                                            <div id="ConsularRecordsTab">
+                                                <div class="row">
+                                                    <div class="col-6 bg-light">
+                                                        <abp-field-vlaue label="@L("AddressBirthPlaceHeaderInfo"): @L("CountryName")">
+                                                        </abp-field-vlaue>
+                                                    </div>
+                                                    <div class="col-6 bg-light">
+                                                        <abp-field-vlaue label="@L("AddressBirthPlaceHeaderInfo"):@L("LocalityName")">
+                                                        </abp-field-vlaue>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <abp-field-vlaue label="@L("Datecreated")">
+                                                        </abp-field-vlaue>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <abp-field-vlaue label="@L("Createdby")">
+                                                        </abp-field-vlaue>
+                                                    </div>
+                                                    <div class="col-6 bg-light">
+                                                        <abp-field-vlaue label="@L("Residencetype")">
+                                                        </abp-field-vlaue>
+                                                    </div>
+                                                    <div class="col-6 bg-light">
+                                                        <abp-field-vlaue label="@L("Residencenumber")">
+                                                        </abp-field-vlaue>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <abp-field-vlaue label="@L("DateEnteryCountry")">
+                                                        </abp-field-vlaue>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <abp-field-vlaue label="@L("Occupation")">
+                                                        </abp-field-vlaue>
+                                                    </div>
+                                                    <div class="col-6 bg-light">
+                                                        <abp-field-vlaue label="@L("PassportNo")">
+                                                        </abp-field-vlaue>
+                                                    </div>
+                                                    <div class="col-6 bg-light">
+                                                        <abp-field-vlaue label="@L("TelephoneNo")">
+                                                        </abp-field-vlaue>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <abp-field-vlaue label="@L("Mobile")">
+                                                        </abp-field-vlaue>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <abp-field-vlaue label="@L("Fax")">
+                                                        </abp-field-vlaue>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <abp-field-vlaue label="@L("EmailAddress")">
+                                                        </abp-field-vlaue>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </abp-card-body>
+                                    </abp-card>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane card-stretch fade show " id="kt_tab_pane_3" role="tabpanel" aria-labelledby="kt_tab_pane_3">
+                        <div class="card card-custom card-stretch">
+                            <div class="card-header border-0">
+                                <div class="card-title font-weight-bolder text-dark">
+                                @L("Languages")
+                                </div>
+                              
+                            </div>
+                            <div class="card-body">
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane card-stretch fade show " id="kt_tab_pane_4" role="tabpanel" aria-labelledby="kt_tab_pane_2">
+                        <div class="card card-custom card-stretch">
+                            <div class="card-header border-0">
+                                <div class="card-title font-weight-bolder text-dark">
+                                @L("Trainingcourses")
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <table id="DocumentsTable" class="table table-separate table-head-custom no-footer dtr-inline dt-responsive nowrap table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+
+                                                <th>@L("Actions")</th>
+                                                <th>@L("IssueDate")</th>
+                                                <th>@L("status")</th>
+                                                <th>@L("IdentificationType")</th>
+                                                <th>@L("CountryName")</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane card-stretch fade show " id="kt_tab_pane_5" role="tabpanel" aria-labelledby="kt_tab_pane_2">
+                        <div class="card card-custom card-stretch">
+                            <div class="card-header border-0">
+                                <div class="card-title font-weight-bolder text-dark">
+                                @L("Attachments")
+                                </div>
+
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; justify-content: flex-end;" class="">
+                                </div>
+                                <div class="row align-items-center">
+                                    <table id="ResidencesTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>@L("Actions")</th>
+                                                <th>@L("Residencenumber")</th>
+                                                <th>@L("EntryDate")</th>
+                                                <th>@L("IssuingDate")</th>
+                                                <th>@L("ExpiredDate")</th>
+                                                <th>@L("PersonFullName")</th>
+                                                <th>@L("Residencetype")</th>
+
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane card-stretch fade show " id="kt_tab_pane_6" role="tabpanel" aria-labelledby="kt_tab_pane_2">
+                        <div class="card card-custom card-stretch">
+                            <div class="card-header border-0">
+                                <div class="card-title font-weight-bolder text-dark">
+                                @L("Recommendations")
+                                </div>
+                             
+                            </div>
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <table id="ConsularCardsTable" class="table table-separate table-head-custom no-footer dtr-inline dt-responsive nowrap table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+
+                                                <th>@L("Actions")</th>
+                                                <th>@L("CardNumber")</th>
+                                                <th>@L("status")</th>
+                                                <th>@L("IssueDate")</th>
+                                                <th>@L("ExpireDate")</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                                                     
+                </div>
+            </div>
+        </div>
+    </div>
+
+

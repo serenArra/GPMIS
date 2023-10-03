@@ -147,7 +147,7 @@
 						{
                                 text: app.localize('View'),
                                 action: function (data) {
-                                    _viewApplicantModal.open({ id: data.record.applicant.id });
+									window.location = "/App/Applicants/ViewApplicantModal/" + data.record.applicant.id;
                                 }
                         },
 						{

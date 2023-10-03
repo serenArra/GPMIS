@@ -55,5 +55,10 @@ namespace MFAE.Jobs.ApplicationForm.Dtos
 
         public int? LocalityId { get; set; }
 
+        public  long? UserId { get; set; }
+
+        public Guid ProfilePictureId { get; set; }
+
+
     }
 }

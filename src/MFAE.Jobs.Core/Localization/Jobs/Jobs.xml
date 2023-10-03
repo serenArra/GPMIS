@@ -1610,7 +1610,10 @@
 	<text name="AllowedAge">AllowedAge</text>
 	<text name="FromDate">FromDate</text>
 	<text name="ToDate">ToDate</text>
-
+	<text name="ApplicantData">Applicant Data</text>
+	<text name="Qualifications">Qualifications</text>
+	<text name="Trainingcourses">Training courses</text>
+	<text name="Recommendations">Recommendations</text>
 
 
 

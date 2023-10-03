@@ -1347,5 +1347,12 @@
 	<text name="AllowedAge">العمر المسموح</text>
 	<text name="FromDate">بدء استقبال الطلبات  </text>
 	<text name="ToDate">انتهاء استقبال الطلبات </text>
+	<text name="ApplicantsNumber">رقم الطللب</text>
+	<text name="ApplicantData">بيانات الطلب</text>
+	<text name="Qualifications">المؤهلات العلمية</text>
+	<text name="Trainingcourses"> الدورات التدريبية</text>
+	<text name="Recommendations"> توصيات اللجنة</text>
+
+
   </texts>
 </localizationDictionary>

@@ -129,7 +129,7 @@ namespace MFAE.Jobs.Web.Areas.App.Controllers
             return PartialView("_CreateOrEditModal", viewModel);
         }
 
-        public async Task<PartialViewResult> ViewApplicantModal(long id)
+        public async Task<ActionResult> ViewApplicantModal(long id)
         {
             var getApplicantForViewDto = await _applicantsAppService.GetApplicantForView(id);
 
@@ -159,7 +159,7 @@ namespace MFAE.Jobs.Web.Areas.App.Controllers
 
             };
 
-            return PartialView("_ViewApplicantModal", model);
+            return View( model);
         }
 
     }
