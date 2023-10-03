@@ -15,11 +15,8 @@
             <input type="hidden" name="id" value="@Model.ApplicantLanguage.Id" />
             }
 
-            <div class="my-3">
-                <label class="form-label" for="applicantId">@L("Applicant")</label>
-                @Html.DropDownList("applicantId", new SelectList(Model.ApplicantLanguageApplicantList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantLanguage.ApplicantId.ToString() : "")),@L("SelectAApplicant"), new { @class = "form-control form-control-solid" , @required="required" })
-            </div>
-
+            <input type="hidden" name="ApplicantId" value="@Model.ApplicantLanguage.ApplicantId" />
+           
             <div class="my-3">
                 <label class="form-label" for="languageId">@L("Language")</label>
                 @Html.DropDownList("languageId", new SelectList(Model.ApplicantLanguageLanguageList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantLanguage.LanguageId.ToString() : "")),@L("SelectALanguage"), new { @class = "form-control form-control-solid" , @required="required" })

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MFAE.Jobs.ApplicationForm.Dtos
+﻿namespace MFAE.Jobs.ApplicationForm.Dtos
 {
     public class FetchPersonDto
     {

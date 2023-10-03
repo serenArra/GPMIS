@@ -9,5 +9,9 @@ namespace MFAE.Jobs.Authorization.Users.Dto
         public UserListDto User { get; set; }
 
         public JobAdvertisementDto JobAdvertisement { get; set; }
+
+        public GetApplicantForViewDto ApplicantForViewDto { get; set; }
+
+        public bool IsApplicant { get; set; }
     }
 }

@@ -16,11 +16,8 @@
             <input type="hidden" name="id" value="@Model.ApplicantTraining.Id" />
             }
 
-            <div class="my-3">
-                <label class="form-label" for="applicantId">@L("Applicant")</label>
-                @Html.DropDownList("applicantId", new SelectList(Model.ApplicantTrainingApplicantList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantTraining.ApplicantId.ToString() : "")),@L("SelectAApplicant"), new { @class = "form-control form-control-solid" , @required="required" })
-            </div>
-
+            <input type="hidden" name="ApplicantId" value="@Model.ApplicantTraining.ApplicantId" />
+         
             <div class="my-3">
                 <label class="form-label" for="ApplicantTraining_Subject">@L("Subject")</label>
                 <input class="form-control form-control-solid" id="ApplicantTraining_Subject" value="@Model.ApplicantTraining.Subject" type="text" name="subject" required maxlength="@MFAE.Jobs.ApplicationForm.ApplicantTrainingConsts.MaxSubjectLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantTrainingConsts.MinSubjectLength" />

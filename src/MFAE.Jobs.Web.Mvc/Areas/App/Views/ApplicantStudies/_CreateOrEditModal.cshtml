@@ -15,6 +15,8 @@
             <input type="hidden" name="id" value="@Model.ApplicantStudy.Id" />
             }
 
+            <input type="hidden" name="ApplicantId" value="@Model.ApplicantStudy.ApplicantId" />
+
             <div class="my-3">
                 <label class="form-label" for="graduationRateId">@L("GraduationRate")</label>
                 @Html.DropDownList("graduationRateId", new SelectList(Model.ApplicantStudyGraduationRateList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantStudy.GraduationRateId.ToString() : "")),@L("SelectAGraduationRate"), new { @class = "form-control form-control-solid" , @required="required" })
@@ -30,10 +32,10 @@
                 @Html.DropDownList("specialtiesId", new SelectList(Model.ApplicantStudySpecialtiesList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantStudy.SpecialtiesId.ToString() : "")),@L("SelectASpecialties"), new { @class = "form-control form-control-solid" , @required="required" })
             </div>
 
-            <div class="my-3">
+          @*   <div class="my-3">
                 <label class="form-label" for="applicantId">@L("Applicant")</label>
                 @Html.DropDownList("applicantId", new SelectList(Model.ApplicantStudyApplicantList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantStudy.ApplicantId.ToString() : "")),@L("SelectAApplicant"), new { @class = "form-control form-control-solid" , @required="required" })
-            </div>
+            </div> *@
 
             <div class="my-3">
                 <label class="form-label" for="ApplicantStudy_OtherSpecialty">@L("OtherSpecialty")</label>

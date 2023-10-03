@@ -24,7 +24,10 @@ namespace MFAE.Jobs.Web.Areas.App.Controllers
             var model = new WelcomesViewModel()
             {
                 User = getWelcomeUserForView.User,
-                JobAdvertisement = getWelcomeUserForView.JobAdvertisement
+                JobAdvertisement = getWelcomeUserForView.JobAdvertisement,
+                ApplicantForViewDto = getWelcomeUserForView.ApplicantForViewDto,
+                IsApplicant = getWelcomeUserForView.IsApplicant,
+                ApplicantAddress = getWelcomeUserForView.ApplicantForViewDto.Applicant.Address,
             };
 
             return View(model);

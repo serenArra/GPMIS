@@ -34,10 +34,7 @@ using Abp.Notifications;
 using MFAE.Jobs.Notifications;
 using Abp.Domain.Uow;
 using System.Transactions;
-using Abp.UI;
-using Microsoft.AspNetCore.NodeServices;
-using Newtonsoft.Json;
-using System.Xml.Linq;
+
 
 namespace MFAE.Jobs.ApplicationForm
 {
@@ -246,7 +243,7 @@ namespace MFAE.Jobs.ApplicationForm
 
             var output = new GetApplicantForViewDto { Applicant = ObjectMapper.Map<ApplicantDto>(applicant) };
 
-            if (output.Applicant.IdentificationTypeId != null)
+            if (output.Applicant.IdentificationTypeId > 0)
             {
                 var _lookupIdentificationType = await _lookup_identificationTypeRepository.FirstOrDefaultAsync((int)output.Applicant.IdentificationTypeId);
                 output.IdentificationTypeName = _lookupIdentificationType?.Name?.ToString();
@@ -790,8 +787,6 @@ namespace MFAE.Jobs.ApplicationForm
                             birthCountry = await _lookup_countryRepository.GetAsync(birthGovernorate.CountryId);
                     }
                 }
-
-                
 
                 var passport = await GetPassportInfo(input);
 
