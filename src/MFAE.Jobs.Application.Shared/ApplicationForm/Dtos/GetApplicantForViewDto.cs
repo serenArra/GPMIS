@@ -16,12 +16,18 @@ namespace MFAE.Jobs.ApplicationForm.Dtos
 
         public ApplicantStatusEnum CurrentStatus { get; set; }
 
+        public ApplicantStatusEnum StatusID { get; set; }
+
         public string CountryName { get; set; }
 
         public string GovernorateName { get; set; }
 
         public string LocalityName { get; set; }
 
-        public ApplicantStatusEnum StatusID { get; set; }
+        public int applicantStudiesCount { get; set; }
+
+        public int applicantTrainingCount { get; set; }
+
+        public int applicantLanguageCount { get; set; }
     }
 }

@@ -1359,7 +1359,11 @@
 	<text name="Qualifications">المؤهلات العلمية</text>
 	<text name="Trainingcourses"> الدورات التدريبية</text>
 	<text name="Recommendations"> توصيات اللجنة</text>
-	<text name="Repetition"> التكرار</text>
+	<text name="Repetition">التكرار</text>
+	<text name="Accept">موافق</text>
+	<text name="Reject">مرفوض</text>
+	<text name="DecisionCommittee">قرار اللجنة</text>
+
 
 
   </texts>

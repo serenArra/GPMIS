@@ -11,12 +11,19 @@
 @{
     ViewBag.CurrentPageName = AppPageNames.Common.Applicants;
 }
+@section Scripts
+{
+<script abp-src="/view-resources/Areas/App/Views/ApplicantLanguages/Index.js" asp-append-version="true"></script>
+<script abp-src="/view-resources/Areas/App/Views/ApplicantTrainings/Index.js" asp-append-version="true"></script>
+<script abp-src="/view-resources/Areas/App/Views/AttachmentFiles/Index.js" asp-append-version="true"></script>
 
+
+}
 <abp-page-subheader title='@L("Applicants")' description='@L("ApplicantsHeaderInfo")'>
 
 </abp-page-subheader>
 <div class="@(await GetContainerClass())">
-    <input type="hidden" name="id" id="PersonId" value="@Model.Applicant.Id" />
+    <input type="hidden" name="id" id="ApplicantId" value="@Model.Applicant.Id" />
     <div class="card card-custom gutter-b">
         <div class="card-body">
             <div class="d-flex mb-9">
@@ -35,7 +42,7 @@
                         <div class="mr-3">
                             <b><span class="text-dark-75 text-hover-primary font-size-h4 font-weight-bold mr-3"> </span></b>
                             <span class="d-flex flex-column align-items-start">
-                                <span class="fs-2 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@Model.Applicant.FirstName   @Model.Applicant.FatherName @Model.Applicant.GrandFatherName  @Model.Applicant.FamilyName</span>
+                                <span class="fs-3 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@Model.Applicant.FirstName   @Model.Applicant.FatherName @Model.Applicant.GrandFatherName  @Model.Applicant.FamilyName</span>
                             </span>
                             
                             <div class="d-flex flex-wrap my-2">
@@ -374,73 +381,74 @@
                             </abp-card>
                         </div>
                     </div>
-
-
-                    <div class="tab-pane fade" role="tabpanel" id="EPCGFSummaryTabContent">
-                        Description 2
-                    </div>
-
                     <div class="tab-pane fade" role="tabpanel" id="FinancialStatementAnalysisTabContent">
-                        <div class="card-body p-0">
-                            Description 3
-                        </div>
-                    </div>
+                        <table id="ApplicantLanguagesTable" class="display table table-striped table-hover dt-responsive nowrap">
+                            <thead>
+                                <tr>
+                                    <th></th>
 
-
+                                    <th>@L("Actions")</th>
+                                    <th>@L("Narrative")</th>
+                                    <th>@L("ApplicantFirstName")</th>
+                                    <th>@L("LanguageName")</th>
+                                    <th>@L("ConversationName")</th>
+                                    <th>@L("ConversationRateName")</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>           
                     <div class="tab-pane fade" role="tabpanel" id="DisbursementInformationsTabContent">
+                        <table id="ApplicantTrainingsTable" class="display table table-striped table-hover dt-responsive nowrap">
+                            <thead>
+                                <tr>
+                                    <th></th>
 
-                        <div class="card card-custom gutter-b my-8 block-card mt-0 breadcrumb-block">
-                            <div class="card-body">
-                                Description 4
-                            </div>
-
-                        </div>
-
-
-                        <div class="row my-3">
-                            <div class="col-xl-12">
-                                Description 5
-                            </div>
-                        </div>
-
-
+                                    <th>@L("Actions")</th>
+                                    <th>@L("Subject")</th>
+                                    <th>@L("Location")</th>
+                                    <th>@L("TrainingDate")</th>
+                                    <th>@L("Duration")</th>
+                                    <th>@L("DurationType")</th>
+                                    <th>@L("ApplicantFirstName")</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
-
-
-
-
-
-                    <div class="tab-pane fade" role="tabpanel" id="DisbursementRescheduleInformationsTabContent">
-
-                        <div class="card card-custom gutter-b my-8 block-card mt-0 breadcrumb-block">
-                            <div class="card-body">
-                                Description 6
-                                <div class="separator separator-solid"></div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="row my-3">
-                            <div class="col-xl-12">
-                                Description 7
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    
+                                    
 
                     <div class="tab-pane fade" role="tabpanel" id="AttachmentsTabContent">
-                    </div>
+                           <table id="AttachmentFilesTable" class="display table table-striped table-hover dt-responsive nowrap">
+                                <thead>
+                                    <tr>
+                                        <th></th>
 
-                    <div class="tab-pane fade" role="tabpanel" id="ApplicationApprovalsInformationsTabContent">
+                                        <th>@L("Actions")</th>
+                                        <th>@L("PhysicalName")</th>
+                                        <th>@L("Description")</th>
+                                        <th>@L("OriginalName")</th>
+                                        <th>@L("Size")</th>
+                                        <th>@L("ObjectId")</th>
+                                        <th>@L("Path")</th>
+                                        <th>@L("Version")</th>
+                                        <th>@L("FileToken")</th>
+                                        <th>@L("Tag")</th>
+                                        <th>@L("FilterKey")</th>
+                                        <th>@L("AttachmentTypeArName")</th>
+                                    </tr>
+                                </thead>
+                            </table>
                     </div>
-
                     <div class="tab-pane fade" role="tabpanel" id="ApplicationFormStatusTabContent">
                         <div class="card-body pt-5">
                             <div class="timeline-label">
-                                Description 8
+                                <div>
+                                    <label for="AnswerRequest">@L("DecisionCommittee")</label>
+                                    <textarea class="form-control form-control-solid" id="AnswerRequest_show" name="Description" rows="3" readonly></textarea>
+                                </div>
+                                  <div class="modal-footer">
+                                        <button type="button" id="AcceptBtn" class="btn btn-success"><i class="fa fa-check"></i> <span>@L("Accept")</span></button>
+                                    <button type="button" id="RejectBtn" class="btn btn-danger "><i class="fa fa-times"></i> <span>@L("Reject")</span></button>
+                                  </div>
                             </div>
                         </div>
                     </div>
