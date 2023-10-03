@@ -84,6 +84,10 @@
 
     }, 'Invalid value');
 
+    $.validator.addMethod("arabicName", function (value, element) {
+        return this.optional(element) || /^[\u0600-\u06FF]/.test(value);
+    }, app.localize("ArabicCharactersOnly"));
+
     $.validator.addMethod('validateIdentificationDocumentNo', function (value, element, param) {
 
         if (element.name == "identificationDocumentNo") {

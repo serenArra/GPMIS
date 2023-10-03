@@ -89,6 +89,7 @@ namespace MFAE.Jobs
             configuration.CreateMap<CreateOrEditIdentificationTypeDto, IdentificationType>().ReverseMap();
             configuration.CreateMap<IdentificationTypeDto, IdentificationType>().ReverseMap();
             configuration.CreateMap<CreateOrEditApplicantDto, Applicant>().ReverseMap();
+            configuration.CreateMap<CreateOrEditApplicantDto, ApplicantDto>().ReverseMap();
             configuration.CreateMap<ApplicantDto, Applicant>().ReverseMap();
             configuration.CreateMap<CreateOrEditConversationDto, Conversation>().ReverseMap();
             configuration.CreateMap<ConversationDto, Conversation>().ReverseMap();

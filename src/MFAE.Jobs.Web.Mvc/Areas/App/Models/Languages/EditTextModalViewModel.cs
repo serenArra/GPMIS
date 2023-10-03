@@ -1,4 +1,4 @@
-﻿using Abp.Localization;
+using Abp.Localization;
 
 namespace MFAE.Jobs.Web.Areas.App.Models.Languages
 {

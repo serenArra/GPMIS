@@ -2,6 +2,7 @@
 
 using System;
 using Abp.Application.Services.Dto;
+using System.Globalization;
 
 namespace MFAE.Jobs.ApplicationForm.Dtos
 {
@@ -58,10 +59,24 @@ namespace MFAE.Jobs.ApplicationForm.Dtos
 
         public int? LocalityId { get; set; }
 
-        public  long? UserId { get; set; }
+        public string FullName
+        {
+            get
+            {
+                var name = "";
 
-        public Guid ProfilePictureId { get; set; }
+                if (CultureInfo.CurrentUICulture.Name != "ar" && !string.IsNullOrEmpty(this.FirstNameEn))
+                {
+                    name = this.FirstNameEn + " " + this.FatherNameEn + " " + this.GrandFatherNameEn + " " + this.FamilyNameEn;
+                }
+                else
+                {
+                    name = this.FirstNameEn + " " + this.FatherNameEn + " " + this.GrandFatherNameEn + " " + this.FamilyNameEn;
+                }
 
+                return name;
+            }
+        }
 
     }
 }

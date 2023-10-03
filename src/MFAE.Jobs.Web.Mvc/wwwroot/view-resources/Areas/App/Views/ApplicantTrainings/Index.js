@@ -141,7 +141,8 @@
                                 return _permissions.edit;
                             },
                             action: function (data) {
-                            _createOrEditModal.open({ id: data.record.applicantTraining.id });                                
+                                _createOrEditModal.open({ id: data.record.applicantTraining.id, applicantId: data.record.applicantTraining.applicantId });  
+                               
                             }
                         },
                         {

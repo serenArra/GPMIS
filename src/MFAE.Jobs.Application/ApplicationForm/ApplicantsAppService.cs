@@ -35,6 +35,7 @@ using MFAE.Jobs.Notifications;
 using Abp.Domain.Uow;
 using System.Transactions;
 
+
 namespace MFAE.Jobs.ApplicationForm
 {
     [AbpAuthorize(AppPermissions.Pages_Applicants)]
@@ -298,13 +299,13 @@ namespace MFAE.Jobs.ApplicationForm
 
             var output = new GetApplicantForEditOutput { Applicant = ObjectMapper.Map<CreateOrEditApplicantDto>(applicant) };
 
-            if (output.Applicant.IdentificationTypeId != null)
+            if (output.Applicant.IdentificationTypeId > 0)
             {
                 var _lookupIdentificationType = await _lookup_identificationTypeRepository.FirstOrDefaultAsync((int)output.Applicant.IdentificationTypeId);
                 output.IdentificationTypeName = _lookupIdentificationType?.Name?.ToString();
             }
 
-            if (output.Applicant.MaritalStatusId != null)
+            if (output.Applicant.MaritalStatusId > 0)
             {
                 var _lookupMaritalStatus = await _lookup_maritalStatusRepository.FirstOrDefaultAsync((int)output.Applicant.MaritalStatusId);
                 output.MaritalStatusName = _lookupMaritalStatus?.Name?.ToString();
@@ -322,7 +323,7 @@ namespace MFAE.Jobs.ApplicationForm
                 output.ApplicantStatusDescription = _lookupApplicantStatus?.Description?.ToString();
             }
 
-            if (output.Applicant.CountryId != null)
+            if (output.Applicant.CountryId > 0)
             {
                 var _lookupCountry = await _lookup_countryRepository.FirstOrDefaultAsync((int)output.Applicant.CountryId);
                 output.CountryName = _lookupCountry?.Name?.ToString();
@@ -376,37 +377,38 @@ namespace MFAE.Jobs.ApplicationForm
                 await _applicantRepository.UpdateAsync(applicant);
                 await CurrentUnitOfWork.SaveChangesAsync();
 
-               /* var UserRecorde = await _lookup_userRepository.GetAll().Where(x => x.Id == input.UserId).FirstOrDefaultAsync();
-                var userRole = new string[] { "User" };
+                /* var UserRecorde = await _lookup_userRepository.GetAll().Where(x => x.Id == input.UserId).FirstOrDefaultAsync();
+                 var userRole = new string[] { "User" };
 
-                CreateOrUpdateUserInput user = new CreateOrUpdateUserInput
-                {
-                    User = new UserEditDto
-                    {
-                        EmailAddress = input.Email,
-                        PhoneNumber = input.Mobile,
-                        Name = input.FirstNameBylanguage,
-                        Surname = input.FamilyNameBylanguage,
-                        UserName = input.FirstName,
-                      *//*  Password = input.Password,
-                        IsActive = input.IsActive,
-                        IsLockoutEnabled = input.IsLockoutEnabled,
-                        IsTwoFactorEnabled = input.IsTwoFactorEnabled,*//*
-                    },
-                    SetRandomPassword = input.SetRandomPassword,
-                    SendActivationEmail = input.SendActivationEmail,
-                    AssignedRoleNames = userRole,
-                };
+                 CreateOrUpdateUserInput user = new CreateOrUpdateUserInput
+                 {
+                     User = new UserEditDto
+                     {
+                         EmailAddress = input.Email,
+                         PhoneNumber = input.Mobile,
+                         Name = input.FirstNameBylanguage,
+                         Surname = input.FamilyNameBylanguage,
+                         UserName = input.FirstName,
+                       *//*  Password = input.Password,
+                         IsActive = input.IsActive,
+                         IsLockoutEnabled = input.IsLockoutEnabled,
+                         IsTwoFactorEnabled = input.IsTwoFactorEnabled,*//*
+                     },
+                     SetRandomPassword = input.SetRandomPassword,
+                     SendActivationEmail = input.SendActivationEmail,
+                     AssignedRoleNames = userRole,
+                 };
 
-                //From Existance User Recorde
-                if (UserRecorde != null)
-                {
-                    var _userRole = await UserManager.GetRolesAsync(UserRecorde);
-                    user.User.Id = UserRecorde.Id;
-                    user.AssignedRoleNames = _userRole.ToArray();
-                }
+                 //From Existance User Recorde
+                 if (UserRecorde != null)
+                 {
+                     var _userRole = await UserManager.GetRolesAsync(UserRecorde);
+                     user.User.Id = UserRecorde.Id;
+                     user.AssignedRoleNames = _userRole.ToArray();
+                 }
 
-                applicant.UserId = await CreateOrUpdateUser(user);*/
+                 applicant.UserId = await CreateOrUpdateUser(user);*/
+                uow.Complete();
                 return applicant.Id;
             }
         }
@@ -419,6 +421,8 @@ namespace MFAE.Jobs.ApplicationForm
                 var applicant = await _applicantRepository.FirstOrDefaultAsync((long)input.Id);
                 input.CurrentStatusId = applicant.CurrentStatusId;
                 ObjectMapper.Map(input, applicant);
+
+                uow.Complete();
             }
            
 
@@ -729,7 +733,7 @@ namespace MFAE.Jobs.ApplicationForm
                     DisplayName = locality == null || locality.Name == null ? "" : locality.Name.ToString()
                 }).ToListAsync();
         }
-
+     
         public async Task<GetApplicantForEditOutput> FetchPerson(FetchPersonDto input)
         {
             var person = new Applicant();
@@ -771,13 +775,13 @@ namespace MFAE.Jobs.ApplicationForm
 
                         if (birthLocality == null)
                         {
-                            birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameEn.Contains(propertyList["CityName_EN"].ToString())).FirstOrDefaultAsync();
+                            birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameEn.Contains(propertyList["CityName_EN"].ToString()) || e.NameAr.Contains(propertyList["CityName_AR"].ToString())).FirstOrDefaultAsync();
                         }
                     }                    
                 }
                 else
                 {
-                    birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameEn.Contains(propertyList["CityName_EN"].ToString())).FirstOrDefaultAsync();
+                    birthLocality = await _lookup_localityRepository.GetAll().Where(e => e.NameEn.Contains(propertyList["CityName_EN"].ToString()) || e.NameAr.Contains(propertyList["CityName_AR"].ToString())).FirstOrDefaultAsync();
 
                     if (birthLocality != null)
                     {
@@ -787,8 +791,6 @@ namespace MFAE.Jobs.ApplicationForm
                             birthCountry = await _lookup_countryRepository.GetAsync(birthGovernorate.CountryId);
                     }
                 }
-
-                
 
                 var passport = await GetPassportInfo(input);
 

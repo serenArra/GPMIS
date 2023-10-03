@@ -14,6 +14,8 @@ namespace MFAE.Jobs.ApplicationForm.Dtos
 
         public string ApplicantStatusDescription { get; set; }
 
+        public ApplicantStatusEnum CurrentStatus { get; set; }
+
         public string CountryName { get; set; }
 
         public string GovernorateName { get; set; }

@@ -2,17 +2,36 @@
     $(function ()
     {
         var _applicantsService = abp.services.app.applicants;
-        var _$applicantInformationForm = $('form[name=ApplicantInformationsForm]');
+        var _$applicantInformationForm = $('form[name=ApplicationFormInformation]');
+
+
+        var _createOrEditModal = new app.ModalManager({
+            viewUrl: abp.appPath + 'App/ApplicantStudies/CreateOrEditModal',
+            scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ApplicantStudies/_CreateOrEditModal.js',
+            modalClass: 'CreateOrEditApplicantStudyModal'
+        });
+
+
+        var _createOrEditApplicantTrainingsModal = new app.ModalManager({
+            viewUrl: abp.appPath + 'App/ApplicantTrainings/CreateOrEditModal',
+            scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ApplicantTrainings/_CreateOrEditModal.js',
+            modalClass: 'CreateOrEditApplicantTrainingModal'
+        });
+
+        var _createOrEditApplicantLanguagesModal = new app.ModalManager({
+            viewUrl: abp.appPath + 'App/ApplicantLanguages/CreateOrEditModal',
+            scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ApplicantLanguages/_CreateOrEditModal.js',
+            modalClass: 'CreateOrEditApplicantLanguageModal'
+        });
 
         _$applicantInformationForm.validate(
             {
                 rules: {
-                    identificationNo: {
+                    documentNo: {
                         required: true,
-                        maxLength: '#identificationTypeId',
+                        maxLength:"#identificationTypeId",
                         minLength: '#identificationTypeId',
-                        validateIdentificationNo: true, validateIdentificationNo: '#identificationTypeId'
-
+                        validateDocumentNo: true, validateDocumentNo: '#identificationTypeId'
                     },
                     firstName: {
                         arabicName: true
@@ -28,11 +47,11 @@
                     }
                 },
                 messages: {
-                    identificationNo: {
+                    documentNo: {
                         required: false,
                         maxLength: app.localize('maxlength', 9),
                         minLength: app.localize('minlength', 9),
-                        validateIdentificationNo: app.localize('NotValidIdentificationDocumentNo'),
+                        validateDocumentNo: app.localize('NotValidIdentificationDocumentNo'),
 
                     }
                 }
@@ -66,15 +85,15 @@
             locale: abp.localization.currentLanguage.name,
             format: 'L',
         })
-            .on("apply.daterangepicker", (ev, picker) => {
-                $selectedDate.endDate = picker.startDate;
-                getApplicants();
-            })
-            .on('cancel.daterangepicker', function (ev, picker) {
-                $(this).val("");
-                $selectedDate.endDate = null;
-                getApplicants();
-            });
+        .on("apply.daterangepicker", (ev, picker) => {
+            $selectedDate.endDate = picker.startDate;
+            getApplicants();
+        })
+        .on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val("");
+            $selectedDate.endDate = null;
+            getApplicants();
+        });
 
         var _permissions = {
             create: abp.auth.hasPermission('Pages.Applicants.Create'),
@@ -83,18 +102,7 @@
         };
 
         _$applicantInformationForm.validate();
-        var _createOrEditModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'App/Applicants/CreateOrEditModal',
-            scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/Applicants/_CreateOrEditModal.js',
-            modalClass: 'CreateOrEditApplicantModal'
-        });
-
-
-        var _viewApplicantModal = new app.ModalManager({
-            viewUrl: abp.appPath + 'App/Applicants/ViewapplicantModal',
-            modalClass: 'ViewApplicantModal'
-        });
-        
+              
         var getDateFilter = function (element) {
             if ($selectedDate.startDate == null) {
                 return null;
@@ -107,6 +115,60 @@
                 return null;
             }
             return $selectedDate.endDate.format("YYYY-MM-DDT23:59:59Z");
+        }
+
+        $('#DocumentNo').on('change', function () {
+            if ($('#identificationTypeId').val() == IdType.PS && $('#DocumentNo').valid())
+            {                
+               fetchPersonInfo();            
+            }
+        });
+
+        $("#DocumentNo").trigger("change");
+       
+        function fetchPersonInfo() {
+            var DocType = $('#identificationTypeId').val();
+            if (DocType == IdType.PS) {
+                abp.ui.setBusy();
+                _applicantsService.fetchPerson({
+                    identificationDocumentNoTypeId: DocType,
+                    identificationDocumentNoId: $('#DocumentNo').val()
+                }).done(function (output) {
+
+                    if (output == null) {
+                        abp.message.error(output.message, app.localize('Error'))
+                    }
+                    else {
+                        console.log("output", output);
+                        $("#DocumentNo").val(output.applicant.documentNo);
+
+                        $("#Applicant_FirstName").val(output.applicant.firstName);
+                        $("#Applicant_FatherName").val(output.applicant.fatherName);
+                        $("#Applicant_GrandFatherName").val(output.applicant.grandFatherName);
+                        $("#Applicant_FamilyName").val(output.applicant.familyName);
+
+                        $("#Applicant_FirstNameEn").val(output.applicant.firstNameEn);
+                        $("#Applicant_FatherNameEn").val(output.applicant.fatherNameEn);
+                        $("#Applicant_GrandFatherNameEn").val(output.applicant.grandFatherNameEn);
+                        $("#Applicant_FamilyNameEn").val(output.applicant.familyNameEn);
+
+                        $("#Applicant_Gender").val(output.applicant.gender).trigger('change');
+                        $("#maritalStatusId").val(output.applicant.maritalStatusId).trigger('change');
+                        $("#Applicant_BirthDate").data("DateTimePicker").date(moment(output.applicant.birthDate));
+
+                        /*$("#countryId").val();
+                        $("#governorateId").val();
+                        $("#localityId").val();*/
+                    }
+                }).always(function () {
+                    abp.ui.clearBusy();
+                });
+            }
+            else {
+                
+                $('#imageUrl').addClass('d-none');
+                $('#defaultImage').removeClass('d-none');
+            }
         }
 
         function save(successCallback) {
@@ -188,7 +250,18 @@
             });
         });
 
+        $('#CreateApplicantStudyButton').click(function () {
+            _createOrEditModal.open({ applicantId: $("#ApplicantId").val() });
+        }); 
 
+        $('#CreateApplicantTrainingButton').click(function () {
+            _createOrEditApplicantTrainingsModal.open({ applicantId: $("#ApplicantId").val() });
+        });   
+
+        $('#CreateApplicantLanguageButton').click(function () {
+            _createOrEditApplicantLanguagesModal.open({ applicantId: $("#ApplicantId").val() });
+        });  
+        
         var applicantId = function () {
             return $("#ApplicantId").val();
         };

@@ -4,7 +4,7 @@
     {
 
         public const int MinDocumentNoLength = 1;
-        public const int MaxDocumentNoLength = 15;
+        public const int MaxDocumentNoLength = 9;
 
         public const int MinFirstNameLength = 1;
         public const int MaxFirstNameLength = 50;

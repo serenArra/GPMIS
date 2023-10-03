@@ -8,6 +8,10 @@ namespace MFAE.Jobs.Web.Areas.App.Models.Welcomes
 
         public JobAdvertisementDto JobAdvertisement { get; set; }
 
-        public string GovernorateName { get; set; }
+        public GetApplicantForViewDto ApplicantForViewDto { get; set; }
+
+        public bool IsApplicant { get; set; }
+
+        public string ApplicantAddress { get; set; }
     }
 }

@@ -53,10 +53,10 @@
         };
 
          var _createOrEditModal = new app.ModalManager({
-                    viewUrl: abp.appPath + 'App/ApplicantStudies/CreateOrEditModal',
-                    scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ApplicantStudies/_CreateOrEditModal.js',
-                    modalClass: 'CreateOrEditApplicantStudyModal'
-                });
+             viewUrl: abp.appPath + 'App/ApplicantStudies/CreateOrEditModal',
+             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ApplicantStudies/_CreateOrEditModal.js',
+             modalClass: 'CreateOrEditApplicantStudyModal'
+         });
                    
 
 		 var _viewApplicantStudyModal = new app.ModalManager({
@@ -143,7 +143,7 @@
                                 return _permissions.edit;
                             },
                             action: function (data) {
-                            _createOrEditModal.open({ id: data.record.applicantStudy.id });                                
+                                _createOrEditModal.open({ id: data.record.applicantStudy.id, applicantId: data.record.applicantStudy.applicantId });                                
                             }
                         },
                         {
