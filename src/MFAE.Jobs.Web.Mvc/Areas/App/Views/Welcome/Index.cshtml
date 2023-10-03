@@ -8,7 +8,14 @@
         $(document).ready(function() {
         $("#applyBtn").click(function () {
             let ApplicantId =  @Model.ApplicantForViewDto.Applicant.Id;
-            window.location.href = "Applicants/CreateOrEdit/" + ApplicantId;
+            if(ApplicantId > 0)
+            {
+                window.location.href = "Applicants/CreateOrEdit/" + ApplicantId;
+            }
+            else
+            {
+                window.location.href = "Applicants/CreateOrEdit/";
+            }
           });
       });
     </script>
