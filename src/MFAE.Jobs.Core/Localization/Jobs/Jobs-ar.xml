@@ -269,7 +269,7 @@
     <text name="UserName">اسم المستخدم</text>
     <text name="Name">الإسـم</text>
     <text name="Surname">الإسم الأخير</text>
-    <text name="م">البريد الإلكتروني</text>
+    <text name="Email">البريد الإلكتروني</text>
     <text name="LastLoginTime">آخر تسجيل الدخول</text>
     <text name="EditUser">تحرير المستخدم</text>
     <text name="UserInformations">تفاصيل المستخدم</text>

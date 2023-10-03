@@ -344,39 +344,28 @@
                             <abp-card>
                                 <abp-card-header title="@L("ApplicantData")" icon="fab fa-black-tie">
                                 </abp-card-header>
-                                <abp-card-body>
-                                    <div id="ConsularRecordsTab">
+                                <abp-card-body>                                        
                                         <div class="row">
-                                            <div class="col-6 bg-light">
-                                                <abp-field-vlaue label="@L("EmailAddress")">
-                                                    
-                                                </abp-field-vlaue>
-                                            </div>
-                                            <div class="col-6 bg-light">
-                                                <abp-field-vlaue label="@L("Address")">
-                                                    dsf
-                                                </abp-field-vlaue>
-                                            </div>
-                                            <div class="col-6">
-                                                <abp-field-vlaue label="@L("Mobile")">
-                                                    sdf
-                                                </abp-field-vlaue>
-                                            </div>
-                                            <div class="col-6">
-                                                <abp-field-vlaue label="@L("Repetition")">
-                                                </abp-field-vlaue>
-                                            </div>
-                                            <div class="col-6 bg-light">
-                                                <abp-field-vlaue label="@L("NumberOfChildren")">
-                                                </abp-field-vlaue>
-                                            </div>
-                                           
-                                           
-                                        
-                                         
-                                          
+                                        <div class="col-6 mb-3 block-title">
+                                            <h6 class="title-main">@L("Email") :</h6>
+                                            <p class="px-2">@Model.Applicant.Email </p>
                                         </div>
-                                    </div>
+
+                                        <div class="col-6 mb-3 block-title">
+                                            <h6 class="title-main">@L("Address") :</h6>
+                                            <p class="px-2">@Model.Applicant.Address </p>
+                                        </div>
+                                        <div class="col-6 mb-3 block-title">
+                                            <h6 class="title-main">@L("Repetition") :</h6>
+                                            <p class="px-2"> </p>
+                                        </div>
+                                        <div class="col-6 mb-3 block-title">
+                                            <h6 class="title-main">@L("NumberOfChildren") :</h6>
+                                            <p class="px-2"> @Model.Applicant.NumberOfChildren</p>
+                                        </div>
+                                                                                                                                                                                                                                                                                            
+                                        </div>
+                                           
                                 </abp-card-body>
                             </abp-card>
                         </div>
