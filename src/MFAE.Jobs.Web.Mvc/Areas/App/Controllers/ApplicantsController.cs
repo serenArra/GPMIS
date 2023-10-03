@@ -156,6 +156,8 @@ namespace MFAE.Jobs.Web.Areas.App.Controllers
 
                 ,
                 LocalityName = getApplicantForViewDto.LocalityName
+                ,
+                StatusID = getApplicantForViewDto.StatusID
 
             };
 

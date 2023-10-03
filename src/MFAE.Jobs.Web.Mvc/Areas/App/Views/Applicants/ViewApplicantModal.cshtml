@@ -11,42 +11,12 @@
 @{
     ViewBag.CurrentPageName = AppPageNames.Common.Applicants;
 }
-<style>
-    a {
-        text-decoration: none;
-        display: inline-block;
-        padding: 8px 16px;
-    }
-
-        a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-    .previous {
-        background-color: #f1f1f1;
-        color: black;
-    }
-
-    .next {
-        background-color: rgb(53,149,246);
-        color: white;
-    }
-
-    .round {
-        border-radius: 50%;
-    }
-</style>
 
 <abp-page-subheader title='@L("Applicants")' description='@L("ApplicantsHeaderInfo")'>
 
 </abp-page-subheader>
 <div class="@(await GetContainerClass())">
     <input type="hidden" name="id" id="PersonId" value="@Model.Applicant.Id" />
-    <div class="d-flex align-items-center justify-content-center">
-        <a href="#" class="previous round">&#8249;</a>
-        <a href="#" class="next round">&#8250;</a>
-    </div>
     <div class="card card-custom gutter-b">
         <div class="card-body">
             <div class="d-flex mb-9">
@@ -63,7 +33,11 @@
                 <div class="flex-grow-1 align-items-center">
                     <div class="d-flex justify-content-between align-items-center flex-wrap mt-1">
                         <div class="mr-3">
-                            <b><span class="text-dark-75 text-hover-primary font-size-h4 font-weight-bold mr-3">@Model.Applicant.FirstName   @Model.Applicant.FatherName @Model.Applicant.GrandFatherName  @Model.Applicant.FamilyName </span></b>
+                            <b><span class="text-dark-75 text-hover-primary font-size-h4 font-weight-bold mr-3"> </span></b>
+                            <span class="d-flex flex-column align-items-start">
+                                <span class="fs-2 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@Model.Applicant.FirstName   @Model.Applicant.FatherName @Model.Applicant.GrandFatherName  @Model.Applicant.FamilyName</span>
+                            </span>
+                            
                             <div class="d-flex flex-wrap my-2">
                                 <b class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
                                     @L("ApplicantsNumber") : @Model.Applicant.Id
@@ -80,7 +54,9 @@
                         <i class="flaticon2-paper display-4 text-muted font-weight-bold"></i>
                     </span>
                     <div class="d-flex flex-column text-dark-75">
-                        <span class="font-weight-bolder font-size-sm">@L("IdentificationDocumentNo")</span>
+                        <span class="d-flex flex-column align-items-start">
+                            <span class="fs-6 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@L("IdentificationDocumentNo")</span>
+                        </span>
                         <span class="font-size-h5">
                             @Model.Applicant.DocumentNo
                         </span>
@@ -91,7 +67,9 @@
                         <i class="flaticon2-paper display-4 text-muted font-weight-bold"></i>
                     </span>
                     <div class="d-flex flex-column text-dark-75">
-                        <span class="font-weight-bolder font-size-sm">@L("BirthDate")</span>
+                        <span class="d-flex flex-column align-items-start">
+                            <span class="fs-6 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@L("BirthDate")</span>
+                        </span>
                         <span class="font-size-h5">
                             @Model.Applicant.BirthDate.ToShortDateString()
                         </span>
@@ -102,9 +80,11 @@
                         <i class="flaticon-user display-4 text-muted font-weight-bold"></i>
                     </span>
                     <div class="d-flex flex-column flex-lg-fill">
-                        <span class="text-dark-75 font-weight-bolder font-size-sm">@L("Gender")</span>
+                        <span class="d-flex flex-column align-items-start">
+                            <span class="fs-6 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@L("Gender")</span>
+                        </span>
                         <span class="font-size-h5">
-                            @Model.Applicant.Gender
+                            @L("Enum_Gender_"+Model.Applicant.GenderId)
                         </span>
                     </div>
                 </div>
@@ -113,9 +93,11 @@
                         <i class="flaticon-user-settings display-4 text-muted font-weight-bold"></i>
                     </span>
                     <div class="d-flex flex-column flex-lg-fill">
-                        <span class="text-dark-75 font-weight-bolder font-size-sm">@L("MaritalStatus")</span>
+                        <span class="d-flex flex-column align-items-start">
+                            <span class="fs-6 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@L("MaritalStatus")</span>
+                        </span>
                         <span class="font-size-h5">
-                            @Model.Applicant.MaritalStatusId
+                            @Model.MaritalStatusName
                         </span>
                     </div>
                 </div>
@@ -123,28 +105,35 @@
                     <span class="mr-4">
                         <i class="flaticon-list display-4 text-muted font-weight-bold"></i>
                     </span>
-                    <div class="d-flex flex-column">
-                        <span class="text-dark-75 font-weight-bolder font-size-sm">
-                            @L("Status")
+                    <div class="d-flex flex-column">                     
+                        <span class="d-flex flex-column align-items-start">
+                            <span class="fs-6 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@L("Status")</span>
                         </span>
-                        @*     @{
+                            @{
                         var color = "";
                         }
-                        @switch (Model.Applicant.CurrentStatusId)
+                        @switch (Model.StatusID)
                         {
                         case ApplicantStatusEnum.Accepted:
-                        color = "label-light-success";
+                                color = "badge badge-success";
                         break;
                         case ApplicantStatusEnum.Rejected:
-                        color = "label-light-danger";
+                                color = "badge badge-danger";
                         break;
-                        default:
+
+                        case ApplicantStatusEnum.UnderRevision:
+                                color = "badge badge-info";
                         break;
-                        } *@
-                        <span id="CurrentStatus" class="label label-xl font-weight-boldest label-inline @* @color *@">
-                            @L("Enum_PersonEnum_" + (int)Model.Applicant.CurrentStatusId)
+                        case ApplicantStatusEnum.New:
+                                color = "badge badge-warning";
+                        break;
+                            default:
+                        break;
+                        }
+                        <span id="CurrentStatus" class="label label-xl font-weight-boldest label-inline  @color ">
+                            @L("ApplicantStatusEnum_" + (int)Model.StatusID)
                         </span>
-                    </div>
+                    </div>                  
                 </div>
             </div>
         </div>
@@ -180,37 +169,20 @@
                                         </svg>
                                 </span>
                                 <span class="d-flex flex-column align-items-start">
-                                    <span class="fs-6 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@L("ApplicationMainInformation")</span>
+                                    <span class="fs-6 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@L("ApplicantData")</span>
                                 </span>
                             </a>
-                        </li>
-
-                        <li class="nav-item w-100 me-0 mb-md-2">
-                            <a class="nav-link w-100 btn btn-flex" data-bs-toggle="tab" id="EPCGFSummaryTab" href="#EPCGFSummaryTabContent">
-                                <span class="nav-icon mb-5">
-                                    <span class="svg-icon svg-icon-2hx m-0">
-                                        <svg class="svg-icon svg-icon-black" style="transform: scale(1.3);width: 1em; height: 1em;vertical-align: middle;fill: #000;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M776.854 776.328l57.87 57.87a1 1 0 0 1 0 1.414l-41.074 41.073a1 1 0 0 1-1.414 0l-57.87-57.869c-23.747 15.728-52.224 24.888-82.841 24.888-82.963 0-150.217-67.255-150.217-150.217 0-82.963 67.254-150.218 150.217-150.218 82.963 0 150.217 67.255 150.217 150.218 0 30.616-9.16 59.094-24.888 82.841zM305.868 358.273c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.823 30.095-29.823 16.62 0 30.095 13.352 30.095 29.823 0 16.47-13.474 29.823-30.095 29.823z m0 167.006c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.822 30.095-29.822 16.62 0 30.095 13.352 30.095 29.822s-13.474 29.823-30.095 29.823z m0 167.006c-16.621 0-30.095-13.352-30.095-29.823 0-16.47 13.474-29.822 30.095-29.822 16.62 0 30.095 13.352 30.095 29.822 0 16.471-13.474 29.823-30.095 29.823z m67.409-393.658h303.506a1.2 1.2 0 0 1 1.2 1.2v57.246a1.2 1.2 0 0 1-1.2 1.2H373.277a1.2 1.2 0 0 1-1.2-1.2v-57.246a1.2 1.2 0 0 1 1.2-1.2z m0 167.007h303.506a1.2 1.2 0 0 1 1.2 1.2v57.245a1.2 1.2 0 0 1-1.2 1.2H373.277a1.2 1.2 0 0 1-1.2-1.2v-57.245a1.2 1.2 0 0 1 1.2-1.2z m0 167.006h93.227a1.2 1.2 0 0 1 1.2 1.2v57.245a1.2 1.2 0 0 1-1.2 1.2h-93.227a1.2 1.2 0 0 1-1.2-1.2V633.84a1.2 1.2 0 0 1 1.2-1.2z m278.248 150.977c49.778 0 90.13-40.353 90.13-90.13 0-49.778-40.352-90.13-90.13-90.13s-90.13 40.352-90.13 90.13c0 49.777 40.352 90.13 90.13 90.13zM238 751h241v60H208c-16.569 0-30-13.431-30-30V211c0-16.569 13.431-30 30-30h539c16.569 0 30 13.431 30 30v290.823h-60V241H238v510z" /></svg>
-                                    </span>
-                                </span>
-                                <span class="d-flex flex-column align-items-start">
-                                    <span class="fs-5 fw-bold">@L("EPCGFSummary")</span>
-                                </span>
-                            </a>
-                        </li>
-
+                        </li>                    
                         <li class="nav-item w-100 me-0 mb-md-2">
                             <a class="nav-link w-100 btn btn-flex" data-bs-toggle="tab" id="FinancialStatementAnalysisTab" href="#FinancialStatementAnalysisTabContent">
                                 <span class="svg-icon svg-icon-muted svg-icon-2hx">
                                     <i class="fa fa-tasks" style="color: #000;font-size: 22px;padding-left: 8px;" aria-hidden="true"></i>
                                 </span>
                                 <span class="d-flex flex-column align-items-start">
-                                    <span class="fs-5 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@L("FinancialStatementAnalysis")</span>
+                                    <span class="fs-5 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@L("Languages")</span>
                                 </span>
                             </a>
                         </li>
-
-
-
                         <li class="nav-item w-100 me-0 mb-md-2">
                             <a class="nav-link w-100 btn btn-flex" data-toggle="tab" data-bs-toggle="tab" id="DisbursementInformationsTab" href="#DisbursementInformationsTabContent">
                                 <span class="svg-icon svg-icon-muted svg-icon-2hx">
@@ -237,47 +209,10 @@
                                             </svg>
                                 </span>
                                 <span class="d-flex flex-column align-items-start">
-                                    <span class="fs-6 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@L("DisbursementMainInformation")</span>
+                                    <span class="fs-6 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@L("Trainingcourses")</span>
                                 </span>
                             </a>
-                        </li>
-
-
-
-
-                        <li class="nav-item w-100 me-0 mb-md-2">
-                            <a class="nav-link w-100 btn btn-flex" data-toggle="tab" data-bs-toggle="tab" id="DisbursementRescheduleInformationsTab" href="#DisbursementRescheduleInformationsTabContent">
-                                <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                         viewBox="0 0 493.474 493.474" xml:space="preserve">
-                                    <g>
-                                    <g>
-                                    <path style="fill:#010002;" d="M314.284,314.029c-30.563,23.814-55.479,53.227-80.686,82.352
-			                                            c-10.786-11.428-20.596-23.559-26.917-38.184c-7.154-16.676-34.342,7.584-27.895,22.598c8.817,20.387,24.519,36.965,39.977,52.584
-			                                            c6.305,6.416,17.138-0.832,21.491-5.793c27.652-31.398,53.448-64.443,86.638-90.305
-			                                            C342.816,324.894,333.261,299.242,314.284,314.029z" />
-                                    <path style="fill:#010002;" d="M402.266,35.399h-76.354c-5.358-5.895-13.04-9.679-21.632-9.679h-29.412v-4.984
-			                                            C274.867,9.946,260.415,0,246.738,0c-13.678,0-28.13,9.946-28.13,20.736v4.984h-29.413c-8.592,0-16.273,3.784-21.632,9.679H91.176
-			                                            c-8.099,0-14.594,6.554-14.594,14.619v428.829c0,8.049,6.479,14.627,14.594,14.627h311.091c8.081,0,14.626-6.527,14.626-14.627
-			                                            V50.018C416.891,41.953,410.346,35.399,402.266,35.399z M387.607,464.238H105.787V64.636h42.285v0.003h13.47
-			                                            c3.971,11.538,14.772,19.892,27.668,19.892h57.528h57.528c12.896,0,23.697-8.354,27.668-19.892h13.47v-0.003h42.204
-			                                            L387.607,464.238L387.607,464.238z" />
-                                    <rect x="133.1" y="114.818" style="fill:#010002;" width="227.273" height="22.729" />
-                                    <rect x="133.1" y="164.818" style="fill:#010002;" width="227.273" height="22.729" />
-                                    <rect x="133.1" y="214.818" style="fill:#010002;" width="227.273" height="22.729" />
-                                    <rect x="133.1" y="264.818" style="fill:#010002;" width="227.273" height="22.729" />
-                                                </g>
-                                            </g>
-                                            </svg>
-                                </span>
-                                <span class="d-flex flex-column align-items-start">
-                                    <span class="fs-6 fw-bold @(CultureHelper.IsRtl ? "" : "text-start")">@L("DisbursementRescheduleMainInformation")</span>
-                                </span>
-                            </a>
-                        </li>
-
-
-
+                        </li>                     
                         <li class="nav-item w-100 me-0 mb-md-2">
                             <a class="nav-link w-100 btn btn-flex" data-bs-toggle="tab" id="AttachmentsTab" href="#AttachmentsTabContent">
                                 <span class="nav-icon mb-5">
@@ -292,51 +227,6 @@
                                 </span>
                             </a>
                         </li>
-
-
-                        <li class="nav-item w-100 me-0 mb-md-2">
-                            <a class="nav-link w-100 btn btn-flex" data-bs-toggle="tab" id="ApplicationApprovalsTab" href="#ApplicationApprovalsInformationsTabContent">
-                                <span class="svg-icon svg-icon-muted svg-icon-2hx">
-                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                         viewBox="0 0 295.24 295.24" xml:space="preserve">
-                                    <g>
-                                    <g>
-                                    <path style="fill:#333333;" d="M295.239,161.905h-38.095v-42.824l-75.229-0.505l-29.533-12.233V90.476h-9.524v15.867
-			                                                        l-29.533,12.233l-75.229,0.505v42.824H0.001v57.143h85.714v-57.143H47.62v-33.367l65.676-0.438l29.562,13.095v20.71h-38.095
-			                                                        v57.143h85.714v-57.143h-38.095v-20.71l29.562-13.095l65.676,0.438v33.367h-38.095v57.143h38.095v14.286H142.858v23.81h-19.047
-			                                                        c-10.505,0-19.048,8.543-19.048,19.048s8.543,19.048,19.048,19.048h47.619c10.505,0,19.048-8.543,19.048-19.048
-			                                                        s-8.543-19.048-19.048-19.048h-19.048v-14.286h104.762v-23.81h38.095V161.905z M76.191,209.524H9.525v-38.095h66.666V209.524z
-			                                                         M180.953,209.524h-66.667v-38.095h66.667V209.524z M147.62,132.886l-21.243-9.41l21.243-8.795l21.243,8.8L147.62,132.886z
-			                                                         M180.953,276.19c0,5.252-4.271,9.524-9.524,9.524h-47.618c-5.252,0-9.524-4.271-9.524-9.524c0-5.252,4.271-9.524,9.524-9.524
-			                                                        h47.619C176.682,266.667,180.953,270.938,180.953,276.19z M285.715,209.524h-66.667v-38.095h66.667V209.524z" />
-                                    <path style="fill:#F9BA48;" d="M171.43,95.238h-47.619V67.81c-8.99-7.219-14.286-18.143-14.286-29.714
-			                                                        C109.525,17.09,126.615,0,147.62,0s38.095,17.09,38.095,38.095c0,11.576-5.295,22.5-14.286,29.714L171.43,95.238L171.43,95.238z" />
-                                    <path style="fill:#333333;" d="M176.191,71.429h-23.81V51.505c5.529-1.971,9.524-7.21,9.524-13.41
-			                                                        c0-7.876-6.41-14.286-14.286-14.286s-14.286,6.41-14.286,14.286c0,6.2,3.995,11.438,9.524,13.41v19.924h-23.81v9.524h57.143
-			                                                        L176.191,71.429L176.191,71.429z M147.62,33.333c2.624,0,4.762,2.138,4.762,4.762s-2.138,4.762-4.762,4.762
-			                                                        s-4.762-2.138-4.762-4.762C142.858,35.471,144.996,33.333,147.62,33.333z" />
-                                    <rect x="71.43" y="33.333" style="fill:#333333;" width="23.81" height="9.524" />
-
-                                    <rect x="76.32" y="57.934" transform="matrix(0.9238 -0.3828 0.3828 0.9238 -17.2805 38.549)" style="fill:#333333;" width="23.808" height="9.524" />
-
-                                    <rect x="202.248" y="50.792" transform="matrix(0.3827 -0.9239 0.9239 0.3827 69.8651 229.9553)" style="fill:#333333;" width="9.524" height="23.811" />
-                                    <rect x="200.001" y="33.333" style="fill:#333333;" width="23.81" height="9.524" />
-
-                                    <rect x="195.106" y="8.734" transform="matrix(0.9238 -0.3828 0.3828 0.9238 10.6022 80.274)" style="fill:#333333;" width="23.808" height="9.524" />
-
-                                    <rect x="83.467" y="1.587" transform="matrix(0.3827 -0.9239 0.9239 0.3827 41.9993 89.8422)" style="fill:#333333;" width="9.524" height="23.811" />
-                                                                </g>
-                                            </g>
-                                            </svg>
-                                </span>
-                                <span class="d-flex flex-column align-items-start">
-                                    <span class="fs-5 fw-bold">@L("ApplicationApprovals")</span>
-
-                                </span>
-                            </a>
-                        </li>
-
-
                         <li class="nav-item w-100 me-0 mb-md-2">
                             <a class="nav-link w-100 btn btn-flex" data-bs-toggle="tab" id="ApplicationFormStatusTab" href="#ApplicationFormStatusTabContent">
                                 <span class="svg-icon svg-icon-muted svg-icon-2hx">
@@ -429,7 +319,7 @@
                                             </svg>
                                 </span>
                                 <span class="d-flex flex-column align-items-start">
-                                    <span class="fs-4 fw-bold">@L("AuditLogs")</span>
+                                    <span class="fs-4 fw-bold">@L("Recommendations")</span>
 
                                 </span>
                             </a>
@@ -443,7 +333,46 @@
             <div class="card card-custom gutter-b border-0">
                 <div class="card-body p-1">
                     <div class="tab-pane fade show active" role="tabpanel" id="ApplicationFormMainInformationsTabContent">
-                        Description 1
+                        <div class="col-12">
+                            <abp-card>
+                                <abp-card-header title="@L("ApplicantData")" icon="fab fa-black-tie">
+                                </abp-card-header>
+                                <abp-card-body>
+                                    <div id="ConsularRecordsTab">
+                                        <div class="row">
+                                            <div class="col-6 bg-light">
+                                                <abp-field-vlaue label="@L("EmailAddress")">
+                                                    
+                                                </abp-field-vlaue>
+                                            </div>
+                                            <div class="col-6 bg-light">
+                                                <abp-field-vlaue label="@L("Address")">
+                                                    dsf
+                                                </abp-field-vlaue>
+                                            </div>
+                                            <div class="col-6">
+                                                <abp-field-vlaue label="@L("Mobile")">
+                                                    sdf
+                                                </abp-field-vlaue>
+                                            </div>
+                                            <div class="col-6">
+                                                <abp-field-vlaue label="@L("Repetition")">
+                                                </abp-field-vlaue>
+                                            </div>
+                                            <div class="col-6 bg-light">
+                                                <abp-field-vlaue label="@L("NumberOfChildren")">
+                                                </abp-field-vlaue>
+                                            </div>
+                                           
+                                           
+                                        
+                                         
+                                          
+                                        </div>
+                                    </div>
+                                </abp-card-body>
+                            </abp-card>
+                        </div>
                     </div>
 
 

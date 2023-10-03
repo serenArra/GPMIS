@@ -242,6 +242,8 @@ namespace MFAE.Jobs.ApplicationForm
 
             var output = new GetApplicantForViewDto { Applicant = ObjectMapper.Map<ApplicantDto>(applicant) };
 
+            output.Applicant.GenderId = (int)applicant.Gender;
+
             if (output.Applicant.IdentificationTypeId != null)
             {
                 var _lookupIdentificationType = await _lookup_identificationTypeRepository.FirstOrDefaultAsync((int)output.Applicant.IdentificationTypeId);
@@ -264,6 +266,8 @@ namespace MFAE.Jobs.ApplicationForm
             {
                 var _lookupApplicantStatus = await _lookup_applicantStatusRepository.FirstOrDefaultAsync((long)output.Applicant.CurrentStatusId);
                 output.ApplicantStatusDescription = _lookupApplicantStatus?.Description?.ToString();
+                output.StatusID =_lookupApplicantStatus.Status;
+
             }
 
             if (output.Applicant.CountryId > 0)

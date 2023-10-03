@@ -41,6 +41,9 @@ namespace MFAE.Jobs.ApplicationForm.Dtos
 
         public Gender Gender { get; set; }
 
+        public int GenderId { get; set; }
+
+
         public int IdentificationTypeId { get; set; }
 
         public int MaritalStatusId { get; set; }

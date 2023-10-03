@@ -1,4 +1,6 @@
-﻿namespace MFAE.Jobs.ApplicationForm.Dtos
+﻿using MFAE.Jobs.ApplicationForm.Enums;
+
+namespace MFAE.Jobs.ApplicationForm.Dtos
 {
     public class GetApplicantForViewDto
     {
@@ -18,5 +20,6 @@
 
         public string LocalityName { get; set; }
 
+        public ApplicantStatusEnum StatusID { get; set; }
     }
 }
