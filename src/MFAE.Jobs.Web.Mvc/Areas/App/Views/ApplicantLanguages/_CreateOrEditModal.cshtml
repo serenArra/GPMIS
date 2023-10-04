@@ -5,7 +5,11 @@
 @model CreateOrEditApplicantLanguageModalViewModel
 @using Abp.Extensions
 @await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditApplicantLanguage")) : L("CreateNewApplicantLanguage")))
-
+<script type="text/javascript">
+    var languageList = @Html.Raw(Json.Serialize(Model.ApplicantLanguageLanguageList));
+    var ApplicantLanguageConversationRateList = @Html.Raw(Json.Serialize(Model.ApplicantLanguageConversationRateList));
+    var ApplicantLanguageConversationList =  @Html.Raw(Json.Serialize(Model.ApplicantLanguageConversationList));
+</script>
 <div class="modal-body">
     <div id="ApplicantLanguageInformationsTab">
         <form name="ApplicantLanguageInformationsForm" role="form" novalidate class="form-validation">
@@ -14,29 +18,64 @@
             {
             <input type="hidden" name="id" value="@Model.ApplicantLanguage.Id" />
             }
-
             <input type="hidden" name="ApplicantId" value="@Model.ApplicantLanguage.ApplicantId" />
-           
-            <div class="my-3">
-                <label class="form-label" for="languageId">@L("Language")</label>
-                @Html.DropDownList("languageId", new SelectList(Model.ApplicantLanguageLanguageList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantLanguage.LanguageId.ToString() : "")),@L("SelectALanguage"), new { @class = "form-control form-control-solid" , @required="required" })
-            </div>
+            <div class="card-body">
+                <div class="form">
+                    <div id="LanguageApplicantTab">
+                        <div class="form-group">
+                            <div class=" align-items-center">
+                                <table id="LanguageRate" class="display table table-hover table-head-custom dataTable no-footer dtr-inline dt-responsive nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @L("Language")
+                                            </th>
 
-            <div class="my-3">
-                <label class="form-label" for="conversationId">@L("Conversation")</label>
-                @Html.DropDownList("conversationId", new SelectList(Model.ApplicantLanguageConversationList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantLanguage.ConversationId.ToString() : "")),@L("SelectAConversation"), new { @class = "form-control form-control-solid" , @required="required" })
-            </div>
+                                            @foreach (var info in Model.ApplicantLanguageConversationList)
+                                            {
+                                                <th>
+                                                    @info.DisplayName
+                                                </th>
+                                            }
+                                        </tr>
+                                    </thead>                                   
+                                        <tr>
+                                            <td>
+                                            @Html.DropDownList("LanguageID", new SelectList(Model.ApplicantLanguageLanguageList, "Id", "DisplayName"), @L("SelectLanguage"), new { @id = "priorityMatrixList" , @class = "form-control form-control-solid", @required = "required" })
 
-            <div class="my-3">
-                <label class="form-label" for="conversationRateId">@L("ConversationRate")</label>
-                @Html.DropDownList("conversationRateId", new SelectList(Model.ApplicantLanguageConversationRateList,"Id","DisplayName", (Model.IsEditMode ? Model.ApplicantLanguage.ConversationRateId.ToString() : "")),@L("SelectAConversationRate"), new { @class = "form-control form-control-solid" , @required="required" })
-            </div>
+                                            </td>
+                                        @foreach (var ImpactInfo in Model.ApplicantLanguageConversationList)
+                                            {
+                                                <td>
+@* 
+                                                    @{
+                                                        var priorityMatrixInfo = Model.PriorityMatrixList?.Find(x => x.ImpactId == ImpactInfo.Id && x.UrgencyId == UrgencyInfo.Id);
+                                                    }
+                                                    <input type="hidden" name="priorityMatrixList[][id]" value="@priorityMatrixInfo?.Id" />
+                                                    <input type="hidden" name="priorityMatrixList[][urgencyId]" value="@UrgencyInfo.Id" />
+                                                    <input type="hidden" name="priorityMatrixList[][impactId]" value="@ImpactInfo.Id" /> *@
+                                                @Html.DropDownList("priorityMatrixList[][priorityId]", new SelectList(Model.ApplicantLanguageConversationRateList, "Id", "DisplayName"), @L("SelectRange"), new { @id = "priorityMatrixList" + @ImpactInfo.Id , @class = "form-control form-control-solid", @required = "required" })
+                                                </td>
+                                            }
+                                        <td>
+                                            <button class="btn btn-light-danger btn-icon btn-delete" type="button"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                        </tr>                                  
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <button type="button" id="addBtn" class="btn btn-success float-right"><i class="fa fa-plus"></i> @L("Addlanguage")</button>
 
-            <div class="my-3">
-                <label class="form-label" for="ApplicantLanguage_Narrative">@L("Narrative")</label>
-                <input class="form-control form-control-solid" id="ApplicantLanguage_Narrative" value="@Model.ApplicantLanguage.Narrative" type="text" name="narrative" maxlength="@MFAE.Jobs.ApplicationForm.ApplicantLanguageConsts.MaxNarrativeLength" minlength="@MFAE.Jobs.ApplicationForm.ApplicantLanguageConsts.MinNarrativeLength" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
+  
         </form>
     </div>
 </div>

@@ -269,7 +269,7 @@
     <text name="UserName">اسم المستخدم</text>
     <text name="Name">الإسـم</text>
     <text name="Surname">الإسم الأخير</text>
-    <text name="Email">البريد الإلكتروني</text>
+    <text name="EmailAddress">البريد الإلكتروني</text>
     <text name="LastLoginTime">آخر تسجيل الدخول</text>
     <text name="EditUser">تحرير المستخدم</text>
     <text name="UserInformations">تفاصيل المستخدم</text>
@@ -1363,7 +1363,9 @@
 	<text name="Accept">موافق</text>
 	<text name="Reject">مرفوض</text>
 	<text name="DecisionCommittee">قرار اللجنة</text>
-
+	<text name="SelectRange">اختر المعدل</text>
+	<text name="SelectLanguage">اختر اللغة</text>
+	<text name="Addlanguage">أضف لغة</text>
 
 
   </texts>

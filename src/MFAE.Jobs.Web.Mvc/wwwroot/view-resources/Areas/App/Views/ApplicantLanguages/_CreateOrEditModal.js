@@ -38,6 +38,8 @@
 
             _$applicantLanguageInformationForm = _modalManager.getModal().find('form[name=ApplicantLanguageInformationsForm]');
             _$applicantLanguageInformationForm.validate();
+            Jobs.init();
+
         };
 
 		          $('#OpenApplicantLookupTableButton').click(function () {
@@ -100,8 +102,26 @@
                 _$applicantLanguageInformationForm.find('input[name=conversationRateId]').val(''); 
         });
 		
+        $('#addBtn').click(function () {
+            var SelectLanguageList = "<tr><td><select class='form-control form-control-solid' id='LanguageID' name='LanguageID' required='required'><option value = '0' >" + app.localize('SelectLanguage') +"</option>";
+            for (i = 0; i < languageList.length; i++) {
+                SelectLanguageList += "<option value='" + languageList[i]['id']+"' >" + languageList[i]['displayName'] +"</option>";
+            }
+            SelectLanguageList += "</select></td>";
 
+            for (j = 0; j < ApplicantLanguageConversationList.length; j++) {
 
+                SelectLanguageList += "<td> <select class='form-control form-control-solid' id='Langeuagerate' name='Langeuagerate' required='required'><option value='0'>" + app.localize('SelectRange') + "</option>";                  
+
+                for (l = 0; l < ApplicantLanguageConversationRateList.length; l++) {
+                        SelectLanguageList += "<option value='" + ApplicantLanguageConversationRateList[l]['id'] + "' >" + ApplicantLanguageConversationRateList[l]['displayName'] +"</option >";
+                    }                            
+                SelectLanguageList += "</select > </td>";
+            }
+            SelectLanguageList += '<td><button class="btn btn-light-danger btn-icon btn-delete" type="button"><i class="fa fa-trash"></i></button></td>';
+            SelectLanguageList += '</tr>';
+            $('#LanguageRate').append(SelectLanguageList );
+        });
         this.save = function () {
             if (!_$applicantLanguageInformationForm.valid()) {
                 return;
@@ -142,6 +162,8 @@
 			});
         };
         
-        
+        $(document).ready(function () {
+            Jobs.init();
+        });
     };
 })(jQuery);

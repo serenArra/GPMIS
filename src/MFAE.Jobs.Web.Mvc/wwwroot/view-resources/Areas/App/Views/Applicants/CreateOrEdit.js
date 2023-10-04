@@ -315,9 +315,8 @@
 
                         abp.ui.setBusy();
                         _applicantsService.checkApplicantStudiesInfo(
-                            $("#ApplicantId").val(data)
+                            $("#ApplicantId").val()
                         ).done(function (data) {
-
                             if (data == false) {
                                 abp.notify.info(app.localize('AtLeastOneApplicantStudiesInformationMustBeEntered'));
                                 abp.event.trigger('app.checkApplicantStudiesInfo');
