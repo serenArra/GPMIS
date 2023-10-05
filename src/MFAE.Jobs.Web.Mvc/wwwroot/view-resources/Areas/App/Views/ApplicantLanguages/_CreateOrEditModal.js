@@ -102,26 +102,6 @@
                 _$applicantLanguageInformationForm.find('input[name=conversationRateId]').val(''); 
         });
 		
-        $('#addBtn').click(function () {
-            var SelectLanguageList = "<tr><td><select class='form-control form-control-solid' id='LanguageID' name='LanguageID' required='required'><option value = '0' >" + app.localize('SelectLanguage') +"</option>";
-            for (i = 0; i < languageList.length; i++) {
-                SelectLanguageList += "<option value='" + languageList[i]['id']+"' >" + languageList[i]['displayName'] +"</option>";
-            }
-            SelectLanguageList += "</select></td>";
-
-            for (j = 0; j < ApplicantLanguageConversationList.length; j++) {
-
-                SelectLanguageList += "<td> <select class='form-control form-control-solid' id='Langeuagerate' name='Langeuagerate' required='required'><option value='0'>" + app.localize('SelectRange') + "</option>";                  
-
-                for (l = 0; l < ApplicantLanguageConversationRateList.length; l++) {
-                        SelectLanguageList += "<option value='" + ApplicantLanguageConversationRateList[l]['id'] + "' >" + ApplicantLanguageConversationRateList[l]['displayName'] +"</option >";
-                    }                            
-                SelectLanguageList += "</select > </td>";
-            }
-            SelectLanguageList += '<td><button class="btn btn-light-danger btn-icon btn-delete" type="button"><i class="fa fa-trash"></i></button></td>';
-            SelectLanguageList += '</tr>';
-            $('#LanguageRate').append(SelectLanguageList );
-        });
         this.save = function () {
             if (!_$applicantLanguageInformationForm.valid()) {
                 return;
@@ -145,14 +125,27 @@
 
             
 
-            var applicantLanguage = _$applicantLanguageInformationForm.serializeFormToObject();
-            
-            
-            
-			
+            var applicantLanguageForm = _$applicantLanguageInformationForm.serializeFormToObject();
+            var applicantLanguageArray = _$applicantLanguageInformationForm.serializeArray();
+
+            ApplicantLanguage = [] 
+            ApplicantLanguage.Conversation = [];
+            ApplicantLanguage.Rate = [];
+
+            for (i = 0; i < applicantLanguageArray.length; i++) {
+                if (applicantLanguageArray[i]['name'].indexOf("ApplicantLanguageConversationRateList") >= 0) {
+                    var Rate = applicantLanguageArray[i]['name'].split("ApplicantLanguageConversationRateList");
+                    ApplicantLanguage.Conversation.push(Rate[1]);
+                    ApplicantLanguage.Rate.push(applicantLanguageArray[i]['value']);
+                }
+            }
+            applicantLanguageForm.conversationIds = ApplicantLanguage.Conversation;
+            applicantLanguageForm.conversationRateIds = ApplicantLanguage.Rate;
+            console.log(applicantLanguageForm);
+
 			 _modalManager.setBusy(true);
 			 _applicantLanguagesService.createOrEdit(
-				applicantLanguage
+                 applicantLanguageForm
 			 ).done(function () {
                abp.notify.info(app.localize('SavedSuccessfully'));
                _modalManager.close();

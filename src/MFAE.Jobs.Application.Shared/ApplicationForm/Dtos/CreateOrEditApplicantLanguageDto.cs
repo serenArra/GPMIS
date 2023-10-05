@@ -1,6 +1,7 @@
 ﻿using System;
 using Abp.Application.Services.Dto;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace MFAE.Jobs.ApplicationForm.Dtos
 {
@@ -14,9 +15,15 @@ namespace MFAE.Jobs.ApplicationForm.Dtos
 
         public int LanguageId { get; set; }
 
+
         public int ConversationId { get; set; }
 
         public int ConversationRateId { get; set; }
+
+
+        public List<int> ConversationIds { get; set; }
+
+        public List<int> ConversationRateIds { get; set; }
 
     }
 }

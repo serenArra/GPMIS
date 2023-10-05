@@ -192,10 +192,18 @@ namespace MFAE.Jobs.ApplicationForm
         [AbpAuthorize(AppPermissions.Pages_ApplicantLanguages_Create)]
         protected virtual async Task Create(CreateOrEditApplicantLanguageDto input)
         {
-            var applicantLanguage = ObjectMapper.Map<ApplicantLanguage>(input);
-
-            await _applicantLanguageRepository.InsertAsync(applicantLanguage);
-
+            var i = 0;
+            foreach (var Conversation in input.ConversationIds)
+            {
+                var applicantLanguage = new ApplicantLanguage();
+                applicantLanguage.LanguageId = input.LanguageId;
+                applicantLanguage.ConversationId = Conversation;
+                applicantLanguage.ConversationRateId = input.ConversationRateIds[i];
+                applicantLanguage.ApplicantId = input.ApplicantId;
+                await _applicantLanguageRepository.InsertAsync(applicantLanguage);
+                i++;
+            }
+            
         }
 
         [AbpAuthorize(AppPermissions.Pages_ApplicantLanguages_Edit)]
