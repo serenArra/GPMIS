@@ -35,8 +35,25 @@ namespace MFAE.Jobs.ApplicationForm
 
         }
 
+      
+
+
+
         public async Task<PagedResultDto<GetApplicantLanguageForViewDto>> GetAll(GetAllApplicantLanguagesInput input)
         {
+            var aplicatlanguage =_applicantLanguageRepository.GetAll().Include(e => e.ApplicantFk)
+                        .Include(e => e.LanguageFk)
+                        .Include(e => e.ConversationFk)
+                        .Include(e => e.ConversationRateFk).GroupBy(x => new { x.LanguageId })                        
+                        .Select(x => new
+                        {
+                           applicstUser = x.Select(s=>s.ApplicantId).FirstOrDefault(),
+                           language = x.Select(s=>s.LanguageFk.Name).FirstOrDefault(),
+                           Read =x.Where(s=>s.ConversationId == 1).Select(s=>s.ConversationRateFk.Name).FirstOrDefault(),
+                           Write = x.Where(s => s.ConversationId == 2).Select(s => s.ConversationRateFk.Name).FirstOrDefault(),
+                           Speak = x.Where(s => s.ConversationId == 3).Select(s => s.ConversationRateFk.Name).FirstOrDefault(),
+                        }).Where(e=>e.applicstUser == input.ApplicantIdFilter);
+
 
             var filteredApplicantLanguages = _applicantLanguageRepository.GetAll()
                         .Include(e => e.ApplicantFk)
@@ -56,8 +73,8 @@ namespace MFAE.Jobs.ApplicationForm
                 .PageBy(input);
 
             var applicantLanguages = from o in pagedAndFilteredApplicantLanguages
-                                     join o1 in _lookup_applicantRepository.GetAll() on o.ApplicantId equals o1.Id into j1
-                                     from s1 in j1.DefaultIfEmpty()
+                                    join o1 in _lookup_applicantRepository.GetAll() on o.ApplicantId equals o1.Id into j1
+                                    from s1 in j1.DefaultIfEmpty()
 
                                      join o2 in _lookup_languageRepository.GetAll() on o.LanguageId equals o2.Id into j2
                                      from s2 in j2.DefaultIfEmpty()
@@ -70,7 +87,8 @@ namespace MFAE.Jobs.ApplicationForm
 
                                      select new
                                      {
-
+                                         o.ConversationId,
+                                         o.LanguageId,
                                          o.Narrative,
                                          Id = o.Id,
                                          ApplicantFirstName = s1 == null || s1.FirstName == null ? "" : s1.FirstName.ToString(),
@@ -81,23 +99,25 @@ namespace MFAE.Jobs.ApplicationForm
 
             var totalCount = await filteredApplicantLanguages.CountAsync();
 
-            var dbList = await applicantLanguages.ToListAsync();
+            var dbList = await applicantLanguages.GroupBy(x => new { x.LanguageId})
+                        .Select(x => new
+                        {
+                            language = x.Select(s => s.LanguageName).FirstOrDefault(),
+                            Read = x.Where(s => s.ConversationId == 1).Select(s => s.ConversationRateName).FirstOrDefault(),
+                            Write = x.Where(s => s.ConversationId == 2).Select(s => s.ConversationRateName).FirstOrDefault(),
+                            Speak = x.Where(s => s.ConversationId == 3).Select(s => s.ConversationRateName).FirstOrDefault(),
+                        }).ToListAsync();
             var results = new List<GetApplicantLanguageForViewDto>();
 
             foreach (var o in dbList)
             {
                 var res = new GetApplicantLanguageForViewDto()
                 {
-                    ApplicantLanguage = new ApplicantLanguageDto
-                    {
-
-                        Narrative = o.Narrative,
-                        Id = o.Id,
-                    },
-                    ApplicantFirstName = o.ApplicantFirstName,
-                    LanguageName = o.LanguageName,
-                    ConversationName = o.ConversationName,
-                    ConversationRateName = o.ConversationRateName
+             
+                    LanguageName = o.language,
+                    ConversationReadRate =o.Read,
+                    ConversationspeakRate = o.Speak,
+                    ConversationWriteRate = o.Write,
                 };
 
                 results.Add(res);

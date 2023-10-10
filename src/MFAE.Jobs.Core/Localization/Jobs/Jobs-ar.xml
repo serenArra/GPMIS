@@ -1366,6 +1366,10 @@
 	<text name="SelectRange">اختر المعدل</text>
 	<text name="SelectLanguage">اختر اللغة</text>
 	<text name="Addlanguage">أضف لغة</text>
+	  <text name="ConversationRead">القراءة</text>
+	  <text name="ConversationWrite">الكتابة</text>
+	  <text name="ConversationSpeak">المحادثة</text>
+
 
 
   </texts>

@@ -168,29 +168,25 @@
                 },
 					{
 						targets: 2,
-						 data: "applicantLanguage.narrative",
-						 name: "narrative"   
+                        data: "language",
+                        name: "languageName"   
 					},
 					{
 						targets: 3,
-						 data: "applicantFirstName" ,
-						 name: "applicantFk.firstName" 
+                        data: "read" ,
+                        name: "conversationRe" 
 					},
 					{
 						targets: 4,
-						 data: "languageName" ,
-						 name: "languageFk.name" 
+                        data: "write" ,
+                        name: "conversationWrite" 
 					},
 					{
 						targets: 5,
-						 data: "conversationName" ,
-						 name: "conversationFk.name" 
+                        data: "Speak" ,
+                        name: "conversationSpeak" 
 					},
-					{
-						targets: 6,
-						 data: "conversationRateName" ,
-						 name: "conversationRateFk.name" 
-					}
+				
             ]
         });
 
